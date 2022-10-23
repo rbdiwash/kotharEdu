@@ -39,11 +39,21 @@ code {
   .section-subHeading {
     @apply text-altBlack text-2xl py-8 font-semibold text-center;
   }
+  .input-form {
+    @apply block w-full px-3 py-5 text-base font-normal text-black  bg-clip-padding
+               bg-altSecond rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-blue focus:outline-none;
+  }
 }
 
 #homepage {
   background-image: url("./assets/images/banner2.png");
   background-position: center center;
+  background-size: cover;
+}
+#contact {
+  background-image: url("./assets/images/map.png");
+  background-size: contain;
+  padding: 100px 0;
 }
 .slider {
   margin-right: 20px;
@@ -54,4 +64,7 @@ code {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+#news {
+  background: linear-gradient(to bottom, #fff 35%, #bee2ed 0%);
 }

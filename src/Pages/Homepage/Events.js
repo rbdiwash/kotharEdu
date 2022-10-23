@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
 import { FiClock, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { TfiLocationPin } from "react-icons/tfi";
 import Slider from "react-slick";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -107,7 +108,7 @@ const Events = () => {
                   <FiClock /> <span> 12:00 am - 11:59pm</span>
                 </div>
                 <p className="text-md flex items-center text-blue space-x-3">
-                  <BiMap /> <span>Kothar Education</span>
+                  <TfiLocationPin /> <span>Kothar Education</span>
                 </p>
               </div>
             </div>

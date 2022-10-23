@@ -17,6 +17,9 @@ import { FiClock, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Classes from "./Classes";
 import News from "./News";
 import Events from "./Events";
+import Cities from "./Cities";
+import ContactForm from "../../Components/ContactForm";
+import Testimonials from "./Testimonials";
 const options = [
   { title: "Study Abroad Decision", img: study },
   { title: "Student Counseling", img: student },
@@ -100,31 +103,10 @@ const Homepage = () => {
       },
     ],
   };
-  const [events, setEvents] = useState([]);
   const [destinations, setDestinations] = useState([]);
   const [services, setServices] = useState([]);
-  const [news, setNews] = useState([]);
   const [uniList, setUniList] = useState([]);
-  const [testimonial, setTestimonial] = useState([]);
   useEffect(() => {
-    axios
-      .get("https://kothar-consultancy.vercel.app/kothar/events")
-      .then((res) => {
-        console.log(res);
-        setEvents(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .get("/testimonials")
-      .then((res) => {
-        console.log(res);
-        setTestimonial(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     axios
       .get("/services")
       .then((res) => {
@@ -134,15 +116,7 @@ const Homepage = () => {
       .catch((err) => {
         console.log(err);
       });
-    axios
-      .get("/news")
-      .then((res) => {
-        console.log(res);
-        setNews(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
     axios
       .get("/universities")
       .then((res) => {
@@ -152,21 +126,12 @@ const Homepage = () => {
       .catch((err) => {
         console.log(err);
       });
-    axios
-      .get("/destinations")
-      .then((res) => {
-        console.log(res);
-        setDestinations(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }, []);
 
   return (
     <>
-      <section id="homepage" className="h-screen">
-        <div className="container mx-auto">
+      <section id="homepage" className="h-max">
+        <div className="container mx-auto md:pb-36">
           <div className="row">
             <div className="py-12 w-full md:w-3/4">
               <h1 className=" text-6xl uppercase text-white font-semibold leading-tight">
@@ -185,22 +150,24 @@ const Homepage = () => {
               </p>
               <button className="btn font-semibold">Explore More</button>
             </div>
-            <div className="bg-blueAlt  grid grid-cols-5 gap-4 py-10 px-6 rounded-md shadow-md">
-              {options.map((arg) => (
-                <div className="col-span-1" key={arg?.title}>
-                  <div className="card flex flex-col items-center justify-center text-center">
-                    <img src={arg?.img} alt="" />
-                    <p className="text-2xl text-white font-semibold mt-8">
-                      {arg?.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
-      <section id="homepage2" className="h-max-content">
+      <div className="container mx-auto mt-[-100px] z-50">
+        <div className="bg-blueAlt  grid grid-cols-5 gap-4 py-10 px-6 rounded-md shadow-md">
+          {options.map((arg) => (
+            <div className="col-span-1" key={arg?.title}>
+              <div className="card flex flex-col items-center justify-center text-center">
+                <img src={arg?.img} alt="" />
+                <p className="text-2xl text-white font-semibold mt-8">
+                  {arg?.title}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <section id="homepage2" className="h-max">
         <div className="container mx-auto text-center py-12 md:py-24">
           <div className="row ">
             <p className="section-heading md:w-[80%] mx-auto">
@@ -235,118 +202,7 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      <section className="h-max-content">
-        <div className="container mx-auto text-center py-12 md:py-24">
-          <div className="row ">
-            <p className="section-heading">Where do you want to study?</p>
-            <p className="section-subHeading">
-              We recommend you the Best college in best <br /> destination to
-              build your career.
-            </p>
-
-            <div className="my-16">
-              <Slider {...settings}>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-1 slider">
-                  <div className="text-center mx-auto relative">
-                    <img
-                      src={australia}
-                      alt=""
-                      className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                    />
-                    <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                      Australia
-                    </div>
-                  </div>
-                </div>
-              </Slider>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Cities />
 
       <section id="services" className="h-max-content bg-lightBlue">
         <div className="container mx-auto my-auto h-full  py-12 md:py-24">
@@ -381,6 +237,16 @@ const Homepage = () => {
       <Classes />
       <News />
       <AssociatedUni />
+      <Testimonials />
+      <section id="contact" className="h-max">
+        <div className="container mx-auto">
+          <div className="row">
+            <div className="grid md:grid-cols-6 px-6 py-12">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 };
