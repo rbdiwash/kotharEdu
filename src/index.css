@@ -40,7 +40,7 @@ code {
     @apply text-altBlack text-2xl py-8 font-semibold text-center;
   }
   .input-form {
-    @apply block w-full px-3 py-5 text-base font-normal text-black  bg-clip-padding
+    @apply block w-full px-4 py-5 text-base font-normal text-black  bg-clip-padding
                bg-altSecond rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-blue focus:outline-none;
   }
 }
@@ -55,6 +55,12 @@ code {
   background-size: contain;
   padding: 100px 0;
 }
+#bookCover {
+  background-image: url("./assets/images/book_cover.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .slider {
   margin-right: 20px;
 }
@@ -67,4 +73,11 @@ code {
 }
 #news {
   background: linear-gradient(to bottom, #fff 35%, #bee2ed 0%);
+}
+
+@media only screen and (max-width: 650px) {
+  section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }

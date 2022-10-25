@@ -131,11 +131,11 @@ const Homepage = () => {
   return (
     <>
       <section id="homepage" className="h-max">
-        <div className="container mx-auto md:pb-36">
+        <div className="container mx-auto md:pb-[250px]">
           <div className="row">
             <div className="py-12 w-full md:w-3/4">
               <h1 className=" text-6xl uppercase text-white font-semibold leading-tight">
-                Welcome to kothar educational services
+                Welcome to kothar <br /> educational services
               </h1>
               <p className="text-white text-2xl leading-relaxed py-8">
                 Kothar Educational services was founded with a vision to provide
@@ -154,7 +154,7 @@ const Homepage = () => {
         </div>
       </section>
       <div className="container mx-auto mt-[-100px] z-50">
-        <div className="bg-blueAlt  grid grid-cols-5 gap-4 py-10 px-6 rounded-md shadow-md">
+        <div className="bg-second  grid grid-cols-5 gap-4 py-10 px-6 rounded-md shadow-md">
           {options.map((arg) => (
             <div className="col-span-1" key={arg?.title}>
               <div className="card flex flex-col items-center justify-center text-center">
@@ -188,11 +188,11 @@ const Homepage = () => {
                 <div className="col-span-1" key={arg?.title}>
                   <div className="card flex flex-col items-center justify-center text-center">
                     <img src={arg?.img} alt="" />
-                    <h1 className="md:text-6xl font-bold text-black my-6">
+                    <h1 className="md:text-6xl font-bold text-[#585655] my-6">
                       {arg?.count}
                       <sup>+</sup>
                     </h1>
-                    <p className="md:text-2xl text-black font-semibold">
+                    <p className="md:text-2xl text-[#585655] font-semibold">
                       {arg?.title}
                     </p>
                   </div>

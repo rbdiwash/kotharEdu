@@ -12,7 +12,7 @@ const AssociatedUni = () => {
   };
   return (
     <>
-      <section id="associated">
+      <section id="associated" className="md:mb-20">
         <div className="container mx-auto py-12 md:py-24">
           <div className="row">
             <div className="section-heading text-capitalize pb-12 md:pb-24">

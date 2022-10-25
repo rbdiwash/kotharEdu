@@ -18,6 +18,7 @@ import { ToastContainer } from "react-toastify";
 import NotFound from "./Pages/NotFound";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Book from "./Pages/Book";
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Homepage />}></Route>
         <Route exact path="/about" element={<About />}></Route>
-        <Route exact path="/contact" element={<Contact />}></Route>
+        <Route exact path="/contact" element={<Book />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/admin" element={<Admin />}></Route>
         <Route element={<NotFound />}></Route>
