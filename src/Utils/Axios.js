@@ -4,7 +4,7 @@ import axios from "axios";
 //   "https://cors-everywhere.herokuapp.com/" + process.env.REACT_APP_API_KEY;
 
 // DEV;
-axios.defaults.baseURL = process.env.REACT_APP_API_KEY;
+axios.defaults.baseURL = "https://kothar-consultancy.vercel.app/kothar/";
 
 // axios.defaults.headers = {
 //   Authorization: REACT_APP_API_AUTHORIZATION_KEY,
