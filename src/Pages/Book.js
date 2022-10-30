@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import book from "../assets/images/book.png";
-import axios from "../Utils/axios";
+import axios from "../Utils/Axios";
 import ErrorMessage from "../Components/ErrorMessage";
 import SuccessMessage from "../Components/SuccessMessage";
 const Book = () => {

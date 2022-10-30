@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../Utils/axios";
+import axios from "../Utils/Axios";
 const useStatesAndActions = () => {
   const [destinations, setDestinations] = useState([]);
   const [services, setServices] = useState([]);

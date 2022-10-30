@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import australia from "../../assets/images/australia.png";
 import Slider from "react-slick";
-import axios from "../../Utils/axios";
+import axios from "../../Utils/Axios";
 //
 import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
 import { NavLink } from "react-router-dom";

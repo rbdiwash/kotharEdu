@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "../../Utils/axios";
+import axios from "../../Utils/Axios";
 
 import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
 import { FiClock, FiChevronLeft, FiChevronRight } from "react-icons/fi";

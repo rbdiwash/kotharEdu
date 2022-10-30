@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import australia from "../../assets/images/Vector.png";
 import { BiChevronRight } from "react-icons/bi";
-import axios from "../../Utils/axios";
+import axios from "../../Utils/Axios";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;

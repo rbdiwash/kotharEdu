@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../Utils/axios";
+import axios from "../Utils/Axios";
 import ErrorMessage from "../Components/ErrorMessage";
 import SuccessMessage from "../Components/SuccessMessage";
 import { BiChevronRight } from "react-icons/bi";
