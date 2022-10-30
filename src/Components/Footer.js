@@ -14,51 +14,54 @@ const options = [
 
 const Footer = () => {
   return (
-    <React.Fragment>
-      <footer class="text-white bg-altBlack px-4">
-        <div class="container pt-6 mx-auto">
-          <div class="py-12">
-            <div class="flex justify-start md:justify-center mb-12">
+    <>
+      <footer className="text-white bg-altBlack px-4">
+        <div className="container pt-6 mx-auto">
+          <div className="py-12">
+            <div className="flex justify-start md:justify-center mb-12">
               <img
                 src={logo}
                 className="mr-3 h-16 md:h-28"
                 alt="Flowbite Logo"
               />
             </div>
-            <div class="grid lg:grid-cols-5 md:grid-cols-1 items-start  gap-16">
-              <div class="mb-6 md:col-span-2">
-                <h1 class="uppercase text-2xl font-bold mb-2.5 border-b-2 border-primary pb-2 w-max">
+            <div className="grid lg:grid-cols-5 md:grid-cols-1 items-start  gap-16">
+              <div className="mb-6 md:col-span-2">
+                <h1 className="uppercase text-2xl font-bold mb-2.5 border-b-2 border-primary pb-2 w-max">
                   Head office
                 </h1>
 
-                <ul class="list-none mb-0 md:pr-16">
+                <ul className="list-none mb-0 md:pr-16">
                   <li className="py-2">
-                    <a href="#!" class="text-white text-xl">
+                    <a href="#!" className="text-white text-xl">
                       K110/81-86 Courallie Avenue Homebush west Sydney NSW 2140
                     </a>
                   </li>
                   <li className="py-2">
-                    <a href="#!" class="text-white text-xl">
+                    <a
+                      href="mailto:kothareducation@gmail.com"
+                      className="text-white text-xl"
+                    >
                       Email: kothareducation@gmail.com
                     </a>
                   </li>
                   <li className="py-2">
-                    <a href="#!" class="text-white text-xl">
+                    <a href="tel:9840000000" className="text-white text-xl">
                       Call Us: 0480322403
                     </a>
                   </li>
                 </ul>
               </div>
 
-              <div class="mb-6">
-                <h1 class="uppercase text-2xl font-bold mb-2.5 border-b-2 border-primary pb-2 w-max">
+              <div className="mb-6">
+                <h1 className="uppercase text-2xl font-bold mb-2.5 border-b-2 border-primary pb-2 w-max">
                   Quick Links
                 </h1>
 
-                <ul class="list-none mb-0">
+                <ul className="list-none mb-0">
                   {options?.map((arg) => (
                     <li key={arg?.id} className="py-2 border-b border-altWhite">
-                      <a href="#!" class="text-white  text-xl">
+                      <a href="#!" className="text-white  text-xl">
                         {arg?.label}
                       </a>
                     </li>
@@ -66,15 +69,15 @@ const Footer = () => {
                 </ul>
               </div>
 
-              <div class="mb-6 md:mb-0 md:col-span-2 h-full">
-                <h1 class="uppercase text-2xl font-bold mb-2.5 border-b-2 border-primary pb-2 w-max">
+              <div className="mb-6 md:mb-0 md:col-span-2 h-full">
+                <h1 className="uppercase text-2xl font-bold mb-2.5 border-b-2 border-primary pb-2 w-max">
                   For Newsletter
                 </h1>
                 <div className="flex flex-col justify-between py-2 h-full">
-                  <div class="md:mb-6">
+                  <div className="md:mb-6">
                     <input
                       type="text"
-                      class="
+                      className="
                 form-control
                 block
                 w-2/3
@@ -94,16 +97,16 @@ const Footer = () => {
                       placeholder="Enter you Email here"
                     />
 
-                    <div class="md:mr-auto mt-6">
-                      <button type="submit" class="btn-alt">
+                    <div className="md:mr-auto mt-6">
+                      <button type="submit" className="btn-alt">
                         Book Now
                       </button>
                     </div>
                   </div>
 
-                  <ul class="list-none md:mb-16 border-t-2 border-primary md:w-2/3">
+                  <ul className="list-none md:mb-16 border-t-2 border-primary md:w-2/3">
                     <li className="py-2 ">
-                      <a href="#!" class="text-white  text-xl ">
+                      <a href="#!" className="text-white  text-xl ">
                         APPROVED FROM MINISTRY OF EDUCATION, NEPAL GOVERNMENT
                       </a>
                     </li>
@@ -115,7 +118,7 @@ const Footer = () => {
 
           <hr className="text-altWhite" />
           <div className="flex items-center justify-between py-6">
-            <div class="text-center p-4 text-altWhite text-xl">
+            <div className="text-center p-4 text-altWhite text-xl">
               © Copyright 2021. Grace International. All Rights Reserved
             </div>
             <div className="flex gap-4">
@@ -127,7 +130,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-    </React.Fragment>
+    </>
   );
 };
 

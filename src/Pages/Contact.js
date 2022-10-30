@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "../Utils/axios";
+import ErrorMessage from "../Components/ErrorMessage";
+import SuccessMessage from "../Components/SuccessMessage";
 import { BiChevronRight } from "react-icons/bi";
 import contact from "../assets/images/quick_contact.png";
 
 const Contact = () => {
+  const [data, setData] = useState({});
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevState) => ({ ...prevState, [name]: value }));
+  };
+  const [message, setMessage] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("send-message", data)
+      .then((res) => {
+        // console.log(res);
+        setMessage({ success: res?.data?.message });
+        setData({
+          name: "",
+          contactNo: "",
+          email: "",
+          enquiry: "",
+        });
+      })
+      .catch((err) => {
+        setMessage({ error: err?.data?.message });
+      });
+  };
   return (
     <section id="contactPage">
       <div className="container mx-auto py-12 md:py-24">
         <div className="row">
-          <h1 className="font-semibold flex items-center">
-            Home <BiChevronRight />
-            <span className="text-primary">Contact Us</span>
-          </h1>
+          <div className="flex items-center space-x-3 mb-6">
+            <h1 className="font-semibold flex items-center">Home</h1>
+            <BiChevronRight className="text-3xl" />{" "}
+            <span className="text-primary font-semibold">Contact Us</span>
+          </div>
           <p className="section-heading text-black text-left mt-8">
             SEND MESSAGE
           </p>
@@ -21,40 +50,68 @@ const Contact = () => {
             </div>
             <div className="col-span-1">
               <div className="form-container bg-[#C2F6FF] px-16 py-24 rounded-lg shadow-md">
-                <div class="mb-3">
-                  <input
-                    type="text"
-                    class="input-form bg-white"
-                    id="exampleFormControlInput1"
-                    placeholder="Full Name"
-                  />
-                </div>
-                <div class="mb-3">
-                  <input
-                    type="text"
-                    class="input-form bg-white"
-                    id="exampleFormControlInput1"
-                    placeholder="Contact Number"
-                  />
-                </div>
-                <div class="mb-3">
-                  <input
-                    type="text"
-                    class="input-form bg-white"
-                    id="exampleFormControlInput1"
-                    placeholder="Email Address"
-                  />
-                </div>
-                <div class="mb-6">
-                  <textarea
-                    type="text"
-                    rows={4}
-                    class="input-form bg-white"
-                    id="exampleFormControlInput1"
-                    placeholder="Your Enquiry"
-                  />
-                </div>
-                <div className="btn w-max font-semibold px-12">Send</div>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-5 mt-6 md:mt-0">
+                    <input
+                      type="text"
+                      name="name"
+                      className="input-form bg-white"
+                      placeholder="Full Name"
+                      required
+                      value={data?.name}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <input
+                      type="number"
+                      name="contactNo"
+                      className="input-form bg-white"
+                      placeholder="Contact Number"
+                      required
+                      value={data?.contactNo}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <input
+                      type="email"
+                      name="email"
+                      value={data?.email}
+                      className="input-form bg-white"
+                      placeholder="Email Address"
+                      required
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-5">
+                    <textarea
+                      type="text"
+                      name="enquiry"
+                      value={data?.enquiry}
+                      rows={4}
+                      className="input-form bg-white"
+                      placeholder="Your Enquiry"
+                      required
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  {message?.success && (
+                    <SuccessMessage
+                      message={message?.success}
+                      setMessage={setMessage}
+                    />
+                  )}
+                  {message?.error && (
+                    <ErrorMessage
+                      message={message?.success}
+                      setMessage={setMessage}
+                    />
+                  )}
+                  <button type="submit" className="btn w-max mt-4">
+                    Submit
+                  </button>
+                </form>
               </div>
             </div>
           </div>

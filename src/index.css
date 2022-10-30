@@ -22,13 +22,13 @@ code {
 
 @layer base {
   .btn {
-    @apply text-white bg-primary px-6 py-2 rounded-md duration-300 cursor-pointer;
+    @apply text-white  bg-primary px-6 py-2 rounded-md duration-300 cursor-pointer;
   }
   .btn:hover {
     @apply bg-primary2;
   }
   .btn-alt {
-    @apply text-white bg-blueAlt  px-6 py-2 rounded-md duration-300 cursor-pointer;
+    @apply text-white text-xl bg-blueAlt  px-6 py-2 rounded-md duration-300 cursor-pointer;
   }
   .btn-alt:hover {
     @apply bg-second text-white;
@@ -41,7 +41,7 @@ code {
   }
   .input-form {
     @apply block w-full px-4 py-5 text-base font-normal text-black  bg-clip-padding
-               bg-altSecond rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-blue focus:outline-none;
+               bg-altSecond rounded-lg transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-blue focus:outline-none;
   }
 }
 
@@ -49,6 +49,11 @@ code {
   background-image: url("./assets/images/banner2.png");
   background-position: center center;
   background-size: cover;
+}
+#homepage2 {
+  background-image: url("./assets/images/bg-line.png");
+  background-position: bottom center;
+  background-size: 140vw 100vh;
 }
 #contact {
   background-image: url("./assets/images/map.png");
@@ -80,4 +85,66 @@ code {
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+
+#events .slick-slide {
+  padding-right: 80px;
+}
+
+@media only screen and (max-width: 850px) {
+  #events .slick-slide {
+    padding-right: 30px;
+  }
+}
+
+.slick-slide {
+  padding-right: 30px;
+}
+
+.slick-dots li {
+  width: 30px;
+  height: 30px;
+}
+.slick-dots li button:before {
+  font-family: "slick";
+  font-size: 13px;
+  line-height: 20px;
+  position: absolute;
+  top: 60px !important;
+  left: 0;
+  width: 30px;
+  height: 20px;
+  content: "•";
+  text-align: center;
+  opacity: 0.25;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before {
+  font-family: "slick";
+  font-size: 17px;
+  line-height: 20px;
+  position: absolute;
+  top: 60px !important;
+  left: 0;
+  width: 30px;
+  height: 20px;
+  content: "•";
+  text-align: center;
+  opacity: 0.25;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#testimonials .slick-active .cont {
+  background: #00a1cf;
+}
+#testimonials .slick-active .cont .quote-icon {
+  color: #42b9db;
+}
+#testimonials .slick-active .cont p,
+#testimonials .slick-active .cont .down-icon {
+  color: #fff;
 }

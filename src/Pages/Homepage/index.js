@@ -10,8 +10,8 @@ import visa from "../../assets/images/visa.png";
 import australia from "../../assets/images/australia.png";
 import AssociatedUni from "./AssociatedUni";
 import Slider from "react-slick";
-// import axios from "../../Utils/Axios";
-import axios from "axios";
+import axios from "../../Utils/axios";
+
 import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
 import { FiClock, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Classes from "./Classes";
@@ -20,6 +20,8 @@ import Events from "./Events";
 import Cities from "./Cities";
 import ContactForm from "../../Components/ContactForm";
 import Testimonials from "./Testimonials";
+import { NavLink } from "react-router-dom";
+import useKothar from "../../context/useKothar";
 const options = [
   { title: "Study Abroad Decision", img: study },
   { title: "Student Counseling", img: student },
@@ -103,31 +105,7 @@ const Homepage = () => {
       },
     ],
   };
-  const [destinations, setDestinations] = useState([]);
-  const [services, setServices] = useState([]);
-  const [uniList, setUniList] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/services")
-      .then((res) => {
-        console.log(res);
-        setServices(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios
-      .get("/universities")
-      .then((res) => {
-        console.log(res);
-        setUniList(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
+  const [{ services }, {}] = useKothar();
   return (
     <>
       <section id="homepage" className="h-max">
@@ -209,25 +187,37 @@ const Homepage = () => {
           <div className="row items-center  h-full my-auto">
             <p className="section-heading">Our Services</p>
             <p className="section-subHeading pb-20">
-              Provide awesome customer service with our experienced teachers
+              {services?.serviceMotto ||
+                "Provide awesome customer service with our experienced teachers"}
             </p>
             <Slider {...settings}>
-              <div className="">
-                <div className="mx-auto relative text-left">
-                  <img src={australia} alt="" className="rounded  h-[300px]" />
-                  <p className="text-3xl  text-black leading-tight font-bold tracking-wide py-6">
-                    Library
-                  </p>
-                  <p className="pb-4 text-xl">
-                    For especial members only, we are providing a huge range of
-                    standardized tests preparation materials.
-                  </p>
-                  <div className="flex text-blue items-center text-xl">
-                    <h1 className="">More</h1>
-                    <BiChevronRight className="text-xl cursor-pointer" />
+              {services?.services?.map((item, i) => (
+                <div className="w-content" key={i * 123}>
+                  <div className="mx-auto relative text-left">
+                    {/*  w-[80%] */}
+                    <img
+                      src={item?.image}
+                      alt=""
+                      className="rounded h-[300px]"
+                    />
+                    <p className="text-3xl  text-black leading-tight capitalize font-bold tracking-wide py-6">
+                      {item?.serviceName?.slice(0, 20)}
+                      {item?.serviceName?.length > 20 && "..."}
+                    </p>
+                    <p className="pb-4 text-xl text-justify">
+                      {item?.descripttion.slice(0, 200)}{" "}
+                      {item?.descripttion?.length > 200 && "..."}
+                    </p>
+                    <NavLink
+                      to={`/services/`}
+                      className="flex text-blue items-center text-xl cursor-pointer"
+                    >
+                      <h1 className="">More</h1>
+                      <BiChevronRight className="text-xl cursor-pointer" />
+                    </NavLink>
                   </div>
                 </div>
-              </div>
+              ))}
             </Slider>
           </div>
         </div>

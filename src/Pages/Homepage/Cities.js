@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import australia from "../../assets/images/australia.png";
 import Slider from "react-slick";
-// import axios from "../../Utils/Axios";
-import axios from "axios";
+import axios from "../../Utils/axios";
+//
 import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
+import { NavLink } from "react-router-dom";
+import useKothar from "../../context/useKothar";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -70,18 +72,7 @@ const Cities = () => {
       },
     ],
   };
-  const [destinations, setDestinations] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/destinations")
-      .then((res) => {
-        console.log(res);
-        setDestinations(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [{ destinations }, {}] = useKothar();
   return (
     <section id="cities" className="h-max-content">
       <div className="container mx-auto text-center py-12 md:py-24">
@@ -94,102 +85,27 @@ const Cities = () => {
 
           <div className="my-16">
             <Slider {...settings}>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
-              <div className="col-span-1 slider">
-                <div className="text-center mx-auto relative">
-                  <img
-                    src={australia}
-                    alt=""
-                    className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
-                  />
-                  <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
-                    Australia
-                  </div>
-                </div>
-              </div>
+              {destinations?.length > 0 &&
+                destinations?.map((item) => (
+                  <NavLink
+                    className="cursor-pointer"
+                    to={`/states/${item?.destination}`}
+                    state={{ data: item }}
+                  >
+                    <div className="col-span-1 slider">
+                      <div className="text-center mx-auto relative">
+                        <img
+                          src={item?.image}
+                          alt=""
+                          className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
+                        />
+                        <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
+                          {item?.destination || "Sydney"}
+                        </div>
+                      </div>
+                    </div>
+                  </NavLink>
+                ))}
             </Slider>
           </div>
         </div>

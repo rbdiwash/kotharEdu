@@ -1,8 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import book from "../assets/images/book.png";
-
+import axios from "../Utils/axios";
+import ErrorMessage from "../Components/ErrorMessage";
+import SuccessMessage from "../Components/SuccessMessage";
 const Book = () => {
+  const [data, setData] = useState({ enquiryType: "class" });
+  const [message, setMessage] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  console.log(data?.name);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("book-appointment", data)
+      .then((res) => {
+        // console.log(res);
+        setMessage({ success: res?.data?.message });
+        setData({
+          enquiryType: "",
+          name: "",
+          contactNo: "",
+          email: "",
+          enquiry: "",
+        });
+      })
+      .catch((err) => {
+        setMessage({ error: err?.data?.message });
+      });
+  };
+
   return (
     <>
       <section id="bookCover">
@@ -29,75 +60,116 @@ const Book = () => {
               </div>
               <div className="col-span-4 mt-10 md:mt-0">
                 <div className="form-container bg-white md:px-20 px-10 py-24 rounded-lg shadow-2xl">
-                  <div class="mb-4 flex items-center flex-wrap md:space-x-6">
-                    <span>
+                  <form onSubmit={handleSubmit}>
+                    <fieldset
+                      className="mb-6 flex items-center flex-wrap md:space-x-6"
+                      required
+                      id="group"
+                    >
+                      <span>
+                        <input
+                          type="radio"
+                          id="Class"
+                          name="enquiryType"
+                          value="Class"
+                          required
+                          checked="checked"
+                          onChange={handleInputChange}
+                        />
+                        <label for="Class" className="ml-2 text-black">
+                          Class Enquiry
+                        </label>
+                      </span>
+                      <span>
+                        <input
+                          type="radio"
+                          id="Career"
+                          name="enquiryType"
+                          value="Career"
+                          onChange={handleInputChange}
+                        />
+                        <label for="Career" className="ml-2 text-black">
+                          Career Counseling
+                        </label>
+                      </span>
+                      <span>
+                        <input
+                          type="radio"
+                          id="Visa"
+                          name="enquiryType"
+                          value="Visa"
+                          onChange={handleInputChange}
+                        />
+                        <label for="Visa" className="ml-2 text-black">
+                          Visa Consultation
+                        </label>
+                      </span>
+                    </fieldset>
+                    <div className="mb-6">
                       <input
-                        type="radio"
-                        id="html"
-                        name="fav_language"
-                        value="HTML"
+                        type="text"
+                        className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue focus:outline-2 focus:outline-blue"
+                        placeholder="Your name here"
+                        required
+                        value={data?.name}
+                        onChange={handleInputChange}
+                        name="name"
                       />
-                      <label for="html" className="ml-2 text-black">
-                        Class Enquiry
-                      </label>
-                    </span>
-                    <span>
+                    </div>
+                    <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
                       <input
-                        type="radio"
-                        id="html"
-                        name="fav_language"
-                        value="HTML"
+                        type="number"
+                        className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
+                        placeholder="Contact No*"
+                        required
+                        // type="tel"
+                        // pattern="[0-9]{10}"
+                        name="contactNo"
+                        value={data?.contactNo}
+                        onChange={handleInputChange}
                       />
-                      <label for="html" className="ml-2 text-black">
-                        Career Counseling
-                      </label>
-                    </span>
-                    <span>
                       <input
-                        type="radio"
-                        id="html"
-                        name="fav_language"
-                        value="HTML"
+                        className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
+                        placeholder="Email Address*"
+                        type="email"
+                        name="email"
+                        value={data?.email}
+                        onChange={handleInputChange}
+                        required
                       />
-                      <label for="html" className="ml-2 text-black">
-                        Visa Consultation
-                      </label>
-                    </span>
-                  </div>
-
-                  <div class="mb-3">
-                    <input
-                      type="text"
-                      class="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue focus:outline-2 focus:outline-blue"
-                      id="exampleFormControlInput1"
-                      placeholder="Your name here"
-                    />
-                  </div>
-                  <div class="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                    <input
-                      type="text"
-                      class="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                      id="exampleFormControlInput1"
-                      placeholder="Contact No*"
-                    />
-                    <input
-                      type="text"
-                      class="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                      id="exampleFormControlInput1"
-                      placeholder="Email Address*"
-                    />
-                  </div>
-                  <div class="mb-6 mt-8">
-                    <h2 className="mb-4"> Any Enquiry</h2>
-                    <textarea
-                      type="text"
-                      rows={4}
-                      class="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                      id="exampleFormControlInput1"
-                      placeholder="Write any enquiry you have ......."
-                    />
-                  </div>
-                  <div className="btn w-max font-semibold">Book Now</div>
+                    </div>
+                    <div className="mb-6 mt-8">
+                      <h2 className="mb-4"> Any Enquiry</h2>
+                      <textarea
+                        type="text"
+                        name="enquiry"
+                        value={data?.enquiry}
+                        rows={4}
+                        className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
+                        placeholder="Write any enquiry you have ......."
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    {message?.success && (
+                      <SuccessMessage
+                        message={message?.success}
+                        setMessage={setMessage}
+                      />
+                    )}
+                    {message?.error && (
+                      <ErrorMessage
+                        message={message?.success}
+                        setMessage={setMessage}
+                      />
+                    )}
+                    <button
+                      type="submit"
+                      className="btn w-max font-semibold mt-4"
+                    >
+                      Book Now
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
