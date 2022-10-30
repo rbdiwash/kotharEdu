@@ -1,34 +1,47 @@
 import React from "react";
 import { BiChevronRight } from "react-icons/bi";
+import { NavLink, useLocation } from "react-router-dom";
 import ContactForm from "../../Components/ContactForm";
+import TakePartEvent from "../../Components/TakePartEvent";
+import useKothar from "../../context/useKothar";
 const Services = () => {
   const sidebars = [
-    { title: "IELTS", value: "ielts" },
-    { title: "PTE CLASS", value: "pte" },
-    { title: "Scholarship Guidance", value: "scholarship" },
-    { title: "University / Colleges Presentation", value: "uni" },
-    { title: "Pre-departure Session", value: "predaparture" },
-    { title: "Work Placement", value: "placement" },
-    { title: "Skill Assessment ", value: "skill" },
-    { title: "Accomodation / Airport Pickup  ", value: "accomodation" },
-    { title: "College Enrollment", value: "enrollment" },
+    { serviceName: "IELTS", id: "ielts" },
+    { serviceName: "PTE CLASS", id: "pte" },
+    { serviceName: "Scholarship Guidance", id: "scholarship" },
+    { serviceName: "University / Colleges Presentation", id: "uni" },
+    { serviceName: "Pre-departure Session", id: "predaparture" },
+    { serviceName: "Work Placement", id: "placement" },
+    { serviceName: "Skill Assessment ", id: "skill" },
+    { serviceName: "Accomodation / Airport Pickup  ", id: "accomodation" },
+    { serviceName: "College Enrollment", id: "enrollment" },
   ];
 
+  const location = useLocation();
+  const { data } = location?.state;
+  const [{ services }, {}] = useKothar();
+  console.log("🚀 ~ services", services);
   return (
     <>
-      <section id="bookCover">
+      <section
+        id="bookCover"
+        style={{
+          background: `linear-gradient(to top, #00001a70,#00001a70), url(${data?.image}) no-repeat center`,
+          backgroundSize: "cover",
+        }}
+      >
         <div className="container mx-auto md:py-36 py-20 ">
           <div className="flex items-center space-x-3 text-white mb-6">
             <h1 className="font-semibold  text-white "> Home</h1>
             <BiChevronRight className="text-3xl" />
-            <span>Explore</span> <BiChevronRight className="text-3xl" />
-            <span className="text-primary">Study in Sydney</span>
+            <span>Services</span> <BiChevronRight className="text-3xl" />
+            <span className="text-primary">{data?.serviceName}</span>
           </div>
 
           <p className="md:text-5xl text-2xl uppercase text-white font-bold md:mt-16">
-            Study in Sydney
+            {data?.serviceName}
           </p>
-          <p className="text-2xl text-lg text-white mt-4 leading-9 tracking-wide">
+          <p className="text-lg text-white mt-4 leading-9 tracking-wide">
             Academic opportunities recognised all over the world
           </p>
         </div>
@@ -36,52 +49,58 @@ const Services = () => {
       <section id="detailNews" className="">
         <div className="container mx-auto">
           <div className="row">
-            <div className="grid grid-cols-6 md:gap-x-20 gap-x-0 gap-y-4 items-center justify-between">
-              <div className="md:col-span-4 col-span-6 mt-6 md:mt-0">
+            <div className="grid grid-cols-6 md:gap-x-20 gap-x-0 gap-y-4 items-start justify-between mb-12">
+              <div className="md:col-span-4 col-span-6 mt-16">
                 <p className="text-black font-semibold text-lg">
-                  Sydney, for study its perfect destination. Sydney is
-                  Australia’s first city, both as the landing spot of the First
-                  Fleet (1788) and the first incorporated City Council (1842).
-                  This history is deeply reflected in Sydney’s strikingly iconic
-                  landmarks - the world-famous Sydney Opera House and Sydney
-                  Harbour Bridge - both must-see destination during your time
-                  here.
+                  {data?.descripttion}
                 </p>
-                <div className="btn w-max mt-8">Learn More</div>
+                <NavLink to="/book">
+                  <button className="btn w-max mt-8"> Book Now</button>
+                </NavLink>
               </div>
-              <div className="md:col-span-2 col-span-6 ml-auto h-[500px] overflow-y-auto">
+              <div className="md:col-span-2 col-span-6 md:ml-auto max-h-[400px] overflow-y-auto min-w-[350px]">
                 <div className="flex flex-col bg-blue overflow-y-auto">
-                  {sidebars.map((arg) => (
-                    <div
-                      className="md:py-8 md:px-8 p-4 text-white border-b-2 border-[#86C6D9] font-semibold md:text-2xl text-xl cursor-pointer"
-                      key={arg?.value}
+                  {services?.services?.map((arg, i) => (
+                    <NavLink
+                      to={`/services/${arg?.id}`}
+                      key={i}
+                      state={{ data: arg }}
+                      s
                     >
-                      {arg?.title}
-                    </div>
+                      <div
+                        className="md:py-8 md:px-8 p-4 text-white capitalize border-b-2 border-[#86C6D9] font-semibold md:text-2xl text-xl cursor-pointer"
+                        key={arg?.id}
+                      >
+                        {arg?.serviceName}
+                      </div>
+                    </NavLink>
                   ))}
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section className="contact">
-        <div className="container mx-auto md:my-24 my-12">
-          <div className="row">
-            <div className="grid md:grid-cols-6 px-6 py-12 justify-center items-center">
-              <div className="col-span-2 ">
-                <p className="section-heading text-primary text-left">
-                  Take part in events
-                </p>
-                <p className="text-xl mt-4 text-left">
-                  Enroll your Preparation Class with <br /> Kothar Education
-                </p>
+            {data?.more?.title && (
+              <p className="section-subHeading text-left font-semibold">
+                {data?.more?.title}
+              </p>
+            )}
+            {data?.more?.infos?.length > 0 && (
+              <div className="grid grid-cols-3 md:gap-20 gap-10 items-center justify-between mt-8">
+                {data?.more?.infos?.map((item, id) => (
+                  <div className="col-span-3 md:col-span-1">
+                    <p className="text-2xl text-primary font-semibold">
+                      {item?.title}
+                    </p>
+                    <p className="text-lg text-black font-semibold mt-4">
+                      {item?.desc}
+                    </p>
+                  </div>
+                ))}
               </div>
-              <ContactForm />
-            </div>
+            )}
           </div>
         </div>
       </section>
+      <TakePartEvent />
     </>
   );
 };

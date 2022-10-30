@@ -9,7 +9,7 @@ import vector from "../../assets/images/Vector.png";
 import visa from "../../assets/images/visa.png";
 import AssociatedUni from "./AssociatedUni";
 import Slider from "react-slick";
-import { BiChevronRight } from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import Classes from "./Classes";
 import News from "./News";
 import Events from "./Events";
@@ -35,48 +35,29 @@ const options2 = [
   { title: "Visa Lodged", img: visa, count: "1000" },
 ];
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} onClick={onClick}>
-      <BiChevronRight />
-    </div>
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} onClick={onClick}>
-      <BiChevronRight />
-    </div>
-  );
-}
-
 const Homepage = () => {
   var settings = {
     dots: true,
-    infinite: false,
-    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
-    autoplaySpeed: 2000,
-    initialSlide: 0,
-    arrows: false,
+    autoplaySpeed: 3000,
+    arrows: true,
+    infinite: false,
+    nextArrow: <BiChevronRight />,
+    prevArrow: <BiChevronLeft />,
+    pauseOnHover: true,
 
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
           dots: true,
-          arrows: true,
+          arrows: false,
+          infinite: false,
         },
       },
       {
@@ -84,8 +65,9 @@ const Homepage = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 2,
+
           arrows: false,
+          infinite: false,
         },
       },
       {
@@ -94,6 +76,7 @@ const Homepage = () => {
           slidesToShow: 1,
           slidesToScroll: 1,
           arrows: false,
+          infinite: false,
         },
       },
     ],

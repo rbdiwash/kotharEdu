@@ -4,6 +4,7 @@ import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoChevronDownOutline } from "react-icons/io5";
 import australia from "../../assets/images/australia.png";
 import useKothar from "../../context/useKothar";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const Testimonials = () => {
   var settings = {
@@ -11,6 +12,8 @@ const Testimonials = () => {
     autoplay: true,
     centerMode: true,
     centerPadding: "30%",
+    nextArrow: <BiChevronRight />,
+    prevArrow: <BiChevronLeft />,
     responsive: [
       {
         breakpoint: 992,
@@ -41,7 +44,7 @@ const Testimonials = () => {
           <Slider {...settings}>
             {testimonial?.length > 0 &&
               testimonial?.map((arg) => (
-                <div className="relative">
+                <div className="relative" id={arg?.id}>
                   <div className="cont md:px-10 px-6 py-4 rounded-sm flex items-center flex-col  text-center bg-white text-white pb-20">
                     <RiDoubleQuotesL className="quote-icon text-7xl text-[#959595]" />
 

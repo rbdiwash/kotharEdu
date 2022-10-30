@@ -1,27 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import australia from "../../assets/images/Vector.png";
-import { BiChevronRight } from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import axios from "../../Utils/Axios";
 import useKothar from "../../context/useKothar";
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} onClick={onClick}>
-      <BiChevronRight />
-    </div>
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} onClick={onClick}>
-      <BiChevronRight />
-    </div>
-  );
-}
 const AssociatedUni = ({ title, subtitle, destinationId }) => {
   var settings = {
     dots: true,
@@ -33,15 +16,14 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
     speed: 2000,
     autoplaySpeed: 2000,
     initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <BiChevronRight />,
+    prevArrow: <BiChevronLeft />,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
           dots: true,
         },
       },

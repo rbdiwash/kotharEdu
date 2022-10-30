@@ -20,7 +20,7 @@ const News = () => {
             <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-center md:gap-8 gap-y-8 md:gap-y-0">
               {news?.length > 0 &&
                 news?.map((item, i) => (
-                  <div className="col-span-1">
+                  <div className="col-span-1" key={item?.id}>
                     <div className="mx-auto relative text-left">
                       <img
                         src={item?.image || australia}

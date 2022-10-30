@@ -7,23 +7,6 @@ import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
 import { NavLink } from "react-router-dom";
 import useKothar from "../../context/useKothar";
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} onClick={onClick}>
-      <BiChevronRight />
-    </div>
-  );
-}
-
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div className={className} onClick={onClick}>
-      <BiChevronLeft />
-    </div>
-  );
-}
 const Cities = () => {
   var settings = {
     dots: true,
@@ -35,20 +18,22 @@ const Cities = () => {
     speed: 2000,
     autoplaySpeed: 2000,
     initialSlide: 0,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <BiChevronRight />,
+    prevArrow: <BiChevronLeft />,
+    arrows: true,
+
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
           dots: true,
+          arrows: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 750,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -57,7 +42,7 @@ const Cities = () => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 580,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -68,7 +53,7 @@ const Cities = () => {
   };
   const [{ destinations }, {}] = useKothar();
   return (
-    <section id="cities" className="h-max-content">
+    <section id="cities" className="h-max-content bg-blue">
       <div className="container mx-auto text-center py-12 md:py-24">
         <div className="row ">
           <p className="section-heading">Where do you want to study?</p>
@@ -85,13 +70,14 @@ const Cities = () => {
                     className="cursor-pointer"
                     to={`/states/${item?.destination}`}
                     state={{ data: item }}
+                    key={item?.id}
                   >
                     <div className="col-span-1 slider">
                       <div className="text-center mx-auto relative">
                         <img
                           src={item?.image}
                           alt=""
-                          className="rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
+                          className="w-full rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
                         />
                         <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
                           {item?.destination || "Sydney"}

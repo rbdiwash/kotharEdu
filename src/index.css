@@ -66,9 +66,9 @@ code {
   background-position: center;
   background-repeat: no-repeat;
 }
-.slider {
+/* .slider {
   margin-right: 20px;
-}
+} */
 
 #classes {
   background-image: url("./assets/images/banner-heading.png");
@@ -92,6 +92,7 @@ code {
 
 .slick-slide {
   padding-right: 30px;
+  padding-left: 30px;
 }
 
 .slick-dots li {
@@ -136,4 +137,19 @@ code {
     padding-right: 5px;
     padding-left: 5px;
   }
+}
+
+.slick-prev {
+  font-size: 40px !important;
+  height: 60px !important;
+  width: 60px !important;
+  color: #1f1f1f !important;
+  z-index: 999999;
+}
+.slick-next {
+  font-size: 60px !important;
+  height: 60px !important;
+  width: 60px !important;
+  color: #1f1f1f !important;
+  z-index: 999999;
 }
