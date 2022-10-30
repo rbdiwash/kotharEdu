@@ -14,8 +14,6 @@ const IndividualStates = () => {
 
   const location = useLocation();
   const { data } = location?.state;
-  console.log("🚀 ~ data", data);
-  const cover = data?.image;
 
   return (
     <>

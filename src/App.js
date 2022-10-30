@@ -39,9 +39,9 @@ const App = () => {
           <Route exact path="/book" element={<Book />}></Route>
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/admin" element={<Admin />}></Route>
-          <Route exact path="/news" element={<News />}></Route>
+          <Route exact path="/explore/news" element={<News />}></Route>
           <Route exact path="/news/:id" element={<IndividualNews />}></Route>
-          <Route exact path="/events" element={<Events />}></Route>
+          <Route exact path="/explore/events" element={<Events />}></Route>
           <Route exact path="/services" element={<Services />}></Route>
           <Route exact path="/services/:id" element={<Services />}></Route>
           <Route

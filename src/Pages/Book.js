@@ -13,7 +13,6 @@ const Book = () => {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  console.log(data?.name);
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
