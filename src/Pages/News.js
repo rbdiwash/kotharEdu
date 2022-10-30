@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import australia from "../assets/images/australia.png";
 import { FiChevronRight } from "react-icons/fi";
 import ContactForm from "../Components/ContactForm";

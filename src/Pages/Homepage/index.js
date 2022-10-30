@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import study from "../../assets/images/study.png";
 import student from "../../assets/images/student.png";
 import uni from "../../assets/images/select.png";
@@ -7,13 +7,9 @@ import admission from "../../assets/images/admission.png";
 import user from "../../assets/images/user.png";
 import vector from "../../assets/images/Vector.png";
 import visa from "../../assets/images/visa.png";
-import australia from "../../assets/images/australia.png";
 import AssociatedUni from "./AssociatedUni";
 import Slider from "react-slick";
-import axios from "../../Utils/axios";
-
-import { BiChevronRight, BiChevronLeft, BiMap } from "react-icons/bi";
-import { FiClock, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { BiChevronRight } from "react-icons/bi";
 import Classes from "./Classes";
 import News from "./News";
 import Events from "./Events";

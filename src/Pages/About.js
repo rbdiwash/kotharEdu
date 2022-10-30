@@ -5,12 +5,11 @@ import logo from "../assets/images/logo.png";
 const About = () => {
   return (
     <section id="contactPage">
-      {" "}
       <div className="container mx-auto py-12 md:py-24">
         <div className="row">
           <div className="flex items-center space-x-3 mb-6">
             <h1 className="font-semibold flex items-center">Home</h1>
-            <BiChevronRight className="text-3xl" />{" "}
+            <BiChevronRight className="text-3xl" />
             <span className="text-primary font-semibold">About Us</span>
           </div>
           <p className="section-heading text-black text-left mt-8">

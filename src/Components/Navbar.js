@@ -3,7 +3,6 @@ import logo from "../assets/images/logo.png";
 import { FaPhoneAlt, FaSearch } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { NavLink } from "react-router-dom";
-import axios from "../Utils/axios";
 import useKothar from "../context/useKothar";
 
 const Navbar = () => {

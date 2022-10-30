@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
-import axios from "../../Utils/axios";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoChevronDownOutline } from "react-icons/io5";
 import australia from "../../assets/images/australia.png";

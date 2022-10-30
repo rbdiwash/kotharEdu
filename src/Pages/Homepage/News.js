@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "../../Utils/axios";
+import React from "react";
 
 import { BiChevronRight } from "react-icons/bi";
 import australia from "../../assets/images/australia.png";
 import { FiChevronRight } from "react-icons/fi";
 
 import Slider from "react-slick";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import useKothar from "../../context/useKothar";
 function SampleNextArrow(props) {
