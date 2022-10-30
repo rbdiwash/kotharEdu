@@ -43,10 +43,10 @@ const Book = () => {
             <BiChevronRight className="text-3xl" />
             <span className="text-primary">Book Now</span>
           </div>
-          <p className="text-5xl uppercase text-white font-bold">
+          <p className="md:text-5xl text-3xl uppercase text-white font-bold">
             Book an appointment
           </p>
-          <p className="text-2xl text-white mt-4 leading-9 tracking-wide">
+          <p className="md:text-2xl text-xl text-white mt-4 md:leading-9 tracking-wide">
             For more enquiry and curiosity please <br /> book an appointment
           </p>
         </div>
@@ -59,14 +59,14 @@ const Book = () => {
                 <img src={book} alt="" className="w-[110%]" />
               </div>
               <div className="col-span-4 mt-10 md:mt-0">
-                <div className="form-container bg-white md:px-20 px-10 py-24 rounded-lg shadow-2xl">
+                <div className="form-container bg-white md:px-20 px-10 md:py-24 py-12 rounded-lg shadow-2xl">
                   <form onSubmit={handleSubmit}>
                     <fieldset
                       className="mb-6 flex items-center flex-wrap md:space-x-6"
                       required
                       id="group"
                     >
-                      <span>
+                      <span className="mr-4 md:mr-0">
                         <input
                           type="radio"
                           id="Class"

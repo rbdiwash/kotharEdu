@@ -11,11 +11,7 @@ import useKothar from "../../context/useKothar";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "red", color: "gray" }}
-      onClick={onClick}
-    >
+    <div className={className} onClick={onClick}>
       <BiChevronRight />
     </div>
   );
@@ -24,11 +20,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    >
+    <div className={className} onClick={onClick}>
       <BiChevronRight />
     </div>
   );

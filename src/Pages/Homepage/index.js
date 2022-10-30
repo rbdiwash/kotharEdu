@@ -38,11 +38,7 @@ const options2 = [
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "red", color: "gray" }}
-      onClick={onClick}
-    >
+    <div className={className} onClick={onClick}>
       <BiChevronRight />
     </div>
   );
@@ -51,11 +47,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    >
+    <div className={className} onClick={onClick}>
       <BiChevronRight />
     </div>
   );
@@ -72,6 +64,8 @@ const Homepage = () => {
     speed: 2000,
     autoplaySpeed: 2000,
     initialSlide: 0,
+    arrows: false,
+
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -79,17 +73,19 @@ const Homepage = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
           infinite: true,
           dots: true,
+          arrows: true,
         },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
+          arrows: false,
         },
       },
       {
@@ -97,6 +93,7 @@ const Homepage = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
         },
       },
     ],
@@ -108,10 +105,10 @@ const Homepage = () => {
         <div className="container mx-auto md:pb-[250px]">
           <div className="row">
             <div className="py-12 w-full md:w-3/4">
-              <h1 className=" text-6xl uppercase text-white font-semibold leading-tight">
+              <h1 className="md:text-6xl text-4xl uppercase text-white font-semibold leading-tight">
                 Welcome to kothar <br /> educational services
               </h1>
-              <p className="text-white text-2xl leading-relaxed py-8">
+              <p className="text-white md:text-2xl text-xl leading-relaxed py-8">
                 Kothar Educational services was founded with a vision to provide
                 quality services to all the students. Kothar Educational
                 services specialise in providing a wide range of services to
@@ -127,8 +124,8 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      <div className="container mx-auto mt-[-100px] z-50">
-        <div className="bg-second  grid grid-cols-5 gap-4 py-10 px-6 rounded-md shadow-md">
+      <div className="container mx-auto md:mt-[-100px] z-50">
+        <div className="bg-second  grid md:grid-cols-5  gap-8 py-10 px-6 rounded-md shadow-md items-center justify-center">
           {options.map((arg) => (
             <div className="col-span-1" key={arg?.title}>
               <div className="card flex flex-col items-center justify-center text-center">
@@ -157,16 +154,16 @@ const Homepage = () => {
               information all the time. Located at heart of main cities of the
               country.
             </p>
-            <div className="grid grid-cols-3 gap-16 py-10  rounded-md md:px-16 my-16">
+            <div className="grid grid-cols-3 md:gap-16 py-10  rounded-md md:px-16 my-16">
               {options2?.map((arg) => (
                 <div className="col-span-1" key={arg?.title}>
                   <div className="card flex flex-col items-center justify-center text-center">
                     <img src={arg?.img} alt="" />
-                    <h1 className="md:text-6xl font-bold text-[#585655] my-6">
+                    <h1 className="md:text-6xl text-4xl font-bold text-[#585655] my-6">
                       {arg?.count}
                       <sup>+</sup>
                     </h1>
-                    <p className="md:text-2xl text-[#585655] font-semibold">
+                    <p className="md:text-2xl text-xl text-[#585655] font-semibold">
                       {arg?.title}
                     </p>
                   </div>

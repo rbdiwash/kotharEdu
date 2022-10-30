@@ -80,13 +80,6 @@ code {
   background: linear-gradient(to bottom, #fff 35%, #bee2ed 0%);
 }
 
-@media only screen and (max-width: 650px) {
-  section {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
 #events .slick-slide {
   padding-right: 80px;
 }
@@ -106,36 +99,11 @@ code {
   height: 30px;
 }
 .slick-dots li button:before {
-  font-family: "slick";
-  font-size: 13px;
-  line-height: 20px;
-  position: absolute;
   top: 60px !important;
-  left: 0;
-  width: 30px;
-  height: 20px;
-  content: "•";
-  text-align: center;
-  opacity: 0.25;
-  color: black;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 .slick-dots li.slick-active button:before {
-  font-family: "slick";
   font-size: 17px;
-  line-height: 20px;
-  position: absolute;
   top: 60px !important;
-  left: 0;
-  width: 30px;
-  height: 20px;
-  content: "•";
-  text-align: center;
-  opacity: 0.25;
-  color: black;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 #testimonials .slick-active .cont {
@@ -147,4 +115,25 @@ code {
 #testimonials .slick-active .cont p,
 #testimonials .slick-active .cont .down-icon {
   color: #fff;
+}
+@media only screen and (max-width: 650px) {
+  section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  /* .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  } */
+  .slick-dots li button:before {
+    top: 0px !important;
+  }
+  .slick-dots li.slick-active button:before {
+    font-size: 17px;
+    top: 0px !important;
+  }
+  .slick-slide {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
 }

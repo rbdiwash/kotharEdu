@@ -3,6 +3,7 @@ import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 import ContactForm from "../Components/ContactForm";
+import TakePartEvent from "../Components/TakePartEvent";
 
 const IndividualNews = () => {
   const location = useLocation();
@@ -10,7 +11,7 @@ const IndividualNews = () => {
   return (
     <>
       <section id="bookCover">
-        <div className="container mx-auto py-48 ">
+        <div className="container mx-auto md:py-48 py-24 ">
           <div className="flex items-center space-x-3 text-white mb-6">
             <h1 className="font-semibold  text-white "> Home</h1>
             <BiChevronRight className="text-3xl" />
@@ -45,23 +46,7 @@ const IndividualNews = () => {
           </div>
         </div>
       </section>
-      <section className="contact">
-        <div className="container mx-auto md:my-24 my-12">
-          <div className="row">
-            <div className="grid md:grid-cols-6 px-6 py-12 justify-center items-center">
-              <div className="col-span-2 ">
-                <p className="section-heading text-primary text-left">
-                  Take part in events
-                </p>
-                <p className="text-xl mt-4 text-left">
-                  Enroll your Preparation Class with <br /> Kothar Education
-                </p>
-              </div>
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
+      <TakePartEvent />
     </>
   );
 };

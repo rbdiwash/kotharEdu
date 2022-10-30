@@ -5,6 +5,7 @@ import ContactForm from "../Components/ContactForm";
 import useKothar from "../context/useKothar";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import TakePartEvent from "../Components/TakePartEvent";
 
 const News = () => {
   const [{ news }] = useKothar();
@@ -36,7 +37,7 @@ const News = () => {
                         {item?.description?.slice(0, 300)}{" "}
                         {item?.description?.length > 300 && "..."}
                       </p>
-                      <Link to={`news/${item?.id}`} state={{ data: item }}>
+                      <Link to={`/news/${item?.id}`} state={{ data: item }}>
                         <div className="flex text-blue items-center text-xl space-x-1">
                           <h1 className="">More</h1>
                           <FiChevronRight className="text-2xl cursor-pointer" />
@@ -49,23 +50,7 @@ const News = () => {
           </div>
         </div>
       </section>{" "}
-      <section className="contact">
-        <div className="container mx-auto mb-12">
-          <div className="row">
-            <div className="grid grid-cols-6 px-6 py-12 justify-center items-center">
-              <div className="md:col-span-2 col-span-6 ">
-                <p className="section-heading text-primary text-left">
-                  Take part in events
-                </p>
-                <p className="section-subHeading text-left">
-                  Enroll your Preparation Class with <br /> Kothar Education
-                </p>
-              </div>
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
+      <TakePartEvent />
     </>
   );
 };

@@ -10,11 +10,7 @@ import useKothar from "../../context/useKothar";
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "red", color: "gray" }}
-      onClick={onClick}
-    >
+    <div className={className} onClick={onClick}>
       <BiChevronRight />
     </div>
   );
@@ -23,11 +19,7 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={className}
-      style={{ ...style, display: "block", background: "green" }}
-      onClick={onClick}
-    >
+    <div className={className} onClick={onClick}>
       <BiChevronRight />
     </div>
   );
@@ -43,6 +35,7 @@ const Events = () => {
     speed: 2000,
     autoplaySpeed: 2000,
     initialSlide: 0,
+    arrows: false,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -53,6 +46,7 @@ const Events = () => {
           slidesToScroll: 1,
           infinite: true,
           dots: true,
+          arrows: true,
         },
       },
       {
@@ -61,6 +55,7 @@ const Events = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           initialSlide: 2,
+          arrows: false,
         },
       },
       {
@@ -68,6 +63,7 @@ const Events = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
         },
       },
     ],
@@ -87,7 +83,10 @@ const Events = () => {
           </div>
           <Slider {...settings}>
             {events?.map((item, i) => (
-              <div className="bg-lightBlue px-4 py-6 rounded-md " key={i}>
+              <div
+                className="w-full bg-lightBlue px-4 py-6 rounded-md "
+                key={i}
+              >
                 <div className="flex flex-col text-left">
                   <p className="text-4xl text-primary text-left font-bold">
                     {format(new Date(item?.date), "do")}

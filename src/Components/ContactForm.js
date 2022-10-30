@@ -32,7 +32,7 @@ const ContactForm = () => {
 
   return (
     <div className="lg:col-span-4 col-span-6">
-      <div className="bg-blue px-12 py-16 rounded-md">
+      <div className="bg-blue md:px-12 px-6 md:py-16 py-8 rounded-md">
         <div className="grid grid-cols-2 justify-between">
           <div className="md:col-span-1 col-span-2 flex flex-col space-y-11 text-left text-white">
             <div className="section-heading text-white text-left">

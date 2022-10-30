@@ -2,6 +2,7 @@ import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 import ContactForm from "../Components/ContactForm";
+import TakePartEvent from "../Components/TakePartEvent";
 import AssociatedUni from "./Homepage/AssociatedUni";
 const IndividualStates = () => {
   const sidebars = [
@@ -13,11 +14,18 @@ const IndividualStates = () => {
 
   const location = useLocation();
   const { data } = location?.state;
+  console.log("🚀 ~ data", data);
+  const cover = data?.image;
 
   return (
     <>
-      <section id="bookCover">
-        <div className="container mx-auto md:py-36 py-20 ">
+      <section
+        style={{
+          background: `linear-gradient(to top, #00001a70,#00001a70), url(${data?.image}) no-repeat center`,
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="container mx-auto md:py-48 py-24">
           <div className="flex items-center space-x-3 text-white mb-6">
             <h1 className="font-semibold  text-white "> Home</h1>
             <BiChevronRight className="text-3xl" />
@@ -43,7 +51,7 @@ const IndividualStates = () => {
                 </p>
                 <div className="btn w-max mt-8">Learn More</div>
               </div>
-              <div className="md:col-span-2 col-span-6 ml-auto">
+              <div className="md:col-span-2 col-span-6 ">
                 <div className="flex flex-col bg-blue">
                   {sidebars.map((arg) => (
                     <div
@@ -86,23 +94,7 @@ const IndividualStates = () => {
         title={"Universities Available"}
         subtitle="Know about the Uni and the course of your interest in Sydney"
       />
-      <section className="contact">
-        <div className="container mx-auto md:my-24 my-12">
-          <div className="row">
-            <div className="grid md:grid-cols-6 px-6 py-12 justify-center items-center">
-              <div className="col-span-2 ">
-                <p className="section-heading text-primary text-left">
-                  Take part in events
-                </p>
-                <p className="text-xl mt-4 text-left">
-                  Enroll your Preparation Class with <br /> Kothar Education
-                </p>
-              </div>
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
+      <TakePartEvent />
     </>
   );
 };

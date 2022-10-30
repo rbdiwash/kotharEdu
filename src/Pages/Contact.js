@@ -49,7 +49,7 @@ const Contact = () => {
               <img src={contact} alt="" />
             </div>
             <div className="col-span-1">
-              <div className="form-container bg-[#C2F6FF] px-16 py-24 rounded-lg shadow-md">
+              <div className="form-container bg-[#C2F6FF] md:px-16 px-8 py-12 md:py-24 rounded-lg shadow-md">
                 <form onSubmit={handleSubmit}>
                   <div className="mb-5 mt-6 md:mt-0">
                     <input

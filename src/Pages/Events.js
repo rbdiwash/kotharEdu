@@ -15,7 +15,7 @@ const Events = () => {
   return (
     <>
       <section id="events" className="h-max-content ">
-        <div className="container mx-auto my-auto h-full  py-12 md:py-24">
+        <div className="container mx-auto my-auto h-full  pt-12 md:py-24">
           <div className="row items-center  h-full my-auto">
             <p className="section-heading text-left">Events</p>
             <div className="flex items-center justify-center text-center py-10 space-x-4">
@@ -68,12 +68,12 @@ const Events = () => {
       <section className="contact">
         <div className="container mx-auto mb-12">
           <div className="row">
-            <div className="grid md:grid-cols-6 px-6 py-12 justify-center items-center">
-              <div className="col-span-2 ">
+            <div className="grid md:grid-cols-6  md:items-center">
+              <div className="lg:col-span-2 col-span-6">
                 <p className="section-heading text-primary text-left">
                   Take part in events
                 </p>
-                <p className="text-xl mt-4 text-left">
+                <p className="text-xl my-4 text-left">
                   Enroll your Preparation Class with <br /> Kothar Education
                 </p>
               </div>
