@@ -17,14 +17,14 @@ const Events = () => {
       <section id="events" className="h-max-content ">
         <div className="container mx-auto my-auto h-full  pt-12 md:py-24">
           <div className="row items-center  h-full my-auto">
-            <p className="section-heading text-left">Events</p>
-            <div className="flex items-center justify-center text-center py-10 space-x-4">
+            <p className="section-heading text-left">All Events</p>
+            {/* <div className="flex items-center justify-center text-center py-10 space-x-4">
               <FiChevronLeft className="text-4xl text-altWhite cursor-pointer" />
               <p className="text-2xl  text-altWhitee font-semibold text-center md:text-3xl">
                 January
               </p>
               <FiChevronRight className="text-4xl text-altWhite cursor-pointer" />
-            </div>
+            </div> */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center items-center md:gap-12 gap-y-8 md:gap-y-0">
               {events?.map((item, i) => (
                 <div

@@ -91,6 +91,7 @@ const IndividualStates = () => {
       <AssociatedUni
         title={"Universities Available"}
         subtitle="Know about the Uni and the course of your interest in Sydney"
+        destinationId={data?.id}
       />
       <TakePartEvent />
     </>

@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import australia from "../../assets/images/Vector.png";
 import { BiChevronRight } from "react-icons/bi";
 import axios from "../../Utils/Axios";
+import useKothar from "../../context/useKothar";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -21,7 +22,7 @@ function SamplePrevArrow(props) {
     </div>
   );
 }
-const AssociatedUni = ({ title, subtitle }) => {
+const AssociatedUni = ({ title, subtitle, destinationId }) => {
   var settings = {
     dots: true,
     infinite: false,
@@ -60,17 +61,17 @@ const AssociatedUni = ({ title, subtitle }) => {
       },
     ],
   };
-  const [uniList, setUniList] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/universities")
-      .then((res) => {
-        setUniList(res?.data?.universities);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  const [{ uniList }, {}] = useKothar();
+
+  const getFilteredList = () => {
+    if (!destinationId) return uniList;
+    else {
+      let filteredList =
+        uniList.filter((arg) => arg?.destId === destinationId) || uniList;
+      return filteredList;
+    }
+  };
+
   return (
     <>
       <section id="associated" className="md:mb-20">
@@ -86,8 +87,8 @@ const AssociatedUni = ({ title, subtitle }) => {
             )}
             <div className="pt-12 md:pt-24">
               <Slider {...settings}>
-                {uniList?.length > 0 &&
-                  uniList?.map((item) => (
+                {getFilteredList()?.length > 0 &&
+                  getFilteredList()?.map((item) => (
                     <div className="col-span-1 slider" key={item?.id}>
                       <div className="text-center mx-auto relative">
                         <img
