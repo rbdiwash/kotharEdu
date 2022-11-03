@@ -20,7 +20,6 @@ const Services = () => {
   const location = useLocation();
   const { data } = location?.state;
   const [{ services }, {}] = useKothar();
-  console.log("🚀 ~ services", services);
   return (
     <>
       <section
@@ -84,7 +83,7 @@ const Services = () => {
               </p>
             )}
             {data?.more?.infos?.length > 0 && (
-              <div className="grid grid-cols-3 md:gap-20 gap-10 items-center justify-between mt-8">
+              <div className="grid grid-cols-3 md:gap-20 gap-10 items-center justify-between md:mb-20 md:mt-15 my-10">
                 {data?.more?.infos?.map((item, id) => (
                   <div className="col-span-3 md:col-span-1">
                     <p className="text-2xl text-primary font-semibold">

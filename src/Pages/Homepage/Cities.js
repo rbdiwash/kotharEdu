@@ -53,7 +53,7 @@ const Cities = () => {
   };
   const [{ destinations }, {}] = useKothar();
   return (
-    <section id="cities" className="h-max-content bg-blue">
+    <section id="cities" className="h-max-content">
       <div className="container mx-auto text-center py-12 md:py-24">
         <div className="row ">
           <p className="section-heading">Where do you want to study?</p>

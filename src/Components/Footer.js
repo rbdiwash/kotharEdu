@@ -3,12 +3,13 @@ import logo from "../assets/images/logo.png";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FiMail } from "react-icons/fi";
+import { Link } from "react-router-dom";
 const options = [
-  { label: "About Us", url: "", id: "1" },
+  { label: "About Us", url: "about", id: "1" },
   { label: "Scholarships", url: "", id: "2" },
   { label: "Universities", url: "", id: "3" },
-  { label: "Resources", url: "", id: "4" },
-  { label: "Explore", url: "", id: "5" },
+  { label: "Events", url: "explore/events", id: "4" },
+  { label: "News & Updates", url: "explore/news", id: "5" },
   { label: "Terms and Conditions", url: "", id: "6" },
 ];
 
@@ -46,8 +47,8 @@ const Footer = () => {
                     </a>
                   </li>
                   <li className="py-2">
-                    <a href="tel:9840000000" className="text-white text-xl">
-                      Call Us: 0480322403
+                    <a href="tel:0478733944" className="text-white text-xl">
+                      Call Us: 0478733944
                     </a>
                   </li>
                 </ul>
@@ -61,9 +62,9 @@ const Footer = () => {
                 <ul className="list-none mb-0">
                   {options?.map((arg) => (
                     <li key={arg?.id} className="py-2 border-b border-altWhite">
-                      <a href="#!" className="text-white  text-xl">
+                      <Link to={`/${arg.url}`} className="text-white  text-xl">
                         {arg?.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -122,10 +123,13 @@ const Footer = () => {
               © Copyright 2021. Grace International. All Rights Reserved
             </div>
             <div className="flex gap-4">
-              <FaFacebook className="text-3xl text-primary" />
+              <a href="https://www.facebook.com/kothareducation">
+                <FaFacebook className="text-3xl text-primary" />
+              </a>
               <FaInstagram className="text-3xl text-primary" />
-              <AiFillTwitterCircle className="text-3xl text-primary" />
-              <FiMail className="text-3xl text-primary" />
+              <a href="mailto:kothareducation@gmail.com">
+                <FiMail className="text-3xl text-primary" />
+              </a>
             </div>
           </div>
         </div>

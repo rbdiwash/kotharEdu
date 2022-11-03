@@ -16,7 +16,7 @@ import Events from "./Events";
 import Cities from "./Cities";
 import ContactForm from "../../Components/ContactForm";
 import Testimonials from "./Testimonials";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useKothar from "../../context/useKothar";
 const options = [
   { title: "Study Abroad Decision", img: study },
@@ -85,13 +85,13 @@ const Homepage = () => {
   return (
     <>
       <section id="homepage" className="h-max">
-        <div className="container mx-auto md:pb-[250px]">
+        <div className="container mx-auto md:pb-[200px]">
           <div className="row">
-            <div className="py-12 w-full md:w-3/4">
-              <h1 className="md:text-6xl text-4xl uppercase text-white font-semibold leading-tight">
+            <div className="py-12 md:pt-20 w-full md:w-3/4">
+              <h1 className="md:text-6xl text-4xl uppercase text-white font-semibold leading-relaxed">
                 Welcome to kothar <br /> educational services
               </h1>
-              <p className="text-white md:text-2xl text-xl leading-relaxed py-8">
+              <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 py-8">
                 Kothar Educational services was founded with a vision to provide
                 quality services to all the students. Kothar Educational
                 services specialise in providing a wide range of services to
@@ -102,7 +102,9 @@ const Homepage = () => {
                 dream. We help on step-by-step process to all the clients from
                 the beginning till the end of the processing.
               </p>
-              <button className="btn font-semibold">Explore More</button>
+              <Link to="/about" className="btn ">
+                Explore More
+              </Link>
             </div>
           </div>
         </div>
@@ -113,7 +115,7 @@ const Homepage = () => {
             <div className="col-span-1" key={arg?.title}>
               <div className="card flex flex-col items-center justify-center text-center">
                 <img src={arg?.img} alt="" />
-                <p className="text-2xl text-white font-semibold mt-8">
+                <p className="text-2xl text-white font-medium mt-8">
                   {arg?.title}
                 </p>
               </div>

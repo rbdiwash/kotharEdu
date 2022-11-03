@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* color: #fff; */
@@ -10,6 +10,7 @@ body {
 
 * {
   scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
 }
 
 code {
@@ -37,7 +38,7 @@ code {
     @apply text-4xl  text-blue leading-tight font-bold tracking-wide text-center;
   }
   .section-subHeading {
-    @apply text-altBlack text-2xl py-8 font-semibold text-center;
+    @apply text-altBlack text-2xl py-8 font-medium text-center;
   }
   .input-form {
     @apply block w-full px-4 py-5 text-base font-normal text-black  bg-clip-padding

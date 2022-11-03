@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/images/logo.png";
-import { FaPhoneAlt, FaSearch } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaPhoneAlt, FaSearch } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
 import useKothar from "../context/useKothar";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { AiFillTwitterCircle } from "react-icons/ai";
 
 const Navbar = () => {
   const [explore, setExplore] = useState(false);
@@ -36,21 +37,27 @@ const Navbar = () => {
       <nav className="px-2 bg-primary py-1">
         <div className="container flex flex-wrap justify-between items-center mx-auto text-white">
           <div className="flex">
-            <a href="tel:9840000000">
+            <a href="tel:0480322403">
               <span className="flex items-center gap-4 mr-6">
                 <FaPhoneAlt />
-                9840000000
+                0480322403
               </span>
             </a>
-            <a href="mailto:kothareducation@gmail.com">
-              <span className="flex items-center gap-4 mr-4">
-                <FiMail />
-                <p>kothareducation@gmail.com</p>
+            <a href="tel:0478733944">
+              <span className="flex items-center gap-4 mr-2">
+                <FaPhoneAlt />
+                0478733944
               </span>
             </a>
           </div>
-          <div>
-            <FaSearch />
+          <div className="flex gap-4">
+            <a href="https://www.facebook.com/kothareducation">
+              <FaFacebook className="text-xl text-white" />
+            </a>
+            <a href="mailto:kothareducation@gmail.com">
+              <FiMail className="text-xl text-white" />
+            </a>
+            <FaInstagram className="text-xl text-white" />
           </div>
         </div>
       </nav>
@@ -72,11 +79,11 @@ const Navbar = () => {
             }
             id="navbar-multi-level"
           >
-            <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none rounded-lg border border-altBlack md:flex-row md:space-x-8 md:mt-0 md:text-sm font-semibold md:font-medium md:border-0 md:bg-white text-lg">
+            <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none  md:flex-row md:space-x-8 md:mt-0 md:text-sm font-semibold md:font-medium  md:bg-white text-md font-bold">
               <li>
                 <NavLink
                   to="/"
-                  className="block py-2 pr-4 pl-3 text-lg
+                  className="block py-2 pr-4 pl-3 font-semibold
                   rounded  md:p-0 "
                   onClick={handleCloseNavbar}
                   style={
@@ -89,9 +96,9 @@ const Navbar = () => {
               <li className="relative">
                 <button
                   type="button"
-                  className="block py-2 pr-4 pl-3  rounded
+                  className="block py-2 pr-4 pl-3 font-semibold  rounded
                   hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0 text-lg"
+                  md:hover:text-blue-700 md:p-0"
                   onClick={() => {
                     setExplore(!explore);
                     setStates(false);
@@ -116,7 +123,7 @@ const Navbar = () => {
                     <div className="flex flex-col" role="none">
                       <NavLink
                         to="/explore/events"
-                        className=" block px-4 py-2 text-sm hover:bg-primary2 text-lg"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-0"
@@ -126,7 +133,7 @@ const Navbar = () => {
                       </NavLink>
                       <NavLink
                         to="/explore/news"
-                        className=" block px-4 py-2 text-sm hover:bg-primary2 text-lg"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-1"
@@ -141,9 +148,9 @@ const Navbar = () => {
               <li className="relative">
                 <button
                   type="button"
-                  className="block py-2 pr-4 pl-3  rounded
+                  className="block py-2 pr-4 pl-3 font-semibold  rounded
                   hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0 text-lg"
+                  md:hover:text-blue-700 md:p-0"
                   onClick={() => {
                     setStates(!states);
                     setExplore(false);
@@ -169,7 +176,7 @@ const Navbar = () => {
                       {destinations?.map((arg, i) => (
                         <NavLink
                           to={`/states/${arg?.destination}`}
-                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2  capitalize text-lg"
+                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2  capitalize"
                           role="menuitem"
                           onClick={() => handleClose()}
                           key={i}
@@ -185,9 +192,9 @@ const Navbar = () => {
               <li className="relative">
                 <button
                   type="button"
-                  className="block py-2 pr-4 pl-3  rounded
+                  className="block py-2 pr-4 pl-3 font-semibold  rounded
                   hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0 text-lg"
+                  md:hover:text-blue-700 md:p-0"
                   onClick={() => {
                     setIsService(!isService);
                     setExplore(false);
@@ -213,7 +220,7 @@ const Navbar = () => {
                       {services?.services?.map((arg, i) => (
                         <NavLink
                           to={`/services/${arg?.id}`}
-                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 capitalize text-lg"
+                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 capitalize"
                           role="menuitem"
                           onClick={() => handleClose()}
                           key={i}
@@ -229,9 +236,9 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/about"
-                  className="block py-2 pr-4 pl-3  rounded
+                  className="block py-2 pr-4 pl-3 font-semibold  rounded
                   hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0 text-lg"
+                  md:hover:text-blue-700 md:p-0"
                   onClick={handleCloseNavbar}
                   style={({ isActive }) =>
                     isActive ? activeClassName : undefined
@@ -243,7 +250,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to="/contact"
-                  className="text-lg block py-2 pr-4 pl-3  rounded hover:text-blue  md:border-0 md:hover:text-blue-700 md:p-0"
+                  className="block py-2 pr-4 pl-3 font-semibold  rounded hover:text-blue  md:border-0 md:hover:text-blue-700 md:p-0"
                   onClick={handleCloseNavbar}
                   style={({ isActive }) =>
                     isActive ? activeClassName : undefined
@@ -257,7 +264,7 @@ const Navbar = () => {
                   to="/book"
                   onClick={handleCloseNavbar}
                   className={({ isActive }) =>
-                    isActive ? "btn-alt text-lg text-white" : "btn text-lg"
+                    isActive ? "btn-alt text-white" : "btn"
                   }
                 >
                   Book Now

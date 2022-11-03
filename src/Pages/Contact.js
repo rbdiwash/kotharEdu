@@ -18,7 +18,6 @@ const Contact = () => {
     axios
       .post("send-message", data)
       .then((res) => {
-        // console.log(res);
         setMessage({ success: res?.data?.message });
         setData({
           name: "",
