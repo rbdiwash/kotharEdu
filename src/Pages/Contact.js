@@ -103,7 +103,7 @@ const Contact = () => {
                   )}
                   {message?.error && (
                     <ErrorMessage
-                      message={message?.success}
+                      message={message?.error}
                       setMessage={setMessage}
                     />
                   )}

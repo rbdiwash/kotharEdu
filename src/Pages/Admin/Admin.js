@@ -5,7 +5,7 @@ const Admin = () => {
   return (
     <>
       <Sidebar />
-      <div className="md:ml-64">
+      <div className="md:ml-80">
         <div className="bg-light-blue-500 px-3 md:px-8 h-40" />
         <div className="px-3 md:px-8 -mt-24">
           <div className="container mx-auto max-w-full">

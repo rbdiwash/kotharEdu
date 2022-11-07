@@ -25,11 +25,15 @@ import IndividualNews from "./Pages/IndividualNews";
 import IndividualStates from "./Pages/IndividualStates";
 import Services from "./Pages/Services";
 import Admin from "./Pages/Admin/Admin";
+import AdminNews from "./Pages/Admin/AdminNews";
+import AdminTestimonial from "./Pages/Admin/AdminTestimonial";
+import AdminUni from "./Pages/Admin/AdminUni";
+import AdminStates from "./Pages/Admin/AdminStates";
+import AdminServices from "./Pages/Admin/AdminServices";
 
 const PublicRoutes = () => {
   const location = useLocation();
   const token = localStorage.getItem("token");
-
 
   const checkLoggedIn = (component) => {
     if (!token) {
@@ -47,7 +51,32 @@ const PublicRoutes = () => {
         <Route
           exact
           path="/admin"
-          element={checkLoggedIn(<Admin />)}
+          element={checkLoggedIn(<AdminStates />)}
+        ></Route>
+        <Route
+          exact
+          path="/admin/news"
+          element={checkLoggedIn(<AdminNews />)}
+        ></Route>
+        <Route
+          exact
+          path="/admin/testimonials"
+          element={checkLoggedIn(<AdminTestimonial />)}
+        ></Route>
+        <Route
+          exact
+          path="/admin/uni"
+          element={checkLoggedIn(<AdminUni />)}
+        ></Route>
+        <Route
+          exact
+          path="/admin/services"
+          element={checkLoggedIn(<AdminServices />)}
+        ></Route>
+        <Route
+          exact
+          path="/admin/states"
+          element={checkLoggedIn(<AdminStates />)}
         ></Route>
         <Route path="*" element={<NotFound />}></Route>
         <Route exact path="/" element={<Homepage />}></Route>
