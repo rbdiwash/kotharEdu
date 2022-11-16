@@ -183,7 +183,7 @@ const Homepage = () => {
                       {item?.serviceName?.length > 20 && "..."}
                     </p>
                     <p className="pb-4 text-xl text-justify">
-                      {item?.descripttion.slice(0, 200)}{" "}
+                      {item?.descripttion?.slice(0, 200)}{" "}
                       {item?.descripttion?.length > 200 && "..."}
                     </p>
                     <NavLink

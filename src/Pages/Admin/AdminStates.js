@@ -22,6 +22,7 @@ const AdminStates = () => {
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const [addedDetails, setAddedDetails] = useState([]);
+  const [whyHeading, setWhyHeading] = useState("");
   const [resonTitle, setReasonTitle] = useState("");
   const [reasonDesc, setReasonsDesc] = useState("");
   const handleInputChange = (e) => {
@@ -32,14 +33,13 @@ const AdminStates = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("admin/university", data)
+      .post("admin/destinations", {
+        ...data,
+        whyDestination: [{ title: whyHeading, ans: addedDetails }],
+      })
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         setMessage({ success: res?.data?.message });
-        setData({
-          image: "",
-          website: "",
-        });
       })
       .catch((err) => {
         setMessage({ error: err?.data?.message });
@@ -51,7 +51,7 @@ const AdminStates = () => {
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
     axios
-      .delete(`/admin/university:${id}`)
+      .delete(`/admin/destination:${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -105,15 +105,15 @@ const AdminStates = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {destinations?.length > 0 &&
+                        {destinations?.length > 0 ? (
                           destinations?.map((item) => (
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                              <th
+                              <td
                                 scope="row"
                                 class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
                                 {item?.destination}
-                              </th>
+                              </td>
                               <td class="py-4 px-6">
                                 {item?.destinationDesc?.slice(0, 100)}
                               </td>
@@ -128,7 +128,18 @@ const AdminStates = () => {
                                 </Button>
                               </td>
                             </tr>
-                          ))}
+                          ))
+                        ) : (
+                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td
+                              colSpan={3}
+                              scope="row"
+                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                            >
+                              No Results Found
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -137,11 +148,11 @@ const AdminStates = () => {
             </div>
             <Dialog open={open} handler={handleOpen}>
               <DialogHeader>Add State</DialogHeader>
-              <DialogBody divider>
-                <div className="grid items-center mt-8 w-full  mx-auto">
-                  <div className="mt-10 md:mt-0">
-                    <div className="form-container">
-                      <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
+                <DialogBody divider>
+                  <div className="grid items-center mt-4 w-full  mx-auto">
+                    <div className="mt-10 md:mt-0">
+                      <div className="form-container">
                         <div className="mb-6">
                           <input
                             type="text"
@@ -150,13 +161,13 @@ const AdminStates = () => {
                             required
                             value={data?.destination}
                             onChange={handleInputChange}
-                            name="website"
+                            name="destination"
                           />
                         </div>
                         <div className="mb-5 mt-4">
                           <textarea
                             type="text"
-                            name="enquiry"
+                            name="desc"
                             value={data?.enquiry}
                             rows={4}
                             className={
@@ -177,15 +188,14 @@ const AdminStates = () => {
                             placeholder="Why this state Heading"
                             required
                             name="title"
-                            value={data?.contactNo}
-                            onChange={handleInputChange}
+                            value={whyHeading}
+                            onChange={(e) => setWhyHeading(e.target.value)}
                           />
                           <p>Reasons</p>
                           <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
                             <input
                               className={formClassName + ""}
                               placeholder="Title"
-                              required
                               name="title"
                               value={resonTitle}
                               onChange={(e) => setReasonTitle(e.target.value)}
@@ -196,7 +206,6 @@ const AdminStates = () => {
                               name="desc"
                               value={reasonDesc}
                               onChange={(e) => setReasonsDesc(e.target.value)}
-                              required
                             />
 
                             <IconButton
@@ -241,24 +250,24 @@ const AdminStates = () => {
                             setMessage={setMessage}
                           />
                         )}
-                      </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </DialogBody>
-              <DialogFooter>
-                <Button
-                  variant="text"
-                  color="red"
-                  onClick={handleOpen}
-                  className="mr-1"
-                >
-                  <span>Cancel</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleOpen}>
-                  <span>Confirm</span>
-                </Button>
-              </DialogFooter>
+                </DialogBody>
+                <DialogFooter>
+                  <Button
+                    variant="text"
+                    color="red"
+                    onClick={handleOpen}
+                    className="mr-1"
+                  >
+                    <span>Cancel</span>
+                  </Button>
+                  <Button variant="gradient" color="green" type="submit">
+                    <span>Confirm</span>
+                  </Button>
+                </DialogFooter>{" "}
+              </form>
             </Dialog>
           </div>
         </div>

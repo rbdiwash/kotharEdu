@@ -56,14 +56,11 @@ const AdminServices = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("admin/university", data)
+      .post("admin/services", data)
       .then((res) => {
-        // console.log(res);
         setMessage({ success: res?.data?.message });
-        setData({
-          image: "",
-          website: "",
-        });
+
+        setOpen(false);
       })
       .catch((err) => {
         setMessage({ error: err?.data?.message });
@@ -73,7 +70,7 @@ const AdminServices = () => {
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
     axios
-      .delete(`/admin/service:${id}`)
+      .delete(`/admin/services:${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -130,14 +127,17 @@ const AdminServices = () => {
                       <tbody>
                         {services?.services?.length > 0 &&
                           services?.services?.map((item) => (
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr
+                              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              key={item?.id}
+                            >
                               <th
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap min-w-[100px]"
                               >
                                 {item?.serviceName}
                               </th>
-                              <td class="py-4 px-6">
+                              <td class="py-4 px-6 min-w-[400px]">
                                 {item?.descripttion?.slice(0, 100)}
                               </td>
                               <td class="py-4 px-6 text-right flex space-x-4 items-center">
@@ -160,11 +160,11 @@ const AdminServices = () => {
             </div>
             <Dialog open={open} handler={handleOpen}>
               <DialogHeader>Add Service</DialogHeader>
-              <DialogBody divider>
-                <div className="grid items-center mt-4 w-full  mx-auto">
-                  <div className="mt-10 md:mt-0">
-                    <div className="form-container mx-4">
-                      <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
+                <DialogBody divider>
+                  <div className="grid items-center mt-4 w-full  mx-auto">
+                    <div className="mt-10 md:mt-0">
+                      <div className="form-container mx-4">
                         <div className="mb-5">
                           <input
                             type="text"
@@ -179,7 +179,7 @@ const AdminServices = () => {
                         <div className="mb-5 mt-4">
                           <textarea
                             type="text"
-                            name="enquiry"
+                            name="description"
                             value={data?.enquiry}
                             rows={4}
                             className={formClassName}
@@ -247,7 +247,6 @@ const AdminServices = () => {
                             <input
                               className={formClassName + ""}
                               placeholder="Title"
-                              required
                               name="title"
                               value={moreTitle}
                               onChange={(e) => setMoretitle(e.target.value)}
@@ -303,24 +302,24 @@ const AdminServices = () => {
                             setMessage={setMessage}
                           />
                         )}
-                      </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </DialogBody>
-              <DialogFooter>
-                <Button
-                  variant="text"
-                  color="red"
-                  onClick={handleOpen}
-                  className="mr-1"
-                >
-                  <span>Cancel</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleOpen}>
-                  <span>Confirm</span>
-                </Button>
-              </DialogFooter>
+                </DialogBody>
+                <DialogFooter>
+                  <Button
+                    variant="text"
+                    color="red"
+                    onClick={handleOpen}
+                    className="mr-1"
+                  >
+                    <span>Cancel</span>
+                  </Button>
+                  <Button variant="gradient" color="green" type="submit">
+                    <span>Confirm</span>
+                  </Button>
+                </DialogFooter>
+              </form>
             </Dialog>
           </div>
         </div>

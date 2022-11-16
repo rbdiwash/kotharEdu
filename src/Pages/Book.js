@@ -21,7 +21,7 @@ const Book = () => {
         // console.log(res);
         setMessage({ success: res?.data?.message });
         setData({
-          enquiryType: "",
+          enquiryType: "Class",
           name: "",
           contactNo: "",
           email: "",

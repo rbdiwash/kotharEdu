@@ -115,7 +115,7 @@ const AdminUni = () => {
             <Dialog open={open} handler={handleOpen}>
               <DialogHeader>Add University</DialogHeader>
               <DialogBody divider>
-                <div className="grid items-center mt-8 w-full  mx-auto">
+                <div className="grid items-center mt-4 w-full  mx-auto">
                   <div className="mt-10 md:mt-0">
                     <div className="form-container">
                       <form onSubmit={handleSubmit}>

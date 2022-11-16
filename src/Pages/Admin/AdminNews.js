@@ -10,12 +10,15 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Input,
+  Textarea,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
 
 const AdminNews = () => {
-  const [data, setData] = useState({ enquiryType: "Class" });
+  const [data, setData] = useState();
+  console.log("🚀 ~ data", data);
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const handleInputChange = (e) => {
@@ -25,25 +28,31 @@ const AdminNews = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("book-appointment", data)
-      .then((res) => {
-        // console.log(res);
-        setMessage({ success: res?.data?.message });
-        setData({
-          enquiryType: "",
-          name: "",
-          contactNo: "",
-          email: "",
-          enquiry: "",
-        });
-      })
-      .catch((err) => {
-        setMessage({ error: err?.data?.message });
-      });
+    console.log("asdfsafa");
+    // axios
+    //   .post("book-appointment", data)
+    //   .then((res) => {
+    //     // console.log(res);
+    //     setMessage({ success: res?.data?.message });
+    //     setData({
+    //       enquiryType: "",
+    //       name: "",
+    //       contactNo: "",
+    //       email: "",
+    //       enquiry: "",
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     setMessage({ error: err?.data?.message });
+    //   });
   };
 
   const [{ news }] = useKothar();
+
+  const handleEdit = (itemData) => {
+    setOpen(true);
+    setData({ name: itemData?.topic, contact: itemData?.contact });
+  };
   const handleOpen = () => setOpen(!open);
 
   return (
@@ -56,7 +65,7 @@ const AdminNews = () => {
             <div className="grid md:grid-cols-6 grid-cols-1 items-center  mt-8">
               <div className="col-span-12 mt-10 md:mt-0 shadow-lg rounded p-4">
                 <div className="flex items-center justify-between px-10">
-                  <p className="md:text-3xl text-xl">View News</p>
+                  <p className="md:text-3xl text-xl">News</p>
                   <Button color="green" onClick={handleOpen}>
                     Add News
                   </Button>
@@ -85,7 +94,10 @@ const AdminNews = () => {
                       <tbody>
                         {news?.length > 0 &&
                           news.map((item) => (
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr
+                              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              key={item?.id}
+                            >
                               <th
                                 scope="row"
                                 class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
@@ -97,7 +109,12 @@ const AdminNews = () => {
                               </td>
                               <td class="py-4 px-6">{item?.description}</td>
                               <td class="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button color="green">Edit</Button>
+                                <Button
+                                  color="green"
+                                  onClick={() => handleEdit(item)}
+                                >
+                                  Edit
+                                </Button>
 
                                 <Button color="red">Delete</Button>
                               </td>
@@ -111,16 +128,18 @@ const AdminNews = () => {
             </div>
             <Dialog open={open} handler={handleOpen}>
               <DialogHeader>Add News</DialogHeader>
-              <DialogBody divider>
-                <div className="grid items-center mt-8 w-full  mx-auto">
-                  <div className="mt-10 md:mt-0">
-                    <div className="form-container">
-                      <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
+                <DialogBody divider>
+                  <div className="grid items-center mt-4 w-full  mx-auto">
+                    <div className="mt-10 md:mt-0">
+                      <div className="form-container mx-2">
                         <div className="mb-6">
-                          <input
+                          <Input
+                            variant="outlined"
+                            size="lg"
                             type="text"
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue focus:outline-2 focus:outline-blue"
-                            placeholder="Your name here"
+                            color="indigo"
+                            label="Your name here"
                             required
                             value={data?.name}
                             onChange={handleInputChange}
@@ -128,20 +147,22 @@ const AdminNews = () => {
                           />
                         </div>
                         <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                          <input
+                          <Input
+                            variant="outlined"
+                            size="lg"
                             type="number"
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                            placeholder="Contact No*"
+                            color="indigo"
+                            label="Contact No*"
                             required
-                            // type="tel"
-                            // pattern="[0-9]{10}"
                             name="contactNo"
                             value={data?.contactNo}
                             onChange={handleInputChange}
                           />
-                          <input
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                            placeholder="Email Address*"
+                          <Input
+                            variant="outlined"
+                            size="lg"
+                            label="Email Address*"
+                            color="indigo"
                             type="email"
                             name="email"
                             value={data?.email}
@@ -151,13 +172,15 @@ const AdminNews = () => {
                         </div>
                         <div className="mb-6 mt-8">
                           <h2 className="mb-4"> Any Enquiry</h2>
-                          <textarea
+                          <Textarea
+                            variant="outlined"
+                            color="indigo"
+                            size="lg"
                             type="text"
                             name="enquiry"
                             value={data?.enquiry}
                             rows={4}
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                            placeholder="Write any enquiry you have ......."
+                            label="Write any enquiry you have ......."
                             onChange={handleInputChange}
                             required
                           />
@@ -174,24 +197,29 @@ const AdminNews = () => {
                             setMessage={setMessage}
                           />
                         )}
-                      </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </DialogBody>
-              <DialogFooter>
-                <Button
-                  variant="text"
-                  color="red"
-                  onClick={handleOpen}
-                  className="mr-1"
-                >
-                  <span>Cancel</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleOpen}>
-                  <span>Confirm</span>
-                </Button>
-              </DialogFooter>
+                </DialogBody>
+                <DialogFooter>
+                  <Button
+                    variant="text"
+                    color="red"
+                    onClick={handleOpen}
+                    className="mr-1"
+                  >
+                    <span>Cancel</span>
+                  </Button>
+                  <Button
+                    variant="gradient"
+                    color="green"
+                    type="submit"
+                    // onClick={handleSubmit}
+                  >
+                    Confirm
+                  </Button>
+                </DialogFooter>
+              </form>
             </Dialog>
           </div>
         </div>

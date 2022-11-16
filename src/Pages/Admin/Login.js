@@ -16,7 +16,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("login", data)
+      .post("admin/login", data)
       .then((res) => {
         console.log("🚀 ~ res", res);
         setMessage({ success: res?.data?.message });
@@ -24,13 +24,12 @@ const Login = () => {
           username: "",
           password: "",
         });
-        localStorage.setItem("token", "new_token");
+        localStorage.setItem("token", res?.data?.accessToken);
         navigate("/admin");
       })
       .catch((err) => {
         console.log(err?.data?.message);
-        setMessage({ error: err?.data?.message || "Error" });
-        localStorage.setItem("token", "new_token");
+        // setMessage({ error: err?.data?.message || "Error" });
       });
   };
   return (

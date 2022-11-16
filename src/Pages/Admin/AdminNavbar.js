@@ -7,7 +7,7 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const handleLogout = () => {
-    navigate("/");
+    navigate("/login");
     localStorage.clear();
   };
   return (
