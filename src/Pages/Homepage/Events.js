@@ -57,7 +57,6 @@ const Events = () => {
     ],
   };
   const [{ events }, {}] = useKothar();
-  console.log("🚀 ~ events", events);
   return (
     <section id="events" className="h-max-content ">
       <div className="container mx-auto my-auto h-full  py-12 md:py-24">

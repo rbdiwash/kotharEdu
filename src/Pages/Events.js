@@ -46,11 +46,10 @@ const Events = () => {
                         {item?.topic}
                       </p>
                       <div className="text-md flex items-center text-blue space-x-3">
-                        <FiClock />{" "}
+                        <FiClock />
                         <span>
-                          {" "}
                           {format(new Date(item?.startTime), "p")} -
-                          {format(new Date(item?.endtTime), "p")}
+                          {format(new Date(item?.endTime), "p")}
                         </span>
                       </div>
                       <p className="text-md flex items-center text-blue space-x-3">

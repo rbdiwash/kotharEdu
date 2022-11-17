@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import ErrorMessage from "../../Components/ErrorMessage";
 import SuccessMessage from "../../Components/SuccessMessage";
@@ -23,24 +23,17 @@ const AdminBookings = () => {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     axios
-      .post("admin/university", data)
+      .get("admin/book-appointment")
       .then((res) => {
-        // console.log(res);
-        setMessage({ success: res?.data?.message });
-        setData({
-          image: "",
-          website: "",
-        });
+        setData(res?.data?.appointments);
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
+        console.log(err);
       });
-  };
+  }, []);
 
-  const [{ uniList }] = useKothar();
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
     axios
@@ -71,7 +64,16 @@ const AdminBookings = () => {
                             Name
                           </th>
                           <th scope="col" class="py-3 px-6">
-                            Website
+                            Email
+                          </th>
+                          <th scope="col" class="py-3 px-6">
+                            Enquiry Type
+                          </th>
+                          <th scope="col" class="py-3 px-6">
+                            Enquiry
+                          </th>
+                          <th scope="col" class="py-3 px-6">
+                            Requested Date
                           </th>
                           <th scope="col" class="py-3 px-6">
                             Action
@@ -79,8 +81,8 @@ const AdminBookings = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {uniList?.length > 0 ? (
-                          uniList.map((item) => (
+                        {data?.length > 0 ? (
+                          data?.map((item) => (
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                               <th
                                 scope="row"
@@ -88,12 +90,16 @@ const AdminBookings = () => {
                               >
                                 {item?.name}
                               </th>
+                              <td class="py-4 px-6">{item?.email}</td>
+                              <td class="py-4 px-6">{item?.enquiryType}</td>
+                              <td class="py-4 px-6">{item?.enquiry}</td>
                               <td class="py-4 px-6">
-                                {item?.website?.slice(0, 100)}
+                                {format(
+                                  new Date(item?.requestedDate),
+                                  "PP"
+                                )}
                               </td>
                               <td class="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button color="green">Edit</Button>
-
                                 <Button
                                   color="red"
                                   onClick={() => deleteData(item?.id)}
@@ -126,7 +132,7 @@ const AdminBookings = () => {
                 <div className="grid items-center mt-4 w-full  mx-auto">
                   <div className="mt-10 md:mt-0">
                     <div className="form-container">
-                      <form onSubmit={handleSubmit}>
+                      <form>
                         <div className="mb-6">
                           <input
                             type="text"

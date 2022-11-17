@@ -11,6 +11,8 @@ import {
   DialogBody,
   DialogFooter,
   IconButton,
+  Input,
+  Textarea,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 
@@ -35,7 +37,7 @@ const AdminStates = () => {
     axios
       .post("admin/destinations", {
         ...data,
-        whyDestination: [{ title: whyHeading, ans: addedDetails }],
+        whyDestination: { title: whyHeading, ans: addedDetails },
       })
       .then((res) => {
         console.log(res);
@@ -48,10 +50,16 @@ const AdminStates = () => {
   const [add, setAdd] = useState(false);
 
   const [{ destinations }] = useKothar();
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => {
+    setOpen(!open);
+    setData({
+      topic: "",
+      description: "",
+    });
+  };
   const deleteData = (id) => {
     axios
-      .delete(`/admin/destination:${id}`)
+      .delete(`/admin/destinations/${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -69,9 +77,15 @@ const AdminStates = () => {
       ...prevState.filter((a) => prevState.indexOf(a) !== id),
     ]);
   };
-  const formClassName =
-    "input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue py-2.5";
-
+  const formClassName = " py-2.5";
+  const handleEdit = (itemData) => {
+    console.log("🚀 ~ itemData", itemData);
+    setOpen(true);
+    setData({
+      destination: itemData?.destination,
+      destinationDesc: itemData?.destinationDesc,
+    });
+  };
   return (
     <>
       <Sidebar />
@@ -118,7 +132,12 @@ const AdminStates = () => {
                                 {item?.destinationDesc?.slice(0, 100)}
                               </td>
                               <td class="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button color="green">Edit</Button>
+                                <Button
+                                  color="green"
+                                  onClick={() => handleEdit(item)}
+                                >
+                                  Edit
+                                </Button>
 
                                 <Button
                                   color="red"
@@ -152,12 +171,14 @@ const AdminStates = () => {
                 <DialogBody divider>
                   <div className="grid items-center mt-4 w-full  mx-auto">
                     <div className="mt-10 md:mt-0">
-                      <div className="form-container">
+                      <div className="form-container mx-2">
                         <div className="mb-6">
-                          <input
+                          <Input
                             type="text"
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue "
-                            placeholder="State Name"
+                            className=" "
+                            label="State Name"
+                            color="indigo"
+                            size="lg"
                             required
                             value={data?.destination}
                             onChange={handleInputChange}
@@ -165,15 +186,15 @@ const AdminStates = () => {
                           />
                         </div>
                         <div className="mb-5 mt-4">
-                          <textarea
+                          <Textarea
                             type="text"
-                            name="desc"
+                            color="indigo"
+                            name="destinationDesc"
+                            size="lg"
                             value={data?.enquiry}
                             rows={4}
-                            className={
-                              'input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue "'
-                            }
-                            placeholder="State Description ......."
+                            className={' "'}
+                            label="State Description ......."
                             onChange={handleInputChange}
                             required
                           />
@@ -182,27 +203,32 @@ const AdminStates = () => {
                           <input type="file" />
                         </div>
                         <div className="mb-5 mt-4">
-                          <p>Why State Heading</p>
-                          <input
+                          <Input
                             className={formClassName + " mb-5"}
-                            placeholder="Why this state Heading"
+                            label="Why this state Heading"
+                            color="indigo"
+                            size="lg"
                             required
                             name="title"
                             value={whyHeading}
                             onChange={(e) => setWhyHeading(e.target.value)}
                           />
-                          <p>Reasons</p>
+                          <p className="my-2">Reasons</p>
                           <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                            <input
+                            <Input
                               className={formClassName + ""}
-                              placeholder="Title"
+                              label="Title"
+                              color="indigo"
+                              size="lg"
                               name="title"
                               value={resonTitle}
                               onChange={(e) => setReasonTitle(e.target.value)}
                             />
-                            <input
+                            <Input
                               className={formClassName}
-                              placeholder="Description*"
+                              label="Description*"
+                              color="indigo"
+                              size="lg"
                               name="desc"
                               value={reasonDesc}
                               onChange={(e) => setReasonsDesc(e.target.value)}

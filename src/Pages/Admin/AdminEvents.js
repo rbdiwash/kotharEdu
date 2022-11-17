@@ -11,11 +11,12 @@ import {
   DialogBody,
   DialogFooter,
   Input,
+  Textarea,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
 
-const AdminUni = () => {
+const AdminEvents = () => {
   const [data, setData] = useState();
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
@@ -27,13 +28,13 @@ const AdminUni = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("admin/university", data)
+      .post("book-appointment", data)
       .then((res) => {
         // console.log(res);
         setMessage({ success: res?.data?.message });
         setData({
-          image: "",
-          website: "",
+          topic: "",
+          description: "",
         });
       })
       .catch((err) => {
@@ -41,13 +42,19 @@ const AdminUni = () => {
       });
   };
 
-  const [{ uniList }] = useKothar();
-  const handleOpen = () => setOpen(!open);
-  const deleteData = (id) => {
-    axios
-      .delete(`/admin/university:${id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  const [{ events }] = useKothar();
+  console.log("🚀 ~ events", events);
+
+  const handleEdit = (itemData) => {
+    setOpen(true);
+    setData({ topic: itemData?.topic, description: itemData?.description });
+  };
+  const handleOpen = () => {
+    setOpen(!open);
+    setData({
+      topic: "",
+      description: "",
+    });
   };
 
   return (
@@ -60,9 +67,9 @@ const AdminUni = () => {
             <div className="grid md:grid-cols-6 grid-cols-1 items-center  mt-8">
               <div className="col-span-12 mt-10 md:mt-0 shadow-lg rounded p-4">
                 <div className="flex items-center justify-between px-10">
-                  <p className="md:text-3xl text-xl">Universities</p>
+                  <p className="md:text-3xl text-xl">Events</p>
                   <Button color="green" onClick={handleOpen}>
-                    Add Universities
+                    Add Event
                   </Button>
                 </div>
 
@@ -72,45 +79,54 @@ const AdminUni = () => {
                       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                           <th scope="col" class="py-3 px-6">
-                            Name
+                            Date
                           </th>
                           <th scope="col" class="py-3 px-6">
-                            Website
+                            Time
                           </th>
+                          <th scope="col" class="py-3 px-6">
+                            Description
+                          </th>
+
                           <th scope="col" class="py-3 px-6">
                             Action
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {uniList?.length > 0 ? (
-                          uniList.map((item) => (
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        {events?.length > 0 ? (
+                          events?.map((item) => (
+                            <tr
+                              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              key={item?.id}
+                            >
                               <th
                                 scope="row"
                                 class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
-                                {item?.name}
+                                {format(new Date(item?.date), "PP")}
                               </th>
                               <td class="py-4 px-6">
-                                {item?.website?.slice(0, 100)}
+                                {format(new Date(item?.startTime), "p")} -
+                                {format(new Date(item?.endTime), "p")}
                               </td>
+                              <td class="py-4 px-6">{item?.description}</td>
                               <td class="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button color="green">Edit</Button>
-
                                 <Button
-                                  color="red"
-                                  onClick={() => deleteData(item?.id)}
+                                  color="green"
+                                  onClick={() => handleEdit(item)}
                                 >
-                                  Delete
+                                  Edit
                                 </Button>
+
+                                <Button color="red">Delete</Button>
                               </td>
                             </tr>
                           ))
                         ) : (
                           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
-                              colSpan={3}
+                              colSpan={4}
                               scope="row"
                               class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
@@ -125,27 +141,39 @@ const AdminUni = () => {
               </div>
             </div>
             <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Add University</DialogHeader>
-              <DialogBody divider>
-                <div className="grid items-center mt-4 w-full  mx-auto">
-                  <div className="mt-10 md:mt-0">
-                    <div className="form-container">
-                      <form onSubmit={handleSubmit}>
+              <DialogHeader>Add Event</DialogHeader>
+              <form onSubmit={handleSubmit}>
+                <DialogBody divider>
+                  <div className="grid items-center mt-4 w-full  mx-auto">
+                    <div className="mt-10 md:mt-0">
+                      <div className="form-container mx-2">
                         <div className="mb-6">
                           <Input
+                            variant="outlined"
                             type="text"
                             size="lg"
                             color="indigo"
-                            label="Website url"
+                            label="Topic"
                             required
-                            value={data?.website}
+                            value={data?.topic}
                             onChange={handleInputChange}
-                            name="website"
+                            name="topic"
                           />
                         </div>
 
                         <div className="mb-6 mt-8">
-                          <input type="file" />
+                          <Textarea
+                            variant="outlined"
+                            color="indigo"
+                            size="lg"
+                            type="text"
+                            name="description"
+                            value={data?.description}
+                            rows={4}
+                            label="Description"
+                            onChange={handleInputChange}
+                            required
+                          />
                         </div>
                         {message?.success && (
                           <SuccessMessage
@@ -159,24 +187,29 @@ const AdminUni = () => {
                             setMessage={setMessage}
                           />
                         )}
-                      </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </DialogBody>
-              <DialogFooter>
-                <Button
-                  variant="text"
-                  color="red"
-                  onClick={handleOpen}
-                  className="mr-1"
-                >
-                  <span>Cancel</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleOpen}>
-                  <span>Confirm</span>
-                </Button>
-              </DialogFooter>
+                </DialogBody>
+                <DialogFooter>
+                  <Button
+                    variant="text"
+                    color="red"
+                    onClick={handleOpen}
+                    className="mr-1"
+                  >
+                    <span>Cancel</span>
+                  </Button>
+                  <Button
+                    variant="gradient"
+                    color="green"
+                    type="submit"
+                    // onClick={handleSubmit}
+                  >
+                    Confirm
+                  </Button>
+                </DialogFooter>
+              </form>
             </Dialog>
           </div>
         </div>
@@ -185,4 +218,4 @@ const AdminUni = () => {
   );
 };
 
-export default AdminUni;
+export default AdminEvents;

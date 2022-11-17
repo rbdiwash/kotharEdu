@@ -11,6 +11,8 @@ import {
   DialogBody,
   DialogFooter,
   IconButton,
+  Input,
+  Textarea,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
@@ -177,10 +179,11 @@ const AdminServices = () => {
                     <div className="mt-10 md:mt-0">
                       <div className="form-container mx-4">
                         <div className="mb-5">
-                          <input
+                          <Input
                             type="text"
-                            className={formClassName}
-                            placeholder="Service Name"
+                            size="lg"
+                            color="indigo"
+                            label="Service Name"
                             required
                             value={data?.name}
                             onChange={handleInputChange}
@@ -188,13 +191,14 @@ const AdminServices = () => {
                           />
                         </div>
                         <div className="mb-5 mt-4">
-                          <textarea
+                          <Textarea
                             type="text"
                             name="description"
                             value={data?.enquiry}
                             rows={4}
-                            className={formClassName}
-                            placeholder="Service Description ......."
+                            size="lg"
+                            color="indigo"
+                            label="Service Description ......."
                             onChange={handleInputChange}
                             required
                           />
@@ -202,17 +206,19 @@ const AdminServices = () => {
                         <div className="mb-5 mt-4">
                           <p>What Information</p>
                           <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                            <input
-                              className={formClassName}
-                              placeholder="Title"
+                            <Input
+                              size="lg"
+                              color="indigo"
+                              label="Title"
                               required
                               name="title"
                               value={data?.contactNo}
                               onChange={handleInputChange}
                             />
-                            <input
-                              className={formClassName}
-                              placeholder="Description*"
+                            <Input
+                              size="lg"
+                              color="indigo"
+                              label="Description*"
                               name="desc"
                               value={data?.email}
                               onChange={handleInputChange}
@@ -223,17 +229,19 @@ const AdminServices = () => {
                         <div className="mb-5 mt-4">
                           <p>Who Information</p>
                           <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                            <input
-                              className={formClassName}
-                              placeholder="Title"
+                            <Input
+                              size="lg"
+                              color="indigo"
+                              label="Title"
                               required
                               name="title"
                               value={data?.contactNo}
                               onChange={handleInputChange}
                             />
-                            <input
-                              className={formClassName}
-                              placeholder="Description*"
+                            <Input
+                              size="lg"
+                              color="indigo"
+                              label="Description*"
                               name="desc"
                               value={data?.email}
                               onChange={handleInputChange}
@@ -246,25 +254,30 @@ const AdminServices = () => {
                         </div>
                         <div className="mb-5 mt-4">
                           <p>More Information</p>
-                          <input
-                            className={formClassName + " mb-5"}
-                            placeholder="More info Heading"
+                          <Input
+                            size="lg"
+                            color="indigo"
+                            label="More info Heading"
                             required
                             name="title"
                             value={data?.contactNo}
                             onChange={handleInputChange}
                           />
+                        </div>
+                        <div className="mb-5 mt-4">
                           <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                            <input
-                              className={formClassName + ""}
-                              placeholder="Title"
+                            <Input
+                              size="lg"
+                              color="indigo"
+                              label="Title"
                               name="title"
                               value={moreTitle}
                               onChange={(e) => setMoretitle(e.target.value)}
                             />
-                            <input
-                              className={formClassName}
-                              placeholder="Description*"
+                            <Input
+                              size="lg"
+                              color="indigo"
+                              label="Description*"
                               name="desc"
                               value={moreDesc}
                               onChange={(e) => setMoreDesc(e.target.value)}

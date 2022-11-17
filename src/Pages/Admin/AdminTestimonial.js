@@ -10,6 +10,8 @@ import {
   DialogHeader,
   DialogBody,
   DialogFooter,
+  Input,
+  Textarea,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
@@ -129,13 +131,14 @@ const AdminTestimonial = () => {
               <DialogBody divider>
                 <div className="grid items-center mt-4 w-full  mx-auto">
                   <div className="mt-10 md:mt-0">
-                    <div className="form-container">
+                    <div className="form-container mx-2">
                       <form onSubmit={handleSubmit}>
                         <div className="mb-6">
-                          <input
+                          <Input
                             type="text"
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue focus:outline-2 focus:outline-blue"
-                            placeholder="Name"
+                            label="Name"
+                            size="lg"
+                            color="indigo"
                             required
                             value={data?.name}
                             onChange={handleInputChange}
@@ -144,13 +147,14 @@ const AdminTestimonial = () => {
                         </div>
 
                         <div className="mb-6 mt-8">
-                          <textarea
+                          <Textarea
                             type="text"
                             name="testimonial"
+                            size="lg"
+                            color="indigo"
                             value={data?.enquiry}
                             rows={4}
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                            placeholder="Details ......."
+                            label="Details ......."
                             onChange={handleInputChange}
                             required
                           />

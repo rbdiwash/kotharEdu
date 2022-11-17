@@ -120,7 +120,7 @@ const Footer = () => {
           <hr className="text-altWhite" />
           <div className="flex items-center justify-between py-6">
             <div className="text-center p-4 text-altWhite text-xl">
-              © Copyright 2021. Grace International. All Rights Reserved
+              © Copyright 2021. Kothar Educational Services. All Rights Reserved
             </div>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/kothareducation">

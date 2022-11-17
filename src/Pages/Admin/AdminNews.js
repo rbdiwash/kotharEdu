@@ -148,8 +148,8 @@ const AdminNews = () => {
                         <div className="mb-6">
                           <Input
                             variant="outlined"
-                            size="lg"
                             type="text"
+                            size="lg"
                             color="indigo"
                             label="Topic"
                             required
