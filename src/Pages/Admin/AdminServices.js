@@ -70,7 +70,7 @@ const AdminServices = () => {
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
     axios
-      .delete(`/admin/services:${id}`)
+      .delete(`/admin/services/${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -125,7 +125,7 @@ const AdminServices = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {services?.services?.length > 0 &&
+                        {services?.services?.length > 0 ? (
                           services?.services?.map((item) => (
                             <tr
                               class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -151,7 +151,18 @@ const AdminServices = () => {
                                 </Button>
                               </td>
                             </tr>
-                          ))}
+                          ))
+                        ) : (
+                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td
+                              colSpan={3}
+                              scope="row"
+                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                            >
+                              No Results Found
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>

@@ -18,7 +18,6 @@ import { format } from "date-fns";
 
 const AdminNews = () => {
   const [data, setData] = useState();
-  console.log("🚀 ~ data", data);
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const handleInputChange = (e) => {
@@ -28,32 +27,34 @@ const AdminNews = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("asdfsafa");
-    // axios
-    //   .post("book-appointment", data)
-    //   .then((res) => {
-    //     // console.log(res);
-    //     setMessage({ success: res?.data?.message });
-    //     setData({
-    //       enquiryType: "",
-    //       name: "",
-    //       contactNo: "",
-    //       email: "",
-    //       enquiry: "",
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     setMessage({ error: err?.data?.message });
-    //   });
+    axios
+      .post("book-appointment", data)
+      .then((res) => {
+        // console.log(res);
+        setMessage({ success: res?.data?.message });
+        setData({
+          topic: "",
+          description: "",
+        });
+      })
+      .catch((err) => {
+        setMessage({ error: err?.data?.message });
+      });
   };
 
   const [{ news }] = useKothar();
 
   const handleEdit = (itemData) => {
     setOpen(true);
-    setData({ name: itemData?.topic, contact: itemData?.contact });
+    setData({ topic: itemData?.topic, description: itemData?.description });
   };
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => {
+    setOpen(!open);
+    setData({
+      topic: "",
+      description: "",
+    });
+  };
 
   return (
     <>
@@ -92,7 +93,7 @@ const AdminNews = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {news?.length > 0 &&
+                        {news?.length > 0 ? (
                           news.map((item) => (
                             <tr
                               class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -119,7 +120,18 @@ const AdminNews = () => {
                                 <Button color="red">Delete</Button>
                               </td>
                             </tr>
-                          ))}
+                          ))
+                        ) : (
+                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td
+                              colSpan={4}
+                              scope="row"
+                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                            >
+                              No Results Found
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
@@ -139,48 +151,24 @@ const AdminNews = () => {
                             size="lg"
                             type="text"
                             color="indigo"
-                            label="Your name here"
+                            label="Topic"
                             required
-                            value={data?.name}
+                            value={data?.topic}
                             onChange={handleInputChange}
-                            name="name"
+                            name="topic"
                           />
                         </div>
-                        <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                          <Input
-                            variant="outlined"
-                            size="lg"
-                            type="number"
-                            color="indigo"
-                            label="Contact No*"
-                            required
-                            name="contactNo"
-                            value={data?.contactNo}
-                            onChange={handleInputChange}
-                          />
-                          <Input
-                            variant="outlined"
-                            size="lg"
-                            label="Email Address*"
-                            color="indigo"
-                            type="email"
-                            name="email"
-                            value={data?.email}
-                            onChange={handleInputChange}
-                            required
-                          />
-                        </div>
+
                         <div className="mb-6 mt-8">
-                          <h2 className="mb-4"> Any Enquiry</h2>
                           <Textarea
                             variant="outlined"
                             color="indigo"
                             size="lg"
                             type="text"
-                            name="enquiry"
-                            value={data?.enquiry}
+                            name="description"
+                            value={data?.description}
                             rows={4}
-                            label="Write any enquiry you have ......."
+                            label="Description"
                             onChange={handleInputChange}
                             required
                           />

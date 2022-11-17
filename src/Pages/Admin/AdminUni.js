@@ -59,7 +59,7 @@ const AdminUni = () => {
             <div className="grid md:grid-cols-6 grid-cols-1 items-center  mt-8">
               <div className="col-span-12 mt-10 md:mt-0 shadow-lg rounded p-4">
                 <div className="flex items-center justify-between px-10">
-                  <p className="md:text-3xl text-xl">View Universities</p>
+                  <p className="md:text-3xl text-xl">Universities</p>
                   <Button color="green" onClick={handleOpen}>
                     Add Universities
                   </Button>
@@ -82,7 +82,7 @@ const AdminUni = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {uniList?.length > 0 &&
+                        {uniList?.length > 0 ? (
                           uniList.map((item) => (
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                               <th
@@ -105,7 +105,18 @@ const AdminUni = () => {
                                 </Button>
                               </td>
                             </tr>
-                          ))}
+                          ))
+                        ) : (
+                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td
+                              colSpan={3}
+                              scope="row"
+                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                            >
+                              No Results Found
+                            </td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>

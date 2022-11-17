@@ -30,6 +30,7 @@ import AdminTestimonial from "./Pages/Admin/AdminTestimonial";
 import AdminUni from "./Pages/Admin/AdminUni";
 import AdminStates from "./Pages/Admin/AdminStates";
 import AdminServices from "./Pages/Admin/AdminServices";
+import AdminBookings from "./Pages/Admin/AdminBookings";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -65,8 +66,13 @@ const PublicRoutes = () => {
         ></Route>
         <Route
           exact
-          path="/admin/uni"
+          path="/admin/universities"
           element={checkLoggedIn(<AdminUni />)}
+        ></Route>
+        <Route
+          exact
+          path="/admin/bookings"
+          element={checkLoggedIn(<AdminBookings />)}
         ></Route>
         <Route
           exact

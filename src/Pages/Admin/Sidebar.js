@@ -57,11 +57,20 @@ export default function Sidebar() {
               </li>
               <li className="rounded-lg mb-2 text-gray-700">
                 <NavLink
-                  to="/admin/uni"
+                  to="/admin/universities"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="bg-primary text-white shadow-md"
                 >
                   Universities
+                </NavLink>
+              </li>
+              <li className="rounded-lg mb-2 text-gray-700">
+                <NavLink
+                  to="/admin/bookings"
+                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
+                  activeClassName="bg-primary text-white shadow-md"
+                >
+                  Bookings
                 </NavLink>
               </li>
             </ul>

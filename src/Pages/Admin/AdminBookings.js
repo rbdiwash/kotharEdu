@@ -14,8 +14,8 @@ import {
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
 
-const AdminTestimonial = () => {
-  const [data, setData] = useState({ enquiryType: "Class" });
+const AdminBookings = () => {
+  const [data, setData] = useState();
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const handleInputChange = (e) => {
@@ -26,13 +26,13 @@ const AdminTestimonial = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("admin/testimonial", data)
+      .post("admin/university", data)
       .then((res) => {
         // console.log(res);
         setMessage({ success: res?.data?.message });
         setData({
-          name: "",
-          testimonial: "",
+          image: "",
+          website: "",
         });
       })
       .catch((err) => {
@@ -40,12 +40,11 @@ const AdminTestimonial = () => {
       });
   };
 
-  const [{ testimonial }] = useKothar();
-  console.log("🚀 ~ testimonial", testimonial);
+  const [{ uniList }] = useKothar();
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
     axios
-      .delete(`/admin/testimonial:${id}`)
+      .delete(`/admin/university:${id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -60,10 +59,7 @@ const AdminTestimonial = () => {
             <div className="grid md:grid-cols-6 grid-cols-1 items-center  mt-8">
               <div className="col-span-12 mt-10 md:mt-0 shadow-lg rounded p-4">
                 <div className="flex items-center justify-between px-10">
-                  <p className="md:text-3xl text-xl">Testimonial</p>
-                  <Button color="green" onClick={handleOpen}>
-                    Add Testimonial
-                  </Button>
+                  <p className="md:text-3xl text-xl">Bookings</p>
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
@@ -75,7 +71,7 @@ const AdminTestimonial = () => {
                             Name
                           </th>
                           <th scope="col" class="py-3 px-6">
-                            Testimonial
+                            Website
                           </th>
                           <th scope="col" class="py-3 px-6">
                             Action
@@ -83,8 +79,8 @@ const AdminTestimonial = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {testimonial?.length > 0 ? (
-                          testimonial.map((item) => (
+                        {uniList?.length > 0 ? (
+                          uniList.map((item) => (
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                               <th
                                 scope="row"
@@ -93,7 +89,7 @@ const AdminTestimonial = () => {
                                 {item?.name}
                               </th>
                               <td class="py-4 px-6">
-                                {item?.tetimonial.slice(0, 100)}
+                                {item?.website?.slice(0, 100)}
                               </td>
                               <td class="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button color="green">Edit</Button>
@@ -125,7 +121,7 @@ const AdminTestimonial = () => {
               </div>
             </div>
             <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Add Testimonial</DialogHeader>
+              <DialogHeader>Add University</DialogHeader>
               <DialogBody divider>
                 <div className="grid items-center mt-4 w-full  mx-auto">
                   <div className="mt-10 md:mt-0">
@@ -135,26 +131,14 @@ const AdminTestimonial = () => {
                           <input
                             type="text"
                             className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue focus:outline-2 focus:outline-blue"
-                            placeholder="Name"
+                            placeholder="Website url"
                             required
-                            value={data?.name}
+                            value={data?.website}
                             onChange={handleInputChange}
-                            name="name"
+                            name="website"
                           />
                         </div>
 
-                        <div className="mb-6 mt-8">
-                          <textarea
-                            type="text"
-                            name="testimonial"
-                            value={data?.enquiry}
-                            rows={4}
-                            className="input-form bg-[#EDEDED] focus:bg-[#ededed] focus:outline focus:outline-2 focus:outline-blue"
-                            placeholder="Details ......."
-                            onChange={handleInputChange}
-                            required
-                          />
-                        </div>
                         <div className="mb-6 mt-8">
                           <input type="file" />
                         </div>
@@ -196,4 +180,4 @@ const AdminTestimonial = () => {
   );
 };
 
-export default AdminTestimonial;
+export default AdminBookings;
