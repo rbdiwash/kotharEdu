@@ -66,7 +66,7 @@ const News = () => {
                       className="rounded  h-[300px] object-cover"
                     />
                     <p className="text-blue py-2 font-semibold">
-                      {format(new Date(item?.date), "PPPP")}
+                      {format(new Date(item?.date) || new Date(), "PPPP")}
                     </p>
                     <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
                       {item?.topic}
