@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Slider from "react-slick";
 import australia from "../../assets/images/Vector.png";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import axios from "../../Utils/Axios";
 import useKothar from "../../context/useKothar";
 
 const AssociatedUni = ({ title, subtitle, destinationId }) => {

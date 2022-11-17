@@ -57,6 +57,7 @@ const Events = () => {
     ],
   };
   const [{ events }, {}] = useKothar();
+  console.log("🚀 ~ events", events);
   return (
     <section id="events" className="h-max-content ">
       <div className="container mx-auto my-auto h-full  py-12 md:py-24">
@@ -89,7 +90,7 @@ const Events = () => {
                     <FiClock />
                     <span>
                       {format(new Date(item?.startTime) || new Date(), "p")} -
-                      {format(new Date(item?.endtTime) || new Date(), "p")}
+                      {format(new Date(item?.endTime) || new Date(), "p")}
                     </span>
                   </div>
                   <p className="text-md flex items-center text-blue space-x-3">
