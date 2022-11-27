@@ -19,25 +19,22 @@ import { toast } from "react-toastify";
 
 const AdminEvents = () => {
   const [data, setData] = useState();
+  console.log("🚀 ~ data", data);
   const [open, setOpen] = useState(false);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
-  const [{ events }, { setEvents }] = useKothar();
-  console.log("🚀 ~ events", events);
+  const [{ events }, { setEvents, getEvents }] = useKothar();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("admin/events", data)
       .then((res) => {
-        // console.log(res);
+        setOpen(!open);
         toast.success("Data added successfully");
-        setData({
-          topic: "",
-          description: "",
-        });
+        getEvents();
       })
       .catch((err) => {
         toast.error("Error");
@@ -50,7 +47,7 @@ const AdminEvents = () => {
       .then((res) => {
         setOpen(!open);
         toast.success("Data Updated successfully");
-        window.location.reload();
+        getEvents();
       })
       .catch((err) => {
         toast.error("Error");
@@ -60,11 +57,8 @@ const AdminEvents = () => {
   const handleEdit = (itemData) => {
     setOpen(true);
     setData({
-      topic: itemData?.topic,
-      description: itemData?.description,
-      startTime: format(new Date(itemData?.startTime), "HH:mm"),
-      endTime: format(new Date(itemData?.endTime), "HH:mm"),
-      date: format(new Date(itemData?.date), "yyyy-MM-dd"),
+      ...itemData,
+      date: format(new Date(itemData?.date || null), "yyyy-MM-dd"),
     });
   };
 
@@ -73,9 +67,7 @@ const AdminEvents = () => {
       .delete(`/admin/events/${id}`)
       .then((res) => {
         toast.success("Data Deleted successfully");
-        setEvents((prevState) => [
-          ...prevState.filter((item) => item?.id !== id),
-        ]);
+        getEvents();
       })
       .catch((err) => toast.error("Error Deleting Data"));
   };
@@ -83,8 +75,11 @@ const AdminEvents = () => {
   const handleOpen = () => {
     setOpen(!open);
     setData({
-      topic: "",
       description: "",
+      location: "",
+      topic: "",
+      startTime: "",
+      endTime: "",
     });
   };
 
@@ -105,10 +100,13 @@ const AdminEvents = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg overflow-y-auto max-h-[600px]">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
+                          <th scope="col" className="py-3 px-6">
+                            Topic
+                          </th>
                           <th scope="col" className="py-3 px-6">
                             Date
                           </th>
@@ -135,11 +133,16 @@ const AdminEvents = () => {
                                 scope="row"
                                 className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
-                                {format(new Date(item?.date), "PP")}
+                                {item?.topic}
+                              </th>
+                              <th
+                                scope="row"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                              >
+                                {format(new Date(item?.date || null), "PP")}
                               </th>
                               <td className="py-4 px-6">
-                                {format(new Date(item?.startTime), "p")} -
-                                {format(new Date(item?.endTime), "p")}
+                                {item?.startTime} -{item?.endTime}
                               </td>
                               <td className="py-4 px-6">{item?.description}</td>
                               <td className="py-4 px-6 text-right flex space-x-4 items-center">
@@ -162,7 +165,7 @@ const AdminEvents = () => {
                         ) : (
                           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
-                              colSpan={4}
+                              colSpan={5}
                               scope="row"
                               className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
@@ -199,10 +202,23 @@ const AdminEvents = () => {
                         <div className="mb-6">
                           <Input
                             variant="outlined"
+                            type="text"
+                            size="lg"
+                            color="indigo"
+                            label="Location"
+                            required
+                            value={data?.location}
+                            onChange={handleInputChange}
+                            name="location"
+                          />
+                        </div>
+                        <div className="mb-6">
+                          <Input
+                            variant="outlined"
                             type="date"
                             size="lg"
                             color="indigo"
-                            label="Topic"
+                            label="Event Date"
                             required
                             value={data?.date}
                             onChange={handleInputChange}

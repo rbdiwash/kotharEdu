@@ -64,7 +64,7 @@ const AdminBookings = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg overflow-y-auto max-h-[600px]">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

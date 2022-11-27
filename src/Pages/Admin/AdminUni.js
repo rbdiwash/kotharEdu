@@ -11,6 +11,8 @@ import {
   DialogBody,
   DialogFooter,
   Input,
+  Select,
+  Option,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
@@ -71,7 +73,7 @@ const AdminUni = () => {
       });
   };
 
-  const [{ uniList }, { setUniList }] = useKothar();
+  const [{ uniList, destinations }, { setUniList }] = useKothar();
   const handleOpen = () => {
     setOpen(!open);
     setData({
@@ -114,7 +116,7 @@ const AdminUni = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg overflow-y-auto max-h-[600px]">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -199,6 +201,25 @@ const AdminUni = () => {
                             onChange={handleInputChange}
                             name="name"
                           />
+                        </div>
+                        <div className="mb-6">
+                          <Select
+                            label="Select State"
+                            name="destId"
+                            required
+                            onChange={(e) =>
+                              setData((prevState) => ({
+                                ...prevState,
+                                destId: e,
+                              }))
+                            }
+                          >
+                            {destinations?.map((item) => (
+                              <Option key={item?.id} value={item?.id}>
+                                {item?.destination}
+                              </Option>
+                            ))}
+                          </Select>
                         </div>
                         <div className="mb-6">
                           <Input

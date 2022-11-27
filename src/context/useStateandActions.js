@@ -8,7 +8,7 @@ const useStatesAndActions = () => {
   const [events, setEvents] = useState([]);
   const [news, setNews] = useState([]);
 
-  useEffect(() => {
+  const getServices = () => {
     axios
       .get("/services")
       .then((res) => {
@@ -17,7 +17,9 @@ const useStatesAndActions = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
 
+  const getUniversities = () => {
     axios
       .get("/universities")
       .then((res) => {
@@ -26,6 +28,9 @@ const useStatesAndActions = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const getTestimonial = () => {
     axios
       .get("/testimonials")
       .then((res) => {
@@ -35,6 +40,9 @@ const useStatesAndActions = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const getDestinations = () => {
     axios
       .get("/destinations")
       .then((res) => {
@@ -43,6 +51,8 @@ const useStatesAndActions = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const getEvents = () => {
     axios
       .get("events")
       .then((res) => {
@@ -52,6 +62,9 @@ const useStatesAndActions = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const getNews = () => {
     axios
       .get("news")
       .then((res) => {
@@ -61,11 +74,33 @@ const useStatesAndActions = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    getServices();
+    getUniversities();
+    getTestimonial();
+    getDestinations();
+    getEvents();
+    getNews();
   }, []);
 
   const state = { destinations, services, uniList, testimonial, events, news };
 
-  const actions = { setDestinations, setServices, setUniList, setTestimonial };
+  const actions = {
+    setDestinations,
+    setServices,
+    setEvents,
+    setNews,
+    setUniList,
+    setTestimonial,
+    getServices,
+    getEvents,
+    getDestinations,
+    getNews,
+    getTestimonial,
+    getUniversities,
+  };
   return [state, actions];
 };
 

@@ -25,7 +25,7 @@ const Events = () => {
               </p>
               <FiChevronRight className="text-4xl text-altWhite cursor-pointer" />
             </div> */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center items-center md:gap-12 gap-y-8 md:gap-y-0">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
               {events?.map((item, i) => (
                 <div
                   className="col-span-1 bg-lightBlue  pb-6 rounded-md "
@@ -48,8 +48,7 @@ const Events = () => {
                       <div className="text-md flex items-center text-blue space-x-3">
                         <FiClock />
                         <span>
-                          {format(new Date(item?.startTime), "p")} -
-                          {format(new Date(item?.endTime), "p")}
+                          {item?.startTime} -{item?.endTime}
                         </span>
                       </div>
                       <p className="text-md flex items-center text-blue space-x-3">

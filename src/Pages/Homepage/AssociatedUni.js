@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import australia from "../../assets/images/Vector.png";
+import australia from "../../assets/images/australia.png";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import useKothar from "../../context/useKothar";
 
@@ -68,18 +68,26 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
             )}
             <div className="pt-12 md:pt-24">
               <Slider {...settings}>
-                {getFilteredList()?.length > 0 &&
+                {getFilteredList()?.length > 0 ? (
                   getFilteredList()?.map((item) => (
                     <div className="col-span-1 slider" key={item?.id}>
-                      <div className="text-center mx-auto relative">
-                        <img
-                          src={item?.image || australia}
-                          alt=""
-                          className="rounded"
-                        />
-                      </div>
+                      <a href={item?.website}>
+                        <div className="text-center mx-auto relative">
+                          <img
+                            src={item?.image || australia}
+                            alt=""
+                            className="rounded"
+                          />
+                          <h1 className="mt-2">{item?.name}</h1>
+                        </div>
+                      </a>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <h1 className="mt-2 text-center text-2xl">
+                    No Universities available at the moment.
+                  </h1>
+                )}
               </Slider>
             </div>
           </div>

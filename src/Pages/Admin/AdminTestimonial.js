@@ -16,6 +16,7 @@ import {
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
 import { baseURL } from "../../Utils/base";
+import { toast } from "react-toastify";
 
 const AdminTestimonial = () => {
   const [data, setData] = useState();
@@ -27,6 +28,7 @@ const AdminTestimonial = () => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
+  const [{ testimonial }, { setTestimonial }] = useKothar();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +40,7 @@ const AdminTestimonial = () => {
     axios
       .post(`admin/testimonials`, data)
       .then((res) => {
-        setMessage({ success: res?.data?.message });
+        toast.success("Data added successfully");
         setData({
           name: "",
           tetimonial: "",
@@ -46,10 +48,26 @@ const AdminTestimonial = () => {
         setOpen(!open);
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
+        toast.error("Error");
       });
   };
-
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put(`admin/testimonials/${data?.id}`, data)
+      .then((res) => {
+        setData({
+          image: "",
+          website: "",
+        });
+        setOpen(!open);
+        toast.success("Data Updated successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Error");
+      });
+  };
   function getBase64(img, callback) {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
@@ -64,7 +82,6 @@ const AdminTestimonial = () => {
     });
   };
 
-  const [{ testimonial }, { setTestimonial }] = useKothar();
   const handleOpen = () => {
     setOpen(!open);
     setData({
@@ -78,7 +95,9 @@ const AdminTestimonial = () => {
       .delete(`/admin/testimonials/${id}`)
       .then((res) => {
         console.log(res);
-        setTestimonial((prevState) => [...prevState.filter(id)]);
+        setTestimonial((prevState) => [
+          ...prevState.filter((item) => item?.id !== id),
+        ]);
       })
       .catch((err) => console.log(err));
   };
@@ -174,7 +193,7 @@ const AdminTestimonial = () => {
               <DialogHeader>
                 {data?.id ? "Edit" : "Add"} Testimonial
               </DialogHeader>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
                   <div className="grid items-center mt-4 w-full  mx-auto">
                     <div className="mt-10 md:mt-0">

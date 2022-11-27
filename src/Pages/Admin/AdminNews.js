@@ -19,7 +19,6 @@ import { toast } from "react-toastify";
 
 const AdminNews = () => {
   const [data, setData] = useState();
-  const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const [preview, setPreview] = useState();
 
@@ -45,12 +44,9 @@ const AdminNews = () => {
     axios
       .post("admin/news", data)
       .then((res) => {
-        // console.log(res);
-        setMessage({ success: res?.data?.message });
-        setData({
-          topic: "",
-          description: "",
-        });
+        setOpen(!open);
+        toast.success("Data added successfully");
+        getNews();
       })
       .catch((err) => {
         toast.error(err?.data?.message || "Error");
@@ -63,19 +59,19 @@ const AdminNews = () => {
       .then((res) => {
         setOpen(!open);
         toast.success("Data Updated successfully");
-        window.location.reload();
+        getNews();
       })
       .catch((err) => {
         toast.error("Error");
       });
   };
-  const [{ news }, { setNews }] = useKothar();
+  const [{ news }, { setNews, getNews }] = useKothar();
 
   const handleEdit = (itemData) => {
     setOpen(true);
     setData({
       ...itemData,
-      date: format(new Date(itemData?.date), "yyyy-MM-dd"),
+      date: format(new Date(itemData?.date || null), "yyyy-MM-dd"),
     });
     setPreview(itemData?.image);
   };
@@ -93,10 +89,7 @@ const AdminNews = () => {
       .delete(`/admin/news/${id}`)
       .then((res) => {
         toast.success("Data Deleted successfully");
-        setNews((prevState) => [
-          ...prevState.filter((item) => item?.id !== id),
-        ]);
-        debugger;
+        getNews();
       })
       .catch((err) => toast.error("Error Deleting Data"));
   };
@@ -117,7 +110,7 @@ const AdminNews = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg overflow-y-auto max-h-[600px]">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -150,9 +143,11 @@ const AdminNews = () => {
                                 {item?.topic}
                               </th>
                               <td className="py-4 px-6">
-                                {format(new Date(item?.date), "PP")}
+                                {format(new Date(item?.date || null), "PP")}
                               </td>
-                              <td className="py-4 px-6">{item?.description}</td>
+                              <td className="py-4 px-6">
+                                {item?.description || "-"}
+                              </td>
                               <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
                                   color="green"
@@ -220,12 +215,6 @@ const AdminNews = () => {
                             name="date"
                           />
                         </div>{" "}
-                        {(data?.image || preview) && (
-                          <img
-                            src={preview}
-                            className="h-[200px] object-cover"
-                          />
-                        )}
                         <div className="mb-6">
                           <Input
                             variant="outlined"
@@ -233,10 +222,16 @@ const AdminNews = () => {
                             size="lg"
                             color="indigo"
                             label="Image"
-                            sonChange={handleAddFiles}
-                            name="topic"
+                            onChange={handleAddFiles}
+                            name="image"
                           />
-                        </div>
+                        </div>{" "}
+                        {(data?.image || preview) && (
+                          <img
+                            src={preview}
+                            className="h-[200px] object-cover"
+                          />
+                        )}
                         <div className="mb-6 mt-8">
                           <Textarea
                             variant="outlined"
@@ -251,18 +246,6 @@ const AdminNews = () => {
                             required
                           />
                         </div>
-                        {message?.success && (
-                          <SuccessMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
-                        {message?.error && (
-                          <ErrorMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
                       </div>
                     </div>
                   </div>

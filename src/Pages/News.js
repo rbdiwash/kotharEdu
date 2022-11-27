@@ -17,7 +17,7 @@ const News = () => {
           <div className="row items-center   h-full my-auto">
             <p className="section-heading pb-10 text-left">News and Updates</p>
 
-            <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-center md:gap-8 gap-y-8 md:gap-y-0">
+            <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
               {news?.length > 0 &&
                 news?.map((item, i) => (
                   <div className="col-span-1" key={item?.id}>
@@ -25,14 +25,16 @@ const News = () => {
                       <img
                         src={item?.image || australia}
                         alt=""
-                        className="rounded-lg shadow-lg"
+                        className="rounded-lg shadow-lg h-[360px] object-cover"
                       />
                       <p className="text-blue py-2 font-semibold">
-                        {format(new Date(item?.date), "PPPP")}
+                        {format(new Date(item?.date || null), "PPPP")}
                       </p>
-                      <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
-                        {item?.topic}
-                      </p>
+                      <Link to={`/news/${item?.id}`} state={{ data: item }}>
+                        <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
+                          {item?.topic}
+                        </p>
+                      </Link>
                       <p className="pb-2 text-lg">
                         {item?.description?.slice(0, 300)}{" "}
                         {item?.description?.length > 300 && "..."}

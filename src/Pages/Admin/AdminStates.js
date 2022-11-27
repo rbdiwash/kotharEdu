@@ -24,11 +24,24 @@ const AdminStates = () => {
   const [whyHeading, setWhyHeading] = useState("");
   const [resonTitle, setReasonTitle] = useState("");
   const [reasonDesc, setReasonsDesc] = useState("");
+  const [preview, setPreview] = useState();
+  const [{ destinations }, { setDestinations, getDestinations }] = useKothar();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
-
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+  const handleFileChange = (e) => {
+    setPreview(URL.createObjectURL(e.target.files[0]));
+    getBase64(e.target.files[0], (result) => {
+      setData((prevState) => ({ ...prevState, image: result }));
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -38,6 +51,7 @@ const AdminStates = () => {
       })
       .then((res) => {
         toast.success("Data added successfully");
+        getDestinations();
       })
       .catch((err) => {
         toast.error("Error");
@@ -54,25 +68,30 @@ const AdminStates = () => {
         });
         setOpen(!open);
         toast.success("Data Updated successfully");
-        window.location.reload();
+        // window.location.reload();
+        getDestinations();
       })
       .catch((err) => {
         toast.error("Error");
       });
   };
 
-  const [{ destinations }, { setDestinations }] = useKothar();
   const handleOpen = () => {
     setOpen(!open);
-    // setData({});
+    setData({
+      destination: "",
+      destinationDesc: "",
+    });
+    setWhyHeading("");
+    setAddedDetails("");
+    setPreview();
+    setAddedDetails([]);
   };
   const deleteData = (id) => {
     axios
       .delete(`/admin/destinations/${id}`)
       .then((res) => {
-        console.log(res);
-        // window.location.reload();
-        setDestinations(destinations.filter((arg) => arg?.id !== id));
+        getDestinations();
       })
       .catch((err) => console.log(err));
   };
@@ -89,7 +108,7 @@ const AdminStates = () => {
       ...prevState.filter((a) => prevState.indexOf(a) !== id),
     ]);
   };
-  const formClassName = " py-2.5";
+
   const handleEdit = (itemData) => {
     setOpen(true);
     setData({
@@ -103,6 +122,7 @@ const AdminStates = () => {
     setAddedDetails(
       itemData?.whyDestination[0]?.ans || itemData?.whyDestination?.ans
     );
+    setPreview(itemData?.image);
   };
 
   const editRow = (i) => {
@@ -114,7 +134,7 @@ const AdminStates = () => {
     setReasonsDesc(i.desc);
     setReasonTitle(i.title);
   };
-
+  const formClassName = " py-2.5";
   return (
     <>
       <Sidebar />
@@ -132,7 +152,7 @@ const AdminStates = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg overflow-y-auto max-h-[600px]">
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -201,7 +221,7 @@ const AdminStates = () => {
               <DialogHeader>{data?.id ? "Edit" : "Add"} State</DialogHeader>
               <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
-                  <div className="grid items-center mt-4 w-full  mx-auto">
+                  <div className="grid items-center mt-4 w-full pt-4  mx-auto max-h-[700px] overflow-y-auto">
                     <div className="mt-10 md:mt-0">
                       <div className="form-container mx-2">
                         <div className="mb-6">
@@ -217,7 +237,7 @@ const AdminStates = () => {
                             name="destination"
                           />
                         </div>
-                        <div className="mb-5 mt-4">
+                        <div className="mb-6">
                           <Textarea
                             type="text"
                             color="indigo"
@@ -231,9 +251,19 @@ const AdminStates = () => {
                             required
                           />
                         </div>
-                        <div className="mb-6 mt-8">
-                          <input type="file" />
+                        <div className="mb-6">
+                          <input
+                            type="file"
+                            name="image"
+                            onChange={handleFileChange}
+                          />
                         </div>
+                        {(data?.image || preview) && (
+                          <img
+                            src={preview}
+                            className="h-[200px] object-cover"
+                          />
+                        )}
                         <div className="mb-5 mt-4">
                           <Input
                             className={formClassName + " mb-5"}
