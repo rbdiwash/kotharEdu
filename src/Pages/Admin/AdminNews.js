@@ -15,20 +15,35 @@ import {
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const AdminNews = () => {
   const [data, setData] = useState();
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
+  const [preview, setPreview] = useState();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
 
+  const handleAddFiles = (e) => {
+    setPreview(URL.createObjectURL(e.target.files[0]));
+
+    getBase64(e.target.files[0], (result) => {
+      setData((prevState) => ({ ...prevState, image: result }));
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("book-appointment", data)
+      .post("admin/news", data)
       .then((res) => {
         // console.log(res);
         setMessage({ success: res?.data?.message });
@@ -38,24 +53,53 @@ const AdminNews = () => {
         });
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
+        toast.error(err?.data?.message || "Error");
       });
   };
-
-  const [{ news }] = useKothar();
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put(`admin/news/${data?.id}`, data)
+      .then((res) => {
+        setOpen(!open);
+        toast.success("Data Updated successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Error");
+      });
+  };
+  const [{ news }, { setNews }] = useKothar();
 
   const handleEdit = (itemData) => {
     setOpen(true);
-    setData({ topic: itemData?.topic, description: itemData?.description });
+    setData({
+      ...itemData,
+      date: format(new Date(itemData?.date), "yyyy-MM-dd"),
+    });
+    setPreview(itemData?.image);
   };
   const handleOpen = () => {
     setOpen(!open);
     setData({
       topic: "",
       description: "",
+      date: "",
     });
+    setPreview();
   };
-
+  const deleteData = (id) => {
+    axios
+      .delete(`/admin/news/${id}`)
+      .then((res) => {
+        toast.success("Data Deleted successfully");
+        setNews((prevState) => [
+          ...prevState.filter((item) => item?.id !== id),
+        ]);
+        debugger;
+      })
+      .catch((err) => toast.error("Error Deleting Data"));
+  };
   return (
     <>
       <Sidebar />
@@ -73,21 +117,21 @@ const AdminNews = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Topic
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Date
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Description
                           </th>
 
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
@@ -96,20 +140,20 @@ const AdminNews = () => {
                         {news?.length > 0 ? (
                           news.map((item) => (
                             <tr
-                              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                               key={item?.id}
                             >
                               <th
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
                                 {item?.topic}
                               </th>
-                              <td class="py-4 px-6">
+                              <td className="py-4 px-6">
                                 {format(new Date(item?.date), "PP")}
                               </td>
-                              <td class="py-4 px-6">{item?.description}</td>
-                              <td class="py-4 px-6 text-right flex space-x-4 items-center">
+                              <td className="py-4 px-6">{item?.description}</td>
+                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
                                   color="green"
                                   onClick={() => handleEdit(item)}
@@ -117,16 +161,21 @@ const AdminNews = () => {
                                   Edit
                                 </Button>
 
-                                <Button color="red">Delete</Button>
+                                <Button
+                                  color="red"
+                                  onClick={() => deleteData(item?.id)}
+                                >
+                                  Delete
+                                </Button>
                               </td>
                             </tr>
                           ))
                         ) : (
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
                               colSpan={4}
                               scope="row"
-                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                              className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
                               No Results Found
                             </td>
@@ -139,8 +188,8 @@ const AdminNews = () => {
               </div>
             </div>
             <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Add News</DialogHeader>
-              <form onSubmit={handleSubmit}>
+              <DialogHeader> {data?.id ? "Edit" : "Add"} News</DialogHeader>
+              <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
                   <div className="grid items-center mt-4 w-full  mx-auto">
                     <div className="mt-10 md:mt-0">
@@ -158,7 +207,36 @@ const AdminNews = () => {
                             name="topic"
                           />
                         </div>
-
+                        <div className="mb-6">
+                          <Input
+                            variant="outlined"
+                            type="date"
+                            size="lg"
+                            color="indigo"
+                            label="Date"
+                            required
+                            value={data?.date}
+                            onChange={handleInputChange}
+                            name="date"
+                          />
+                        </div>{" "}
+                        {(data?.image || preview) && (
+                          <img
+                            src={preview}
+                            className="h-[200px] object-cover"
+                          />
+                        )}
+                        <div className="mb-6">
+                          <Input
+                            variant="outlined"
+                            type="file"
+                            size="lg"
+                            color="indigo"
+                            label="Image"
+                            sonChange={handleAddFiles}
+                            name="topic"
+                          />
+                        </div>
                         <div className="mb-6 mt-8">
                           <Textarea
                             variant="outlined"

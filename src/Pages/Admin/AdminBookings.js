@@ -13,6 +13,7 @@ import {
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const AdminBookings = () => {
   const [data, setData] = useState();
@@ -37,9 +38,16 @@ const AdminBookings = () => {
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
     axios
-      .delete(`/admin/university:${id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .delete(`/admin/book-appointment/${id}`)
+      .then((res) => {
+        setData((prevState) => [
+          ...prevState.filter((item) => item?.id !== id),
+        ]);
+        toast.success("Data Deleted Successfully");
+      })
+      .catch((err) => {
+        toast.error("Error Deleting Data");
+      });
   };
 
   return (
@@ -56,26 +64,26 @@ const AdminBookings = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Name
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Email
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Enquiry Type
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Enquiry
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Requested Date
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
@@ -83,23 +91,20 @@ const AdminBookings = () => {
                       <tbody>
                         {data?.length > 0 ? (
                           data?.map((item) => (
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                               <th
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
                                 {item?.name}
                               </th>
-                              <td class="py-4 px-6">{item?.email}</td>
-                              <td class="py-4 px-6">{item?.enquiryType}</td>
-                              <td class="py-4 px-6">{item?.enquiry}</td>
-                              <td class="py-4 px-6">
-                                {format(
-                                  new Date(item?.requestedDate),
-                                  "PP"
-                                )}
+                              <td className="py-4 px-6">{item?.email}</td>
+                              <td className="py-4 px-6">{item?.enquiryType}</td>
+                              <td className="py-4 px-6">{item?.enquiry}</td>
+                              <td className="py-4 px-6">
+                                {format(new Date(item?.requestedDate), "PP")}
                               </td>
-                              <td class="py-4 px-6 text-right flex space-x-4 items-center">
+                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
                                   color="red"
                                   onClick={() => deleteData(item?.id)}
@@ -110,11 +115,11 @@ const AdminBookings = () => {
                             </tr>
                           ))
                         ) : (
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
-                              colSpan={3}
+                              colSpan={6}
                               scope="row"
-                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                              className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
                               No Results Found
                             </td>

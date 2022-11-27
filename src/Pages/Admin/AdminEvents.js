@@ -15,40 +15,71 @@ import {
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 const AdminEvents = () => {
   const [data, setData] = useState();
-  const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
+  const [{ events }, { setEvents }] = useKothar();
+  console.log("🚀 ~ events", events);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("book-appointment", data)
+      .post("admin/events", data)
       .then((res) => {
         // console.log(res);
-        setMessage({ success: res?.data?.message });
+        toast.success("Data added successfully");
         setData({
           topic: "",
           description: "",
         });
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
+        toast.error("Error");
+      });
+  };
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put(`admin/events/${data?.id}`, data)
+      .then((res) => {
+        setOpen(!open);
+        toast.success("Data Updated successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Error");
       });
   };
 
-  const [{ events }] = useKothar();
-  console.log("🚀 ~ events", events);
-
   const handleEdit = (itemData) => {
     setOpen(true);
-    setData({ topic: itemData?.topic, description: itemData?.description });
+    setData({
+      topic: itemData?.topic,
+      description: itemData?.description,
+      startTime: format(new Date(itemData?.startTime), "HH:mm"),
+      endTime: format(new Date(itemData?.endTime), "HH:mm"),
+      date: format(new Date(itemData?.date), "yyyy-MM-dd"),
+    });
   };
+
+  const deleteData = (id) => {
+    axios
+      .delete(`/admin/events/${id}`)
+      .then((res) => {
+        toast.success("Data Deleted successfully");
+        setEvents((prevState) => [
+          ...prevState.filter((item) => item?.id !== id),
+        ]);
+      })
+      .catch((err) => toast.error("Error Deleting Data"));
+  };
+
   const handleOpen = () => {
     setOpen(!open);
     setData({
@@ -74,21 +105,21 @@ const AdminEvents = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Date
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Time
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Description
                           </th>
 
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
@@ -97,21 +128,21 @@ const AdminEvents = () => {
                         {events?.length > 0 ? (
                           events?.map((item) => (
                             <tr
-                              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                               key={item?.id}
                             >
                               <th
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
                                 {format(new Date(item?.date), "PP")}
                               </th>
-                              <td class="py-4 px-6">
+                              <td className="py-4 px-6">
                                 {format(new Date(item?.startTime), "p")} -
                                 {format(new Date(item?.endTime), "p")}
                               </td>
-                              <td class="py-4 px-6">{item?.description}</td>
-                              <td class="py-4 px-6 text-right flex space-x-4 items-center">
+                              <td className="py-4 px-6">{item?.description}</td>
+                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
                                   color="green"
                                   onClick={() => handleEdit(item)}
@@ -119,16 +150,21 @@ const AdminEvents = () => {
                                   Edit
                                 </Button>
 
-                                <Button color="red">Delete</Button>
+                                <Button
+                                  color="red"
+                                  onClick={() => deleteData(item?.id)}
+                                >
+                                  Delete
+                                </Button>
                               </td>
                             </tr>
                           ))
                         ) : (
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
                               colSpan={4}
                               scope="row"
-                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                              className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
                               No Results Found
                             </td>
@@ -141,8 +177,8 @@ const AdminEvents = () => {
               </div>
             </div>
             <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Add Event</DialogHeader>
-              <form onSubmit={handleSubmit}>
+              <DialogHeader>{data?.id ? "Edit" : "Add"} Event</DialogHeader>
+              <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
                   <div className="grid items-center mt-4 w-full  mx-auto">
                     <div className="mt-10 md:mt-0">
@@ -160,6 +196,43 @@ const AdminEvents = () => {
                             name="topic"
                           />
                         </div>
+                        <div className="mb-6">
+                          <Input
+                            variant="outlined"
+                            type="date"
+                            size="lg"
+                            color="indigo"
+                            label="Topic"
+                            required
+                            value={data?.date}
+                            onChange={handleInputChange}
+                            name="date"
+                          />
+                        </div>
+                        <div className="mb-6">
+                          <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
+                            <Input
+                              type="time"
+                              size="lg"
+                              color="indigo"
+                              label="Start Time"
+                              required
+                              name="startTime"
+                              value={data?.startTime}
+                              onChange={handleInputChange}
+                            />
+                            <Input
+                              type="time"
+                              size="lg"
+                              color="indigo"
+                              label="End Time"
+                              name="endTime"
+                              value={data?.endTime}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                        </div>
 
                         <div className="mb-6 mt-8">
                           <Textarea
@@ -175,18 +248,6 @@ const AdminEvents = () => {
                             required
                           />
                         </div>
-                        {message?.success && (
-                          <SuccessMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
-                        {message?.error && (
-                          <ErrorMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
                       </div>
                     </div>
                   </div>

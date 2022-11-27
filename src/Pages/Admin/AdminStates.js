@@ -15,8 +15,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
-
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { IoAddCircleOutline } from "react-icons/io5";
 
 const AdminStates = () => {
@@ -41,7 +40,9 @@ const AdminStates = () => {
       })
       .then((res) => {
         console.log(res);
-        setMessage({ success: res?.data?.message });
+        setMessage({
+          success: res?.data?.message || "Data added successfully",
+        });
       })
       .catch((err) => {
         setMessage({ error: err?.data?.message });
@@ -49,18 +50,19 @@ const AdminStates = () => {
   };
   const [add, setAdd] = useState(false);
 
-  const [{ destinations }] = useKothar();
+  const [{ destinations }, { setDestinations }] = useKothar();
   const handleOpen = () => {
     setOpen(!open);
-    setData({
-      topic: "",
-      description: "",
-    });
+    // setData({});
   };
   const deleteData = (id) => {
     axios
       .delete(`/admin/destinations/${id}`)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        // window.location.reload();
+        setDestinations(destinations.filter((arg) => arg?.id !== id));
+      })
       .catch((err) => console.log(err));
   };
   const handleAddDetails = () => {
@@ -79,13 +81,24 @@ const AdminStates = () => {
   };
   const formClassName = " py-2.5";
   const handleEdit = (itemData) => {
-    console.log("🚀 ~ itemData", itemData);
     setOpen(true);
     setData({
       destination: itemData?.destination,
       destinationDesc: itemData?.destinationDesc,
     });
+    setWhyHeading(
+      itemData?.whyDestination[0]?.title || itemData?.whyDestination?.title
+    );
+    setAddedDetails(
+      itemData?.whyDestination[0]?.ans || itemData?.whyDestination?.ans
+    );
   };
+
+  const editRow = (i) => {
+    setReasonsDesc(i.desc);
+    setReasonTitle(i.title);
+  };
+
   return (
     <>
       <Sidebar />
@@ -103,17 +116,17 @@ const AdminStates = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Name
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Description
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
@@ -121,17 +134,20 @@ const AdminStates = () => {
                       <tbody>
                         {destinations?.length > 0 ? (
                           destinations?.map((item) => (
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <tr
+                              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              key={item?.id}
+                            >
                               <td
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
                                 {item?.destination}
                               </td>
-                              <td class="py-4 px-6">
+                              <td className="py-4 px-6">
                                 {item?.destinationDesc?.slice(0, 100)}
                               </td>
-                              <td class="py-4 px-6 text-right flex space-x-4 items-center">
+                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
                                   color="green"
                                   onClick={() => handleEdit(item)}
@@ -149,11 +165,11 @@ const AdminStates = () => {
                             </tr>
                           ))
                         ) : (
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
                               colSpan={3}
                               scope="row"
-                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                              className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
                               No Results Found
                             </td>
@@ -165,7 +181,7 @@ const AdminStates = () => {
                 </div>
               </div>
             </div>
-            <Dialog open={open} handler={handleOpen}>
+            <Dialog open={open} handler={handleOpen} size="lg">
               <DialogHeader>Add State</DialogHeader>
               <form onSubmit={handleSubmit}>
                 <DialogBody divider>
@@ -191,7 +207,7 @@ const AdminStates = () => {
                             color="indigo"
                             name="destinationDesc"
                             size="lg"
-                            value={data?.enquiry}
+                            value={data?.destinationDesc}
                             rows={4}
                             className={' "'}
                             label="State Description ......."
@@ -214,52 +230,72 @@ const AdminStates = () => {
                             onChange={(e) => setWhyHeading(e.target.value)}
                           />
                           <p className="my-2">Reasons</p>
-                          <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                            <Input
-                              className={formClassName + ""}
-                              label="Title"
-                              color="indigo"
-                              size="lg"
-                              name="title"
-                              value={resonTitle}
-                              onChange={(e) => setReasonTitle(e.target.value)}
-                            />
-                            <Input
-                              className={formClassName}
-                              label="Description*"
-                              color="indigo"
-                              size="lg"
-                              name="desc"
-                              value={reasonDesc}
-                              onChange={(e) => setReasonsDesc(e.target.value)}
-                            />
-
-                            <IconButton
-                              color="green"
-                              className="min-w-[40px]"
-                              disabled={resonTitle === ""}
-                            >
-                              <IoAddCircleOutline
-                                className="text-xl"
-                                onClick={handleAddDetails}
+                          <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
+                            <div className="col-span-6 md:col-span-2">
+                              <Input
+                                className={formClassName}
+                                label="Title"
+                                color="indigo"
+                                size="lg"
+                                name="title"
+                                value={resonTitle}
+                                onChange={(e) => setReasonTitle(e.target.value)}
                               />
-                            </IconButton>
+                            </div>{" "}
+                            <div className="col-span-6 md:col-span-3">
+                              <Textarea
+                                className={formClassName}
+                                label="Description*"
+                                color="indigo"
+                                size="lg"
+                                name="desc"
+                                value={reasonDesc}
+                                onChange={(e) => setReasonsDesc(e.target.value)}
+                              />
+                            </div>
+                            <div className="col-span-6 md:col-span-1 ml-auto mr-4">
+                              <IconButton
+                                color="green"
+                                className=""
+                                disabled={resonTitle === ""}
+                              >
+                                <IoAddCircleOutline
+                                  className="text-xl"
+                                  onClick={handleAddDetails}
+                                />
+                              </IconButton>
+                            </div>
                           </div>
-                          <div className="max-h-[100px] overflow-auto">
+                          <div className="max-h-[200px] overflow-auto">
                             {addedDetails?.length > 0 &&
                               addedDetails?.map((item, i) => (
-                                <div className="flex items-center justify-between flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0 ">
-                                  <span className="w-2/5">{item?.title}</span>
-                                  <span className="w-2/5">{item?.desc}</span>
-                                  <IconButton
-                                    color="red"
-                                    className="min-w-[40px] w-1/5"
-                                  >
-                                    <AiOutlineDelete
-                                      className="text-xl"
-                                      onClick={() => deleteRow(i)}
-                                    />
-                                  </IconButton>
+                                <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
+                                  <div className="col-span-6 md:col-span-2">
+                                    {item?.title}
+                                  </div>
+                                  <div className="col-span-6 md:col-span-3 text-justify">
+                                    {item?.desc}
+                                  </div>
+                                  <div className="col-span-6 md:col-span-1 ml-auto gap-4">
+                                    <IconButton
+                                      color="green"
+                                      className="min-w-[40px] mr-4"
+                                    >
+                                      <AiOutlineEdit
+                                        className="text-xl"
+                                        onClick={() => editRow(item)}
+                                      />
+                                    </IconButton>
+                                    <IconButton
+                                      color="red"
+                                      className="min-w-[40px]"
+                                    >
+                                      <AiOutlineDelete
+                                        className="text-xl"
+                                        onClick={() => deleteRow(i)}
+                                      />
+                                    </IconButton>
+                                  </div>
                                 </div>
                               ))}
                           </div>

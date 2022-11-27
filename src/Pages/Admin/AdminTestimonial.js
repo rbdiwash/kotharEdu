@@ -15,11 +15,14 @@ import {
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
+import { baseURL } from "../../Utils/base";
 
 const AdminTestimonial = () => {
-  const [data, setData] = useState({ enquiryType: "Class" });
+  const [data, setData] = useState();
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
+  const [preview, setPreview] = useState();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
@@ -27,29 +30,62 @@ const AdminTestimonial = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // const finalData = new FormData();
+    // for (const key of Object.keys(data)) {
+    //   finalData.append(key, data[key]);
+    // }
+
     axios
-      .post("admin/testimonial", data)
+      .post(`admin/testimonials`, data)
       .then((res) => {
-        // console.log(res);
         setMessage({ success: res?.data?.message });
         setData({
           name: "",
-          testimonial: "",
+          tetimonial: "",
         });
+        setOpen(!open);
       })
       .catch((err) => {
         setMessage({ error: err?.data?.message });
       });
   };
 
-  const [{ testimonial }] = useKothar();
-  console.log("🚀 ~ testimonial", testimonial);
-  const handleOpen = () => setOpen(!open);
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+
+  const handleAddFiles = (e) => {
+    setPreview(URL.createObjectURL(e.target.files[0]));
+
+    getBase64(e.target.files[0], (result) => {
+      setData((prevState) => ({ ...prevState, image: result }));
+    });
+  };
+
+  const [{ testimonial }, { setTestimonial }] = useKothar();
+  const handleOpen = () => {
+    setOpen(!open);
+    setData({
+      name: "",
+      tetimonial: "",
+    });
+    setPreview();
+  };
   const deleteData = (id) => {
     axios
-      .delete(`/admin/testimonial:${id}`)
-      .then((res) => console.log(res))
+      .delete(`/admin/testimonials/${id}`)
+      .then((res) => {
+        console.log(res);
+        setTestimonial((prevState) => [...prevState.filter(id)]);
+      })
       .catch((err) => console.log(err));
+  };
+  const handleEdit = (itemData) => {
+    setOpen(true);
+    setData(itemData);
+    setPreview(itemData?.image);
   };
 
   return (
@@ -69,36 +105,44 @@ const AdminTestimonial = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <div className="overflow-x-auto overflow-y-auto max-h-[600px] relative shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 fixeed">
                         <tr>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Name
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Testimonial
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
                       </thead>
                       <tbody>
                         {testimonial?.length > 0 ? (
-                          testimonial.map((item) => (
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          testimonial?.map((item) => (
+                            <tr
+                              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              key={item?.id}
+                            >
                               <th
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
                                 {item?.name}
                               </th>
-                              <td class="py-4 px-6">
+                              <td className="py-4 px-6">
                                 {item?.tetimonial.slice(0, 100)}
                               </td>
-                              <td class="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button color="green">Edit</Button>
+                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
+                                <Button
+                                  color="green"
+                                  onClick={() => handleEdit(item)}
+                                >
+                                  Edit
+                                </Button>
 
                                 <Button
                                   color="red"
@@ -110,11 +154,11 @@ const AdminTestimonial = () => {
                             </tr>
                           ))
                         ) : (
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
                               colSpan={3}
                               scope="row"
-                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                              className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
                               No Results Found
                             </td>
@@ -127,12 +171,14 @@ const AdminTestimonial = () => {
               </div>
             </div>
             <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Add Testimonial</DialogHeader>
-              <DialogBody divider>
-                <div className="grid items-center mt-4 w-full  mx-auto">
-                  <div className="mt-10 md:mt-0">
-                    <div className="form-container mx-2">
-                      <form onSubmit={handleSubmit}>
+              <DialogHeader>
+                {data?.id ? "Edit" : "Add"} Testimonial
+              </DialogHeader>
+              <form onSubmit={handleSubmit}>
+                <DialogBody divider>
+                  <div className="grid items-center mt-4 w-full  mx-auto">
+                    <div className="mt-10 md:mt-0">
+                      <div className="form-container mx-2">
                         <div className="mb-6">
                           <Input
                             type="text"
@@ -149,18 +195,28 @@ const AdminTestimonial = () => {
                         <div className="mb-6 mt-8">
                           <Textarea
                             type="text"
-                            name="testimonial"
+                            name="tetimonial"
                             size="lg"
                             color="indigo"
-                            value={data?.enquiry}
+                            value={data?.tetimonial}
                             rows={4}
-                            label="Details ......."
+                            label="Testimonial Details ......."
                             onChange={handleInputChange}
                             required
                           />
                         </div>
+                        {(data?.image || preview) && (
+                          <img
+                            src={preview}
+                            className="h-[200px] object-cover"
+                          />
+                        )}
                         <div className="mb-6 mt-8">
-                          <input type="file" />
+                          <input
+                            type="file"
+                            name="file"
+                            onChange={handleAddFiles}
+                          />
                         </div>
                         {message?.success && (
                           <SuccessMessage
@@ -174,24 +230,24 @@ const AdminTestimonial = () => {
                             setMessage={setMessage}
                           />
                         )}
-                      </form>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </DialogBody>
-              <DialogFooter>
-                <Button
-                  variant="text"
-                  color="red"
-                  onClick={handleOpen}
-                  className="mr-1"
-                >
-                  <span>Cancel</span>
-                </Button>
-                <Button variant="gradient" color="green" onClick={handleOpen}>
-                  <span>Confirm</span>
-                </Button>
-              </DialogFooter>
+                </DialogBody>
+                <DialogFooter>
+                  <Button
+                    variant="text"
+                    color="red"
+                    onClick={handleOpen}
+                    className="mr-1"
+                  >
+                    <span>Cancel</span>
+                  </Button>
+                  <Button variant="gradient" color="green" type="submit">
+                    <span>Confirm</span>
+                  </Button>
+                </DialogFooter>
+              </form>
             </Dialog>
           </div>
         </div>

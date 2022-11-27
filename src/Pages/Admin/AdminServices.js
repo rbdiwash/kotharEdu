@@ -16,8 +16,9 @@ import {
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
-import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 const AdminServices = () => {
   const [data, setData] = useState({
     name: "",
@@ -49,12 +50,23 @@ const AdminServices = () => {
   const [moreTitle, setMoretitle] = useState("");
   const [moreDesc, setMoreDesc] = useState("");
   const [{ services }] = useKothar();
+  const [preview, setPreview] = useState();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
-
+  function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+  const handleFileChange = (e) => {
+    setPreview(URL.createObjectURL(e.target.files[0]));
+    getBase64(e.target.files[0], (result) => {
+      setData((prevState) => ({ ...prevState, image: result }));
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -68,8 +80,25 @@ const AdminServices = () => {
         setMessage({ error: err?.data?.message });
       });
   };
-
-  const handleOpen = () => setOpen(!open);
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put(`admin/services/${data?.id}`, data)
+      .then((res) => {
+        setOpen(!open);
+        toast.success("Data Updated successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        setMessage({ error: err?.data?.message });
+        toast.error("Error");
+      });
+  };
+  const handleOpen = () => {
+    setOpen(!open);
+    setData({});
+    setPreview();
+  };
   const deleteData = (id) => {
     axios
       .delete(`/admin/services/${id}`)
@@ -94,6 +123,24 @@ const AdminServices = () => {
       ...prevState.filter((a) => prevState.indexOf(a) !== id),
     ]);
   };
+  const handleEdit = (itemData) => {
+    setOpen(true);
+    setData({
+      ...itemData,
+      serviceName: itemData?.serviceName,
+      descripttion: itemData?.descripttion,
+      whoTitle: itemData?.who.titlle,
+      whoDesc: itemData?.who.desc,
+      whatTitle: itemData?.what.title,
+      whatDesc: itemData?.what.desc,
+      moreInfoHeading: itemData?.more?.title,
+    });
+    setPreview(itemData?.image);
+  };
+  const editRow = (i) => {
+    setMoreDesc(i.desc);
+    setMoretitle(i.title);
+  };
   return (
     <>
       <Sidebar />
@@ -111,17 +158,17 @@ const AdminServices = () => {
                 </div>
 
                 <div className="form-container bg-white px-10 py-12 rounded-lg">
-                  <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Name
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Description
                           </th>
-                          <th scope="col" class="py-3 px-6">
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
@@ -130,20 +177,25 @@ const AdminServices = () => {
                         {services?.services?.length > 0 ? (
                           services?.services?.map((item) => (
                             <tr
-                              class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                               key={item?.id}
                             >
                               <th
                                 scope="row"
-                                class="py-4 px-6 font-small text-gray-900 whitespace-nowrap min-w-[100px]"
+                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap min-w-[100px]"
                               >
                                 {item?.serviceName}
                               </th>
-                              <td class="py-4 px-6 min-w-[400px]">
+                              <td className="py-4 px-6 min-w-[400px]">
                                 {item?.descripttion?.slice(0, 100)}
                               </td>
-                              <td class="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button color="green">Edit</Button>
+                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
+                                <Button
+                                  color="green"
+                                  onClick={() => handleEdit(item)}
+                                >
+                                  Edit
+                                </Button>
 
                                 <Button
                                   color="red"
@@ -155,11 +207,11 @@ const AdminServices = () => {
                             </tr>
                           ))
                         ) : (
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
                               colSpan={3}
                               scope="row"
-                              class="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
+                              className="py-12 px-6 font-small text-gray-900 whitespace-nowrap text-center"
                             >
                               No Results Found
                             </td>
@@ -171,9 +223,9 @@ const AdminServices = () => {
                 </div>
               </div>
             </div>
-            <Dialog open={open} handler={handleOpen}>
-              <DialogHeader>Add Service</DialogHeader>
-              <form onSubmit={handleSubmit}>
+            <Dialog open={open} handler={handleOpen} size="lg">
+              <DialogHeader> {data?.id ? "Edit" : "Add"} Service</DialogHeader>
+              <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
                   <div className="grid items-center mt-4 w-full  mx-auto">
                     <div className="mt-10 md:mt-0">
@@ -185,16 +237,16 @@ const AdminServices = () => {
                             color="indigo"
                             label="Service Name"
                             required
-                            value={data?.name}
+                            value={data?.serviceName}
                             onChange={handleInputChange}
-                            name="name"
+                            name="serviceName"
                           />
                         </div>
                         <div className="mb-5 mt-4">
                           <Textarea
                             type="text"
-                            name="description"
-                            value={data?.enquiry}
+                            name="descripttion"
+                            value={data?.descripttion}
                             rows={4}
                             size="lg"
                             color="indigo"
@@ -211,16 +263,16 @@ const AdminServices = () => {
                               color="indigo"
                               label="Title"
                               required
-                              name="title"
-                              value={data?.contactNo}
+                              name="whatTitle"
+                              value={data?.whatTitle}
                               onChange={handleInputChange}
                             />
                             <Input
                               size="lg"
                               color="indigo"
                               label="Description*"
-                              name="desc"
-                              value={data?.email}
+                              name="whatDesc"
+                              value={data?.whatDesc}
                               onChange={handleInputChange}
                               required
                             />
@@ -234,23 +286,33 @@ const AdminServices = () => {
                               color="indigo"
                               label="Title"
                               required
-                              name="title"
-                              value={data?.contactNo}
+                              name="whoTitle"
+                              value={data?.whoTitle}
                               onChange={handleInputChange}
                             />
                             <Input
                               size="lg"
                               color="indigo"
                               label="Description*"
-                              name="desc"
-                              value={data?.email}
+                              name="whoDesc"
+                              value={data?.whoDesc}
                               onChange={handleInputChange}
                               required
                             />
                           </div>
                         </div>
                         <div className="mb-5 mt-4">
-                          <input type="file" />
+                          {(data?.image || preview) && (
+                            <img
+                              src={preview}
+                              className="h-[100px] object-cover"
+                            />
+                          )}
+                          <input
+                            type="file"
+                            name="image"
+                            onChange={handleFileChange}
+                          />
                         </div>
                         <div className="mb-5 mt-4">
                           <p>More Information</p>
@@ -259,57 +321,76 @@ const AdminServices = () => {
                             color="indigo"
                             label="More info Heading"
                             required
-                            name="title"
-                            value={data?.contactNo}
+                            name="moreInfoHeading"
+                            value={data?.moreInfoHeading}
                             onChange={handleInputChange}
                           />
                         </div>
                         <div className="mb-5 mt-4">
-                          <div className="flex items-center flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0">
-                            <Input
-                              size="lg"
-                              color="indigo"
-                              label="Title"
-                              name="title"
-                              value={moreTitle}
-                              onChange={(e) => setMoretitle(e.target.value)}
-                            />
-                            <Input
-                              size="lg"
-                              color="indigo"
-                              label="Description*"
-                              name="desc"
-                              value={moreDesc}
-                              onChange={(e) => setMoreDesc(e.target.value)}
-                              required
-                            />
-
-                            <IconButton
-                              color="green"
-                              className="min-w-[40px]"
-                              disabled={moreTitle === ""}
-                            >
-                              <IoAddCircleOutline
-                                className="text-xl"
-                                onClick={handleAddDetails}
+                          <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
+                            <div className="col-span-6 md:col-span-2">
+                              <Input
+                                size="lg"
+                                color="indigo"
+                                label="Title"
+                                name="title"
+                                value={moreTitle}
+                                onChange={(e) => setMoretitle(e.target.value)}
                               />
-                            </IconButton>
+                            </div>
+                            <div className="col-span-6 md:col-span-3">
+                              <Input
+                                size="lg"
+                                color="indigo"
+                                label="Description*"
+                                name="desc"
+                                value={moreDesc}
+                                onChange={(e) => setMoreDesc(e.target.value)}
+                              />
+                            </div>
+                            <div className="col-span-6 md:col-span-1 ml-auto mr-4">
+                              <IconButton
+                                color="green"
+                                className="min-w-[40px]"
+                                disabled={moreTitle === ""}
+                              >
+                                <IoAddCircleOutline
+                                  className="text-xl"
+                                  onClick={handleAddDetails}
+                                />
+                              </IconButton>
+                            </div>
                           </div>
                           <div className="max-h-[100px] overflow-auto">
                             {addedDetails?.length > 0 &&
                               addedDetails?.map((item, i) => (
-                                <div className="flex items-center justify-between flex-wrap lg:flex-nowrap mb-3 lg:space-x-6 space-y-3 lg:space-y-0 ">
-                                  <span className="w-2/5">{item?.title}</span>
-                                  <span className="w-2/5">{item?.desc}</span>
-                                  <IconButton
-                                    color="red"
-                                    className="min-w-[40px] w-1/5"
-                                  >
-                                    <AiOutlineDelete
-                                      className="text-xl"
-                                      onClick={() => deleteRow(i)}
-                                    />
-                                  </IconButton>
+                                <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
+                                  <div className="col-span-6 md:col-span-2">
+                                    {item?.title}
+                                  </div>
+                                  <div className="col-span-6 md:col-span-3 text-justify">
+                                    {item?.desc}
+                                  </div>
+                                  <div className="col-span-6 md:col-span-1 ml-auto gap-4">
+                                    <IconButton
+                                      color="green"
+                                      className="min-w-[40px] mr-4"
+                                    >
+                                      <AiOutlineEdit
+                                        className="text-xl"
+                                        onClick={() => editRow(item)}
+                                      />
+                                    </IconButton>
+                                    <IconButton
+                                      color="red"
+                                      className="min-w-[40px]"
+                                    >
+                                      <AiOutlineDelete
+                                        className="text-xl"
+                                        onClick={() => deleteRow(i)}
+                                      />
+                                    </IconButton>
+                                  </div>
                                 </div>
                               ))}
                           </div>
