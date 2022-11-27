@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import ErrorMessage from "../../Components/ErrorMessage";
-import SuccessMessage from "../../Components/SuccessMessage";
 import axios from "../../Utils/Axios";
 import Sidebar from "./Sidebar";
 import {
@@ -17,10 +15,10 @@ import {
 import useKothar from "../../context/useKothar";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 const AdminStates = () => {
   const [data, setData] = useState();
-  const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const [addedDetails, setAddedDetails] = useState([]);
   const [whyHeading, setWhyHeading] = useState("");
@@ -39,16 +37,29 @@ const AdminStates = () => {
         whyDestination: { title: whyHeading, ans: addedDetails },
       })
       .then((res) => {
-        console.log(res);
-        setMessage({
-          success: res?.data?.message || "Data added successfully",
-        });
+        toast.success("Data added successfully");
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
+        toast.error("Error");
       });
   };
-  const [add, setAdd] = useState(false);
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put(`admin/destinations/${data?.id}`, data)
+      .then((res) => {
+        setData({
+          image: "",
+          website: "",
+        });
+        setOpen(!open);
+        toast.success("Data Updated successfully");
+        window.location.reload();
+      })
+      .catch((err) => {
+        toast.error("Error");
+      });
+  };
 
   const [{ destinations }, { setDestinations }] = useKothar();
   const handleOpen = () => {
@@ -66,7 +77,6 @@ const AdminStates = () => {
       .catch((err) => console.log(err));
   };
   const handleAddDetails = () => {
-    setAdd(true);
     setAddedDetails((prevState) => [
       { title: resonTitle, desc: reasonDesc },
       ...prevState,
@@ -83,6 +93,7 @@ const AdminStates = () => {
   const handleEdit = (itemData) => {
     setOpen(true);
     setData({
+      ...itemData,
       destination: itemData?.destination,
       destinationDesc: itemData?.destinationDesc,
     });
@@ -95,6 +106,11 @@ const AdminStates = () => {
   };
 
   const editRow = (i) => {
+    setAddedDetails((prevState) => [
+      ...prevState.filter(
+        (arg) => prevState.indexOf(arg) !== prevState.indexOf(i)
+      ),
+    ]);
     setReasonsDesc(i.desc);
     setReasonTitle(i.title);
   };
@@ -182,8 +198,8 @@ const AdminStates = () => {
               </div>
             </div>
             <Dialog open={open} handler={handleOpen} size="lg">
-              <DialogHeader>Add State</DialogHeader>
-              <form onSubmit={handleSubmit}>
+              <DialogHeader>{data?.id ? "Edit" : "Add"} State</DialogHeader>
+              <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
                   <div className="grid items-center mt-4 w-full  mx-auto">
                     <div className="mt-10 md:mt-0">
@@ -300,18 +316,6 @@ const AdminStates = () => {
                               ))}
                           </div>
                         </div>
-                        {message?.success && (
-                          <SuccessMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
-                        {message?.error && (
-                          <ErrorMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
                       </div>
                     </div>
                   </div>

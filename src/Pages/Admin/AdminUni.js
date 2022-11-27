@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 
 const AdminUni = () => {
   const [data, setData] = useState();
-  const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
   const [preview, setPreview] = useState();
   const handleInputChange = (e) => {
@@ -43,7 +42,6 @@ const AdminUni = () => {
       .post("admin/universities", data)
       .then((res) => {
         // console.log(res);
-        setMessage({ success: res?.data?.message || "Successfully Added" });
         setData({
           image: "",
           website: "",
@@ -52,7 +50,6 @@ const AdminUni = () => {
         toast.success("Data added successfully");
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
         toast.error("Error");
       });
   };
@@ -70,7 +67,6 @@ const AdminUni = () => {
         window.location.reload();
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
         toast.error("Error");
       });
   };
@@ -230,18 +226,6 @@ const AdminUni = () => {
                             onChange={handleFileChange}
                           />
                         </div>
-                        {message?.success && (
-                          <SuccessMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
-                        {message?.error && (
-                          <ErrorMessage
-                            message={message?.success}
-                            setMessage={setMessage}
-                          />
-                        )}
                       </div>
                     </div>
                   </div>
