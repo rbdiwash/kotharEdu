@@ -77,10 +77,10 @@ const Events = () => {
               >
                 <div className="flex flex-col text-left">
                   <p className="text-4xl text-primary text-left font-bold">
-                    {format(new Date(item?.date) || new Date(), "do")}
+                    {format(new Date(item?.date || null), "do")}
                   </p>
                   <p className="text-4xl text-primary font-normal text-left">
-                    {format(new Date(item?.date) || new Date(), "MMM")}
+                    {format(new Date(item?.date || null), "MMM")}
                   </p>
                   <p className="text-2xl  text-black leading-tight font-bold tracking-wide py-6">
                     {item?.topic}
@@ -88,8 +88,7 @@ const Events = () => {
                   <div className="text-md flex items-center text-blue space-x-3">
                     <FiClock />
                     <span>
-                      {format(new Date(item?.startTime) || new Date(), "p")} -
-                      {format(new Date(item?.endTime) || new Date(), "p")}
+                      {item?.startTime} - {item?.endTime}
                     </span>
                   </div>
                   <p className="text-md flex items-center text-blue space-x-3">

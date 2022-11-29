@@ -59,14 +59,14 @@ const News = () => {
             <Slider {...settings}>
               {news?.length > 0 &&
                 news?.map((item, i) => (
-                  <div className="mx-auto relative text-left">
+                  <div className="mx-auto relative text-left" key={i}>
                     <img
                       src={item?.image || australia}
                       alt=""
                       className="rounded  h-[300px] object-cover"
                     />
                     <p className="text-blue py-2 font-semibold">
-                      {format(new Date(item?.date) || new Date(), "PPPP")}
+                      {format(new Date(item?.date || null), "PPPP")}
                     </p>
                     <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
                       {item?.topic}
