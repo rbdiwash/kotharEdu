@@ -75,9 +75,9 @@ const Cities = () => {
                     <div className="col-span-1 slider">
                       <div className="text-center mx-auto relative">
                         <img
-                          src={item?.image}
+                          src={item?.image || australia}
                           alt=""
-                          className="w-full rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto"
+                          className="w-full rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto min-h-[320px] object-cover"
                         />
                         <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
                           {item?.destination || "Sydney"}

@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import ContactForm from "../Components/ContactForm";
 import TakePartEvent from "../Components/TakePartEvent";
 import AssociatedUni from "./Homepage/AssociatedUni";
+import australia from "../assets/images/australia.png";
+
 const IndividualStates = () => {
   const sidebars = [
     { title: "Universities and Courses available", value: "uni" },
@@ -19,7 +21,9 @@ const IndividualStates = () => {
     <>
       <section
         style={{
-          background: `linear-gradient(to top, #00001a70,#00001a70), url(${data?.image}) no-repeat center`,
+          background: `linear-gradient(to top, #00001a70,#00001a70), url(${
+            data?.image || australia
+          }) no-repeat center`,
           backgroundSize: "cover",
         }}
       >
@@ -34,7 +38,7 @@ const IndividualStates = () => {
           <p className="md:text-5xl text-2xl uppercase text-white font-bold md:mt-16">
             Study in {data?.destination || "Australia"}
           </p>
-          <p className="text-2xl text-lg text-white mt-4 leading-9 tracking-wide">
+          <p className="text-lg text-white mt-4 leading-9 tracking-wide">
             Academic opportunities recognised all over the world
           </p>
         </div>
