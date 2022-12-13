@@ -16,9 +16,9 @@ const App = () => {
     <KotharProvider>
       <ToastContainer />
       <ThemeProvider>
-        <Router>
+        <HashRouter>
           <PublicRoutes />
-        </Router>
+        </HashRouter>
       </ThemeProvider>
     </KotharProvider>
   );
