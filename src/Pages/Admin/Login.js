@@ -18,7 +18,6 @@ const Login = () => {
     axios
       .post("admin/login", data)
       .then((res) => {
-        console.log("🚀 ~ res", res);
         setMessage({ success: res?.data?.message });
         setData({
           username: "",

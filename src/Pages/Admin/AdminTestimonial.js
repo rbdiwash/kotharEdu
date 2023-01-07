@@ -94,7 +94,7 @@ const AdminTestimonial = () => {
     axios
       .delete(`/admin/testimonials/${id}`)
       .then((res) => {
-        console.log(res);
+        toast.success("Data Deleted successfully");
         setTestimonial((prevState) => [
           ...prevState.filter((item) => item?.id !== id),
         ]);

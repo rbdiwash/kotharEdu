@@ -49,7 +49,7 @@ const AdminServices = () => {
   const [addedDetails, setAddedDetails] = useState([]);
   const [moreTitle, setMoretitle] = useState("");
   const [moreDesc, setMoreDesc] = useState("");
-  const [{ services }] = useKothar();
+  const [{ services }, { getServices }] = useKothar();
   const [preview, setPreview] = useState();
 
   const handleInputChange = (e) => {
@@ -102,7 +102,10 @@ const AdminServices = () => {
   const deleteData = (id) => {
     axios
       .delete(`/admin/services/${id}`)
-      .then((res) => console.log(res))
+      .then((res) => {
+        toast.success("Data Deleted successfully");
+        getServices();
+      })
       .catch((err) => console.log(err));
   };
 

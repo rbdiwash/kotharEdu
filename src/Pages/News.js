@@ -17,9 +17,9 @@ const News = () => {
           <div className="row items-center   h-full my-auto">
             <p className="section-heading pb-10 text-left">News and Updates</p>
 
-            <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
-              {news?.length > 0 &&
-                news?.map((item, i) => (
+            {news?.length > 0 ? (
+              <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
+                {news?.map((item, i) => (
                   <div className="col-span-1" key={item?.id}>
                     <div className="mx-auto relative text-left">
                       <img
@@ -48,10 +48,17 @@ const News = () => {
                     </div>
                   </div>
                 ))}
-            </div>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-[250px] w-full">
+                <h1 className="mt-2 text-center text-2xl">
+                  Sorry ! No News and Updates found.
+                </h1>
+              </div>
+            )}
           </div>
         </div>
-      </section>{" "}
+      </section>
       <TakePartEvent />
     </>
   );

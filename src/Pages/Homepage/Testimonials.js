@@ -42,7 +42,7 @@ const Testimonials = () => {
           </p>
 
           <Slider {...settings}>
-            {testimonial?.length > 0 &&
+            {testimonial?.length > 0 ? (
               testimonial?.map((arg) => (
                 <div className="relative" id={arg?.id}>
                   <div className="cont md:px-10 px-6 py-4 rounded-sm flex items-center flex-col  text-center bg-white text-white pb-20">
@@ -67,7 +67,12 @@ const Testimonials = () => {
                     </p>
                   </div>
                 </div>
-              ))}
+              ))
+            ) : (
+              <h1 className="mt-2 text-center text-2xl">
+                Oops ! No Result !!!
+              </h1>
+            )}
           </Slider>
         </div>
       </div>

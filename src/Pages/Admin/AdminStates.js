@@ -91,6 +91,8 @@ const AdminStates = () => {
     axios
       .delete(`/admin/destinations/${id}`)
       .then((res) => {
+        toast.success("Data Deleted successfully");
+
         getDestinations();
       })
       .catch((err) => console.log(err));

@@ -1,6 +1,7 @@
 import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 import logo from "../assets/images/logo.png";
+import document from "../assets/images/pier.jpg";
 
 const About = () => {
   return (
@@ -34,7 +35,7 @@ const About = () => {
               <img src={logo} alt="" className="w-full" />
             </div>
           </div>
-          <div className="grid md:grid-cols-3 grid-cols-1 items-center md:gap-12 mt-8 justify-between mt-16">
+          <div className="grid md:grid-cols-3 grid-cols-1 items-center md:gap-12 justify-between mt-16">
             <div className="md:col-span-1 col-span-2">
               <div className="p-6">
                 <p className="section-heading text-left text-primary">
@@ -66,6 +67,13 @@ const About = () => {
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="w-full d-flex">
+            <p className="section-heading text-primary text-left mt-8">
+              CERTIFICATIONS
+            </p>
+            <img src={document} alt="document.jpg" className="mx-auto mt-8" />
           </div>
         </div>
       </div>

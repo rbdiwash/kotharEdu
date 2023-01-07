@@ -70,33 +70,39 @@ const Events = () => {
             <FiChevronRight className="text-5xl text-altWhite cursor-pointer" />
           </div>
           <Slider {...settings}>
-            {events?.map((item, i) => (
-              <div
-                className="w-full bg-lightBlue px-4 py-6 rounded-md "
-                key={i}
-              >
-                <div className="flex flex-col text-left">
-                  <p className="text-4xl text-primary text-left font-bold">
-                    {format(new Date(item?.date || null), "do")}
-                  </p>
-                  <p className="text-4xl text-primary font-normal text-left">
-                    {format(new Date(item?.date || null), "MMM")}
-                  </p>
-                  <p className="text-2xl  text-black leading-tight font-bold tracking-wide py-6">
-                    {item?.topic}
-                  </p>
-                  <div className="text-md flex items-center text-blue space-x-3">
-                    <FiClock />
-                    <span>
-                      {item?.startTime} - {item?.endTime}
-                    </span>
+            {events?.length > 0 ? (
+              events?.map((item, i) => (
+                <div
+                  className="w-full bg-lightBlue px-4 py-6 rounded-md "
+                  key={i}
+                >
+                  <div className="flex flex-col text-left">
+                    <p className="text-4xl text-primary text-left font-bold">
+                      {format(new Date(item?.date || null), "do")}
+                    </p>
+                    <p className="text-4xl text-primary font-normal text-left">
+                      {format(new Date(item?.date || null), "MMM")}
+                    </p>
+                    <p className="text-2xl  text-black leading-tight font-bold tracking-wide py-6">
+                      {item?.topic}
+                    </p>
+                    <div className="text-md flex items-center text-blue space-x-3">
+                      <FiClock />
+                      <span>
+                        {item?.startTime} - {item?.endTime}
+                      </span>
+                    </div>
+                    <p className="text-md flex items-center text-blue space-x-3">
+                      <TfiLocationPin /> <span>{item?.location}</span>
+                    </p>
                   </div>
-                  <p className="text-md flex items-center text-blue space-x-3">
-                    <TfiLocationPin /> <span>{item?.location}</span>
-                  </p>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <h1 className="mt-2 text-center text-2xl">
+                Oops ! No Result !!!
+              </h1>
+            )}
           </Slider>
         </div>
       </div>

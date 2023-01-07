@@ -55,9 +55,9 @@ const News = () => {
       <section id="news" className="h-max-content pb-8">
         <div className="container mx-auto my-auto h-full  pt-12 md:pt-24">
           <div className="row items-center text-center  h-full my-auto">
-            <p className="section-heading pb-10">News and Updates</p>
+            <p className="section-heading py-10">News and Updates</p>
             <Slider {...settings}>
-              {news?.length > 0 &&
+              {news?.length > 0 ? (
                 news?.map((item, i) => (
                   <div className="mx-auto relative text-left" key={i}>
                     <img
@@ -82,18 +82,25 @@ const News = () => {
                       </div>
                     </Link>
                   </div>
-                ))}
+                ))
+              ) : (
+                <h1 className="mt-2 text-center text-2xl relative">
+                  No News & Updates.
+                </h1>
+              )}
             </Slider>
           </div>
         </div>
       </section>
-      <p className="mx-auto text-center font-semibold">
-        <Link to="/news">
-          <button className="btn-alt text-center mx-auto mt-16">
-            More News
-          </button>
-        </Link>
-      </p>
+      {news?.length > 0 && (
+        <p className="mx-auto text-center font-semibold">
+          <Link to="/news">
+            <button className="btn-alt text-center mx-auto mt-16">
+              More News
+            </button>
+          </Link>
+        </p>
+      )}
     </>
   );
 };

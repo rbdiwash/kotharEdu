@@ -1,7 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import ErrorMessage from "../../Components/ErrorMessage";
-import SuccessMessage from "../../Components/SuccessMessage";
 import axios from "../../Utils/Axios";
 import Sidebar from "./Sidebar";
 import {
@@ -37,6 +35,8 @@ const AdminUni = () => {
       setData((prevState) => ({ ...prevState, image: result }));
     });
   };
+  const [{ uniList, destinations }, { setUniList, getUniversities }] =
+    useKothar();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -66,14 +66,13 @@ const AdminUni = () => {
         });
         setOpen(!open);
         toast.success("Data Updated successfully");
-        window.location.reload();
+        getUniversities();
       })
       .catch((err) => {
         toast.error("Error");
       });
   };
 
-  const [{ uniList, destinations }, { setUniList }] = useKothar();
   const handleOpen = () => {
     setOpen(!open);
     setData({
@@ -127,6 +126,9 @@ const AdminUni = () => {
                             Website
                           </th>
                           <th scope="col" className="py-3 px-6">
+                            State
+                          </th>
+                          <th scope="col" className="py-3 px-6">
                             Action
                           </th>
                         </tr>
@@ -145,7 +147,14 @@ const AdminUni = () => {
                                 {item?.name}
                               </th>
                               <td className="py-4 px-6">
-                                {item?.website?.slice(0, 100)}
+                                {item?.website?.slice(0, 80)}
+                              </td>
+                              <td className="py-4 px-6">
+                                {
+                                  destinations?.find(
+                                    (arg) => arg?.id === item?.destId
+                                  )?.destination
+                                }
                               </td>
                               <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
@@ -202,6 +211,7 @@ const AdminUni = () => {
                             name="name"
                           />
                         </div>
+
                         <div className="mb-6">
                           <Select
                             label="Select State"
@@ -212,6 +222,11 @@ const AdminUni = () => {
                                 ...prevState,
                                 destId: e,
                               }))
+                            }
+                            value={
+                              destinations?.find(
+                                (arg) => arg?.id === data?.destId
+                              )?.id
                             }
                           >
                             {destinations?.map((item) => (

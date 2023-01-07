@@ -25,40 +25,48 @@ const Events = () => {
               </p>
               <FiChevronRight className="text-4xl text-altWhite cursor-pointer" />
             </div> */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
-              {events?.map((item, i) => (
-                <div
-                  className="col-span-1 bg-lightBlue  pb-6 rounded-md "
-                  key={i}
-                >
-                  <img src={exportImg} alt="" className="w-full" />
-                  <div className="flex text-left space-x-4 mt-4 px-4">
-                    <div>
-                      <p className="text-4xl text-primary text-left font-bold">
-                        {format(new Date(item?.date), "do")}
-                      </p>
-                      <p className="text-4xl text-primary font-normal text-left">
-                        {format(new Date(item?.date), "MMM")}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-xl  text-black leading-tight font-bold tracking-wide pb-4">
-                        {item?.topic}
-                      </p>
-                      <div className="text-md flex items-center text-blue space-x-3">
-                        <FiClock />
-                        <span>
-                          {item?.startTime} -{item?.endTime}
-                        </span>
+            {events?.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
+                {events?.map((item, i) => (
+                  <div
+                    className="col-span-1 bg-lightBlue  pb-6 rounded-md "
+                    key={i}
+                  >
+                    <img src={exportImg} alt="" className="w-full" />
+                    <div className="flex text-left space-x-4 mt-4 px-4">
+                      <div>
+                        <p className="text-4xl text-primary text-left font-bold">
+                          {format(new Date(item?.date), "do")}
+                        </p>
+                        <p className="text-4xl text-primary font-normal text-left">
+                          {format(new Date(item?.date), "MMM")}
+                        </p>
                       </div>
-                      <p className="text-md flex items-center text-blue space-x-3">
-                        <TfiLocationPin /> <span>{item?.location}</span>
-                      </p>
+                      <div>
+                        <p className="text-xl  text-black leading-tight font-bold tracking-wide pb-4">
+                          {item?.topic}
+                        </p>
+                        <div className="text-md flex items-center text-blue space-x-3">
+                          <FiClock />
+                          <span>
+                            {item?.startTime} -{item?.endTime}
+                          </span>
+                        </div>
+                        <p className="text-md flex items-center text-blue space-x-3">
+                          <TfiLocationPin /> <span>{item?.location}</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-[250px] w-full">
+                <h1 className="mt-2 text-center text-2xl">
+                  Sorry ! No Events found.
+                </h1>
+              </div>
+            )}
           </div>
         </div>
       </section>
