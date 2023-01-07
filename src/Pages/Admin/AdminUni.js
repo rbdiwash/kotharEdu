@@ -49,6 +49,7 @@ const AdminUni = () => {
           website: "",
         });
         setOpen(!open);
+        getUniversities();
         toast.success("Data added successfully");
       })
       .catch((err) => {
@@ -90,6 +91,7 @@ const AdminUni = () => {
         setUniList((prevState) => [
           ...prevState.filter((item) => item?.id !== id),
         ]);
+        getUniversities();
       })
       .catch((err) => toast.error("Error Deleting Data"));
   };

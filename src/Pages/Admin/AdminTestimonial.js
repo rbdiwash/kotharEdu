@@ -28,7 +28,7 @@ const AdminTestimonial = () => {
     const { name, value } = e.target;
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
-  const [{ testimonial }, { setTestimonial }] = useKothar();
+  const [{ testimonial }, { setTestimonial, getTestimonial }] = useKothar();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,6 +46,7 @@ const AdminTestimonial = () => {
           tetimonial: "",
         });
         setOpen(!open);
+        getTestimonial();
       })
       .catch((err) => {
         toast.error("Error");
@@ -62,7 +63,7 @@ const AdminTestimonial = () => {
         });
         setOpen(!open);
         toast.success("Data Updated successfully");
-        window.location.reload();
+        getTestimonial();
       })
       .catch((err) => {
         toast.error("Error");
@@ -98,6 +99,7 @@ const AdminTestimonial = () => {
         setTestimonial((prevState) => [
           ...prevState.filter((item) => item?.id !== id),
         ]);
+        getTestimonial();
       })
       .catch((err) => console.log(err));
   };

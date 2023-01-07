@@ -73,7 +73,7 @@ const AdminServices = () => {
       .post("admin/services", data)
       .then((res) => {
         setMessage({ success: res?.data?.message });
-
+        getServices();
         setOpen(false);
       })
       .catch((err) => {
@@ -87,7 +87,7 @@ const AdminServices = () => {
       .then((res) => {
         setOpen(!open);
         toast.success("Data Updated successfully");
-        window.location.reload();
+        getServices();
       })
       .catch((err) => {
         setMessage({ error: err?.data?.message });
