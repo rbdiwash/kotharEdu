@@ -6,6 +6,7 @@ import {
   Route,
   useLocation,
   Navigate,
+  HashRouter,
 } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Homepage from "./Pages/Homepage";

@@ -35,42 +35,63 @@ const About = () => {
               <img src={logo} alt="" className="w-full" />
             </div>
           </div>
-          <div className="grid md:grid-cols-3 grid-cols-1 items-center md:gap-12 justify-between mt-16">
+          <div className="grid md:grid-cols-3 grid-cols-1 items-start md:gap-16 justify-between mt-16 text-justify">
             <div className="md:col-span-1 col-span-2">
-              <div className="p-6">
+              <div>
                 <p className="section-heading text-left text-primary">
                   Mission
                 </p>
                 <p className="mt-6 text-lg">
-                  Our mission is to guide students to explore and help secure
-                  their career prospects through suitable education and
-                  pathways.
+                  The mission of our Education Consultancy is to provide
+                  personalized guidance and support to students and
+                  professionals at all stages of their educational journey. Our
+                  aim is to help individuals achieve their academic and career
+                  goals, while also fostering a love of learning that will last
+                  a lifetime. At our Educational Consultancy, we will prioritize
+                  offering individualized attention and assistance to all our
+                  clients, understanding that each person has distinct
+                  requirements and ambitions. Our consultants will collaborate
+                  closely with clients to comprehend their objectives,
+                  interests, and strengths, creating tailored strategies to
+                  facilitate their success.
                 </p>
               </div>
             </div>
             <div className="md:col-span-1 col-span-2">
-              <div className="p-6">
+              <div>
                 <p className="section-heading text-left text-primary">Vision</p>
                 <p className="mt-6 text-lg">
-                  Our vision is to be the best education service provider across
-                  continents and help aspiring students achieve their dream.
+                  we are committed to making Kothar Educational Services the
+                  topmost educational consultancy in the country, providing
+                  clients with the best guidance and support to help them
+                  achieve their education and career goals. We believe that by
+                  doing everything in our power to provide the best services, we
+                  will become the preferred choice for students and
+                  professionals seeking to advance their education and careers.
                 </p>
               </div>
             </div>
             <div className="md:col-span-1 col-span-2">
-              <div className="p-6">
+              <div>
                 <p className="section-heading text-left text-primary">Values</p>
                 <p className="mt-6 text-lg">
-                  Our values lie in providing honest counseling, ensuring
-                  responsibility to identify our clients’ needs, and excellent
-                  service.
+                  At Kothar Educational Services, we believe that our values
+                  form the foundation of our consultancy, and they are integral
+                  to everything we do. Our core values are honesty,
+                  responsibility, and excellent service. our values of honesty,
+                  responsibility, and excellent service form the core of our
+                  consultancy. We are committed to providing our clients with
+                  the best guidance and support possible, recognizing that each
+                  person has unique needs and aspirations. By adhering to our
+                  values, we aim to become the preferred choice for students and
+                  professionals seeking to advance their education and careers.
                 </p>
               </div>
             </div>
           </div>
 
           <div className="w-full d-flex">
-            <p className="section-heading text-primary text-left mt-8">
+            <p className="section-heading text-primary text-left mt-16">
               CERTIFICATIONS
             </p>
             <img src={document} alt="document.jpg" className="mx-auto mt-8" />

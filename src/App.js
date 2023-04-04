@@ -1,6 +1,6 @@
 import "./App.css";
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
@@ -16,9 +16,9 @@ const App = () => {
     <KotharProvider>
       <ToastContainer />
       <ThemeProvider>
-        <HashRouter>
+        <Router>
           <PublicRoutes />
-        </HashRouter>
+        </Router>
       </ThemeProvider>
     </KotharProvider>
   );

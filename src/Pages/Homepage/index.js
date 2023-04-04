@@ -91,16 +91,17 @@ const Homepage = () => {
               <h1 className="md:text-6xl text-4xl uppercase text-white font-semibold leading-relaxed">
                 Welcome to kothar <br /> educational services
               </h1>
+              <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 pt-8">
+                We are thrilled to have you here and look forward to helping you
+                achieve your academic goals.
+              </p>
               <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 py-8">
-                Kothar Educational services was founded with a vision to provide
-                quality services to all the students. Kothar Educational
-                services specialise in providing a wide range of services to
-                students who wants to study in Australia. Our experienced team
-                who had been already assessed more than 1000’s clients to
-                achieve their dream are keen to provide quality of counselling
-                to each individual clients and assist them on their future
-                dream. We help on step-by-step process to all the clients from
-                the beginning till the end of the processing.
+                Our consultancy provides you with personalized guidance and
+                support throughout your educational journey. Whether you're a
+                student seeking guidance on choosing the right college, a
+                working professional looking to advance your career through
+                education, or an international student looking to study in a new
+                country, we are here to help.
               </p>
               <Link to="/about" className="btn ">
                 Explore More

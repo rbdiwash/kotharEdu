@@ -5,8 +5,9 @@ import axios from "axios";
 
 // DEV;
 const token = localStorage.getItem("token");
-console.log("🚀  token", token);
-axios.defaults.baseURL = "http://kotharedu.com:3000/kothar";
+// console.log("🚀  token", token);
+axios.defaults.baseURL =
+  `https://web-cors-everywhere.fly.dev/` + "http://kotharedu.com:3000/kothar";
 
 axios.defaults.headers = {
   Authorization: `Bearer ${token}`,
