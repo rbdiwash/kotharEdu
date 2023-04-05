@@ -24,6 +24,27 @@
   color: white;
 }
 
+.dialogBody {
+  max-height: calc(100% - 64px);
+}
+
+.dialogContent {
+  max-height: 700px !important;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 1600px) {
+  .dialogContent {
+    max-height: 680px !important;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .dialogContent {
+    max-height: 500px !important;
+  }
+}
+
 .App-link {
   color: #61dafb;
 }

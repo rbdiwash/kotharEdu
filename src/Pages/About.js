@@ -2,6 +2,9 @@ import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 import logo from "../assets/images/logo.png";
 import document from "../assets/images/pier.jpg";
+import Anand from "../assets/images/team/Anand Simkhada.JPG";
+import Muskan from "../assets/images/team/Muskan Pandey.jpeg";
+import Rudra from "../assets/images/team/Rudra Acharya.JPG";
 
 const About = () => {
   const members = [
@@ -10,18 +13,21 @@ const About = () => {
       role: "Director/Senior Educational Consultant",
       number: "T088",
       gmail: "muskan@kotharedu.com",
+      image: Muskan,
     },
     {
       name: "Anand Simkhada",
       role: "Director/ Educational Consultant",
       number: "T290",
       gmail: "anand@kotharedu.com",
+      image: Anand,
     },
     {
       name: "Rudra Acharya",
       role: "Director",
       number: "-",
       gmail: "rundra@kotharedu.com",
+      image: Rudra,
     },
   ];
 
@@ -118,7 +124,6 @@ const About = () => {
                 </div>
               </div>
             </div>
-
             <div className="w-full d-flex">
               <p className="section-heading text-primary text-left mt-16">
                 CERTIFICATIONS
@@ -141,6 +146,7 @@ const About = () => {
                 role={item.role}
                 number={item.number}
                 gmail={item.gmail}
+                image={item.image}
               />
             ))}
           </div>
@@ -152,12 +158,12 @@ const About = () => {
 
 export default About;
 
-export const TeamCard = ({ name, role, number, gmail }) => {
+export const TeamCard = ({ name, role, number, gmail, image }) => {
   return (
     <div className="col-span 1 shadow-lg hover:shadow-2xl border border-dashed  rounded-xl cursor-pointer transition">
       <img
-        src="/assets/images/md.jpg"
-        alt=""
+        src={image}
+        alt={name}
         className="rounded-t-xl h-[400px] object-cover"
       />
       <div className="px-4 py-5">

@@ -219,153 +219,164 @@ const AdminStates = () => {
                 </div>
               </div>
             </div>
-            <Dialog open={open} handler={handleOpen} size="lg">
-              <DialogHeader>{data?.id ? "Edit" : "Add"} State</DialogHeader>
-              <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
-                <DialogBody divider>
-                  <div className="grid items-center mt-4 w-full pt-4  mx-auto max-h-[700px] overflow-y-auto">
-                    <div className="mt-10 md:mt-0">
-                      <div className="form-container mx-2">
-                        <div className="mb-6">
-                          <Input
-                            type="text"
-                            className=" "
-                            label="State Name"
-                            color="indigo"
-                            size="lg"
-                            required
-                            value={data?.destination}
-                            onChange={handleInputChange}
-                            name="destination"
-                          />
-                        </div>
-                        <div className="mb-6">
-                          <Textarea
-                            type="text"
-                            color="indigo"
-                            name="destinationDesc"
-                            size="lg"
-                            value={data?.destinationDesc}
-                            rows={4}
-                            className={' "'}
-                            label="State Description ......."
-                            onChange={handleInputChange}
-                            required
-                          />
-                        </div>
-                        <div className="mb-6">
-                          <input
-                            type="file"
-                            name="image"
-                            onChange={handleFileChange}
-                          />
-                        </div>
-                        {(data?.image || preview) && (
-                          <img
-                            src={preview}
-                            className="h-[200px] object-cover"
-                          />
-                        )}
-                        <div className="mb-5 mt-4">
-                          <Input
-                            className={formClassName + " mb-5"}
-                            label="Why this state Heading"
-                            color="indigo"
-                            size="lg"
-                            required
-                            name="title"
-                            value={whyHeading}
-                            onChange={(e) => setWhyHeading(e.target.value)}
-                          />
-                          <p className="my-2">Reasons</p>
-                          <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
-                            <div className="col-span-6 md:col-span-2">
-                              <Input
-                                className={formClassName}
-                                label="Title"
-                                color="indigo"
-                                size="lg"
-                                name="title"
-                                value={resonTitle}
-                                onChange={(e) => setReasonTitle(e.target.value)}
-                              />
-                            </div>{" "}
-                            <div className="col-span-6 md:col-span-3">
-                              <Textarea
-                                className={formClassName}
-                                label="Description*"
-                                color="indigo"
-                                size="lg"
-                                name="desc"
-                                value={reasonDesc}
-                                onChange={(e) => setReasonsDesc(e.target.value)}
-                              />
-                            </div>
-                            <div className="col-span-6 md:col-span-1 ml-auto mr-4">
-                              <IconButton
-                                color="green"
-                                className=""
-                                disabled={resonTitle === ""}
-                              >
-                                <IoAddCircleOutline
-                                  className="text-xl"
-                                  onClick={handleAddDetails}
-                                />
-                              </IconButton>
-                            </div>
+            <Dialog
+              open={open}
+              handler={handleOpen}
+              size="lg"
+              className="dialogBody"
+            >
+              <div className="dialogContent">
+                <DialogHeader>{data?.id ? "Edit" : "Add"} State</DialogHeader>
+                <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
+                  <DialogBody divider>
+                    <div className="grid items-center mt-4 w-full pt-4  mx-auto ">
+                      <div className="mt-10 md:mt-0">
+                        <div className="form-container mx-2">
+                          <div className="mb-6">
+                            <Input
+                              type="text"
+                              className=" "
+                              label="State Name"
+                              color="indigo"
+                              size="lg"
+                              required
+                              value={data?.destination}
+                              onChange={handleInputChange}
+                              name="destination"
+                            />
                           </div>
-                          <div className="max-h-[200px] overflow-auto">
-                            {addedDetails?.length > 0 &&
-                              addedDetails?.map((item, i) => (
-                                <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
-                                  <div className="col-span-6 md:col-span-2">
-                                    {item?.title}
+                          <div className="mb-6">
+                            <Textarea
+                              type="text"
+                              color="indigo"
+                              name="destinationDesc"
+                              size="lg"
+                              value={data?.destinationDesc}
+                              rows={4}
+                              className={' "'}
+                              label="State Description ......."
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div className="mb-6">
+                            <input
+                              type="file"
+                              name="image"
+                              onChange={handleFileChange}
+                            />
+                          </div>
+                          {(data?.image || preview) && (
+                            <img
+                              src={preview}
+                              className="h-[200px] object-cover"
+                            />
+                          )}
+                          <div className="mb-5 mt-4">
+                            <Input
+                              className={formClassName + " mb-5"}
+                              label="Why this state Heading"
+                              color="indigo"
+                              size="lg"
+                              required
+                              name="title"
+                              value={whyHeading}
+                              onChange={(e) => setWhyHeading(e.target.value)}
+                            />
+                            <p className="my-2">Reasons</p>
+                            <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
+                              <div className="col-span-6 md:col-span-2">
+                                <Input
+                                  className={formClassName}
+                                  label="Title"
+                                  color="indigo"
+                                  size="lg"
+                                  name="title"
+                                  value={resonTitle}
+                                  onChange={(e) =>
+                                    setReasonTitle(e.target.value)
+                                  }
+                                />
+                              </div>{" "}
+                              <div className="col-span-6 md:col-span-3">
+                                <Textarea
+                                  className={formClassName}
+                                  label="Description*"
+                                  color="indigo"
+                                  size="lg"
+                                  name="desc"
+                                  value={reasonDesc}
+                                  onChange={(e) =>
+                                    setReasonsDesc(e.target.value)
+                                  }
+                                />
+                              </div>
+                              <div className="col-span-6 md:col-span-1 ml-auto mr-4">
+                                <IconButton
+                                  color="green"
+                                  className=""
+                                  disabled={resonTitle === ""}
+                                >
+                                  <IoAddCircleOutline
+                                    className="text-xl"
+                                    onClick={handleAddDetails}
+                                  />
+                                </IconButton>
+                              </div>
+                            </div>
+                            <div className="max-h-[200px] overflow-auto">
+                              {addedDetails?.length > 0 &&
+                                addedDetails?.map((item, i) => (
+                                  <div className="grid grid-cols-6 items-start justify-between mb-3 gap-4">
+                                    <div className="col-span-6 md:col-span-2">
+                                      {item?.title}
+                                    </div>
+                                    <div className="col-span-6 md:col-span-3 text-justify">
+                                      {item?.desc}
+                                    </div>
+                                    <div className="col-span-6 md:col-span-1 ml-auto gap-2">
+                                      <IconButton
+                                        color="green"
+                                        className="min-w-[30px] mr-4"
+                                      >
+                                        <AiOutlineEdit
+                                          className="text-xl"
+                                          onClick={() => editRow(item)}
+                                        />
+                                      </IconButton>
+                                      <IconButton
+                                        color="red"
+                                        className="min-w-[30px]"
+                                      >
+                                        <AiOutlineDelete
+                                          className="text-xl"
+                                          onClick={() => deleteRow(i)}
+                                        />
+                                      </IconButton>
+                                    </div>
                                   </div>
-                                  <div className="col-span-6 md:col-span-3 text-justify">
-                                    {item?.desc}
-                                  </div>
-                                  <div className="col-span-6 md:col-span-1 ml-auto gap-4">
-                                    <IconButton
-                                      color="green"
-                                      className="min-w-[40px] mr-4"
-                                    >
-                                      <AiOutlineEdit
-                                        className="text-xl"
-                                        onClick={() => editRow(item)}
-                                      />
-                                    </IconButton>
-                                    <IconButton
-                                      color="red"
-                                      className="min-w-[40px]"
-                                    >
-                                      <AiOutlineDelete
-                                        className="text-xl"
-                                        onClick={() => deleteRow(i)}
-                                      />
-                                    </IconButton>
-                                  </div>
-                                </div>
-                              ))}
+                                ))}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </DialogBody>
-                <DialogFooter>
-                  <Button
-                    variant="text"
-                    color="red"
-                    onClick={handleOpen}
-                    className="mr-1"
-                  >
-                    <span>Cancel</span>
-                  </Button>
-                  <Button variant="gradient" color="green" type="submit">
-                    <span>Confirm</span>
-                  </Button>
-                </DialogFooter>{" "}
-              </form>
+                  </DialogBody>
+                  <DialogFooter>
+                    <Button
+                      variant="text"
+                      color="red"
+                      onClick={handleOpen}
+                      className="mr-1"
+                    >
+                      <span>Cancel</span>
+                    </Button>
+                    <Button variant="gradient" color="green" type="submit">
+                      <span>Confirm</span>
+                    </Button>
+                  </DialogFooter>
+                </form>
+              </div>
             </Dialog>
           </div>
         </div>
