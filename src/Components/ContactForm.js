@@ -42,8 +42,9 @@ const ContactForm = () => {
               <p className="text-2xl font-semibold  text-white text-left">
                 Address
               </p>
-              <p className="text-[#dfdfdf] mt-3">K110/81-86 Courallie Avenue</p>
-              <p className="text-[#dfdfdf]">Homebush west Sydney NSW 2140</p>
+              <p className="text-[#dfdfdf] mt-3">
+                Suite272A/398 Pitt Street, Central, Sydney
+              </p>
             </div>
             <div className="div">
               <p className="text-2xl font-semibold  text-white text-left">
@@ -55,7 +56,7 @@ const ContactForm = () => {
               <p className="text-2xl font-semibold  text-white text-left py-0">
                 Email Addreess
               </p>
-              <p className="text-[#dfdfdf] mt-3">kothareducation@gmail.com</p>
+              <p className="text-[#dfdfdf] mt-3">info@kotharedu.com</p>
             </div>
           </div>
           <div className="md:col-span-1 col-span-2 flex flex-col text-left text-white justify-between">

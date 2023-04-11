@@ -54,7 +54,7 @@ const Navbar = () => {
             <a href="https://www.facebook.com/kothareducation">
               <FaFacebook className="text-xl text-white" />
             </a>
-            <a href="mailto:kothareducation@gmail.com">
+            <a href="mailto:info@kotharedu.com">
               <FiMail className="text-xl text-white" />
             </a>
             <FaInstagram className="text-xl text-white" />
