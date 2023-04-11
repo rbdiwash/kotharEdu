@@ -70,13 +70,13 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
               <Slider {...settings}>
                 {getFilteredList()?.length > 0 ? (
                   getFilteredList()?.map((item) => (
-                    <div className="col-span-1 slider" key={item?.id}>
+                    <div className="col-span-1 slide" key={item?.id}>
                       <a href={item?.website}>
                         <div className="text-center mx-auto relative">
                           <img
                             src={item?.image || australia}
                             alt=""
-                            className="rounded"
+                            className="rounded min-h-[320px] object-cover"
                           />
                           <h1 className="mt-2">{item?.name}</h1>
                         </div>

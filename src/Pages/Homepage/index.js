@@ -7,6 +7,7 @@ import admission from "../../assets/images/admission.png";
 import user from "../../assets/images/user.png";
 import vector from "../../assets/images/Vector.png";
 import visa from "../../assets/images/visa.png";
+import noImage from "../../assets/images/noImage.png";
 import AssociatedUni from "./AssociatedUni";
 import Slider from "react-slick";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -175,9 +176,9 @@ const Homepage = () => {
                   <div className="mx-auto relative text-left">
                     {/*  w-[80%] */}
                     <img
-                      src={item?.image}
+                      src={item?.image || noImage}
                       alt=""
-                      className="rounded h-[300px]"
+                      className="rounded h-[300px] "
                     />
                     <p className="text-3xl  text-black leading-tight capitalize font-bold tracking-wide py-6">
                       {item?.serviceName?.slice(0, 20)}
@@ -188,7 +189,8 @@ const Homepage = () => {
                       {item?.descripttion?.length > 200 && "..."}
                     </p>
                     <NavLink
-                      to={`/services/`}
+                      to={`/services/${item?.id}`}
+                      state={{ data: item }}
                       className="flex text-blue items-center text-xl cursor-pointer"
                     >
                       <h1 className="">More</h1>

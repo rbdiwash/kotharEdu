@@ -35,15 +35,15 @@ const Footer = () => {
                 <ul className="list-none mb-0 md:pr-16">
                   <li className="py-2">
                     <a href="#!" className="text-white text-xl">
-                      K110/81-86 Courallie Avenue Homebush west Sydney NSW 2140
+                      Address: Suite272A/398 Pitt Street, Central, Sydney
                     </a>
                   </li>
                   <li className="py-2">
                     <a
-                      href="mailto:kothareducation@gmail.com"
+                      href="mailto:info@kotharedu.com"
                       className="text-white text-xl"
                     >
-                      Email: kothareducation@gmail.com
+                      Email: info@kotharedu.com
                     </a>
                   </li>
                   <li className="py-2">
@@ -127,7 +127,7 @@ const Footer = () => {
                 <FaFacebook className="text-3xl text-primary" />
               </a>
               <FaInstagram className="text-3xl text-primary" />
-              <a href="mailto:kothareducation@gmail.com">
+              <a href="mailto:info@kotharedu.com">
                 <FiMail className="text-3xl text-primary" />
               </a>
             </div>
