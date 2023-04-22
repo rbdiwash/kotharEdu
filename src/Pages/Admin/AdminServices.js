@@ -19,10 +19,12 @@ import { format } from "date-fns";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { FaRegFileImage } from "react-icons/fa";
+import service from "../../assets/images/services.png";
 const AdminServices = () => {
   const [data, setData] = useState({
     name: "",
-    description: "",
+    descripttion: "",
     image: "",
     what: {
       title: "",
@@ -32,8 +34,8 @@ const AdminServices = () => {
       title: "",
       desc: "",
     },
+    moreInfoHeading: "",
     more: {
-      title: "",
       infos: [
         {
           title: "",
@@ -70,14 +72,14 @@ const AdminServices = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("admin/services", data)
+      .post("admin/services", { ...data, more: { infos: addedDetails } })
       .then((res) => {
-        setMessage({ success: res?.data?.message });
+        toast.success("Data added successfully");
         getServices();
         setOpen(false);
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
+        toast.error(err?.data?.message || "Error");
       });
   };
   const handleUpdate = (e) => {
@@ -90,14 +92,16 @@ const AdminServices = () => {
         getServices();
       })
       .catch((err) => {
-        setMessage({ error: err?.data?.message });
-        toast.error("Error");
+        toast.error(err?.data?.message || "Error");
       });
   };
   const handleOpen = () => {
     setOpen(!open);
     setData({});
     setPreview();
+    setMoreDesc("");
+    setMoretitle("");
+    setAddedDetails("");
   };
   const deleteData = (id) => {
     axios
@@ -130,15 +134,11 @@ const AdminServices = () => {
     setOpen(true);
     setData({
       ...itemData,
-      serviceName: itemData?.serviceName,
-      descripttion: itemData?.descripttion,
-      whoTitle: itemData?.who.titlle,
-      whoDesc: itemData?.who.desc,
-      whatTitle: itemData?.what.title,
-      whatDesc: itemData?.what.desc,
-      moreInfoHeading: itemData?.more?.title,
     });
+    setAddedDetails(itemData?.more?.infos);
     setPreview(itemData?.image);
+    setMoreDesc("");
+    setMoretitle("");
   };
   const editRow = (i) => {
     setMoreDesc(i.desc);
@@ -228,7 +228,18 @@ const AdminServices = () => {
             </div>
             <Dialog open={open} handler={handleOpen} size="lg">
               <div className="dialogContent">
-                <DialogHeader>{data?.id ? "Edit" : "Add"} Service</DialogHeader>
+                <DialogHeader>
+                  <div className="w-full flex justify-between items-center">
+                    <span> {data?.id ? "Edit" : "Add"} Service </span>
+                    <a
+                      href={service}
+                      target="_blank"
+                      className="flex items-center text-base gap-2 font-normal cursor-pointer"
+                    >
+                      See Design Template <FaRegFileImage />
+                    </a>
+                  </div>
+                </DialogHeader>
                 <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                   <DialogBody divider>
                     <div className="grid items-center mt-4 w-full  mx-auto">
@@ -268,16 +279,32 @@ const AdminServices = () => {
                                 label="Title"
                                 required
                                 name="whatTitle"
-                                value={data?.whatTitle}
-                                onChange={handleInputChange}
+                                value={data?.what?.title}
+                                onChange={(e) => {
+                                  setData({
+                                    ...data,
+                                    what: {
+                                      ...data?.what,
+                                      title: e.target.value,
+                                    },
+                                  });
+                                }}
                               />
                               <Input
                                 size="lg"
                                 color="indigo"
                                 label="Description*"
                                 name="whatDesc"
-                                value={data?.whatDesc}
-                                onChange={handleInputChange}
+                                value={data?.what?.desc}
+                                onChange={(e) => {
+                                  setData({
+                                    ...data,
+                                    what: {
+                                      ...data?.what,
+                                      desc: e.target.value,
+                                    },
+                                  });
+                                }}
                                 required
                               />
                             </div>
@@ -291,16 +318,29 @@ const AdminServices = () => {
                                 label="Title"
                                 required
                                 name="whoTitle"
-                                value={data?.whoTitle}
-                                onChange={handleInputChange}
+                                value={data?.who?.title}
+                                onChange={(e) => {
+                                  setData({
+                                    ...data,
+                                    who: {
+                                      ...data?.who,
+                                      title: e.target.value,
+                                    },
+                                  });
+                                }}
                               />
                               <Input
                                 size="lg"
                                 color="indigo"
                                 label="Description*"
                                 name="whoDesc"
-                                value={data?.whoDesc}
-                                onChange={handleInputChange}
+                                value={data?.who?.desc}
+                                onChange={(e) => {
+                                  setData({
+                                    ...data,
+                                    who: { ...data?.who, desc: e.target.value },
+                                  });
+                                }}
                                 required
                               />
                             </div>

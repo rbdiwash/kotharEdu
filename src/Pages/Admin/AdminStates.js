@@ -11,18 +11,21 @@ import {
   IconButton,
   Input,
   Textarea,
+  Tooltip,
 } from "@material-tailwind/react";
 import useKothar from "../../context/useKothar";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { FaRegFileImage } from "react-icons/fa";
+import states from "../../assets/images/states.png";
 
 const AdminStates = () => {
   const [data, setData] = useState();
   const [open, setOpen] = useState(false);
   const [addedDetails, setAddedDetails] = useState([]);
   const [whyHeading, setWhyHeading] = useState("");
-  const [resonTitle, setReasonTitle] = useState("");
+  const [reasonTitle, setReasonTitle] = useState("");
   const [reasonDesc, setReasonsDesc] = useState("");
   const [preview, setPreview] = useState();
   const [{ destinations }, { setDestinations, getDestinations }] = useKothar();
@@ -60,7 +63,10 @@ const AdminStates = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put(`admin/destinations/${data?.id}`, data)
+      .put(`admin/destinations/${data?.id}`, {
+        ...data,
+        whyDestination: { title: whyHeading, ans: addedDetails },
+      })
       .then((res) => {
         setData({
           image: "",
@@ -86,6 +92,8 @@ const AdminStates = () => {
     setAddedDetails("");
     setPreview();
     setAddedDetails([]);
+    setReasonTitle("");
+    setReasonsDesc("");
   };
   const deleteData = (id) => {
     axios
@@ -99,7 +107,7 @@ const AdminStates = () => {
   };
   const handleAddDetails = () => {
     setAddedDetails((prevState) => [
-      { title: resonTitle, desc: reasonDesc },
+      { title: reasonTitle, desc: reasonDesc },
       ...prevState,
     ]);
     setReasonTitle("");
@@ -226,7 +234,18 @@ const AdminStates = () => {
               className="dialogBody"
             >
               <div className="dialogContent">
-                <DialogHeader>{data?.id ? "Edit" : "Add"} State</DialogHeader>
+                <DialogHeader>
+                  <div className="w-full flex justify-between items-center">
+                    {data?.id ? "Edit" : "Add"} State{" "}
+                    <a
+                      href={states}
+                      target="_blank"
+                      className="flex items-center text-base gap-2 font-normal cursor-pointer"
+                    >
+                      See Design Template <FaRegFileImage />
+                    </a>
+                  </div>
+                </DialogHeader>
                 <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                   <DialogBody divider>
                     <div className="grid items-center mt-4 w-full pt-4  mx-auto ">
@@ -235,7 +254,6 @@ const AdminStates = () => {
                           <div className="mb-6">
                             <Input
                               type="text"
-                              className=" "
                               label="State Name"
                               color="indigo"
                               size="lg"
@@ -253,8 +271,7 @@ const AdminStates = () => {
                               size="lg"
                               value={data?.destinationDesc}
                               rows={4}
-                              className={' "'}
-                              label="State Description ......."
+                              label="State Description"
                               onChange={handleInputChange}
                               required
                             />
@@ -292,7 +309,7 @@ const AdminStates = () => {
                                   color="indigo"
                                   size="lg"
                                   name="title"
-                                  value={resonTitle}
+                                  value={reasonTitle}
                                   onChange={(e) =>
                                     setReasonTitle(e.target.value)
                                   }
@@ -312,16 +329,20 @@ const AdminStates = () => {
                                 />
                               </div>
                               <div className="col-span-6 md:col-span-1 ml-auto mr-4">
-                                <IconButton
-                                  color="green"
-                                  className=""
-                                  disabled={resonTitle === ""}
-                                >
-                                  <IoAddCircleOutline
-                                    className="text-xl"
-                                    onClick={handleAddDetails}
-                                  />
-                                </IconButton>
+                                <Tooltip content="Hello">
+                                  <IconButton
+                                    color="green"
+                                    className=""
+                                    disabled={
+                                      reasonTitle === "" || reasonDesc === ""
+                                    }
+                                  >
+                                    <IoAddCircleOutline
+                                      className="text-xl"
+                                      onClick={handleAddDetails}
+                                    />
+                                  </IconButton>
+                                </Tooltip>
                               </div>
                             </div>
                             <div className="max-h-[200px] overflow-auto">

@@ -61,5 +61,8 @@
   filter: none !important;
 }
 .Toastify__toast-container {
-  z-index: 200000;
+  z-index: 999999 !important;
+}
+.overlay {
+  z-index: 99999;
 }

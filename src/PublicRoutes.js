@@ -47,7 +47,7 @@ const PublicRoutes = () => {
   };
 
   return (
-    <>
+    <div id="overlay">
       <ScrollToTop />
       {!location.pathname.includes("admin") && <Navbar />}
       <Routes>
@@ -112,7 +112,7 @@ const PublicRoutes = () => {
       </Routes>
       {!location.pathname.includes("admin") && <Footer />}
       <ToastContainer />
-    </>
+    </div>
   );
 };
 

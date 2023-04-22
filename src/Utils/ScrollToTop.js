@@ -18,7 +18,7 @@ export default function ScrollToTop() {
         id="to-top-button"
         onClick={backToTop}
         title="Go To Top"
-        className="fixed z-90 bottom-8 right-8 border-0 w-16 h-16 rounded-full drop-shadow-md text-white text-3xl font-bold"
+        className="fixed z-[100] bottom-8 right-8 border-0 w-16 h-16 rounded-full drop-shadow-md text-white text-3xl font-bold"
       >
         <img src={upArrow} alt="" />
       </button>

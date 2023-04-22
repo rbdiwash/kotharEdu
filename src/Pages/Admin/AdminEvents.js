@@ -1,25 +1,21 @@
-import React from "react";
-import { useState } from "react";
-import ErrorMessage from "../../Components/ErrorMessage";
-import SuccessMessage from "../../Components/SuccessMessage";
-import axios from "../../Utils/Axios";
-import Sidebar from "./Sidebar";
 import {
   Button,
   Dialog,
-  DialogHeader,
   DialogBody,
   DialogFooter,
+  DialogHeader,
   Input,
   Textarea,
 } from "@material-tailwind/react";
-import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
+import axios from "../../Utils/Axios";
+import useKothar from "../../context/useKothar";
+import Sidebar from "./Sidebar";
 
 const AdminEvents = () => {
   const [data, setData] = useState();
-  console.log("🚀 ~ data", data);
   const [open, setOpen] = useState(false);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
