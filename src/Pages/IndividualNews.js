@@ -40,7 +40,9 @@ const IndividualNews = () => {
                 </p>
               </div>
               <div className="md:col-span-4 col-span-6">
-                <p className="text-black font-medium">{data?.description}</p>
+                <p className="text-black font-medium text-justify">
+                  {data?.description}
+                </p>
               </div>
             </div>
           </div>

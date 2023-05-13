@@ -32,7 +32,7 @@ const News = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 750,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -40,7 +40,7 @@ const News = () => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 550,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -71,9 +71,9 @@ const News = () => {
                     <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
                       {item?.topic}
                     </p>
-                    <p className="pb-2 text-lg">
-                      {item?.description?.slice(0, 300)}{" "}
-                      {item?.description?.length > 300 && "..."}
+                    <p className="pb-2 text-lg text-justify">
+                      {item?.description?.slice(0, 200)}{" "}
+                      {item?.description?.length > 200 && "..."}
                     </p>
                     <Link to={`news/${item?.id}`} state={{ data: item }}>
                       <div className="flex text-blue items-center text-xl space-x-1">

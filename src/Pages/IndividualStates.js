@@ -23,7 +23,7 @@ const IndividualStates = () => {
         style={{
           background: `linear-gradient(to top, #00001a70,#00001a70), url(${
             data?.image || australia
-          }) no-repeat center`,
+          }) no-repeat  center`,
           backgroundSize: "cover",
         }}
       >

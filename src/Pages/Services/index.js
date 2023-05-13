@@ -20,13 +20,14 @@ const Services = () => {
 
   const location = useLocation();
   const { data } = location?.state;
+  console.log("🚀  data:", data);
   const [{ services }, {}] = useKothar();
   return (
     <>
       <section
         id="bookCover"
         style={{
-          background: `linear-gradient(to top, #00001a70,#00001a70), url(${data?.image}) no-repeat center`,
+          background: `linear-gradient(to top, #00001a70,#00001a70), url(${data?.image}) no-repeat  center`,
           backgroundSize: "cover",
         }}
       >
@@ -51,7 +52,7 @@ const Services = () => {
           <div className="row">
             <div className="grid grid-cols-6 md:gap-x-20 gap-x-0 gap-y-4 items-start justify-between mb-12">
               <div className="md:col-span-4 col-span-6 mt-16">
-                <p className="text-black font-semibold text-lg">
+                <p className="text-black font-semibold text-lg text-justify">
                   {data?.descripttion}
                 </p>
                 <NavLink to="/book">

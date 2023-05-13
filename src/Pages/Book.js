@@ -174,18 +174,17 @@ const Book = () => {
             </div>
           </div>
         </div>
-
-        <div className="map md:mt-12">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27689223287!2d85.29111335466297!3d27.70903193322794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1666725045175!5m2!1sen!2snp"
-            width="100%"
-            height="400"
-            allowFullscreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
       </section>
+      <div className="map mt-12">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.430069098984!2d151.2075982!3d-33.8785761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae232abc157f%3A0x4d686b6d1f8211d8!2s272a%2F398%20Pitt%20St%2C%20Sydney%20NSW%202000!5e0!3m2!1sen!2sau!4v1682006494132!5m2!1sen!2sau"
+          width="100%"
+          height="400"
+          allowFullscreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
     </>
   );
 };
