@@ -140,13 +140,13 @@ const AdminNews = () => {
                                 scope="row"
                                 className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
-                                {item?.topic}
+                                {item?.topic.slice(0, 30)}
                               </th>
                               <td className="py-4 px-6">
                                 {format(new Date(item?.date || null), "PP")}
                               </td>
                               <td className="py-4 px-6">
-                                {item?.description || "-"}
+                                {item?.description.slice(0, 100) || "-"}
                               </td>
                               <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button

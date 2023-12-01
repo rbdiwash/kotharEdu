@@ -137,10 +137,12 @@ const AdminEvents = () => {
                               >
                                 {format(new Date(item?.date || null), "PP")}
                               </th>
-                              <td className="py-4 px-6">
+                              <td className="py-4 px-6  min-w-[200px]">
                                 {item?.startTime} -{item?.endTime}
                               </td>
-                              <td className="py-4 px-6">{item?.description}</td>
+                              <td className="py-4 px-6">
+                                {item?.description?.slice(0, 70)}
+                              </td>
                               <td className="py-4 px-6 text-right flex space-x-4 items-center">
                                 <Button
                                   color="green"

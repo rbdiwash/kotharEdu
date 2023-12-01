@@ -146,7 +146,7 @@ const AdminUni = () => {
                                 scope="row"
                                 className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                               >
-                                {item?.name}
+                                {item?.name.slice(0, 50)}
                               </th>
                               <td className="py-4 px-6">
                                 {item?.website?.slice(0, 80)}

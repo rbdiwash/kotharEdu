@@ -5,8 +5,9 @@ import axios from "axios";
 
 // DEV;
 const token = localStorage.getItem("token");
-axios.defaults.baseURL =
-  "http://kotharedu.com:3000/kothar";
+// axios.defaults.baseURL =
+//   "http://kotharedu.com:3000/kothar";
+axios.defaults.baseURL = "https://sam.divyaswormakai.com/kothar/";
 
 axios.defaults.headers = {
   Authorization: `Bearer ${token}`,
