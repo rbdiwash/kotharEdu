@@ -28,7 +28,9 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err?.data?.message);
-        // setMessage({ error: err?.data?.message || "Error" });
+        setMessage({
+          error: err?.data?.message || "Error loggin in, contact admin.",
+        });
       });
   };
   return (
