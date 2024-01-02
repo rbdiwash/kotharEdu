@@ -6,7 +6,7 @@ const ErrorMessage = ({ message, setMessage }) => {
       className="bg-[#fee2e2] border border-[#f87171] text-[#b91c1c] px-4 py-3 rounded relative"
       role="alert"
     >
-      <strong className="font-bold">{message}!</strong>
+      <strong className="font-bold">{message} !</strong>
 
       <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
         <svg

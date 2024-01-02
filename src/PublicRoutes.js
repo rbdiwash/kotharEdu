@@ -33,6 +33,7 @@ import AdminStates from "./Pages/Admin/AdminStates";
 import AdminServices from "./Pages/Admin/AdminServices";
 import AdminBookings from "./Pages/Admin/AdminBookings";
 import AdminEvents from "./Pages/Admin/AdminEvents";
+import ImportantLinks from "./Pages/ImportantLinks";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -96,6 +97,11 @@ const PublicRoutes = () => {
         <Route exact path="/about" element={<About />}></Route>
         <Route exact path="/contact" element={<Contact />}></Route>
         <Route exact path="/book" element={<Book />}></Route>
+        <Route
+          exact
+          path="/important-links"
+          element={<ImportantLinks />}
+        ></Route>
         <Route exact path="/login" element={<Login />}></Route>
 
         <Route exact path="/explore/news" element={<News />}></Route>

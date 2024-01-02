@@ -10,7 +10,7 @@ const options = [
   { label: "Universities", url: "", id: "3" },
   { label: "Events", url: "explore/events", id: "4" },
   { label: "News & Updates", url: "explore/news", id: "5" },
-  { label: "Terms and Conditions", url: "", id: "6" },
+  { label: "Important Links", url: "important-links", id: "6" },
 ];
 
 const Footer = () => {

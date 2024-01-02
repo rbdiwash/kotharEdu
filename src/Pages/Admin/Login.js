@@ -18,7 +18,7 @@ const Login = () => {
     axios
       .post("admin/login", data)
       .then((res) => {
-        setMessage({ success: res?.data?.message });
+        setMessage({ success: res?.data });
         setData({
           username: "",
           password: "",
@@ -27,9 +27,9 @@ const Login = () => {
         navigate("/admin");
       })
       .catch((err) => {
-        console.log(err?.data?.message);
+        console.log(err?.data);
         setMessage({
-          error: err?.data?.message || "Error loggin in, contact admin.",
+          error: err?.data || "Error loggin in, contact admin",
         });
       });
   };
