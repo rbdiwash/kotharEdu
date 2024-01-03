@@ -14,7 +14,7 @@ const News = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
@@ -63,7 +63,7 @@ const News = () => {
                     <img
                       src={item?.image || australia}
                       alt=""
-                      className="rounded  h-[300px] object-cover"
+                      className="rounded  h-[300px] w-ful mx-auto object-cover"
                     />
                     <p className="text-blue py-2 font-semibold">
                       {format(new Date(item?.date || null), "PPPP")}

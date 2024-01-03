@@ -45,10 +45,10 @@ const Testimonials = () => {
             {testimonial?.length > 0 ? (
               testimonial?.map((arg) => (
                 <div className="relative" id={arg?.id}>
-                  <div className="cont md:px-10 px-6 py-4 rounded-sm flex items-center flex-col  text-center bg-white text-white pb-20">
+                  <div className="cont md:px-10 px-4 py-4 rounded-sm flex items-center flex-col  text-center bg-white text-white pb-20">
                     <RiDoubleQuotesL className="quote-icon text-7xl text-[#959595]" />
 
-                    <p className="pb-4 text-xl text-black font-semibold">
+                    <p className="pb-4 text-xl text-black font-semibold ">
                       {arg?.tetimonial}
                     </p>
                     <IoChevronDownOutline className="down-icon text-5xl text-[#959595]" />

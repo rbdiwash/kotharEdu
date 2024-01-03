@@ -9,7 +9,7 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
@@ -76,9 +76,11 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
                           <img
                             src={item?.image || australia}
                             alt=""
-                            className="rounded min-h-[320px] object-cover"
+                            className="rounded min-h-[320px] w-full object-cover"
                           />
-                          <h1 className="mt-2">{item?.name}</h1>
+                          <h1 className="mt-2 w-full break-words">
+                            {item?.name}
+                          </h1>
                         </div>
                       </a>
                     </div>
