@@ -235,6 +235,20 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
+                  to="/important-links"
+                  className="block py-2 pr-4 pl-3 font-semibold  rounded
+                  hover:text-blue  md:border-0
+                  md:hover:text-blue-700 md:p-0"
+                  onClick={handleCloseNavbar}
+                  style={({ isActive }) =>
+                    isActive ? activeClassName : undefined
+                  }
+                >
+                  Links
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="/about"
                   className="block py-2 pr-4 pl-3 font-semibold  rounded
                   hover:text-blue  md:border-0

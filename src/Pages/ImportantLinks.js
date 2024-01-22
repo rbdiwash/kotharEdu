@@ -13,15 +13,26 @@ const ImportantLinks = () => {
             <BiChevronRight className="text-2xl" />
             <span className="text-primary font-semibold">Important Links</span>
           </div>
-          <h5> These are the important links for various certificates. </h5>
-          <h1 className="font-bold text-2xl  my-6">Age Care</h1>
+          <h5>
+            {" "}
+            These are the important links for various certificates. Click on the
+            title to view the link mentioned.{" "}
+          </h5>
+          <h1 className="font-bold text-2xl  my-6">Important Links</h1>
           <li className="mb-3">
             <a
               href="https://afpnationalpolicechecks.converga.com.au/agreement/timeout"
               target="_blank"
               className="underline text font-semibold "
             >
-              Police Check
+              Police Check :
+            </a>{" "}
+            <a
+              href="https://afpnationalpolicechecks.converga.com.au/agreement/timeout"
+              className="text-cyan-400 underline itallic"
+              target="_blank"
+            >
+              https://afpnationalpolicechecks.converga.com.au/agreement/timeout
             </a>
           </li>
           <li className="mb-3">
@@ -48,14 +59,21 @@ const ImportantLinks = () => {
             instantly.
           </li>
           {/* <h1 className="font-bold text-2xl  my-6">RPL Application</h1> */}
-          <h1 className="font-bold text-2xl  my-6">Other Useful Links</h1>
+          {/* <h1 className="font-bold text-    my-6">Other Useful Links</h1> */}
           <li className="mb-3">
             <a
               href="https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn"
               target="_blank"
               className="underline text font-semibold"
             >
-              Tax File Number (TFN){" "}
+              Tax File Number (TFN):{" "}
+            </a>{" "}
+            <a
+              href="https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn"
+              className="text-cyan-400 underline itallic"
+              target="_blank"
+            >
+              https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn
             </a>
           </li>
           <li className="mb-3">
@@ -66,6 +84,14 @@ const ImportantLinks = () => {
             >
               WWCC
             </a>{" "}
+            :{" "}
+            <a
+              href="https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check"
+              className="text-cyan-400 underline itallic"
+              target="_blank"
+            >
+              https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check
+            </a>
             : and you also need to visit the service centre with all the
             mentioned documents.
           </li>
@@ -127,6 +153,14 @@ const ImportantLinks = () => {
               className="underline text font-semibold"
             >
               Apply RSA
+            </a>{" "}
+            <a
+              href="https://australiawhitecard.com.au/"
+              className="text-cyan-400 underline itallic"
+              target="_blank"
+            >
+              {" "}
+              https://australiawhitecard.com.au/{" "}
             </a>
           </li>
           <li className="mb-3">
@@ -136,6 +170,14 @@ const ImportantLinks = () => {
               className="underline text font-semibold"
             >
               Apply NDIS Online
+            </a>{" "}
+            <a
+              href="https://australiawhitecard.com.au/"
+              className="text-cyan-400 underline itallic"
+              target="_blank"
+            >
+              {" "}
+              https://australiawhitecard.com.au/{" "}
             </a>
           </li>
           <li className="mb-3">
