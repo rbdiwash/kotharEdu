@@ -93,16 +93,17 @@ const Homepage = () => {
                 Welcome to kothar <br /> educational services
               </h1>
               <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 pt-8">
-                We are thrilled to have you here and look forward to helping you
-                achieve your academic goals.
+                Empowering Your Educational Journey!
               </p>
               <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 py-8">
-                Our consultancy provides you with personalized guidance and
-                support throughout your educational journey. Whether you're a
-                student seeking guidance on choosing the right college, a
-                working professional looking to advance your career through
-                education, or an international student looking to study in a new
-                country, we are here to help.
+                Kothar Education Services is your premier consultancy partner,
+                we specialize in guiding students towards fulfilling their
+                dreams of studying abroad in prestigious institutions across the
+                globe. Nestled in the heart of Sydney, Australia and Kathmandu,
+                Nepal, we serve as a guiding light for ambitious individuals
+                seeking to embark on transformative educational journeys around
+                the world, with a focus on destinations like Australia, Canada,
+                the UK, the USA.
               </p>
               <Link to="/about" className="btn ">
                 Explore More

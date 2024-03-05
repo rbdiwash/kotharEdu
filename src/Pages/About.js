@@ -44,23 +44,30 @@ const About = () => {
             <p className="section-heading text-black text-left mt-8">
               KOTHAR EDUCATION
             </p>
-            <div className="grid md:grid-cols-6 grid-cols-1 items-center gap-12 mt-8 justify-between">
-              <div className="md:col-span-3 col-span-6">
-                <p className="text-xl">
-                  Kothar Educational services was founded with a vision to
-                  provide quality services to all the students. Kothar
-                  Educational services specialise in providing a wide range of
-                  services to students who wants to study in Australia. Our
-                  experienced team who had been already assessed more than
-                  1000’s clients to achieve their dream are keen to provide
-                  quality of counselling to each individual clients and assist
-                  them on their future dream. We help on step-by-step process to
-                  all the clients from the beginning till the end of the
-                  processing.
+            <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-12 mt-8 justify-between">
+              <div className="md:col-span-7 col-span-6">
+                <p className="text-xl text-justify">
+                  Embark on a journey with Kothar Educational Services, where
+                  quality meets opportunity! Founded with a vision to provide
+                  top-notch services to students worldwide, we specialize in
+                  guiding aspiring scholars towards their educational dreams,
+                  particularly those aiming to study in Australia. Our seasoned
+                  team, having successfully assisted thousands of clients, is
+                  dedicated to delivering personalized counselling to every
+                  individual, ensuring their aspirations are realized. From
+                  initial consultation to application completion, we provide
+                  unwavering support, ensuring a seamless and enriching
+                  experience at every turn. At Kothar, excellence is our
+                  hallmark, and we're committed to empowering students to thrive
+                  in their educational pursuits. Join us as we pave the way for
+                  global educational excellence, fostering cross-cultural
+                  exchange and nurturing future leaders. Your journey to success
+                  begins here, where every student's potential is nurtured and
+                  celebrated!
                 </p>
               </div>
               <div className="md:col-span-1"></div>
-              <div className="md:col-span-2 col-span-6">
+              <div className="md:col-span-4  col-span-6">
                 <img src={logo} alt="" className="w-full" />
               </div>
             </div>
@@ -92,7 +99,7 @@ const About = () => {
                     Vision
                   </p>
                   <p className="mt-6 text-lg">
-                    we are committed to making Kothar Educational Services the
+                    We are committed to making Kothar Educational Services the
                     topmost educational consultancy in the country, providing
                     clients with the best guidance and support to help them
                     achieve their education and career goals. We believe that by
