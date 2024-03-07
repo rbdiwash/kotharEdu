@@ -12,22 +12,55 @@ const About = () => {
       name: "Muskan Pandey",
       role: "Director/Senior Educational Consultant",
       number: "T088",
-      gmail: "muskan@kotharedu.com",
+      gmail: "info@kotharedu.com",
       image: Muskan,
     },
     {
       name: "Anand Simkhada",
       role: "Director/ Educational Consultant",
       number: "T290",
-      gmail: "anand@kotharedu.com",
+      gmail: "info@kotharedu.com",
       image: Anand,
     },
     {
       name: "Rudra Acharya",
       role: "Director",
-      number: "-",
-      gmail: "rundra@kotharedu.com",
+      number: "11564",
+      gmail: "info@kotharedu.com",
       image: Rudra,
+    },
+  ];
+
+  const whyChooseUs = [
+    {
+      title: "Expertise",
+      desc: "With years of experience in the field, our consultants possess the knowledge and insights needed to guide you through every step of your educational journey.",
+      icon: "",
+    },
+    {
+      title: "Personalized Approach",
+      desc: "We understand that each student is unique. That's why we take the time to understand your individual goals and tailor our services to meet your specific needs.",
+      icon: "",
+    },
+    {
+      title: "Comprehensive Support",
+      desc: "From initial consultation to post-arrival assistance, we're committed to providing you with comprehensive support at every stage of your academic pursuit",
+      icon: "",
+    },
+    {
+      title: "Global Network",
+      desc: "Our extensive network of partner institutions and industry contacts spans across the globe, giving you access to a world of opportunities.",
+      icon: "",
+    },
+    {
+      title: "Success Stories",
+      desc: "Our track record speaks for itself. Countless students have entrusted us with their educational aspirations and have gone on to achieve remarkable success in their chosen fields",
+      icon: "",
+    },
+    {
+      title: "Transparent Communication",
+      desc: "We believe in open and transparent communication, keeping you informed at every step of the process and addressing any concerns or queries promptly.",
+      icon: "",
     },
   ];
 
@@ -131,12 +164,12 @@ const About = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full d-flex">
+            {/* <div className="w-full d-flex">
               <p className="section-heading text-primary text-left mt-16">
                 CERTIFICATIONS
               </p>
               <img src={document} alt="document.jpg" className="mx-auto mt-8" />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -159,6 +192,54 @@ const About = () => {
           </div>
         </div>
       </section>
+      <div class="bg-white">
+        <section
+          id="features"
+          class="relative block px-6 py-10 md:py-20 md:px-10  border-t border-b border-neutral-900 bg-neutral-900/30"
+        >
+          <div class="relative mx-auto max-w-5xl text-center">
+            <span class="text-gray-800 my-3 flex items-center justify-center uppercase tracking-wider text-4xl font-bold">
+              Why choose us
+            </span>
+
+            <p class="mx-auto my-4 w-full max-w-xl bg-transparent text-center font-medium leading-relaxed tracking-wide text-gray-600 text-lg">
+              Choose us for your study abroad journey. With personalized
+              guidance, expert insights, and unwavering support, we'll ensure a
+              seamless transition to your chosen destination. Trust us to be
+              your reliable partner in achieving your academic dreams abroad.
+            </p>
+          </div>
+
+          <div class="relative mx-auto max-w-7xl z-10 grid grid-cols-1 gap-10 pt-14 sm:grid-cols-2 lg:grid-cols-3">
+            {whyChooseUs?.map((item, i) => (
+              <div class="relative h-full ml-0 mr-0 sm:mr-10">
+                <span
+                  class={
+                    "absolute top-0 left-0 w-full h-full mt-1 ml-1  rounded-lg " +
+                    (i % 2 === 0 ? "bg-indigo-500" : "bg-primary")
+                  }
+                ></span>
+                <div
+                  class={
+                    "relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg " +
+                    (i % 2 === 0 ? "border-indigo-400" : "border-primary")
+                  }
+                >
+                  <div class="flex items-center -mt-1">
+                    <h3 class="my-2 text-xl font-bold text-gray-800">
+                      {item?.title}
+                    </h3>
+                  </div>
+                  <p class="mt-3 mb-1 text-xs font-medium text-indigo-500 uppercase">
+                    ------------
+                  </p>
+                  <p class="mb-2 text-gray-600 text-lgs">{item?.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
     </>
   );
 };

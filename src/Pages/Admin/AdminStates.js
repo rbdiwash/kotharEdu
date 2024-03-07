@@ -55,6 +55,7 @@ const AdminStates = () => {
       .then((res) => {
         toast.success("Data added successfully");
         getDestinations();
+        setOpen(!open);
       })
       .catch((err) => {
         toast.error("Error");
@@ -295,7 +296,7 @@ const AdminStates = () => {
                               label="Why this state Heading"
                               color="indigo"
                               size="lg"
-                              required
+                              // required
                               name="title"
                               value={whyHeading}
                               onChange={(e) => setWhyHeading(e.target.value)}

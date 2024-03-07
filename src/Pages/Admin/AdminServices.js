@@ -1,28 +1,26 @@
-import React from "react";
-import { useState } from "react";
-import ErrorMessage from "../../Components/ErrorMessage";
-import SuccessMessage from "../../Components/SuccessMessage";
-import axios from "../../Utils/Axios";
-import Sidebar from "./Sidebar";
 import {
   Button,
   Dialog,
-  DialogHeader,
   DialogBody,
   DialogFooter,
+  DialogHeader,
   IconButton,
   Input,
   Textarea,
 } from "@material-tailwind/react";
-import useKothar from "../../context/useKothar";
-import { format } from "date-fns";
+import React, { useState } from "react";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { FaRegFileImage } from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
-import { FaRegFileImage } from "react-icons/fa";
+import ErrorMessage from "../../Components/ErrorMessage";
+import SuccessMessage from "../../Components/SuccessMessage";
+import axios from "../../Utils/Axios";
 import service from "../../assets/images/services.png";
+import useKothar from "../../context/useKothar";
+import Sidebar from "./Sidebar";
 const AdminServices = () => {
-  const [data, setData] = useState({
+  const initialState = {
     name: "",
     descripttion: "",
     image: "",
@@ -34,7 +32,7 @@ const AdminServices = () => {
       title: "",
       desc: "",
     },
-    moreInfoHeading: "",
+    moreInfoHeading: "   ",
     more: {
       infos: [
         {
@@ -43,7 +41,9 @@ const AdminServices = () => {
         },
       ],
     },
-  });
+  };
+
+  const [data, setData] = useState(initialState);
   const [message, setMessage] = useState({});
   const [open, setOpen] = useState(false);
 
@@ -97,11 +97,11 @@ const AdminServices = () => {
   };
   const handleOpen = () => {
     setOpen(!open);
-    setData({});
+    setData(initialState);
     setPreview();
     setMoreDesc("");
     setMoretitle("");
-    setAddedDetails("");
+    setAddedDetails([]);
   };
   const deleteData = (id) => {
     axios
@@ -277,7 +277,7 @@ const AdminServices = () => {
                                 size="lg"
                                 color="indigo"
                                 label="Title"
-                                required
+                                // required
                                 name="whatTitle"
                                 value={data?.what?.title}
                                 onChange={(e) => {
@@ -305,7 +305,7 @@ const AdminServices = () => {
                                     },
                                   });
                                 }}
-                                required
+                                // required
                               />
                             </div>
                           </div>
@@ -316,7 +316,7 @@ const AdminServices = () => {
                                 size="lg"
                                 color="indigo"
                                 label="Title"
-                                required
+                                // required
                                 name="whoTitle"
                                 value={data?.who?.title}
                                 onChange={(e) => {
@@ -341,7 +341,7 @@ const AdminServices = () => {
                                     who: { ...data?.who, desc: e.target.value },
                                   });
                                 }}
-                                required
+                                // required
                               />
                             </div>
                           </div>
@@ -364,7 +364,7 @@ const AdminServices = () => {
                               size="lg"
                               color="indigo"
                               label="More info Heading"
-                              required
+                              // required
                               name="moreInfoHeading"
                               value={data?.moreInfoHeading}
                               onChange={handleInputChange}

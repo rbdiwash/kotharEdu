@@ -36,7 +36,7 @@ const IndividualStates = () => {
           </div>
 
           <p className="md:text-5xl text-2xl uppercase text-white font-bold md:mt-16">
-            Study in {data?.destination || "Australia"}
+            {data?.destination || "Australia"}
           </p>
           <p className="text-lg text-white mt-4 leading-9 tracking-wide">
             Academic opportunities recognised all over the world
@@ -92,11 +92,11 @@ const IndividualStates = () => {
         </div>
       </section>
 
-      <AssociatedUni
+      {/* <AssociatedUni
         title={"Universities Available"}
         subtitle="Know about the Uni and the course of your interest in Sydney"
         destinationId={data?.id}
-      />
+      /> */}
       <TakePartEvent />
     </>
   );

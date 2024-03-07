@@ -162,7 +162,7 @@ const Navbar = () => {
                       : undefined
                   }
                 >
-                  States
+                  Destinations
                 </button>
                 {states && (
                   <div

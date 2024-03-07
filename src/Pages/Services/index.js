@@ -20,7 +20,6 @@ const Services = () => {
 
   const location = useLocation();
   const { data } = location?.state;
-  console.log("🚀  data:", data);
   const [{ services }, {}] = useKothar();
   return (
     <>
