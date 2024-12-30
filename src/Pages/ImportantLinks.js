@@ -148,23 +148,6 @@ const ImportantLinks = () => {
 
           <li className="mb-3">
             <a
-              href="https://www.service.nsw.gov.au/transaction/apply-for-an-rsa-or-rcg-competency-card"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              Apply RSA
-            </a>{" "}
-            <a
-              href="https://australiawhitecard.com.au/"
-              className="text-cyan-400 underline itallic"
-              target="_blank"
-            >
-              {" "}
-              https://australiawhitecard.com.au/{" "}
-            </a>
-          </li>
-          <li className="mb-3">
-            <a
               href="https://ndis.gov.au/applying-access-ndis/how-apply"
               target="_blank"
               className="underline text font-semibold"
@@ -172,12 +155,12 @@ const ImportantLinks = () => {
               Apply NDIS Online
             </a>{" "}
             <a
-              href="https://australiawhitecard.com.au/"
+              href="https://www.ndis.gov.au/applying-access-ndis/how-apply"
               className="text-cyan-400 underline itallic"
               target="_blank"
             >
               {" "}
-              https://australiawhitecard.com.au/{" "}
+              https://www.ndis.gov.au/applying-access-ndis/how-apply{" "}
             </a>
           </li>
           <li className="mb-3">
