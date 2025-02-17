@@ -77,9 +77,9 @@ const Cities = () => {
                         <img
                           src={item?.image || australia}
                           alt=""
-                          className="w-full rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto min-h-[320px] object-cover"
+                          className="w-full rounded outline outline-2 outline-white outline-offset-[-16px]	mx-auto min-h-[320px] object-cover opacity-80 h-[320px]"
                         />
-                        <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-primary slider-text translate-x-[-50%] translate-y-[-50%]">
+                        <div className="title absolute text-3xl font-bold top-1/2 left-1/2 text-white slider-text translate-x-[-50%] translate-y-[-50%]">
                           {item?.destination || "Sydney"}
                         </div>
                       </div>

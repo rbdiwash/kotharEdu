@@ -7,7 +7,7 @@ import admission from "../../assets/images/admission.png";
 import user from "../../assets/images/user.png";
 import vector from "../../assets/images/Vector.png";
 import visa from "../../assets/images/visa.png";
-import noImage from "../../assets/images/noImage.png";
+import noImage from "../../assets/images/australia.png";
 import AssociatedUni from "./AssociatedUni";
 import Slider from "react-slick";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -175,17 +175,15 @@ const Homepage = () => {
               {services?.services?.map((item, i) => (
                 <div className="w-content" key={i * 123}>
                   <div className="mx-auto relative text-left">
-                    {/*  w-[80%] */}
                     <img
                       src={item?.image || noImage}
                       alt=""
-                      className="rounded h-[300px] "
+                      className="rounded h-[300px] object-scale-down"
                     />
-                    <p className="text-3xl  text-black leading-tight capitalize font-bold tracking-wide py-6">
-                      {item?.serviceName?.slice(0, 20)}
-                      {item?.serviceName?.length > 20 && "..."}
+                    <p className="text-xl  text-black leading-tight capitalize font-bold tracking-wide py-6">
+                      {item?.serviceName}
                     </p>
-                    <p className="pb-4 text-xl text-justify">
+                    <p className="pb-4 text-lg text">
                       {item?.descripttion?.slice(0, 200)}{" "}
                       {item?.descripttion?.length > 200 && "..."}
                     </p>

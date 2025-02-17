@@ -63,7 +63,7 @@ const News = () => {
                     <img
                       src={item?.image || australia}
                       alt=""
-                      className="rounded  h-[300px] w-ful mx-auto object-cover"
+                      className="rounded  h-[350px] w-full mx-auto object-cover"
                     />
                     <p className="text-blue py-2 font-semibold">
                       {format(new Date(item?.date || null), "PPPP")}
@@ -71,7 +71,7 @@ const News = () => {
                     <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
                       {item?.topic}
                     </p>
-                    <p className="pb-2 text-lg text-justify">
+                    <p className="pb-2 text-lg">
                       {item?.description?.slice(0, 200)}{" "}
                       {item?.description?.length > 200 && "..."}
                     </p>

@@ -7,7 +7,7 @@ import useKothar from "../../context/useKothar";
 const AssociatedUni = ({ title, subtitle, destinationId }) => {
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -59,7 +59,7 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
         <div className="container mx-auto py-12 md:py-24">
           <div className="row">
             <div className="section-heading text-capitalize">
-              {title || "Associated Universities"}
+              {title || "Associated Colleges/Universities"}
             </div>
             {subtitle && (
               <div className="section-subHeading text-altBlack ">
@@ -71,18 +71,18 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
                 {getFilteredList()?.length > 0 ? (
                   getFilteredList()?.map((item) => (
                     <div className="col-span-1 slide" key={item?.id}>
-                      <a href={item?.website}>
-                        <div className="text-center mx-auto relative">
-                          <img
-                            src={item?.image || australia}
-                            alt=""
-                            className="rounded min-h-[320px] w-full object-cover"
-                          />
-                          <h1 className="mt-2 w-full break-words">
+                      <div className="text-center mx-auto relative">
+                        <img
+                          src={item?.image || australia}
+                          alt=""
+                          className="rounded h-[320px] w-full object-cover"
+                        />
+                        <a href={item?.website}>
+                          <h1 className="mt-2 w-full break-words font-bold hover:text-blue">
                             {item?.name}
                           </h1>
-                        </div>
-                      </a>
+                        </a>
+                      </div>
                     </div>
                   ))
                 ) : (

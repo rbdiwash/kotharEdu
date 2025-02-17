@@ -73,16 +73,15 @@ const Events = () => {
             {events?.length > 0 ? (
               events?.map((item, i) => (
                 <div
-                  className="w-full bg-lightBlue px-4 py-6 rounded-md "
+                  className="w-full bg-lightBlue px-4 py-6 rounded-md h-[320px]"
                   key={i}
                 >
                   <div className="flex flex-col text-left">
                     <p className="text-4xl text-primary text-left font-bold">
-                      {format(new Date(item?.date || null), "do")}
-                    </p>
-                    <p className="text-4xl text-primary font-normal text-left">
+                      {format(new Date(item?.date || null), "do")}{" "}
                       {format(new Date(item?.date || null), "MMM")}
                     </p>
+
                     <p className="text-2xl  text-black leading-tight font-bold tracking-wide py-6">
                       {item?.topic}
                     </p>
