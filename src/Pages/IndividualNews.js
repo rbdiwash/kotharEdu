@@ -22,28 +22,30 @@ const IndividualNews = () => {
           <p className="text-2xl text-white md:mt-12 mt-4 leading-9 tracking-wide uppercase">
             Jan 15, 2022
           </p>
-          <p className="text-2xl font-bold text-white mt-2 leading-9 tracking-wide">
+          <p className="text-3xl font-bold text-white mt-2 leading-9 tracking-wide">
             {data?.topic}
           </p>
         </div>
       </section>
       <section id="detailNews" className="bg-lightBlue">
-        <div className="container mx-auto  py-16">
-          <div className="row">
-            <p className="text-blue upperecase font-semibold text-xl">
-              {format(new Date(data?.date), "PP")}
-            </p>
-            <div className="grid grid-cols-6 md:gap-x-12 gap-x-0 gap-y-4">
-              <div className="md:col-span-2 col-span-6">
-                <p className="text-2xl font-bold text-black mt-2 leading-9 tracking-wide">
-                  {data?.topic}
-                </p>
-              </div>
-              <div className="md:col-span-4 col-span-6">
-                <p className="text-black font-medium text-justify">
-                  {data?.description}
-                </p>
-              </div>
+        <div className="container mx-auto py-16">
+          <div className="grid grid-cols-6 md:gap-x-12 gap-x-0 gap-y-4">
+            <div className="md:col-span-2 col-span-6">
+              <img
+                src={data?.image}
+                className="rounded-lg shadow-lg object-cover"
+              />
+            </div>
+
+            <div className="md:col-span-4 col-span-6 ">
+              <div
+                className="font-xl"
+                dangerouslySetInnerHTML={{ __html: data?.description }}
+              />
+
+              {/* <p className="text-black font-medium text-justify">
+                {data?.description}
+              </p> */}
             </div>
           </div>
         </div>

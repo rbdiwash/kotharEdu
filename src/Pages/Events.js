@@ -26,7 +26,7 @@ const Events = () => {
               <FiChevronRight className="text-4xl text-altWhite cursor-pointer" />
             </div> */}
             {events?.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3  grid-cols-1 py-12 justify-center  gap-8">
                 {events?.map((item, i) => (
                   <div
                     className="col-span-1 bg-lightBlue  pb-6 rounded-md "

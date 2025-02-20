@@ -85,7 +85,7 @@ export default function Sidebar() {
             </ul>
             <ul className="flex-col min-w-full flex list-none absolute bottom-0">
               <li className="bg-primary px-4 rounded-lg text-white text-center mb-2 py-3">
-                <Link to="/" className="py-3">
+                <Link to="/" className="py-3" target="_blank">
                   Go to Homepage
                 </Link>
               </li>

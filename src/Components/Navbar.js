@@ -46,7 +46,7 @@ const Navbar = () => {
             <a href="tel:0478733944">
               <span className="flex items-center gap-4 mr-2">
                 <FaPhoneAlt />
-                0478733944
+                0405372084
               </span>
             </a>
           </div>

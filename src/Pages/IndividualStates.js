@@ -21,10 +21,9 @@ const IndividualStates = () => {
     <>
       <section
         style={{
-          background: `linear-gradient(to top, #00001a70,#00001a70), url(${
+          background: `linear-gradient(to top, #00001a70, #00001a70), url(${
             data?.image || australia
-          }) no-repeat  center`,
-          backgroundSize: "cover",
+          }) no-repeat center/cover`,
         }}
       >
         <div className="container mx-auto md:py-48 py-24">
@@ -48,7 +47,7 @@ const IndividualStates = () => {
           <div className="row">
             <div className="grid grid-cols-6 md:gap-x-20 gap-x-0 gap-y-4 items-center justify-between">
               <div className="md:col-span-4 col-span-6 mt-6 md:mt-0">
-                <p className="text-black font-semibold text-lg">
+                <p className="text- font-normal text-xl">
                   {data?.destinationDesc}
                 </p>
                 <div className="btn w-max mt-8">Learn More</div>
@@ -73,7 +72,7 @@ const IndividualStates = () => {
       <section id="questions">
         <div className="container mx-auto md:my-24 my-12">
           <div className="row">
-            <div className="section-heading text-black text-left">
+            <div className="section-heading  text-left">
               {data?.whyDestination?.title}
             </div>
             <div className="grid md:grid-cols-3 md:gap-16 gap-4 justify-center items-center md:mt-12 mt-4">
@@ -83,7 +82,7 @@ const IndividualStates = () => {
                     <div className="text-2xl  mb-4 text-primary font-bold text-left">
                       {item?.title}
                     </div>
-                    <p className="font-semibold">{item?.desc}</p>
+                    <p className="text-lg">{item?.desc}</p>
                   </div>
                 </div>
               ))}

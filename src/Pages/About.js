@@ -12,15 +12,17 @@ const About = () => {
       name: "Muskan Pandey",
       role: "Director/Senior Educational Consultant",
       number: "T088",
-      gmail: "info@kotharedu.com",
+      gmail: "admin@kotharedu.com",
       image: Muskan,
+      contact: "0426250365",
     },
     {
       name: "Anand Simkhada",
       role: "Director/ Educational Consultant",
       number: "T290",
-      gmail: "info@kotharedu.com",
+      gmail: "admissions@kotharedu.com",
       image: Anand,
+      contact: "0405372084",
     },
     {
       name: "Rudra Acharya",
@@ -28,6 +30,7 @@ const About = () => {
       number: "11564",
       gmail: "info@kotharedu.com",
       image: Rudra,
+      contact: "0424344135",
     },
   ];
 
@@ -187,6 +190,7 @@ const About = () => {
                 number={item.number}
                 gmail={item.gmail}
                 image={item.image}
+                contact={item?.contact}
               />
             ))}
           </div>
@@ -216,13 +220,13 @@ const About = () => {
                 <span
                   class={
                     "absolute top-0 left-0 w-full h-full mt-1 ml-1  rounded-lg " +
-                    (i % 2 === 0 ? "bg-indigo-500" : "bg-primary")
+                    (i % 2 === 0 ? "bg-second" : "bg-primary")
                   }
                 ></span>
                 <div
                   class={
-                    "relative h-full p-5 bg-white border-2 border-indigo-500 rounded-lg " +
-                    (i % 2 === 0 ? "border-indigo-400" : "border-primary")
+                    "relative h-full p-5 bg-white border-2 rounded-lg " +
+                    (i % 2 === 0 ? "border-second" : "border-primary")
                   }
                 >
                   <div class="flex items-center -mt-1">
@@ -230,7 +234,7 @@ const About = () => {
                       {item?.title}
                     </h3>
                   </div>
-                  <p class="mt-3 mb-1 text-xs font-medium text-indigo-500 uppercase">
+                  <p class="mt-3 mb-1 text-xs font-medium text-primary uppercase">
                     ------------
                   </p>
                   <p class="mb-2 text-gray-600 text-lgs">{item?.desc}</p>
@@ -246,7 +250,7 @@ const About = () => {
 
 export default About;
 
-export const TeamCard = ({ name, role, number, gmail, image }) => {
+export const TeamCard = ({ name, role, number, gmail, image, contact }) => {
   return (
     <div className="col-span 1 shadow-lg hover:shadow-2xl border border-dashed  rounded-xl cursor-pointer transition">
       <img
@@ -261,6 +265,7 @@ export const TeamCard = ({ name, role, number, gmail, image }) => {
         <div className="font-bold text-base uppercase">{role}</div>
         <div>QEAC Number : {number}</div>
         <div>Gmail: {gmail}</div>
+        <div>Phone Number: {contact}</div>
       </div>
     </div>
   );

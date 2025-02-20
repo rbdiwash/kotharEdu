@@ -5,6 +5,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import ContactForm from "../../Components/ContactForm";
 import TakePartEvent from "../../Components/TakePartEvent";
 import useKothar from "../../context/useKothar";
+import cover from "../../assets/images/kothar.png";
 const Services = () => {
   const sidebars = [
     { serviceName: "IELTS", id: "ielts" },
@@ -26,8 +27,8 @@ const Services = () => {
       <section
         id="bookCover"
         style={{
-          background: `linear-gradient(to top, #00001a70,#00001a70), url(${data?.image}) no-repeat  center`,
-          backgroundSize: "cover",
+          background: `linear-gradient(to top, #00001a70,#00001a70), url(${cover}) no-repeat  center`,
+          backgroundSize: "contain",
         }}
       >
         <div className="container mx-auto md:py-36 py-20 ">
@@ -51,7 +52,7 @@ const Services = () => {
           <div className="row">
             <div className="grid grid-cols-6 md:gap-x-20 gap-x-0 gap-y-4 items-start justify-between mb-12">
               <div className="md:col-span-4 col-span-6 mt-16">
-                <p className="text-black font-semibold text-lg text-justify">
+                <p className="text-black font- text-lg text-justify">
                   {data?.descripttion}
                 </p>
                 <NavLink to="/book">
@@ -68,7 +69,7 @@ const Services = () => {
                       s
                     >
                       <div
-                        className="md:py-8 md:px-8 p-4 text-white capitalize border-b-2 border-[#86C6D9] font-semibold md:text-2xl text-xl cursor-pointer"
+                        className="md:py-8 md:px-8 p-4 text-white capitalize border-b-2 border-[#86C6D9] md:text-2xl text-xl cursor-pointer"
                         key={arg?.id}
                       >
                         {arg?.serviceName}
@@ -90,9 +91,7 @@ const Services = () => {
                     <p className="text-2xl text-primary font-semibold">
                       {item?.title}
                     </p>
-                    <p className="text-lg text-black font-semibold mt-4">
-                      {item?.desc}
-                    </p>
+                    <p className="text-lg text-black mt-4">{item?.desc}</p>
                   </div>
                 ))}
               </div>

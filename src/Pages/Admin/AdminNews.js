@@ -16,6 +16,24 @@ import {
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
+import {
+  BtnBold,
+  BtnItalic,
+  Editor,
+  EditorProvider,
+  Toolbar,
+  BtnBulletList,
+  BtnClearFormatting,
+  BtnLink,
+  BtnNumberedList,
+  BtnRedo,
+  BtnStrikeThrough,
+  BtnStyles,
+  BtnUnderline,
+  BtnUndo,
+  HtmlButton,
+  Separator,
+} from "react-simple-wysiwyg";
 
 const AdminNews = () => {
   const [data, setData] = useState();
@@ -131,40 +149,48 @@ const AdminNews = () => {
                       </thead>
                       <tbody>
                         {news?.length > 0 ? (
-                          news.map((item) => (
-                            <tr
-                              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                              key={item?.id}
-                            >
-                              <th
-                                scope="row"
-                                className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
+                          news.map((item) => {
+                            console.log(item?.description);
+                            return (
+                              <tr
+                                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                key={item?.id}
                               >
-                                {item?.topic.slice(0, 30)}
-                              </th>
-                              <td className="py-4 px-6">
-                                {format(new Date(item?.date || null), "PP")}
-                              </td>
-                              <td className="py-4 px-6">
-                                {item?.description.slice(0, 100) || "-"}
-                              </td>
-                              <td className="py-4 px-6 text-right flex space-x-4 items-center">
-                                <Button
-                                  color="green"
-                                  onClick={() => handleEdit(item)}
+                                <th
+                                  scope="row"
+                                  className="py-4 px-6 font-small text-gray-900 whitespace-nowrap dark:text-white"
                                 >
-                                  Edit
-                                </Button>
+                                  {item?.topic.slice(0, 30)}
+                                </th>
+                                <td className="py-4 px-6">
+                                  {format(new Date(item?.date || null), "PP")}
+                                </td>
+                                <td className="py-4 px-6">
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html: item?.description.slice(0, 100),
+                                    }}
+                                  />
+                                  {/* {item?.description.slice(0, 100) || "-"} */}
+                                </td>
+                                <td className="py-4 px-6 text-right flex space-x-4 items-center">
+                                  <Button
+                                    color="green"
+                                    onClick={() => handleEdit(item)}
+                                  >
+                                    Edit
+                                  </Button>
 
-                                <Button
-                                  color="red"
-                                  onClick={() => deleteData(item?.id)}
-                                >
-                                  Delete
-                                </Button>
-                              </td>
-                            </tr>
-                          ))
+                                  <Button
+                                    color="red"
+                                    onClick={() => deleteData(item?.id)}
+                                  >
+                                    Delete
+                                  </Button>
+                                </td>
+                              </tr>
+                            );
+                          })
                         ) : (
                           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td
@@ -186,7 +212,7 @@ const AdminNews = () => {
               <DialogHeader> {data?.id ? "Edit" : "Add"} News</DialogHeader>
               <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
-                  <div className="grid items-center mt-4 w-full  mx-auto">
+                  <div className="grid items-center mt-4 w-full  mx-auto overflow-auto max-h-[80vh]">
                     <div className="mt-10 md:mt-0">
                       <div className="form-container mx-2">
                         <div className="mb-6">
@@ -214,7 +240,7 @@ const AdminNews = () => {
                             onChange={handleInputChange}
                             name="date"
                           />
-                        </div>{" "}
+                        </div>
                         <div className="mb-6">
                           <Input
                             variant="outlined"
@@ -225,7 +251,7 @@ const AdminNews = () => {
                             onChange={handleAddFiles}
                             name="image"
                           />
-                        </div>{" "}
+                        </div>
                         {(data?.image || preview) && (
                           <img
                             src={preview}
@@ -233,7 +259,7 @@ const AdminNews = () => {
                           />
                         )}
                         <div className="mb-6 mt-8">
-                          <Textarea
+                          {/* <Textarea
                             variant="outlined"
                             color="indigo"
                             size="lg"
@@ -244,7 +270,40 @@ const AdminNews = () => {
                             label="Description"
                             onChange={handleInputChange}
                             required
-                          />
+                          /> */}
+                          <EditorProvider>
+                            <Editor
+                              value={data?.description}
+                              onChange={handleInputChange}
+                              variant="outlined"
+                              color="indigo"
+                              type="text"
+                              name="description"
+                              rows={4}
+                              placeholder="Description"
+                              required
+                              containerProps={{ style: { resize: "vertical" } }}
+                            >
+                              <Toolbar>
+                                <BtnUndo />
+                                <BtnRedo />
+                                <Separator />
+                                <BtnBold />
+                                <BtnItalic />
+                                <BtnUnderline />
+                                <BtnStrikeThrough />
+                                <Separator />
+                                <BtnNumberedList />
+                                <BtnBulletList />
+                                <Separator />
+                                <BtnLink />
+                                <BtnClearFormatting />
+                                <HtmlButton />
+                                <Separator />
+                                <BtnStyles />
+                              </Toolbar>
+                            </Editor>
+                          </EditorProvider>
                         </div>
                       </div>
                     </div>

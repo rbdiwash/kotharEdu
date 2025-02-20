@@ -15,10 +15,10 @@ const News = () => {
       <section id="newsa" className="h-max-content pb-8 bg-lightBlue">
         <div className="container mx-auto my-auto h-full  pt-12 md:pt-24">
           <div className="row items-center   h-full my-auto">
-            <p className="section-heading pb-10 text-left">News and Updates</p>
+            <p className="section-heading pb-6 text-left">News and Updates</p>
 
             {news?.length > 0 ? (
-              <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-center gap-8">
+              <div className="grid lg:grid-cols-4 md:grid-cols-3  grid-cols-1 py-12 justify-center items-START gap-8">
                 {news?.map((item, i) => (
                   <div className="col-span-1" key={item?.id}>
                     <div className="mx-auto relative text-left">
@@ -31,7 +31,7 @@ const News = () => {
                         {format(new Date(item?.date || null), "PPPP")}
                       </p>
                       <Link to={`/news/${item?.id}`} state={{ data: item }}>
-                        <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 ">
+                        <p className="text-2xl  text-black leading-tight font-bold tracking-wide pb-3 hover:underline">
                           {item?.topic}
                         </p>
                       </Link>
