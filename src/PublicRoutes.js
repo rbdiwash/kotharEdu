@@ -49,7 +49,7 @@ const PublicRoutes = () => {
 
   return (
     <div id="overlay">
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       {!location.pathname.includes("admin") && <Navbar />}
       <Routes>
         <Route
