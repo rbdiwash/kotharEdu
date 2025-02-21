@@ -5,6 +5,8 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import australia from "../../assets/images/australia.png";
 import useKothar from "../../context/useKothar";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { ReactGoogleReviews } from "react-google-reviews";
+import "react-google-reviews/dist/index.css";
 
 const Testimonials = () => {
   var settings = {
@@ -30,6 +32,7 @@ const Testimonials = () => {
       },
     ],
   };
+  const featurableWidgetId = "88a3156c-9f91-431c-86e2-1b75403b2d4b"; // You can use "example" for testing
 
   const [{ testimonial }, {}] = useKothar();
   return (
@@ -40,6 +43,11 @@ const Testimonials = () => {
           <p className="section-subHeading pb-20">
             What our students tell about us.
           </p>
+
+          <ReactGoogleReviews
+            layout="carousel"
+            featurableId={featurableWidgetId}
+          />
 
           <Slider {...settings}>
             {testimonial?.length > 0 ? (

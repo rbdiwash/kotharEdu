@@ -67,11 +67,6 @@ const News = () => {
                         </p>
                       </Link>
                       {isHTML(item?.description) ? (
-                        // <div
-                        //   dangerouslySetInnerHTML={{
-                        //     __html: item?.description?.slice(0, 500),
-                        //   }}
-                        // />
                         <div>
                           {extractPartOfParagraph(item?.description, 300)}
                         </div>
