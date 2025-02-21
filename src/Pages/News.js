@@ -10,6 +10,37 @@ import TakePartEvent from "../Components/TakePartEvent";
 const News = () => {
   const [{ news }] = useKothar();
 
+  const isHTML = (text) => {
+    const htmlRegex = /<([A-Za-z][A-Za-z0-9]*)\b[^>]*>(.*?)<\/\1>/;
+    return htmlRegex.test(text);
+  };
+
+  const purifyHTML = (html) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    return doc.body.innerHTML; // Sanitized HTML
+  };
+
+  const extractPartOfParagraph = (html, maxLength) => {
+    // Step 1: Purify the HTML
+    const purifiedHTML = purifyHTML(html);
+
+    // Step 2: Create a temporary element to hold the HTML
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = purifiedHTML;
+
+    // Step 3: Get the text content (without HTML tags)
+    const textContent = tempElement.textContent || tempElement.innerText;
+
+    // Step 4: Extract the first `maxLength` characters
+    const extractedText = textContent.slice(0, maxLength);
+
+    // Step 5: Optionally, add ellipsis if the text was truncated
+    return textContent.length > maxLength
+      ? `${extractedText}...`
+      : extractedText;
+  };
+
   return (
     <>
       <section id="newsa" className="h-max-content pb-8 bg-lightBlue">
@@ -35,10 +66,21 @@ const News = () => {
                           {item?.topic}
                         </p>
                       </Link>
-                      <p className="pb-2 text-lg">
-                        {item?.description?.slice(0, 300)}{" "}
-                        {item?.description?.length > 300 && "..."}
-                      </p>
+                      {isHTML(item?.description) ? (
+                        // <div
+                        //   dangerouslySetInnerHTML={{
+                        //     __html: item?.description?.slice(0, 500),
+                        //   }}
+                        // />
+                        <div>
+                          {extractPartOfParagraph(item?.description, 300)}
+                        </div>
+                      ) : (
+                        <p className="pb-2 text-lg">
+                          {item?.description?.slice(0, 300)}{" "}
+                          {item?.description?.length > 300 && "..."}
+                        </p>
+                      )}
                       <Link to={`/news/${item?.id}`} state={{ data: item }}>
                         <div className="flex text-blue items-center text-xl space-x-1">
                           <h1 className="">More</h1>
