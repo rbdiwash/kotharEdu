@@ -47,6 +47,7 @@ const Testimonials = () => {
           <ReactGoogleReviews
             layout="carousel"
             featurableId={featurableWidgetId}
+            showDots={false}
           />
 
           <Slider {...settings}>
