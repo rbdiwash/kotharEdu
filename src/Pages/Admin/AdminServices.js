@@ -32,7 +32,7 @@ const AdminServices = () => {
       title: "",
       desc: "",
     },
-    moreInfoHeading: "   ",
+    moreInfoHeading: "",
     more: {
       infos: [
         {
@@ -71,6 +71,7 @@ const AdminServices = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     axios
       .post("admin/services", { ...data, more: { infos: addedDetails } })
       .then((res) => {
@@ -84,8 +85,13 @@ const AdminServices = () => {
   };
   const handleUpdate = (e) => {
     e.preventDefault();
+    console.log({ ...data, more: { infos: addedDetails } });
+
     axios
-      .put(`admin/services/${data?.id}`, data)
+      .put(`admin/services/${data?.id}`, {
+        ...data,
+        more: { infos: addedDetails },
+      })
       .then((res) => {
         setOpen(!open);
         toast.success("Data Updated successfully");
@@ -125,7 +131,10 @@ const AdminServices = () => {
     setMoreDesc("");
     setMoretitle("");
   };
+
+  console.log(addedDetails);
   const deleteRow = (id) => {
+    console.log(id);
     setAddedDetails((prevState) => [
       ...prevState.filter((a) => prevState.indexOf(a) !== id),
     ]);
