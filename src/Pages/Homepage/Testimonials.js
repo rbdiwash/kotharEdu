@@ -39,18 +39,20 @@ const Testimonials = () => {
     <section id="testimonials" className="h-max-content bg-lightBlue">
       <div className="container mx-auto  py-12 md:py-24">
         <div className="row items-center  my-auto">
-          <p className="section-heading">Testimonials</p>
+          <p className="section-heading">Testimonials - Google Reviews</p>
           <p className="section-subHeading pb-20">
             What our students tell about us.
           </p>
-
+          {/* <p className="text-lg font-semibold mb-4 text-center">
+            Google Reviews
+          </p> */}
           <ReactGoogleReviews
             layout="carousel"
             featurableId={featurableWidgetId}
             showDots={false}
           />
 
-          <Slider {...settings}>
+          {/* <Slider {...settings}>
             {testimonial?.length > 0 ? (
               testimonial?.map((arg) => (
                 <div className="relative" id={arg?.id}>
@@ -82,7 +84,7 @@ const Testimonials = () => {
                 Oops ! No Result !!!
               </h1>
             )}
-          </Slider>
+          </Slider> */}
         </div>
       </div>
     </section>

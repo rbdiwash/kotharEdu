@@ -21,14 +21,14 @@ const Classes = () => {
           <div className="col-span-1">
             <div className="bg-gradient-to-t from-[#648dc7] to-[#64adc7] rounded-lg flex items-center justify-center">
               <div className="text-3xl font-bold leading-loose text-white md:p-20 p-10 tracking-widest	">
-                IELTS
+                PTE
               </div>
             </div>
           </div>
           <div className="col-span-1">
             <div className="bg-gradient-to-t from-[#648dc7] to-[#64adc7] rounded-lg flex items-center justify-center">
               <div className="text-3xl font-bold leading-loose text-white md:p-20 p-10 tracking-widest	">
-                PTE
+                IELTS
               </div>
             </div>
           </div>

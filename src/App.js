@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
+
 import "./App.css";
 
 import { ThemeProvider } from "@material-tailwind/react";
@@ -15,9 +17,9 @@ const App = () => {
     <KotharProvider>
       <ToastContainer />
       <ThemeProvider>
-        <Router>
+        <HashRouter>
           <PublicRoutes />
-        </Router>
+        </HashRouter>
       </ThemeProvider>
     </KotharProvider>
   );
