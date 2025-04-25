@@ -89,7 +89,7 @@ const Homepage = () => {
         <div className="container mx-auto md:pb-[200px]">
           <div className="row">
             <div className="py-12 md:pt-20 w-full md:w-3/4">
-              <h1 className="md:text-6xl text-4xl uppercase text-white font-semibold leading-relaxed">
+              <h1 className="md:text-5xl text-4xl uppercase text-white font-semibold leading-relaxed">
                 Welcome to kothar <br /> educational services
               </h1>
               <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 pt-8">
@@ -133,7 +133,7 @@ const Homepage = () => {
               One of the leading educational consultancy in Nepal guiding
               students to meet their dreams
             </p>
-            <p className="section-subHeading">
+            <p className="section-subHeading text-black">
               Proper abroad study guidance provided for academic growth. The
               best test preparation classes in the whole town. Definite
               information about highly renowned colleges/universities throughout
