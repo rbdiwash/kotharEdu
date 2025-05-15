@@ -44,6 +44,24 @@ code {
     @apply block w-full px-4 py-5 text-base font-normal text-black  bg-clip-padding
                bg-altSecond rounded-lg transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-blue focus:outline-none;
   }
+  h1 {
+    @apply text-4xl   leading-tight  tracking-wide;
+  }
+
+  h2 {
+    @apply text-2xl   leading-tight  tracking-wide;
+  }
+
+  h3 {
+    @apply text-xl   leading-tight  tracking-wide;
+  }
+
+  b {
+    @apply font-bold;
+  }
+  strong {
+    @apply font-bold;
+  }
 }
 
 #homepage {

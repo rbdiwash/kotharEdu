@@ -16,24 +16,8 @@ import {
 import useKothar from "../../context/useKothar";
 import { format } from "date-fns";
 import { toast } from "react-toastify";
-import {
-  BtnBold,
-  BtnItalic,
-  Editor,
-  EditorProvider,
-  Toolbar,
-  BtnBulletList,
-  BtnClearFormatting,
-  BtnLink,
-  BtnNumberedList,
-  BtnRedo,
-  BtnStrikeThrough,
-  BtnStyles,
-  BtnUnderline,
-  BtnUndo,
-  HtmlButton,
-  Separator,
-} from "react-simple-wysiwyg";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const AdminNews = () => {
   const [data, setData] = useState();
@@ -142,6 +126,51 @@ const AdminNews = () => {
       ? `${extractedText}...`
       : extractedText;
   };
+
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "list",
+    "bullet",
+    "link",
+    "image",
+  ];
+
+  // Add custom styles for the editor
+  const editorStyles = {
+    ".ql-editor h1": {
+      fontSize: "2.5rem",
+      lineHeight: "1.2",
+      fontWeight: "700",
+      marginBottom: "1rem",
+    },
+    ".ql-editor h2": {
+      fontSize: "2rem",
+      lineHeight: "1.3",
+      fontWeight: "600",
+      marginBottom: "0.75rem",
+    },
+    ".ql-editor h3": {
+      fontSize: "1.75rem",
+      lineHeight: "1.4",
+      fontWeight: "600",
+      marginBottom: "0.5rem",
+    },
+  };
+
   return (
     <>
       <Sidebar />
@@ -180,7 +209,7 @@ const AdminNews = () => {
                       </thead>
                       <tbody>
                         {news?.length > 0 ? (
-                          news.map((item) => {
+                          news?.map((item) => {
                             console.log(item?.description);
                             return (
                               <tr
@@ -304,51 +333,29 @@ const AdminNews = () => {
                           />
                         )}
                         <div className="mb-6 mt-8">
-                          {/* <Textarea
-                            variant="outlined"
-                            color="indigo"
-                            size="lg"
-                            type="text"
-                            name="description"
+                          <style>
+                            {Object.entries(editorStyles)
+                              .map(
+                                ([selector, styles]) =>
+                                  `${selector} { ${Object.entries(styles)
+                                    .map(([prop, value]) => `${prop}: ${value}`)
+                                    .join("; ")} }`
+                              )
+                              .join("\n")}
+                          </style>
+                          <ReactQuill
+                            theme="snow"
                             value={data?.description}
-                            rows={4}
-                            label="Description"
-                            onChange={handleInputChange}
-                            required
-                          /> */}
-                          <EditorProvider>
-                            <Editor
-                              value={data?.description}
-                              onChange={handleInputChange}
-                              variant="outlined"
-                              color="indigo"
-                              type="text"
-                              name="description"
-                              rows={4}
-                              placeholder="Description"
-                              required
-                              containerProps={{ style: { resize: "vertical" } }}
-                            >
-                              <Toolbar>
-                                <BtnUndo />
-                                <BtnRedo />
-                                <Separator />
-                                <BtnBold />
-                                <BtnItalic />
-                                <BtnUnderline />
-                                <BtnStrikeThrough />
-                                <Separator />
-                                <BtnNumberedList />
-                                <BtnBulletList />
-                                <Separator />
-                                <BtnLink />
-                                <BtnClearFormatting />
-                                <HtmlButton />
-                                <Separator />
-                                <BtnStyles />
-                              </Toolbar>
-                            </Editor>
-                          </EditorProvider>
+                            onChange={(content) =>
+                              setData((prev) => ({
+                                ...prev,
+                                description: content,
+                              }))
+                            }
+                            modules={modules}
+                            formats={formats}
+                            style={{ height: "300px", marginBottom: "50px" }}
+                          />
                         </div>
                       </div>
                     </div>

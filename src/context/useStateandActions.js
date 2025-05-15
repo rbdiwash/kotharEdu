@@ -69,7 +69,7 @@ const useStatesAndActions = () => {
       .get("news")
       .then((res) => {
         // console.log(res);
-        setNews(res?.data?.news);
+        setNews(res?.data?.news?.reverse());
       })
       .catch((err) => {
         console.log(err);

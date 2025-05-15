@@ -51,8 +51,16 @@ const Testimonials = () => {
             featurableId={featurableWidgetId}
             showDots={false}
           />
+        </div>
+      </div>
+    </section>
+  );
+};
 
-          {/* <Slider {...settings}>
+export default Testimonials;
+
+{
+  /* <Slider {...settings}>
             {testimonial?.length > 0 ? (
               testimonial?.map((arg) => (
                 <div className="relative" id={arg?.id}>
@@ -84,11 +92,5 @@ const Testimonials = () => {
                 Oops ! No Result !!!
               </h1>
             )}
-          </Slider> */}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Testimonials;
+          </Slider> */
+}

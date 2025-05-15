@@ -8,21 +8,41 @@ import TakePartEvent from "../Components/TakePartEvent";
 const IndividualNews = () => {
   const location = useLocation();
   const { data } = location?.state;
+  console.log(data);
   return (
     <>
-      <section id="bookCover">
-        <div className="container mx-auto md:py-48 py-24 ">
+      <section
+        id="bookCover"
+        style={{
+          backgroundImage: `url(${data?.image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+          }}
+        />
+        <div className="container mx-auto md:py-48 py-24 relative z-10">
           <div className="flex items-center space-x-3 text-white mb-6">
-            <h1 className="font-semibold  text-white "> Home</h1>
+            <h1 className="font-semibold text-white"> Home</h1>
             <BiChevronRight className="text-3xl" />
             <span>Explore</span> <BiChevronRight className="text-3xl" />
-            <span className="text-primary">News and Updates</span>
+            <span className="text-primary font-bold">News and Updates</span>
           </div>
 
-          <p className="text-2xl text-white md:mt-12 mt-4 leading-9 tracking-wide uppercase">
-            Jan 15, 2022
+          <p className="text-2xl text-white md:mt-12 mt-4 leading-9 tracking-wide uppercase font-semibold">
+            {format(new Date(data?.date || null), "PPPP")}
           </p>
-          <p className="text-3xl font-bold text-white mt-2 leading-9 tracking-wide">
+          <p className="text-4xl font-bold text-white mt-2 leading-9 tracking-wide drop-shadow-lg">
             {data?.topic}
           </p>
         </div>
