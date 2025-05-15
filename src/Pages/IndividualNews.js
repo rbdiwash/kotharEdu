@@ -8,7 +8,6 @@ import TakePartEvent from "../Components/TakePartEvent";
 const IndividualNews = () => {
   const location = useLocation();
   const { data } = location?.state;
-  console.log(data);
   return (
     <>
       <section

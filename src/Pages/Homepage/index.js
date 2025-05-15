@@ -85,12 +85,19 @@ const Homepage = () => {
   const [{ services }, {}] = useKothar();
   return (
     <>
-      <section id="homepage" className="h-max">
-        <div className="container mx-auto md:pb-[200px]">
+      <section id="homepage" className="h-1/2 bg-gray-500 relative">
+        <div
+          className="absolute inset-0 bg-black opacity-60"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))",
+          }}
+        />
+        <div className="container mx-auto py-[150px] relative z-10">
           <div className="row">
-            <div className="py-12 md:pt-20 w-full md:w-3/4">
+            <div className="py-12 md:pt-20 w-full md:w-4/4">
               <h1 className="md:text-5xl text-4xl uppercase text-white font-semibold leading-relaxed">
-                Welcome to kothar <br /> educational services
+                Welcome to kothar educational services
               </h1>
               <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 pt-8">
                 Empowering Your Educational Journey!
@@ -112,8 +119,8 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      <div className="container mx-auto md:mt-[-100px] z-50">
-        <div className="bg-second  grid md:grid-cols-5  gap-8 py-10 px-6 rounded-md shadow-md items-center justify-center">
+      <div className="bg-second z-100">
+        <div className="container mx-auto   grid md:grid-cols-5  gap-8 py-10 px-6 items-center justify-center">
           {options.map((arg) => (
             <div className="col-span-1" key={arg?.title}>
               <div className="card flex flex-col items-center justify-center text-center">
@@ -192,7 +199,7 @@ const Homepage = () => {
                       state={{ data: item }}
                       className="flex text-blue items-center text-xl cursor-pointer"
                     >
-                      <h1 className="">More</h1>
+                      <span className="">More</span>
                       <BiChevronRight className="text-xl cursor-pointer" />
                     </NavLink>
                   </div>

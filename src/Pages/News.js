@@ -78,7 +78,7 @@ const News = () => {
                       )}
                       <Link to={`/news/${item?.id}`} state={{ data: item }}>
                         <div className="flex text-blue items-center text-xl space-x-1">
-                          <h1 className="">More</h1>
+                          <span className="">More</span>
                           <FiChevronRight className="text-2xl cursor-pointer" />
                         </div>
                       </Link>

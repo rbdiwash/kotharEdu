@@ -78,9 +78,9 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
                           className="rounded h-[320px] w-full object-cover"
                         />
                         <a href={item?.website}>
-                          <h1 className="mt-2 w-full break-words font-bold hover:text-blue">
+                          <span className="mt-2 w-full break-words text-xl hover:text-blue">
                             {item?.name}
-                          </h1>
+                          </span>
                         </a>
                       </div>
                     </div>
