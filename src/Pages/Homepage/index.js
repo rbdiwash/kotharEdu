@@ -19,6 +19,7 @@ import ContactForm from "../../Components/ContactForm";
 import Testimonials from "./Testimonials";
 import { Link, NavLink } from "react-router-dom";
 import useKothar from "../../context/useKothar";
+import award from "../../assets/images/award.png";
 const options = [
   { title: "Study Abroad Decision", img: study },
   { title: "Student Counseling", img: student },
@@ -28,24 +29,41 @@ const options = [
 ];
 const options2 = [
   {
+    title: "Awards",
+    img: award,
+    count: "2025",
+    description: "Local Business Awards Finalist",
+  },
+  {
     title: "Students",
     img: user,
     count: "10K",
+    description: "Successful student placements worldwide",
   },
-  { title: "Intitutes and Colleges", img: vector, count: "50" },
-  { title: "Visa Lodged", img: visa, count: "1000" },
+  {
+    title: "Institutes",
+    img: vector,
+    count: "50",
+    description: "Partner universities and colleges",
+  },
+  {
+    title: "Visa Success",
+    img: visa,
+    count: "1000",
+    description: "Successful visa applications",
+  },
 ];
 
 const Homepage = () => {
   var settings = {
     dots: true,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 3000,
     arrows: true,
-    infinite: false,
+    infinite: true,
     nextArrow: <BiChevronRight />,
     prevArrow: <BiChevronLeft />,
     pauseOnHover: true,
@@ -133,14 +151,16 @@ const Homepage = () => {
           ))}
         </div>
       </div>
-      <section id="homepage2" className="h-max">
-        <div className="container mx-auto text-center py-12 md:py-24">
-          <div className="row ">
-            <p className="section-heading md:w-[80%] mx-auto">
-              One of the leading educational consultancy in Nepal guiding
-              students to meet their dreams
-            </p>
-            <p className="section-subHeading text-black">
+      <section
+        id="homepage2"
+        className="py-24 bg-gradient-to-b from-white to-lightBlue"
+      >
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-second mb-6">
+              One of the leading educational consultancy in Nepal
+            </h2>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Proper abroad study guidance provided for academic growth. The
               best test preparation classes in the whole town. Definite
               information about highly renowned colleges/universities throughout
@@ -149,64 +169,89 @@ const Homepage = () => {
               information all the time. Located at heart of main cities of the
               country.
             </p>
-            <div className="grid grid-cols-3 md:gap-16 py-10  rounded-md md:px-16 my-16">
-              {options2?.map((arg) => (
-                <div className="col-span-1" key={arg?.title}>
-                  <div className="card flex flex-col items-center justify-center text-center">
-                    <img src={arg?.img} alt="" />
-                    <h1 className="md:text-6xl text-4xl font-bold text-[#585655] my-6">
-                      {arg?.count}
-                      <sup>+</sup>
-                    </h1>
-                    <p className="md:text-2xl text-xl text-[#585655] font-semibold">
-                      {arg?.title}
-                    </p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {options2?.map((item, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="bg-second/10 p-4 rounded-full mb-6">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-16 h-16 object-contain"
+                    />
                   </div>
+                  <h3 className="text-5xl font-bold text-second mb-2">
+                    {item.count}
+                    {item.title !== "Awards" && (
+                      <span className="text-3xl">+</span>
+                    )}
+                  </h3>
+                  <h4 className="text-xl font-semibold text-gray-800 mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-600 text-sm">{item.description}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
       <Cities />
 
-      <section id="services" className="h-max-content bg-lightBlue">
-        <div className="container mx-auto my-auto h-full  py-12 md:py-24">
-          <div className="row items-center  h-full my-auto">
-            <p className="section-heading">Our Services</p>
-            <p className="section-subHeading pb-20">
+      <section
+        id="services"
+        className="py-24 bg-gradient-to-b from-lightBlue to-white"
+      >
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-second mb-4">
+              Our Services
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               {services?.serviceMotto ||
                 "Provide awesome customer service with our experienced teachers"}
             </p>
-            <Slider {...settings}>
-              {services?.services?.map((item, i) => (
-                <div className="w-content" key={i * 123}>
-                  <div className="mx-auto relative text-left">
+          </div>
+
+          <Slider {...settings}>
+            {services?.services?.map((item, i) => (
+              <div className="px-4" key={i * 123}>
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-[550px] flex flex-col my-4">
+                  <div className="relative overflow-hidden rounded-t-2xl h-[300px]">
                     <img
                       src={item?.image || noImage}
-                      alt=""
-                      className="rounded h-[300px] object-scale-down"
+                      alt={item?.serviceName}
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
                     />
-                    <p className="text-xl  text-black leading-tight capitalize font-bold tracking-wide py-6">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-2xl font-bold text-second mb-4 capitalize line-clamp-1">
                       {item?.serviceName}
-                    </p>
-                    <p className="pb-4 text-lg text">
-                      {item?.descripttion?.slice(0, 200)}{" "}
+                    </h3>
+                    <p className="text-gray-600 mb-6 line-clamp-3 flex-grow">
+                      {item?.descripttion?.slice(0, 200)}
                       {item?.descripttion?.length > 200 && "..."}
                     </p>
                     <NavLink
                       to={`/services/${item?.id}`}
                       state={{ data: item }}
-                      className="flex text-blue items-center text-xl cursor-pointer"
+                      className="inline-flex items-center text-second font-semibold hover:text-primary transition-colors duration-300 group mt-auto"
                     >
-                      <span className="">More</span>
-                      <BiChevronRight className="text-xl cursor-pointer" />
+                      <span>Learn More</span>
+                      <BiChevronRight className="text-2xl transform group-hover:translate-x-1 transition-transform duration-300" />
                     </NavLink>
                   </div>
                 </div>
-              ))}
-            </Slider>
-          </div>
+              </div>
+            ))}
+          </Slider>
         </div>
       </section>
 

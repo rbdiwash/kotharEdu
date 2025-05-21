@@ -1,7 +1,8 @@
 import React from "react";
 import { BiChevronRight } from "react-icons/bi";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/new_logo.png";
 import document from "../assets/images/pier.jpg";
+import award from "../assets/images/award.png";
 import Anand from "../assets/images/team/Anand Simkhada.JPG";
 import Muskan from "../assets/images/team/Muskan Pandey.jpeg";
 import Rudra from "../assets/images/team/Rudra Acharya.JPG";
@@ -64,6 +65,27 @@ const About = () => {
       title: "Transparent Communication",
       desc: "We believe in open and transparent communication, keeping you informed at every step of the process and addressing any concerns or queries promptly.",
       icon: "",
+    },
+  ];
+
+  const achievements = [
+    {
+      title: "Excellence in Education",
+      description:
+        "Recognized for outstanding contribution to international education and student success",
+      year: "2023",
+    },
+    {
+      title: "Best Consultancy Award",
+      description:
+        "Awarded for exceptional student counseling and placement services",
+      year: "2022",
+    },
+    {
+      title: "Student Success Rate",
+      description:
+        "Achieved 95% success rate in student visa applications and university placements",
+      year: "2023",
     },
   ];
 
@@ -173,6 +195,47 @@ const About = () => {
               </p>
               <img src={document} alt="document.jpg" className="mx-auto mt-8" />
             </div> */}
+          </div>
+        </div>
+      </section>
+      <section className="py-20 bg-gradient-to-b from-white to-lightBlue">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-second mb-4">
+              Our Achievements
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              We take pride in our accomplishments and the trust our students
+              place in us. Our success is measured by the achievements of our
+              students worldwide.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative">
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-primary/20 rounded-full"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-second/20 rounded-full"></div>
+              <img
+                src={award}
+                alt="Awards and Recognition"
+                className="relative z-10 w-full max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            <div className="space-y-8">
+              <h2 className="text-3xl font-bold text-second mb-4">
+                Local Business Awards 2025 Finalist
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed text-justify">
+                We are proud to announce that Kothar Educational Services has
+                been selected as a finalist in the Local Business Awards 2025.
+                This recognition highlights our commitment to excellence in
+                educational consulting and our dedication to helping students
+                achieve their academic dreams. Being chosen as a finalist is a
+                testament to our team's hard work and the trust our community
+                places in us.
+              </p>
+            </div>
           </div>
         </div>
       </section>

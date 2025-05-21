@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/new_logo.png";
 import { FaFacebook, FaInstagram, FaPhoneAlt, FaSearch } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
@@ -64,7 +64,7 @@ const Navbar = () => {
       <nav className="px-2 py-4 bg-white border-gray-200 z-[100] sticky top-0 left-0 right-0">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <NavLink to="/" className="flex items-center">
-            <img src={logo} className="mr-3 h-10 sm:h-15" alt="Flowbite Logo" />
+            <img src={logo} className="mr-3 h-14 sm:h-15" alt="Flowbite Logo" />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
           </NavLink>
 
@@ -140,6 +140,16 @@ const Navbar = () => {
                         onClick={() => handleClose()}
                       >
                         News and Updates
+                      </NavLink>{" "}
+                      <NavLink
+                        to="/explore/checklists"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="menu-item-1"
+                        onClick={() => handleClose()}
+                      >
+                        Checklists
                       </NavLink>
                     </div>
                   </div>

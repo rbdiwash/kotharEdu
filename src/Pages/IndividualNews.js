@@ -1,5 +1,5 @@
 import { format } from "date-fns/esm";
-import React from "react";
+import React, { useEffect } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 import ContactForm from "../Components/ContactForm";
@@ -8,6 +8,11 @@ import TakePartEvent from "../Components/TakePartEvent";
 const IndividualNews = () => {
   const location = useLocation();
   const { data } = location?.state;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <section

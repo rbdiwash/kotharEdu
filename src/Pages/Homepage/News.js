@@ -1,15 +1,15 @@
 import React from "react";
-
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import australia from "../../assets/images/australia.png";
 import { FiChevronRight } from "react-icons/fi";
-
 import Slider from "react-slick";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import useKothar from "../../context/useKothar";
 
 const News = () => {
+  const navigate = useNavigate();
+
   var settings = {
     dots: false,
     infinite: false,
@@ -80,6 +80,12 @@ const News = () => {
       ? `${extractedText}...`
       : extractedText;
   };
+
+  const handleNewsClick = (item) => {
+    window.scrollTo(0, 0);
+    navigate(`news/${item?.id}`, { state: { data: item } });
+  };
+
   return (
     <>
       <section id="news" className="h-max-content pb-8">
@@ -111,12 +117,13 @@ const News = () => {
                         {item?.description?.length > 200 && "..."}
                       </p>
                     )}
-                    <Link to={`news/${item?.id}`} state={{ data: item }}>
-                      <div className="flex text-blue items-center text-xl space-x-1">
-                        <h1 className="">More</h1>
-                        <FiChevronRight className="text-2xl cursor-pointer" />
-                      </div>
-                    </Link>
+                    <div
+                      onClick={() => handleNewsClick(item)}
+                      className="flex text-blue items-center text-xl space-x-1 cursor-pointer"
+                    >
+                      <span>More</span>
+                      <FiChevronRight className="text-2xl" />
+                    </div>
                   </div>
                 ))
               ) : (
@@ -130,7 +137,7 @@ const News = () => {
       </section>
       {news?.length > 0 && (
         <p className="mx-auto text-center font-semibold">
-          <Link to="/news">
+          <Link to="/news" onClick={() => window.scrollTo(0, 0)}>
             <button className="btn-alt text-center mx-auto mt-16">
               More News
             </button>

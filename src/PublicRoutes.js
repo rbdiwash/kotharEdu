@@ -34,7 +34,7 @@ import AdminServices from "./Pages/Admin/AdminServices";
 import AdminBookings from "./Pages/Admin/AdminBookings";
 import AdminEvents from "./Pages/Admin/AdminEvents";
 import ImportantLinks from "./Pages/ImportantLinks";
-
+import Checklists from "./Pages/Checklists";
 const PublicRoutes = () => {
   const location = useLocation();
   const token = localStorage.getItem("token");
@@ -103,10 +103,14 @@ const PublicRoutes = () => {
           element={<ImportantLinks />}
         ></Route>
         <Route exact path="/login" element={<Login />}></Route>
-
         <Route exact path="/explore/news" element={<News />}></Route>
         <Route exact path="/news/:id" element={<IndividualNews />}></Route>
-        <Route exact path="/explore/events" element={<Events />}></Route>
+        <Route exact path="/explore/events" element={<Events />}></Route>{" "}
+        <Route
+          exact
+          path="/explore/checklists"
+          element={<Checklists />}
+        ></Route>
         <Route exact path="/services" element={<Services />}></Route>
         <Route exact path="/services/:id" element={<Services />}></Route>
         <Route

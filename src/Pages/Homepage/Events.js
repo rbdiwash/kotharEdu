@@ -1,109 +1,128 @@
-import React, { useState, useEffect } from "react";
-import axios from "../../Utils/Axios";
-
-import {
-  BiChevronRight,
-  BiChevronLeft,
-  BiMap,
-  BiChevronsLeft,
-} from "react-icons/bi";
-import { FiClock, FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import React from "react";
+import { format } from "date-fns";
+import { FiChevronLeft, FiChevronRight, FiClock } from "react-icons/fi";
 import { TfiLocationPin } from "react-icons/tfi";
 import Slider from "react-slick";
-import { format } from "date-fns";
 import useKothar from "../../context/useKothar";
 
 const Events = () => {
-  var settings = {
+  const [{ events }] = useKothar();
+
+  const settings = {
     dots: true,
-    infinite: false,
-    speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 2000,
-    autoplaySpeed: 2000,
-    initialSlide: 0,
-    arrows: false,
-    nextArrow: <BiChevronRight />,
-    prevArrow: <BiChevronsLeft />,
+    autoplaySpeed: 3000,
+    arrows: true,
+    infinite: true,
+    // className: "slider variable-width",
+    // variableWidth: true,
+    nextArrow: (
+      <FiChevronRight className="text-4xl text-second hover:text-primary transition-colors duration-300" />
+    ),
+    prevArrow: (
+      <FiChevronLeft className="text-4xl text-second hover:text-primary transition-colors duration-300" />
+    ),
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          dots: true,
-          arrows: true,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          initialSlide: 2,
-          arrows: false,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          arrows: false,
         },
       },
     ],
   };
-  const [{ events }, {}] = useKothar();
-  return (
-    <section id="events" className="h-max-content ">
-      <div className="container mx-auto my-auto h-full  py-12 md:py-24">
-        <div className="row items-center  h-full my-auto">
-          <p className="section-heading">Events</p>
-          <div className="flex items-center justify-center text-center py-10 space-x-4">
-            <FiChevronLeft className="text-5xl text-altWhite cursor-pointer" />
-            <p className="text-2xl  text-altWhitee font-semibold text-center md:text-4xl">
-              January
-            </p>
-            <FiChevronRight className="text-5xl text-altWhite cursor-pointer" />
-          </div>
-          <Slider {...settings}>
-            {events?.length > 0 ? (
-              events?.map((item, i) => (
-                <div
-                  className="w-full bg-lightBlue px-4 py-6 rounded-md h-[320px]"
-                  key={i}
-                >
-                  <div className="flex flex-col text-left">
-                    <p className="text-4xl text-primary text-left font-bold">
-                      {format(new Date(item?.date || null), "do")}{" "}
-                      {format(new Date(item?.date || null), "MMM")}
-                    </p>
 
-                    <p className="text-2xl  text-black leading-tight font-bold tracking-wide py-6">
-                      {item?.topic}
-                    </p>
-                    <div className="text-md flex items-center text-blue space-x-3">
-                      <FiClock />
-                      <span>
-                        {item?.startTime} - {item?.endTime}
-                      </span>
+  return (
+    <section
+      id="events"
+      className="py-24 bg-gradient-to-b from-white to-lightBlue"
+    >
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-second mb-4">Events</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Join us for our upcoming events and workshops designed to help you
+            achieve your educational goals
+          </p>
+        </div>
+
+        <div className="flex items-center justify-center text-center mb-12">
+          <button className="p-2 hover:text-primary transition-colors duration-300">
+            <FiChevronLeft className="text-4xl text-second" />
+          </button>
+          <h3 className="text-3xl font-bold text-second mx-6">
+            {format(new Date(), "MMMM yyyy")}
+          </h3>
+          <button className="p-2 hover:text-primary transition-colors duration-300">
+            <FiChevronRight className="text-4xl text-second" />
+          </button>
+        </div>
+
+        <Slider {...settings}>
+          {events?.length > 0 ? (
+            events?.map((item, i) => (
+              <div className="px-2 my-4 w-max" key={i}>
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-[400px] flex flex-col">
+                  <div className="p-8 flex-grow">
+                    <div className="flex items-center justify-between mb-8">
+                      <div className="bg-second/10 rounded-lg p-4">
+                        <p className="text-3xl font-bold text-second">
+                          {format(new Date(item?.date || null), "do")}
+                        </p>
+                        <p className="text-lg text-second font-semibold">
+                          {format(new Date(item?.date || null), "MMM")}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm text-gray-500">Event Time</p>
+                        <p className="text-lg font-semibold text-second">
+                          {item?.startTime} - {item?.endTime}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-md flex items-center text-blue space-x-3">
-                      <TfiLocationPin /> <span>{item?.location}</span>
-                    </p>
+
+                    <h3 className="text-2xl font-bold text-gray-800 mb-6 line-clamp-2">
+                      {item?.topic}
+                    </h3>
+
+                    <div className="space-y-4 mt-auto">
+                      <div className="flex items-center text-gray-600">
+                        <FiClock className="text-xl mr-3 text-second" />
+                        <span className="text-lg">
+                          {item?.startTime} - {item?.endTime}
+                        </span>
+                      </div>
+                      <div className="flex items-center text-gray-600">
+                        <TfiLocationPin className="text-xl mr-3 text-second" />
+                        <span className="text-lg">{item?.location}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))
-            ) : (
-              <h1 className="mt-2 text-center text-2xl">
-                Oops ! No Result !!!
-              </h1>
-            )}
-          </Slider>
-        </div>
+              </div>
+            ))
+          ) : (
+            <div className="text-center py-12">
+              <h3 className="text-2xl font-semibold text-gray-600">
+                No upcoming events at the moment
+              </h3>
+              <p className="text-gray-500 mt-2">
+                Please check back later for new events
+              </p>
+            </div>
+          )}
+        </Slider>
       </div>
     </section>
   );

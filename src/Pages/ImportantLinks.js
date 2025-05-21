@@ -1,215 +1,262 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import logo from "../assets/images/logo.png";
+import {
+  FiExternalLink,
+  FiFileText,
+  FiShield,
+  FiCreditCard,
+  FiUserCheck,
+  FiCalendar,
+  FiBookOpen,
+  FiHelpCircle,
+  FiSearch,
+} from "react-icons/fi";
 
 const ImportantLinks = () => {
-  document.title = "Kothar: Important Links";
-  return (
-    <section id="contactPage">
-      <div className="container mx-auto py-12 md:py-24">
-        <div className="row">
-          <div className="flex items-center space-x-3 mb-6">
-            <h1 className="font-semibold flex items-center">Home</h1>
-            <BiChevronRight className="text-2xl" />
-            <span className="text-primary font-semibold">Important Links</span>
-          </div>
-          <h5>
-            {" "}
-            These are the important links for various certificates. Click on the
-            title to view the link mentioned.{" "}
-          </h5>
-          <h1 className="font-bold text-2xl  my-6">Important Links</h1>
-          <li className="mb-3">
-            <a
-              href="https://afpnationalpolicechecks.converga.com.au/agreement/timeout"
-              target="_blank"
-              className="underline text font-semibold "
-            >
-              Police Check :
-            </a>{" "}
-            <a
-              href="https://afpnationalpolicechecks.converga.com.au/agreement/timeout"
-              className="text-cyan-400 underline itallic"
-              target="_blank"
-            >
-              https://afpnationalpolicechecks.converga.com.au/agreement/timeout
-            </a>
-          </li>
-          <li className="mb-3">
-            <a
-              href="https://www.service.nsw.gov.au/transaction/apply-for-a-nsw-photo-card"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              Photo ID :
-            </a>{" "}
-            Visit the service centre nearby with your 100 Points of ID.
-            (Passport + 2 more for of ID)
-          </li>
-          <li className="mb-3">
-            <a
-              href="https://www.hotdoc.com.au/"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              FLU & COVID Vaccine :
-            </a>{" "}
-            For COVID Vaccination Conversion: Please visit nearby medical centre
-            or Pharmacy. For FLU vaccine, book a nearest GP and get vaccinated
-            instantly.
-          </li>
-          {/* <h1 className="font-bold text-2xl  my-6">RPL Application</h1> */}
-          {/* <h1 className="font-bold text-    my-6">Other Useful Links</h1> */}
-          <li className="mb-3">
-            <a
-              href="https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              Tax File Number (TFN):{" "}
-            </a>{" "}
-            <a
-              href="https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn"
-              className="text-cyan-400 underline itallic"
-              target="_blank"
-            >
-              https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn
-            </a>
-          </li>
-          <li className="mb-3">
-            <a
-              href="https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check and you also need to visit the service centre with all the mentioned documents."
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              WWCC
-            </a>{" "}
-            :{" "}
-            <a
-              href="https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check"
-              className="text-cyan-400 underline itallic"
-              target="_blank"
-            >
-              https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check
-            </a>
-            : and you also need to visit the service centre with all the
-            mentioned documents.
-          </li>
-          <li className="mb-3">
-            <a
-              href=" https://www.onegov.nsw.gov.au/PublicRegister/#/publicregister/search/RTO"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              RSA/RCG :
-            </a>
-            You have to attend the training from the RTOs, Click the link below
-            to attain the training <br />
-            <a
-              href=" https://www.google.com/maps/d/u/0/viewer?
-              mid=1f1JRySQivPrK2x0SJEOYK2urLki3PaA&femb=1&ll=-33.82005135508657%2"
-              target="_blank"
-              className="text-cyan-400 underline itallic"
-            >
-              https://www.google.com/maps/d/u/0/viewer?
-              mid=1f1JRySQivPrK2x0SJEOYK2urLki3PaA&femb=1&ll=-33.82005135508657%2{" "}
-            </a>
-            <br />
-          </li>
-          <li className="mb-3">
-            <a
-              href=" https://www.onegov.nsw.gov.au/PublicRegister/#/publicregister/search/RTO"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              White Card :{" "}
-            </a>{" "}
-            <span className="no-underline pl-4">
-              You have to attend training from the RTOs, Some of the RTOs links
-              are: <br /> a.{" "}
-              <a
-                href="https://www.licences4work.com.au/"
-                className="text-cyan-400 underline itallic"
-                target="_blank"
-              >
-                https://www.licences4work.com.au/
-              </a>
-              <br /> b.{" "}
-              <a
-                href="https://australiawhitecard.com.au/"
-                className="text-cyan-400 underline itallic"
-                target="_blank"
-              >
-                {" "}
-                https://australiawhitecard.com.au/{" "}
-              </a>
-            </span>
-          </li>
+  const [searchTerm, setSearchTerm] = useState("");
+  const [hoveredCard, setHoveredCard] = useState(null);
 
-          <li className="mb-3">
-            <a
-              href="https://ndis.gov.au/applying-access-ndis/how-apply"
-              target="_blank"
-              className="underline text font-semibold"
-            >
-              Apply NDIS Online
-            </a>{" "}
-            <a
-              href="https://www.ndis.gov.au/applying-access-ndis/how-apply"
-              className="text-cyan-400 underline itallic"
-              target="_blank"
-            >
-              {" "}
-              https://www.ndis.gov.au/applying-access-ndis/how-apply{" "}
-            </a>
-          </li>
-          <li className="mb-3">
-            <a
-              href="https://ndis.gov.au/applying-access-ndis/how-apply"
-              target="_blank"
-            >
-              <span className="underline text font-semibold">
-                NSW Driving licence:
-              </span>
-              <br />
-              <p className="font-normal no-underline	">
-                Initially, if you are under 25 years of age and want to apply
-                for Australian Driving licence then, <br />
-                <br /> 1. You have to attend DKT Test,{" "}
-                <a
-                  className="text-cyan-400 underline itallic"
-                  href="https://www.service.nsw.gov.au/transaction/book-a-driver-knowledge-test-dkt"
-                >
-                  https://www.service.nsw.gov.au/transaction/book-a-driver-knowledge-test-dkt
-                </a>{" "}
-                <br /> your leaner licence will be issued after passing DKT
-                test, you have to stay in L licence for a year and only be able
-                to drive in the supervision of Australian Full Licence Holder.
-                You are required to fill up 120 hrs driving logbook during this
-                period.
-                <br />
-                <br /> 2. Hazard test:{" "}
-                <a
-                  className="text-cyan-500 underline itallic"
-                  href="https://www.service.nsw.gov.au/transaction/book-a-hazard-perception-test-hpt"
-                >
-                  https://www.service.nsw.gov.au/transaction/book-a-hazard-perception-test-hpt
-                </a>{" "}
-                <br />
-                You must held your learner driver licence for at least 10 months
-                to actually able to Book HPT Test <br />
-                <br />
-                3. Driver or Rider Licence test: After completing DKT and HPT,
-                you can actually book for Driving test{" "}
-                <a
-                  className="text-cyan-400 underline itallic"
-                  href="https://www.service.nsw.gov.au/transaction/book-a-driver-or-rider-licence-test"
-                >
-                  https://www.service.nsw.gov.au/transaction/book-a-driver-or-rider-licence-test
-                </a>
-              </p>
-            </a>
-          </li>
+  const links = [
+    {
+      icon: <FiFileText className="text-3xl" />,
+      title: "Police Check",
+      description: "Apply for National Police Certificate",
+      url: "https://afpnationalpolicechecks.converga.com.au/agreement/timeout",
+      category: "Documentation",
+      color: "from-blue-500 to-blue-600",
+    },
+    {
+      icon: <FiCreditCard className="text-3xl" />,
+      title: "Photo ID",
+      description: "Apply for NSW Photo Card",
+      url: "https://www.service.nsw.gov.au/transaction/apply-for-a-nsw-photo-card",
+      category: "Documentation",
+      note: "Visit with 100 Points of ID (Passport + 2 more forms)",
+      color: "from-purple-500 to-purple-600",
+    },
+    {
+      icon: <FiUserCheck className="text-3xl" />,
+      title: "Tax File Number (TFN)",
+      description: "Apply for a Tax File Number",
+      url: "https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn",
+      category: "Documentation",
+      color: "from-green-500 to-green-600",
+    },
+    {
+      icon: <FiCalendar className="text-3xl" />,
+      title: "FLU & COVID Vaccine",
+      description: "Book your vaccinations",
+      url: "https://www.hotdoc.com.au/",
+      category: "Health",
+      note: "Visit medical centre or Pharmacy for COVID, GP for FLU",
+      color: "from-red-500 to-red-600",
+    },
+    {
+      icon: <FiShield className="text-3xl" />,
+      title: "Working With Children Check",
+      description: "Apply for WWCC",
+      url: "https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check",
+      category: "Safety",
+      note: "Visit service centre with required documents",
+      color: "from-yellow-500 to-yellow-600",
+    },
+    {
+      icon: <FiBookOpen className="text-3xl" />,
+      title: "RSA/RCG",
+      description: "Responsible Service of Alcohol and Gambling",
+      url: "https://www.onegov.nsw.gov.au/PublicRegister/#/publicregister/search/RTO",
+      category: "Certifications",
+      note: "Attend training from RTOs",
+      color: "from-indigo-500 to-indigo-600",
+    },
+    {
+      icon: <FiShield className="text-3xl" />,
+      title: "White Card",
+      description: "Construction Industry Safety Training",
+      url: "https://www.onegov.nsw.gov.au/PublicRegister/#/publicregister/search/RTO",
+      category: "Certifications",
+      note: "Attend training from RTOs",
+      color: "from-pink-500 to-pink-600",
+      additionalLinks: [
+        {
+          title: "Licences4Work",
+          url: "https://www.licences4work.com.au/",
+        },
+        {
+          title: "Australia White Card",
+          url: "https://australiawhitecard.com.au/",
+        },
+      ],
+    },
+    {
+      icon: <FiCreditCard className="text-3xl" />,
+      title: "NSW Driving Licence",
+      description: "Apply for NSW Driver's Licence",
+      url: "https://www.service.nsw.gov.au/transaction/book-a-driver-knowledge-test-dkt",
+      category: "Licenses",
+      note: "DKT → Learner's → Hazard → Driver's Test",
+      color: "from-teal-500 to-teal-600",
+      additionalLinks: [
+        {
+          title: "Book DKT Test",
+          url: "https://www.service.nsw.gov.au/transaction/book-a-driver-knowledge-test-dkt",
+        },
+        {
+          title: "Book Hazard Test",
+          url: "https://www.service.nsw.gov.au/transaction/book-a-hazard-perception-test-hpt",
+        },
+        {
+          title: "Book Driving Test",
+          url: "https://www.service.nsw.gov.au/transaction/book-a-driver-or-rider-licence-test",
+        },
+      ],
+    },
+    {
+      icon: <FiHelpCircle className="text-3xl" />,
+      title: "NDIS Application",
+      description: "Apply for National Disability Insurance Scheme",
+      url: "https://ndis.gov.au/applying-access-ndis/how-apply",
+      category: "Support",
+      color: "from-orange-500 to-orange-600",
+    },
+  ];
+
+  const categories = [...new Set(links.map((link) => link.category))];
+
+  const filteredLinks = links.filter(
+    (link) =>
+      link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      link.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      link.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <section className="py-24 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-lightBlue via-blue-50 to-lightBlue opacity-90"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-second/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative">
+        <div className="flex items-center space-x-3 mb-6">
+          <h1 className="font-semibold flex items-center">Home</h1>
+          <BiChevronRight className="text-2xl" />
+          <span className="text-primary font-semibold">Important Links</span>
+        </div>
+
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-second mb-4">
+            Important Links
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+            Essential links and resources for various certificates and
+            documentation
+          </p>
+
+          <div className="max-w-xl mx-auto relative">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Search links..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-3 pl-12 rounded-lg border-2 border-gray-200 focus:border-second focus:ring-2 focus:ring-second/20 outline-none transition-all duration-300"
+              />
+              <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl" />
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto">
+          {categories.map((category, index) => {
+            const categoryLinks = filteredLinks.filter(
+              (link) => link.category === category
+            );
+            if (categoryLinks.length === 0) return null;
+
+            return (
+              <div key={index} className="mb-16">
+                <h3 className="text-2xl font-bold text-second mb-8 flex items-center">
+                  <span className="bg-second/10 px-4 py-2 rounded-lg mr-3">
+                    {category}
+                  </span>
+                  <span className="text-gray-400 text-sm">
+                    ({categoryLinks.length} items)
+                  </span>
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {categoryLinks.map((item, itemIndex) => (
+                    <div
+                      key={itemIndex}
+                      className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden group`}
+                      onMouseEnter={() => setHoveredCard(itemIndex)}
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      <div
+                        className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.color} transition-all duration-300`}
+                      ></div>
+                      <div className="p-6">
+                        <div className="flex items-center space-x-4 mb-4">
+                          <div
+                            className={`bg-gradient-to-r ${item.color} p-3 rounded-lg text-white transform transition-transform duration-300 group-hover:scale-110`}
+                          >
+                            {item.icon}
+                          </div>
+                          <h4 className="text-xl font-semibold text-gray-800">
+                            {item.title}
+                          </h4>
+                        </div>
+
+                        <p className="text-gray-600 mb-4">{item.description}</p>
+
+                        {item.note && (
+                          <p className="text-gray-500 text-sm italic mb-4 bg-gray-50 p-3 rounded-lg">
+                            Note: {item.note}
+                          </p>
+                        )}
+
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-second hover:text-primary transition-colors duration-300 mb-4 group/link"
+                        >
+                          <span className="mr-2 group-hover/link:underline">
+                            Visit Website
+                          </span>
+                          <FiExternalLink className="transform transition-transform duration-300 group-hover/link:translate-x-1" />
+                        </a>
+
+                        {item.additionalLinks && (
+                          <div className="mt-4 pt-4 border-t border-gray-200">
+                            <h5 className="text-sm font-semibold text-gray-700 mb-2">
+                              Additional Resources:
+                            </h5>
+                            <div className="space-y-2">
+                              {item.additionalLinks.map((link, linkIndex) => (
+                                <a
+                                  key={linkIndex}
+                                  href={link.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="block text-second hover:text-primary transition-colors duration-300 hover:translate-x-1 transform"
+                                >
+                                  {link.title}
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

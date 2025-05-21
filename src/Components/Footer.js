@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/new_logo.png";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FiMail } from "react-icons/fi";
@@ -85,7 +85,7 @@ const Footer = () => {
                 px-3
                 py-3
                 text-base
-                font-normal
+                font-normal 
                 text-black
                 bg-altWhite bg-clip-padding
                 rounded

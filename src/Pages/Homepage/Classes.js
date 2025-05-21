@@ -1,47 +1,95 @@
 import React from "react";
+import { FiBook, FiUsers, FiAward } from "react-icons/fi";
 
 const Classes = () => {
+  const classes = [
+    {
+      title: "PTE",
+      description: "Pearson Test of English",
+      icon: <FiBook className="text-4xl" />,
+      features: [
+        "Computer-based test",
+        "Fast results",
+        "Accepted worldwide",
+        "Flexible scheduling",
+      ],
+    },
+    {
+      title: "IELTS",
+      description: "International English Language Testing System",
+      icon: <FiUsers className="text-4xl" />,
+      features: [
+        "Academic & General Training",
+        "Recognized globally",
+        "Comprehensive assessment",
+        "Regular test dates",
+      ],
+    },
+    {
+      title: "RPL",
+      description: "Recognition of Prior Learning",
+      icon: <FiAward className="text-4xl" />,
+      features: [
+        "Skills assessment",
+        "Career advancement",
+        "Qualification recognition",
+        "Professional development",
+      ],
+    },
+  ];
+
   return (
-    <>
-      <section id="classes" className="">
-        <div className="container mx-auto my-auto h-full  py-12 md:py-24">
-          <div className="row items-center text-center  h-full my-auto">
-            <div className="md:text-6xl text-4xl font-bold text-white md:leading-loose leading-normal">
-              TEST PREPERATION <br /> CLASSES
-            </div>
-            <div className="section-subHeading text-white mb-20">
-              We have best experienced teachers who <br /> can guide you prepare
-              for entrance test.
-            </div>
-          </div>
+    <section
+      id="classes"
+      className="relative py-24 bg-gradient-to-b from-white to-lightBlue"
+    >
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-white mb-4">
+            Test Preparation Classes
+          </h2>
+          <p className="text-xl text-white max-w-3xl mx-auto">
+            We have experienced teachers who can guide you prepare for entrance
+            tests and help you achieve your academic goals
+          </p>
         </div>
-      </section>{" "}
-      <div className="container mx-auto mt-[-100px] z-50 px-4 md:px-0">
-        <div className="grid grid-cols-3 lg:gap-40 gap-10">
-          <div className="col-span-1">
-            <div className="bg-gradient-to-t from-[#648dc7] to-[#64adc7] rounded-lg flex items-center justify-center">
-              <div className="text-3xl font-bold leading-loose text-white md:p-20 p-10 tracking-widest	">
-                PTE
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {classes.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+            >
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="bg-second/10 rounded-lg p-4">{item.icon}</div>
+                  <h3 className="text-2xl font-bold text-second">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <p className="text-gray-600 mb-6">{item.description}</p>
+
+                <ul className="space-y-3">
+                  {item.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-gray-600">
+                      <span className="w-2 h-2 bg-second rounded-full mr-3"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <a href="/contact">
+                  <button className="mt-8 w-full bg-second text-white py-3 px-6 rounded-lg hover:bg-primary transition-colors duration-300">
+                    Learn More
+                  </button>
+                </a>
               </div>
             </div>
-          </div>
-          <div className="col-span-1">
-            <div className="bg-gradient-to-t from-[#648dc7] to-[#64adc7] rounded-lg flex items-center justify-center">
-              <div className="text-3xl font-bold leading-loose text-white md:p-20 p-10 tracking-widest	">
-                IELTS
-              </div>
-            </div>
-          </div>
-          <div className="col-span-1">
-            <div className="bg-gradient-to-t from-[#648dc7] to-[#64adc7] rounded-lg flex items-center justify-center">
-              <div className="text-3xl font-bold leading-loose text-white md:p-20 p-10 tracking-widest	">
-                RPL
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
