@@ -35,6 +35,7 @@ import AdminBookings from "./Pages/Admin/AdminBookings";
 import AdminEvents from "./Pages/Admin/AdminEvents";
 import ImportantLinks from "./Pages/ImportantLinks";
 import Checklists from "./Pages/Checklists";
+import ClientDetailsForm from "./Pages/ClientDetailsForm";
 const PublicRoutes = () => {
   const location = useLocation();
   const token = localStorage.getItem("token");
@@ -110,6 +111,11 @@ const PublicRoutes = () => {
           exact
           path="/explore/checklists"
           element={<Checklists />}
+        ></Route>{" "}
+        <Route
+          exact
+          path="/explore/client-details-form"
+          element={<ClientDetailsForm />}
         ></Route>
         <Route exact path="/services" element={<Services />}></Route>
         <Route exact path="/services/:id" element={<Services />}></Route>

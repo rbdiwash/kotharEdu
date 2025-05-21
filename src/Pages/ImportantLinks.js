@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
+import { FaFile } from "react-icons/fa";
 import {
   FiExternalLink,
   FiFileText,
@@ -18,11 +19,10 @@ const ImportantLinks = () => {
 
   const links = [
     {
-      icon: <FiFileText className="text-3xl" />,
+      icon: <FaFile className="text-3xl" />,
       title: "Police Check",
       description: "Apply for National Police Certificate",
       url: "https://afpnationalpolicechecks.converga.com.au/agreement/timeout",
-      category: "Documentation",
       color: "from-blue-500 to-blue-600",
     },
     {
@@ -30,7 +30,6 @@ const ImportantLinks = () => {
       title: "Photo ID",
       description: "Apply for NSW Photo Card",
       url: "https://www.service.nsw.gov.au/transaction/apply-for-a-nsw-photo-card",
-      category: "Documentation",
       note: "Visit with 100 Points of ID (Passport + 2 more forms)",
       color: "from-purple-500 to-purple-600",
     },
@@ -39,7 +38,6 @@ const ImportantLinks = () => {
       title: "Tax File Number (TFN)",
       description: "Apply for a Tax File Number",
       url: "https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn",
-      category: "Documentation",
       color: "from-green-500 to-green-600",
     },
     {
@@ -47,7 +45,6 @@ const ImportantLinks = () => {
       title: "FLU & COVID Vaccine",
       description: "Book your vaccinations",
       url: "https://www.hotdoc.com.au/",
-      category: "Health",
       note: "Visit medical centre or Pharmacy for COVID, GP for FLU",
       color: "from-red-500 to-red-600",
     },
@@ -56,7 +53,6 @@ const ImportantLinks = () => {
       title: "Working With Children Check",
       description: "Apply for WWCC",
       url: "https://www.service.nsw.gov.au/transaction/apply-for-a-working-with-children-check",
-      category: "Safety",
       note: "Visit service centre with required documents",
       color: "from-yellow-500 to-yellow-600",
     },
@@ -65,7 +61,6 @@ const ImportantLinks = () => {
       title: "RSA/RCG",
       description: "Responsible Service of Alcohol and Gambling",
       url: "https://www.onegov.nsw.gov.au/PublicRegister/#/publicregister/search/RTO",
-      category: "Certifications",
       note: "Attend training from RTOs",
       color: "from-indigo-500 to-indigo-600",
     },
@@ -74,7 +69,6 @@ const ImportantLinks = () => {
       title: "White Card",
       description: "Construction Industry Safety Training",
       url: "https://www.onegov.nsw.gov.au/PublicRegister/#/publicregister/search/RTO",
-      category: "Certifications",
       note: "Attend training from RTOs",
       color: "from-pink-500 to-pink-600",
       additionalLinks: [
@@ -93,7 +87,6 @@ const ImportantLinks = () => {
       title: "NSW Driving Licence",
       description: "Apply for NSW Driver's Licence",
       url: "https://www.service.nsw.gov.au/transaction/book-a-driver-knowledge-test-dkt",
-      category: "Licenses",
       note: "DKT → Learner's → Hazard → Driver's Test",
       color: "from-teal-500 to-teal-600",
       additionalLinks: [
@@ -116,18 +109,14 @@ const ImportantLinks = () => {
       title: "NDIS Application",
       description: "Apply for National Disability Insurance Scheme",
       url: "https://ndis.gov.au/applying-access-ndis/how-apply",
-      category: "Support",
       color: "from-orange-500 to-orange-600",
     },
   ];
 
-  const categories = [...new Set(links.map((link) => link.category))];
-
   const filteredLinks = links.filter(
     (link) =>
       link.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      link.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      link.category.toLowerCase().includes(searchTerm.toLowerCase())
+      link.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -170,93 +159,86 @@ const ImportantLinks = () => {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto">
-          {categories.map((category, index) => {
-            const categoryLinks = filteredLinks.filter(
-              (link) => link.category === category
-            );
-            if (categoryLinks.length === 0) return null;
-
-            return (
-              <div key={index} className="mb-16">
-                <h3 className="text-2xl font-bold text-second mb-8 flex items-center">
-                  <span className="bg-second/10 px-4 py-2 rounded-lg mr-3">
-                    {category}
-                  </span>
-                  <span className="text-gray-400 text-sm">
-                    ({categoryLinks.length} items)
-                  </span>
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {categoryLinks.map((item, itemIndex) => (
-                    <div
-                      key={itemIndex}
-                      className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden group`}
-                      onMouseEnter={() => setHoveredCard(itemIndex)}
-                      onMouseLeave={() => setHoveredCard(null)}
-                    >
-                      <div
-                        className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.color} transition-all duration-300`}
-                      ></div>
-                      <div className="p-6">
-                        <div className="flex items-center space-x-4 mb-4">
-                          <div
-                            className={`bg-gradient-to-r ${item.color} p-3 rounded-lg text-white transform transition-transform duration-300 group-hover:scale-110`}
-                          >
-                            {item.icon}
-                          </div>
-                          <h4 className="text-xl font-semibold text-gray-800">
-                            {item.title}
-                          </h4>
-                        </div>
-
-                        <p className="text-gray-600 mb-4">{item.description}</p>
-
-                        {item.note && (
-                          <p className="text-gray-500 text-sm italic mb-4 bg-gray-50 p-3 rounded-lg">
-                            Note: {item.note}
-                          </p>
-                        )}
-
-                        <a
-                          href={item.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-second hover:text-primary transition-colors duration-300 mb-4 group/link"
-                        >
-                          <span className="mr-2 group-hover/link:underline">
-                            Visit Website
-                          </span>
-                          <FiExternalLink className="transform transition-transform duration-300 group-hover/link:translate-x-1" />
-                        </a>
-
-                        {item.additionalLinks && (
-                          <div className="mt-4 pt-4 border-t border-gray-200">
-                            <h5 className="text-sm font-semibold text-gray-700 mb-2">
-                              Additional Resources:
-                            </h5>
-                            <div className="space-y-2">
-                              {item.additionalLinks.map((link, linkIndex) => (
-                                <a
-                                  key={linkIndex}
-                                  href={link.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="block text-second hover:text-primary transition-colors duration-300 hover:translate-x-1 transform"
-                                >
-                                  {link.title}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {filteredLinks.map((item, itemIndex) => (
+            <div
+              key={itemIndex}
+              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden group"
+              onMouseEnter={() => setHoveredCard(itemIndex)}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <div
+                className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.color} transition-all duration-300`}
+              ></div>
+              <div className="p-6">
+                <div className="flex items-center space-x-4 mb-4">
+                  <div
+                    className={`bg-gradient-to-r ${item.color} p-3 rounded-lg text-white transform transition-transform duration-300 group-hover:scale-110`}
+                  >
+                    {item.icon}
+                  </div>
+                  <h4 className="text-xl font-semibold text-gray-800">
+                    {item.title}
+                  </h4>
                 </div>
+
+                <p className="text-gray-600 mb-4">{item.description}</p>
+
+                {item.isForm ? (
+                  <div className="relative w-full overflow-hidden rounded-lg h-[400px]">
+                    <iframe
+                      src={item.url}
+                      className="w-full h-full border-0"
+                      title={item.title}
+                    >
+                      Loading…
+                    </iframe>
+                  </div>
+                ) : (
+                  <>
+                    {item.note && (
+                      <p className="text-gray-500 text-sm italic mb-4 bg-gray-50 p-3 rounded-lg">
+                        Note: {item.note}
+                      </p>
+                    )}
+
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-second hover:text-primary transition-colors duration-300 mb-4 group/link"
+                    >
+                      <span className="mr-2 group-hover/link:underline">
+                        Visit Website
+                      </span>
+                      <FiExternalLink className="transform transition-transform duration-300 group-hover/link:translate-x-1" />
+                    </a>
+
+                    {item.additionalLinks && (
+                      <div className="mt-4 pt-4 border-t border-gray-200">
+                        <h5 className="text-sm font-semibold text-gray-700 mb-2">
+                          Additional Resources:
+                        </h5>
+                        <div className="space-y-2">
+                          {item.additionalLinks.map((link, linkIndex) => (
+                            <a
+                              key={linkIndex}
+                              href={link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block text-second hover:text-primary transition-colors duration-300 hover:translate-x-1 transform"
+                            >
+                              {link.title}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </section>

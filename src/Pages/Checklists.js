@@ -7,8 +7,17 @@ import {
   FiCopy,
   FiEye,
 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import studentVisaOffShore from "../assets/pdfs/Checklist For Student Visa.pdf";
 import GTEQuestionnaire from "../assets/pdfs/Student Visa GTE Question.pdf";
+import TRVisaChecklist from "../assets/pdfs/TR Visa Form & Check List.pdf";
+import TouristVisaCheckList from "../assets/pdfs/Checklist For Tourist Visa.pdf";
+import sponsorVisaCheckList from "../assets/pdfs/Check List_Kothar.pdf";
+import skillAssessmentCheckList from "../assets/pdfs/Document checklist for VETASSESS skills assessment.pdf";
+import Form956 from "../assets/pdfs/Form 956.pdf";
+import Form1022 from "../assets/pdfs/1022 Form_unlocked.pdf";
+import Form80 from "../assets/pdfs/Form 80_unlocked.pdf";
+import AffidavitOfSupport from "../assets/pdfs/AFFIDAVIT OF SUPPORT_Form.pdf";
 
 const Checklists = () => {
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -34,6 +43,19 @@ const Checklists = () => {
 
   const checklists = [
     {
+      category: "Client Details Checklist",
+      items: [
+        {
+          title: "Client Details Form Kothar",
+          description:
+            "Please Fill out this form to help us understand your requirements better. This information will help us provide you with the most relevant guidance and support for your study journey in Australia.",
+          pdfUrl: "/pdfs/Client Details Form Kothar.pdf",
+          type: "form",
+          url: "/explore/client-details-form",
+        },
+      ],
+    },
+    {
       category: "Student Visa",
       items: [
         {
@@ -53,11 +75,11 @@ const Checklists = () => {
           description: "GTE Questionnaire for student visa application",
           pdfUrl: GTEQuestionnaire,
         },
-        {
-          title: "SOP Sample",
-          description: "SOP Sample for student visa application",
-          pdfUrl: "/pdfs/sop-sample.pdf",
-        },
+        // {
+        //   title: "SOP Sample",
+        //   description: "SOP Sample for student visa application",
+        //   pdfUrl: "/pdfs/sop-sample.pdf",
+        // },
       ],
     },
     {
@@ -66,64 +88,66 @@ const Checklists = () => {
         {
           title: "TR Visa Application Checklist",
           description: "Essential items and tasks for TR Visa application",
-          pdfUrl: "/pdfs/pre-departure.pdf",
+          pdfUrl: TRVisaChecklist,
         },
         {
           title: "Police Check",
           description: "Police Check for TR Visa application",
           pdfUrl:
             "https://afpnationalpolicechecks.converga.com.au/agreement/timeout",
+          url: "https://afpnationalpolicechecks.converga.com.au/agreement/timeout",
+          type: "form",
         },
       ],
     },
-    {
-      category: "Permanent Resident Visa Application",
-      items: [
-        {
-          title: "190 Visa Application Checklist",
-          description: "Essential items and tasks for 190 Visa application",
-          pdfUrl: "/pdfs/190-visa-checklist.pdf",
-        },
-        {
-          title: "189 Visa Application Checklist",
-          description: "Essential items and tasks for 189 Visa application",
-          pdfUrl: "/pdfs/189-visa-checklist.pdf",
-        },
-        {
-          title: "186 Visa Application Checklist",
-          description: "Essential items and tasks for 186 Visa application",
-          pdfUrl: "/pdfs/186-visa-checklist.pdf",
-        },
-        {
-          title: "491 Visa Application Checklist",
-          description: "Essential items and tasks for 491 Visa application",
-          pdfUrl: "/pdfs/491-visa-checklist.pdf",
-        },
-      ],
-    },
+    // {
+    //   category: "Permanent Resident Visa Application",
+    //   items: [
+    //     {
+    //       title: "190 Visa Application Checklist",
+    //       description: "Essential items and tasks for 190 Visa application",
+    //       pdfUrl: "/pdfs/190-visa-checklist.pdf",
+    //     },
+    //     {
+    //       title: "189 Visa Application Checklist",
+    //       description: "Essential items and tasks for 189 Visa application",
+    //       pdfUrl: "/pdfs/189-visa-checklist.pdf",
+    //     },
+    //     {
+    //       title: "186 Visa Application Checklist",
+    //       description: "Essential items and tasks for 186 Visa application",
+    //       pdfUrl: "/pdfs/186-visa-checklist.pdf",
+    //     },
+    //     {
+    //       title: "491 Visa Application Checklist",
+    //       description: "Essential items and tasks for 491 Visa application",
+    //       pdfUrl: "/pdfs/491-visa-checklist.pdf",
+    //     },
+    //   ],
+    // },
     {
       category: "Other Visas",
       items: [
         {
           title: "Tourist Visa(600) Application Checklist",
           description: "Essential items and tasks for tourist visa application",
-          pdfUrl: "/pdfs/tourist-visa-checklist.pdf",
+          pdfUrl: TouristVisaCheckList,
         },
-        {
-          title: "Student Subsequent Visa(500) Checklist",
-          description: "Essential items and tasks for student visa application",
-          pdfUrl: "/pdfs/student-subsequent-visa-checklist.pdf",
-        },
+        // {
+        //   title: "Student Subsequent Visa(500) Checklist",
+        //   description: "Essential items and tasks for student visa application",
+        //   pdfUrl: "/pdfs/student-subsequent-visa-checklist.pdf",
+        // },
         {
           title: "Sponsor Visa(482) Checklist",
           description: "Essential items and tasks for sponsor visa application",
-          pdfUrl: "/pdfs/sponsor-visa-checklist.pdf",
+          pdfUrl: sponsorVisaCheckList,
         },
-        {
-          title: "Partner Visa(820) Checklist",
-          description: "Essential items and tasks for partner visa application",
-          pdfUrl: "/pdfs/partner-visa-checklist.pdf",
-        },
+        // {
+        //   title: "Partner Visa(820) Checklist",
+        //   description: "Essential items and tasks for partner visa application",
+        //   pdfUrl: "/pdfs/partner-visa-checklist.pdf",
+        // },
       ],
     },
     {
@@ -132,42 +156,47 @@ const Checklists = () => {
         {
           title: "Skills Assessment Checklist",
           description: "Step-by-step guide for university applications",
-          pdfUrl: "/pdfs/university-application.pdf",
-        },
-        {
-          title: "Course Selection Guide",
-          description: "Guide to help you choose the right course",
-          pdfUrl: "/pdfs/course-selection.pdf",
+          pdfUrl: skillAssessmentCheckList,
         },
       ],
     },
-    {
-      category: "RPL Application",
-      items: [
-        {
-          title: "RPL Application Checklist",
-          description: "Essential items and tasks before leaving for Australia",
-          pdfUrl: "/pdfs/pre-departure.pdf",
-        },
-        {
-          title: "Accommodation Guide",
-          description: "Guide to finding and securing accommodation",
-          pdfUrl: "/pdfs/accommodation-guide.pdf",
-        },
-      ],
-    },
+    // {
+    //   category: "RPL Application",
+    //   items: [
+    //     {
+    //       title: "RPL Application Checklist",
+    //       description: "Essential items and tasks before leaving for Australia",
+    //       pdfUrl: "/pdfs/pre-departure.pdf",
+    //     },
+    //     {
+    //       title: "Accommodation Guide",
+    //       description: "Guide to finding and securing accommodation",
+    //       pdfUrl: "/pdfs/accommodation-guide.pdf",
+    //     },
+    //   ],
+    // },
     {
       category: "Immigration Forms",
       items: [
         {
-          title: "Immigration Forms Checklist",
-          description: "Essential items and tasks before leaving for Australia",
-          pdfUrl: "/pdfs/pre-departure.pdf",
+          title: "956 Form",
+          description: "956 Form",
+          pdfUrl: Form956,
         },
         {
-          title: "Accommodation Guide",
-          description: "Guide to finding and securing accommodation",
-          pdfUrl: "/pdfs/accommodation-guide.pdf",
+          title: "1022 Form",
+          description: "1022 Form",
+          pdfUrl: Form1022,
+        },
+        {
+          title: "80 Form",
+          description: "80 Form",
+          pdfUrl: Form80,
+        },
+        {
+          title: "AFFIDAVIT of Support",
+          description: "AFFIDAVIT of Support",
+          pdfUrl: AffidavitOfSupport,
         },
       ],
     },
@@ -293,33 +322,47 @@ const Checklists = () => {
                         </h4>
                         <p className="text-gray-600">{item.description}</p>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => handleViewPDF(item.pdfUrl)}
-                          className="flex items-center space-x-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors duration-300"
-                          title="View PDF"
-                        >
-                          <FiEye />
-                          <span className="hidden sm:inline">View</span>
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleShareItem(item.pdfUrl, item.title)
-                          }
-                          className="flex items-center space-x-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors duration-300"
-                          title="Share PDF Link"
-                        >
-                          <FiShare2 />
-                          <span className="hidden sm:inline">Share</span>
-                        </button>
-                        <button
-                          onClick={() => handleDownload(item.pdfUrl)}
-                          className="flex items-center space-x-2 bg-second text-white px-4 py-2 rounded-lg hover:bg-primary transition-colors duration-300"
-                        >
-                          <FiDownload />
-                          <span className="hidden sm:inline">Download</span>
-                        </button>
-                      </div>
+
+                      {item?.type === "form" ? (
+                        <div className="flex items-center space-x-2">
+                          <Link
+                            to={item.url}
+                            target="_blank"
+                            className="flex items-center space-x-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors duration-300"
+                          >
+                            <FiEye />
+                            <span className="hidden sm:inline">View</span>
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() => handleViewPDF(item.pdfUrl)}
+                            className="flex items-center space-x-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors duration-300"
+                            title="View PDF"
+                          >
+                            <FiEye />
+                            <span className="hidden sm:inline">View</span>
+                          </button>
+                          <button
+                            onClick={() =>
+                              handleShareItem(item.pdfUrl, item.title)
+                            }
+                            className="flex items-center space-x-2 bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors duration-300"
+                            title="Share PDF Link"
+                          >
+                            <FiShare2 />
+                            <span className="hidden sm:inline">Share</span>
+                          </button>
+                          <button
+                            onClick={() => handleDownload(item.pdfUrl)}
+                            className="flex items-center space-x-2 bg-second text-white px-4 py-2 rounded-lg hover:bg-primary transition-colors duration-300"
+                          >
+                            <FiDownload />
+                            <span className="hidden sm:inline">Download</span>
+                          </button>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>

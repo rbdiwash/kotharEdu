@@ -151,6 +151,16 @@ const Navbar = () => {
                       >
                         Checklists
                       </NavLink>
+                      <NavLink
+                        to="/explore/client-details-form"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2"
+                        role="menuitem"
+                        tabIndex="-1"
+                        id="menu-item-1"
+                        onClick={() => handleClose()}
+                      >
+                        Client Details Form
+                      </NavLink>
                     </div>
                   </div>
                 )}
