@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import logo from "../assets/images/new_logo.png";
 import { FaFacebook, FaInstagram, FaPhoneAlt, FaSearch } from "react-icons/fa";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiChevronDown } from "react-icons/fi";
 import { NavLink, useLocation } from "react-router-dom";
 import useKothar from "../context/useKothar";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -96,9 +96,7 @@ const Navbar = () => {
               <li className="relative">
                 <button
                   type="button"
-                  className="block py-2 pr-4 pl-3 font-semibold  rounded
-                  hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0"
+                  className="block py-2 pr-4 pl-3 font-semibold rounded hover:text-blue md:border-0 md:hover:text-blue-700 md:p-0 flex items-center gap-1"
                   onClick={() => {
                     setExplore(!explore);
                     setStates(false);
@@ -111,6 +109,11 @@ const Navbar = () => {
                   }
                 >
                   Explore
+                  <FiChevronDown
+                    className={`transform transition-transform duration-200 ${
+                      explore ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 {explore && (
                   <div
@@ -168,9 +171,7 @@ const Navbar = () => {
               <li className="relative">
                 <button
                   type="button"
-                  className="block py-2 pr-4 pl-3 font-semibold  rounded
-                  hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0"
+                  className="block py-2 pr-4 pl-3 font-semibold rounded hover:text-blue md:border-0 md:hover:text-blue-700 md:p-0 flex items-center gap-1"
                   onClick={() => {
                     setStates(!states);
                     setExplore(false);
@@ -183,6 +184,11 @@ const Navbar = () => {
                   }
                 >
                   Destinations
+                  <FiChevronDown
+                    className={`transform transition-transform duration-200 ${
+                      states ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 {states && (
                   <div
@@ -212,9 +218,7 @@ const Navbar = () => {
               <li className="relative">
                 <button
                   type="button"
-                  className="block py-2 pr-4 pl-3 font-semibold  rounded
-                  hover:text-blue  md:border-0
-                  md:hover:text-blue-700 md:p-0"
+                  className="block py-2 pr-4 pl-3 font-semibold rounded hover:text-blue md:border-0 md:hover:text-blue-700 md:p-0 flex items-center gap-1"
                   onClick={() => {
                     setIsService(!isService);
                     setExplore(false);
@@ -227,6 +231,11 @@ const Navbar = () => {
                   }
                 >
                   Our Services
+                  <FiChevronDown
+                    className={`transform transition-transform duration-200 ${
+                      isService ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 {isService && (
                   <div

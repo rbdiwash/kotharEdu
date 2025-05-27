@@ -1,14 +1,16 @@
 import { format } from "date-fns/esm";
 import React, { useEffect } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import ContactForm from "../Components/ContactForm";
 import TakePartEvent from "../Components/TakePartEvent";
+import useKothar from "../context/useKothar";
 
 const IndividualNews = () => {
-  const location = useLocation();
-  const { data } = location?.state;
+  const { id } = useParams();
+  const [{ news }] = useKothar();
 
+  const newsData = news?.find((item) => item?.id === id);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -18,7 +20,7 @@ const IndividualNews = () => {
       <section
         id="bookCover"
         style={{
-          backgroundImage: `url(${data?.image})`,
+          backgroundImage: `url(${newsData?.image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -44,10 +46,10 @@ const IndividualNews = () => {
           </div>
 
           <p className="text-2xl text-white md:mt-12 mt-4 leading-9 tracking-wide uppercase font-semibold">
-            {format(new Date(data?.date || null), "PPPP")}
+            {format(new Date(newsData?.date || null), "PPPP")}
           </p>
           <p className="text-4xl font-bold text-white mt-2 leading-9 tracking-wide drop-shadow-lg">
-            {data?.topic}
+            {newsData?.topic}
           </p>
         </div>
       </section>
@@ -56,7 +58,7 @@ const IndividualNews = () => {
           <div className="grid grid-cols-6 md:gap-x-12 gap-x-0 gap-y-4">
             <div className="md:col-span-2 col-span-6">
               <img
-                src={data?.image}
+                src={newsData?.image}
                 className="rounded-lg shadow-lg object-cover"
               />
             </div>
@@ -64,7 +66,7 @@ const IndividualNews = () => {
             <div className="md:col-span-4 col-span-6 ">
               <div
                 className="font-xl"
-                dangerouslySetInnerHTML={{ __html: data?.description }}
+                dangerouslySetInnerHTML={{ __html: newsData?.description }}
               />
 
               {/* <p className="text-black font-medium text-justify">

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import { FaFile } from "react-icons/fa";
+import { FaFile, FaFileAlt } from "react-icons/fa";
 import {
   FiExternalLink,
   FiFileText,
@@ -23,7 +23,7 @@ const ImportantLinks = () => {
       title: "Police Check",
       description: "Apply for National Police Certificate",
       url: "https://afpnationalpolicechecks.converga.com.au/agreement/timeout",
-      color: "from-blue-500 to-blue-600",
+      color: "from-purple-500 to-purple-600",
     },
     {
       icon: <FiCreditCard className="text-3xl" />,
@@ -164,8 +164,6 @@ const ImportantLinks = () => {
             <div
               key={itemIndex}
               className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden group"
-              onMouseEnter={() => setHoveredCard(itemIndex)}
-              onMouseLeave={() => setHoveredCard(null)}
             >
               <div
                 className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${item.color} transition-all duration-300`}

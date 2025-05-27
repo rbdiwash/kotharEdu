@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import PublicRoutes from "./PublicRoutes";
 import KotharProvider from "./context/provider";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <ToastContainer />
       <ThemeProvider>
         <Router>
+          <ScrollToTop />
           <PublicRoutes />
         </Router>
       </ThemeProvider>
