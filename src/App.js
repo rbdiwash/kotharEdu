@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
 
 import "./App.css";
@@ -12,6 +12,9 @@ import "slick-carousel/slick/slick.css";
 import PublicRoutes from "./PublicRoutes";
 import KotharProvider from "./context/provider";
 import ScrollToTop from "./Components/ScrollToTop";
+import FloatingButton from "./Components/FloatingButton";
+import PRCalculator from "./Pages/PRCalculator";
+import TaxCalculator from "./Pages/TaxCalculator";
 
 const App = () => {
   return (
@@ -20,6 +23,7 @@ const App = () => {
       <ThemeProvider>
         <Router>
           <ScrollToTop />
+          <FloatingButton />
           <PublicRoutes />
         </Router>
       </ThemeProvider>

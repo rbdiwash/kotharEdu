@@ -1,8 +1,7 @@
 import { format } from "date-fns/esm";
 import React, { useEffect } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import { useLocation, useParams } from "react-router-dom";
-import ContactForm from "../Components/ContactForm";
+import { useParams } from "react-router-dom";
 import TakePartEvent from "../Components/TakePartEvent";
 import useKothar from "../context/useKothar";
 

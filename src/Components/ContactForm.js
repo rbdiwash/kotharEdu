@@ -43,7 +43,7 @@ const ContactForm = () => {
                 Address
               </p>
               <p className="text-[#dfdfdf] mt-3">
-                Suite272A/398 Pitt Street, Central, Sydney
+                Suite272A/398 Pitt Street, Haymarket, Sydney
               </p>
             </div>
             <div className="div">

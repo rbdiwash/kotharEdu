@@ -36,6 +36,9 @@ import AdminEvents from "./Pages/Admin/AdminEvents";
 import ImportantLinks from "./Pages/ImportantLinks";
 import Checklists from "./Pages/Checklists";
 import ClientDetailsForm from "./Pages/ClientDetailsForm";
+import PRCalculator from "./Pages/PRCalculator";
+import TaxCalculator from "./Pages/TaxCalculator";
+
 const PublicRoutes = () => {
   const location = useLocation();
   const token = localStorage.getItem("token");
@@ -124,6 +127,8 @@ const PublicRoutes = () => {
           path="/states/:state"
           element={<IndividualStates />}
         ></Route>
+        <Route path="/pr-calculator" element={<PRCalculator />} />
+        <Route path="/tax-calculator" element={<TaxCalculator />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       {!location.pathname.includes("admin") && <Footer />}

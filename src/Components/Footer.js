@@ -35,7 +35,7 @@ const Footer = () => {
                 <ul className="list-none mb-0 md:pr-16">
                   <li className="py-2">
                     <a href="#!" className="text-white text-xl">
-                      Address: Suite272A/398 Pitt Street, Central, Sydney
+                      Address: Suite272A/398 Pitt Street, Haymarket, Sydney
                     </a>
                   </li>
                   <li className="py-2">
