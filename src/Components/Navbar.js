@@ -13,6 +13,45 @@ const Navbar = () => {
   const [isService, setIsService] = useState(false);
   const [{ destinations, services }, {}] = useKothar();
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [showTaxHeader, setShowTaxHeader] = useState(false);
+
+  const checkTaxBannerStatus = () => {
+    // Check if tax banner was closed and show header
+    const taxBannerClosed = localStorage.getItem("taxBannerClosed");
+    console.log("Navbar: taxBannerClosed", taxBannerClosed);
+    if (taxBannerClosed) {
+      setShowTaxHeader(true);
+    } else {
+      setShowTaxHeader(false);
+    }
+  };
+
+  useEffect(() => {
+    // Check initial status
+    checkTaxBannerStatus();
+
+    // Listen for storage changes
+    const handleStorageChange = (e) => {
+      if (e.key === "taxBannerClosed") {
+        console.log("Navbar: Storage changed, checking tax banner status");
+        checkTaxBannerStatus();
+      }
+    };
+
+    // Listen for custom event when banner is closed
+    const handleBannerClosed = () => {
+      console.log("Navbar: Banner closed event received");
+      checkTaxBannerStatus();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("taxBannerClosed", handleBannerClosed);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("taxBannerClosed", handleBannerClosed);
+    };
+  }, []);
 
   const handleClose = () => {
     setExplore(false);
@@ -28,13 +67,44 @@ const Navbar = () => {
     setIsService(false);
   };
 
+  const handleTaxHeaderClick = () => {
+    window.open("https://kothar.oneon.au/", "_blank");
+  };
+
   let activeClassName = { color: "#00A1CF" };
 
   const location = useLocation();
 
   return (
     <React.Fragment>
-      <nav className="px-2 bg-primary py-1">
+      {/* Tax Services Header - only show when banner is closed */}
+      {showTaxHeader && (
+        <nav className="px-2 bg-gradient-to-r from-primary to-primary2 py-2 z-[200]">
+          <div className="container flex flex-wrap justify-between items-center mx-auto text-white">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                <span className="text-second text-3xl font-bold">💰</span>
+              </div>
+              <div>
+                <h3 className="text-white font-bold text-xl">
+                  Tax Services Available
+                </h3>
+                <p className="text-white text-xl opacity-90">
+                  Click to explore our tax services
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={handleTaxHeaderClick}
+              className="bg-white text-primary font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition-all duration-200 text-xs"
+            >
+              Learn More
+            </button>
+          </div>
+        </nav>
+      )}
+
+      {/* <nav className="px-2 bg-primary py-1">
         <div className="container flex flex-wrap justify-between items-center mx-auto text-white">
           <div className="flex">
             <a href="tel:0480322403">
@@ -60,7 +130,7 @@ const Navbar = () => {
             <FaInstagram className="text-xl text-white" />
           </div>
         </div>
-      </nav>
+      </nav> */}
       <nav className="px-2 py-4 bg-white border-gray-200 z-[100] sticky top-0 left-0 right-0">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <NavLink to="/" className="flex items-center">

@@ -21,6 +21,37 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+/* Custom animations for floating button arrow */
+@keyframes bounce {
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 @layer base {
   .btn {
     @apply text-white  bg-primary px-6 py-2 rounded-md duration-300 cursor-pointer;

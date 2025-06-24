@@ -13,6 +13,7 @@ import PublicRoutes from "./PublicRoutes";
 import KotharProvider from "./context/provider";
 import ScrollToTop from "./Components/ScrollToTop";
 import FloatingButton from "./Components/FloatingButton";
+import TaxBanner from "./Components/TaxBanner";
 import PRCalculator from "./Pages/PRCalculator";
 import TaxCalculator from "./Pages/TaxCalculator";
 
@@ -22,6 +23,7 @@ const App = () => {
       <ToastContainer />
       <ThemeProvider>
         <Router>
+          <TaxBanner />
           <ScrollToTop />
           <FloatingButton />
           <PublicRoutes />

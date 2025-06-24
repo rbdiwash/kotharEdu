@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FaCalculator } from "react-icons/fa";
+import { FaCalculator, FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const FloatingButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
     // Show the button after a short delay
@@ -13,7 +14,16 @@ const FloatingButton = () => {
       setIsVisible(true);
     }, 1000);
 
-    return () => clearTimeout(timer);
+    // Show the arrow after button appears
+    const arrowTimer = setTimeout(() => {
+      setShowArrow(true);
+      console.log("Arrow should be visible now");
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(arrowTimer);
+    };
   }, []);
 
   const toggleDropdown = () => {
@@ -30,6 +40,30 @@ const FloatingButton = () => {
       className="fixed left-4 bottom-1/3 z-50"
     >
       <div className="relative">
+        {/* Blinking Arrow with Text */}
+        {showArrow && (
+          <div
+            className="absolute right-full mr-4 bottom-0 mb-2"
+            style={{
+              animation: "bounce 1s infinite",
+              zIndex: 60,
+            }}
+          >
+            <div className="flex items-center space-x-2 bg-white rounded-lg shadow-lg px-3 py-2 border-2 border-primary">
+              <div className="text-primary font-semibold text-sm whitespace-nowrap">
+                Tax Calculator is here
+              </div>
+              <div
+                style={{
+                  animation: "pulse 1s infinite",
+                }}
+              >
+                <FaArrowLeft className="text-primary text-lg" />
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Main Button */}
         <motion.button
           whileHover={{ scale: 1.1 }}
