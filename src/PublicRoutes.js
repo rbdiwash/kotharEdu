@@ -38,6 +38,7 @@ import Checklists from "./Pages/Checklists";
 import ClientDetailsForm from "./Pages/ClientDetailsForm";
 import PRCalculator from "./Pages/PRCalculator";
 import TaxCalculator from "./Pages/TaxCalculator";
+import TaxService from "./Pages/TaxService";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -101,6 +102,7 @@ const PublicRoutes = () => {
         <Route exact path="/about" element={<About />}></Route>
         <Route exact path="/contact" element={<Contact />}></Route>
         <Route exact path="/book" element={<Book />}></Route>
+        <Route exact path="/tax-service" element={<TaxService />}></Route>
         <Route
           exact
           path="/important-links"

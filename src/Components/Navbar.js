@@ -196,7 +196,7 @@ const Navbar = () => {
                     <div className="flex flex-col" role="none">
                       <NavLink
                         to="/explore/events"
-                        className=" block px-4 py-2 text-sm hover:bg-primary2"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2 hover:text-white"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-0"
@@ -206,7 +206,7 @@ const Navbar = () => {
                       </NavLink>
                       <NavLink
                         to="/explore/news"
-                        className=" block px-4 py-2 text-sm hover:bg-primary2"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2 hover:text-white"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-1"
@@ -216,7 +216,7 @@ const Navbar = () => {
                       </NavLink>{" "}
                       <NavLink
                         to="/explore/checklists"
-                        className=" block px-4 py-2 text-sm hover:bg-primary2"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2 hover:text-white"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-1"
@@ -226,7 +226,7 @@ const Navbar = () => {
                       </NavLink>
                       <NavLink
                         to="/explore/client-details-form"
-                        className=" block px-4 py-2 text-sm hover:bg-primary2"
+                        className=" block px-4 py-2 text-sm hover:bg-primary2 hover:text-white"
                         role="menuitem"
                         tabIndex="-1"
                         id="menu-item-1"
@@ -272,7 +272,7 @@ const Navbar = () => {
                       {destinations?.map((arg, i) => (
                         <NavLink
                           to={`/states/${arg?.destination}`}
-                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2  capitalize"
+                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
                           role="menuitem"
                           onClick={() => handleClose()}
                           key={i}
@@ -316,10 +316,21 @@ const Navbar = () => {
                     tabIndex="-1"
                   >
                     <div className="flex flex-col" role="none">
+                      <NavLink
+                        to={`/tax-service`}
+                        className="text-[#102930] px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize flex items-center gap-2 justify-between group"
+                        role="menuitem"
+                        onClick={() => handleClose()}
+                      >
+                        Tax Services
+                        <span className="bg-primary rounded-full px-2 py-1 text-xs text-white group-hover:text-white">
+                          ⚡ New
+                        </span>
+                      </NavLink>
                       {services?.services?.map((arg, i) => (
                         <NavLink
                           to={`/services/${arg?.id}`}
-                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 capitalize"
+                          className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
                           role="menuitem"
                           onClick={() => handleClose()}
                           key={i}
