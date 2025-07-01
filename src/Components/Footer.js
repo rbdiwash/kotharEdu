@@ -56,7 +56,8 @@ const Footer = () => {
                       href="#!"
                       className="text-white text-xl hover:text-primary transition-colors duration-300"
                     >
-                      Address: Suite272A/398 Pitt Street, Haymarket, Sydney
+                      Address: Suite 273, Level 2, 398/408 Pitt St, Haymarket
+                      NSW 2000
                     </a>
                   </li>
                   <li className="py-2 flex items-center gap-3 hover:text-primary transition-colors duration-300">

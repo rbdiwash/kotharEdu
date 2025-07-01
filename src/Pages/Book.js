@@ -177,12 +177,13 @@ const Book = () => {
       </section>
       <div className="map mt-12">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.430069098984!2d151.2075982!3d-33.8785761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12ae232abc157f%3A0x4d686b6d1f8211d8!2s272a%2F398%20Pitt%20St%2C%20Sydney%20NSW%202000!5e0!3m2!1sen!2sau!4v1682006494132!5m2!1sen!2sau"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.429220040901!2d151.2051230762815!3d-33.87859797322291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12af062147e355%3A0x996a2c85f8e5b884!2sPrisms%20Education%20%26%20Visa%20Services!5e0!3m2!1sen!2sau!4v1751344664477!5m2!1sen!2sau"
           width="100%"
           height="400"
-          allowFullscreen=""
+          style={{ border: "0" }}
+          allowfullscreen=""
           loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
+          referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
     </>

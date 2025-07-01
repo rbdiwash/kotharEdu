@@ -45,7 +45,7 @@ const TaxService = () => {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className={`transition-all duration-1000`}>
-              <h1 className="text-5xl md:text-7xl font-bold mb-8 ">
+              <h1 className="text-4xl md:text-7xl font-bold mb-8 ">
                 🧾 TAX RETURNS 2024/2025
               </h1>
               <div className="text-2xl md:text-3xl font-semibold mb-10 space-y-3">
@@ -69,7 +69,7 @@ const TaxService = () => {
               </p>
               <button
                 onClick={handleGetStarted}
-                className="bg-white bg-gradient-to-r from-primary  to-orange-200 text-white py-6 px-12 rounded-full text-3xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-110 shadow-2xl flex items-center gap-4 mx-auto  hover:animate-none animate-bounce font-bold"
+                className="bg-white bg-gradient-to-r from-primary  to-orange-200 text-white md:py-6 py-3 md:px-12 px-6 rounded-full md:text-3xl text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-110 shadow-2xl flex items-center gap-4 mx-auto  hover:animate-none animate-bounce font-bold"
               >
                 <FaHandSparkles className="text-2xl" />
                 Start Your Tax Return Now
@@ -90,17 +90,19 @@ const TaxService = () => {
             <h3 className="text-4xl font-bold mb-8 flex items-center gap-3 ">
               🎓 SAVE MORE WITH KOTHAR!
             </h3>
-            <p className="text-2xl mb-8">
+            <p className="md:text-2xl text-lg mb-8">
               We support our clients every step on their journey. That's why
               we're offering an exclusive discount:
             </p>
             <div className="bg-white text-orange-600 rounded-2xl p-8 text-center transform hover:scale-105 transition-all duration-300 animate-bounce">
-              <div className="text-6xl font-bold mb-4 ">
+              <div className="md:text-6xl text-4xl font-bold mb-4 ">
                 ⭐ GET 10% DISCOUNT
               </div>
               <div className="text-2xl font-semibold mb-4">use the code:</div>
               <div className="text-lg">
-                <span className="font-bold text-4xl">"KOTHAR25"</span>
+                <span className="font-bold md:text-4xl text-2xl">
+                  "KOTHAR25"
+                </span>
               </div>
             </div>
           </div>
@@ -180,7 +182,7 @@ const TaxService = () => {
 
           {/* Pricing Section */}
           <div className="bg-white rounded-3xl shadow-2xl p-12 mb-16 border border-gray-100">
-            <h3 className="text-4xl font-bold text-gray-800 mb-8 text-center ">
+            <h3 className="md:text-4xl text-2xl font-bold text-gray-800 mb-8 text-center ">
               💰 PRICING STARTS FROM JUST $55!
             </h3>
             <p className="text-2xl text-center text-gray-600 mb-2">
@@ -229,7 +231,7 @@ const TaxService = () => {
 
           {/* Why Choose Kothar */}
           <div className="bg-gradient-to-r from-second via-blue-500 to-second rounded-3xl shadow-2xl p-12 mb-16 text-white">
-            <h3 className="text-4xl font-bold mb-12 text-center ">
+            <h3 className="md:text-4xl text-2xl font-bold mb-12 text-center ">
               🛠️ WHY LODGE WITH KOTHAR?
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -310,7 +312,7 @@ const TaxService = () => {
                 />
                 <p className="font-bold text-lg mb-2">Address</p>
                 <p className="text-gray-600 text-lg">
-                  272A/398 Pitt St, Sydney NSW 2000
+                  Suite 273, Level 2, 398/408 Pitt St, Haymarket NSW 2000
                 </p>
               </div>
             </div>
@@ -320,11 +322,11 @@ const TaxService = () => {
           <div className="text-center">
             <button
               onClick={handleGetStarted}
-              className="bg-white bg-gradient-to-r from-primary  to-orange-200 text-white py-6 px-12 rounded-full text-3xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-110 shadow-2xl flex items-center gap-4 mx-auto  hover:animate-none animate-bounce font-bold"
+              className="bg-white bg-gradient-to-r from-primary  to-orange-200 text-white md:py-6 py-3 md:px-12 px-6 rounded-full md:text-3xl text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-110 shadow-2xl flex items-center gap-4 mx-auto  hover:animate-none animate-bounce font-bold"
             >
-              <FaCalculator className="text-4xl" />
+              <FaCalculator className="md:text-4xl text-2xl" />
               Start Your Tax Return Now
-              <FaArrowRight className="text-3xl" />
+              <FaArrowRight className="md:text-3xl text-2xl" />
             </button>
             <p className="text-gray-600 mt-6 text-lg">
               Redirects to our secure tax services platform
