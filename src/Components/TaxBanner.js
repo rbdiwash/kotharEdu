@@ -45,7 +45,6 @@ const TaxBanner = ({
   }, [localStorageKey]);
 
   const handleClose = () => {
-    console.log("TaxBanner: Closing banner");
     setIsClosed(true);
     // Store in localStorage so banner doesn't show again
     try {
@@ -100,10 +99,12 @@ const TaxBanner = ({
 
       {/* Banner content */}
       <div className="relative h-full flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full mx-4 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl lg:max-w-6xl mx-4 overflow-hidden">
           {/* Header with close button */}
           <div className="flex justify-between items-center p-6 border-b border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
+            <h2 className="md:text-2xl text-lg font-bold text-gray-800">
+              {title}
+            </h2>
             <button
               onClick={handleClose}
               className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-all duration-200"
@@ -118,7 +119,7 @@ const TaxBanner = ({
             {/* Large clickable image - half screen size */}
             <div className="flex justify-center w-full mb-6">
               <div
-                className="md:w-[50vw] md:h-[50vh] bg-gradient-to-br from-primary to-primary2 rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg overflow-hidden"
+                className=" md:w-[50vw] md:h-[70vh] bg-gradient-to-br from-primary to-primary2 rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg overflow-hidden"
                 onClick={handleImageClick}
               >
                 <img
@@ -133,7 +134,7 @@ const TaxBanner = ({
             <div className="w-full flex justify-center">
               <button
                 onClick={handleExploreClick}
-                className="bg-primary hover:bg-primary2 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 text-lg"
+                className="bg-primary hover:bg-primary2 text-white font-semibold py-3 md:px-8 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 text-lg"
               >
                 Explore Tax Services
               </button>
