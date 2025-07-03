@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 import "./App.css";
 
@@ -19,17 +20,19 @@ import TaxCalculator from "./Pages/TaxCalculator";
 
 const App = () => {
   return (
-    <KotharProvider>
-      <ToastContainer />
-      <ThemeProvider>
-        <Router>
-          <TaxBanner />
-          <ScrollToTop />
-          <FloatingButton />
-          <PublicRoutes />
-        </Router>
-      </ThemeProvider>
-    </KotharProvider>
+    <HelmetProvider>
+      <KotharProvider>
+        <ToastContainer />
+        <ThemeProvider>
+          <Router>
+            <TaxBanner />
+            <ScrollToTop />
+            <FloatingButton />
+            <PublicRoutes />
+          </Router>
+        </ThemeProvider>
+      </KotharProvider>
+    </HelmetProvider>
   );
 };
 
