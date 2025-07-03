@@ -326,6 +326,17 @@ const Navbar = () => {
                         <span className="bg-primary rounded-full px-2 py-1 text-xs text-white group-hover:text-white">
                           ⚡ New
                         </span>
+                      </NavLink>{" "}
+                      <NavLink
+                        to={`/starter-kit`}
+                        className="text-[#102930] px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize flex items-center gap-2 justify-between group"
+                        role="menuitem"
+                        onClick={() => handleClose()}
+                      >
+                        Starter Kit
+                        <span className="bg-primary rounded-full px-2 py-1 text-xs text-white group-hover:text-white">
+                          ⚡ New
+                        </span>
                       </NavLink>
                       {services?.services?.map((arg, i) => (
                         <NavLink

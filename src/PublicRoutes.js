@@ -39,6 +39,7 @@ import ClientDetailsForm from "./Pages/ClientDetailsForm";
 import PRCalculator from "./Pages/PRCalculator";
 import TaxCalculator from "./Pages/TaxCalculator";
 import TaxService from "./Pages/TaxService";
+import StarterKit from "./Pages/StarterKit";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -103,6 +104,7 @@ const PublicRoutes = () => {
         <Route exact path="/contact" element={<Contact />}></Route>
         <Route exact path="/book" element={<Book />}></Route>
         <Route exact path="/tax-service" element={<TaxService />}></Route>
+        <Route exact path="/starter-kit" element={<StarterKit />}></Route>
         <Route
           exact
           path="/important-links"
