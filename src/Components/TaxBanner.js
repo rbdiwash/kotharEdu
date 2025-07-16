@@ -119,13 +119,13 @@ const TaxBanner = ({
             {/* Large clickable image - half screen size */}
             <div className="flex justify-center w-full mb-6">
               <div
-                className=" md:w-[50vw] md:h-[70vh] bg-gradient-to-br from-primary to-primary2 rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg overflow-hidden"
+                className=" md:w-[50vw] md:h-full  rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 overflow-hidden"
                 onClick={handleImageClick}
               >
                 <img
                   src={imageUrl}
                   alt="Tax Services"
-                  className="md:w-full md:h-full md:object-cover rounded-2xl"
+                  className="md:w-full   rounded-2xl"
                 />
               </div>
             </div>

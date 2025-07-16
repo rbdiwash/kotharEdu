@@ -240,7 +240,8 @@ const Checklists = () => {
     const fullUrl = pdfUrl.startsWith("http")
       ? pdfUrl
       : `${window.location.origin}${pdfUrl}`;
-    navigator.clipboard.writeText(fullUrl).then(() => {
+    const encodedUrl = encodeURI(fullUrl);
+    navigator.clipboard.writeText(encodedUrl).then(() => {
       setCopiedItem(title);
       setTimeout(() => setCopiedItem(null), 2000);
     });
