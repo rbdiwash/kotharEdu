@@ -1,7 +1,14 @@
 import React from "react";
 import { format } from "date-fns";
-import { FiChevronLeft, FiChevronRight, FiClock } from "react-icons/fi";
-import { TfiLocationPin } from "react-icons/tfi";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import {
+  FiChevronLeft,
+  FiChevronRight,
+  FiClock,
+  FiCalendar,
+  FiMapPin,
+} from "react-icons/fi";
+import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import useKothar from "../../context/useKothar";
 
@@ -13,17 +20,14 @@ const Events = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     arrows: true,
     infinite: true,
-    // className: "slider variable-width",
-    // variableWidth: true,
     nextArrow: (
-      <FiChevronRight className="text-4xl text-second hover:text-primary transition-colors duration-300" />
+      <BiChevronRight className="text-2xl text-primary hover:text-second transition-colors duration-300" />
     ),
     prevArrow: (
-      <FiChevronLeft className="text-4xl text-second hover:text-primary transition-colors duration-300" />
+      <BiChevronLeft className="text-2xl text-primary hover:text-second transition-colors duration-300" />
     ),
     responsive: [
       {
@@ -31,6 +35,7 @@ const Events = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
+          dots: true,
         },
       },
       {
@@ -38,93 +43,181 @@ const Events = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: true,
         },
       },
     ],
   };
 
   return (
-    <section
-      id="events"
-      className="py-24 bg-gradient-to-b from-white to-lightBlue"
-    >
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-second rounded-full mix-blend-multiply filter blur-3xl"></div>
+        <div className="absolute -bottom-8 left-20 w-96 h-96 bg-altSecond rounded-full mix-blend-multiply filter blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header Section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-second mb-4">Events</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Join us for our upcoming events and workshops designed to help you
-            achieve your educational goals
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+            <FiCalendar className="text-primary text-xl" />
+            <span className="text-gray-600 font-medium">Upcoming Events</span>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Join Our Events
+          </h2>
+
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            Discover exciting opportunities to connect, learn, and grow with our
+            community. From workshops to seminars, find events that match your
+            interests and goals.
           </p>
         </div>
 
-        <div className="flex items-center justify-center text-center mb-12">
-          <button className="p-2 hover:text-primary transition-colors duration-300">
-            <FiChevronLeft className="text-4xl text-second" />
-          </button>
-          <h3 className="text-3xl font-bold text-second mx-6">
-            {format(new Date(), "MMMM yyyy")}
-          </h3>
-          <button className="p-2 hover:text-primary transition-colors duration-300">
-            <FiChevronRight className="text-4xl text-second" />
-          </button>
-        </div>
+        {/* Events Slider */}
+        {events?.length > 0 ? (
+          <div className="relative py-4">
+            <Slider {...settings} className="events-slider">
+              {events?.map((item, i) => (
+                <div key={i} className="px-3">
+                  <EventCard item={item} />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-12 shadow-xl border border-white/20 max-w-md mx-auto">
+              <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                <FiCalendar className="text-gray-400 text-2xl" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                No Events Available
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Check back soon for upcoming events and opportunities.
+              </p>
+              <Link
+                to={"/explore/events"}
+                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300"
+              >
+                <span>View All Events</span>
+                <FiChevronRight className="text-sm" />
+              </Link>
+            </div>
+          </div>
+        )}
 
-        <Slider {...settings}>
-          {events?.length > 0 ? (
-            events?.map((item, i) => (
-              <div className="px-2 my-4 w-max" key={i}>
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-[400px] flex flex-col">
-                  <div className="p-8 flex-grow">
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="bg-second/10 rounded-lg p-4">
-                        <p className="text-3xl font-bold text-second">
-                          {format(new Date(item?.date || null), "do")}
-                        </p>
-                        <p className="text-lg text-second font-semibold">
-                          {format(new Date(item?.date || null), "MMM")}
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm text-gray-500">Event Time</p>
-                        <p className="text-lg font-semibold text-second">
-                          {item?.startTime} - {item?.endTime}
-                        </p>
-                      </div>
-                    </div>
+        {/* View All Events Button */}
+        {events?.length > 0 && (
+          <div className="text-center mt-12">
+            <Link to="/explore/events">
+              <button className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                <span>View All Events</span>
+                <FiChevronRight className="text-lg" />
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
 
-                    <h3 className="text-2xl font-bold text-gray-800 mb-6 line-clamp-2">
-                      {item?.topic}
-                    </h3>
+      {/* Custom CSS for Slider */}
+      <style jsx>{`
+        .events-slider .slick-dots {
+          bottom: -40px;
+        }
+        .events-slider .slick-dots li button:before {
+          color: #3b82f6;
+          font-size: 12px;
+        }
+        .events-slider .slick-dots li.slick-active button:before {
+          color: #1e40af;
+        }
+        .events-slider .slick-prev,
+        .events-slider .slick-next {
+          z-index: 10;
+        }
+      `}</style>
+    </section>
+  );
+};
 
-                    <div className="space-y-4 mt-auto">
-                      <div className="flex items-center text-gray-600">
-                        <FiClock className="text-xl mr-3 text-second" />
-                        <span className="text-lg">
-                          {item?.startTime} - {item?.endTime}
-                        </span>
-                      </div>
-                      <div className="flex items-center text-gray-600">
-                        <TfiLocationPin className="text-xl mr-3 text-second" />
-                        <span className="text-lg">{item?.location}</span>
-                      </div>
-                    </div>
-                  </div>
+// Event Card Component
+const EventCard = ({ item }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="group">
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-white/20 h-full flex flex-col">
+        {/* Date Badge */}
+        <div className="p-6 pb-4">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <FiCalendar className="text-primary text-lg" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-gray-500">
+                  Event Date
+                </div>
+                <div className="text-lg font-semibold text-gray-800">
+                  {format(new Date(item?.date || null), "MMM do, yyyy")}
                 </div>
               </div>
-            ))
-          ) : (
-            <div className="text-center py-12">
-              <h3 className="text-2xl font-semibold text-gray-600">
-                No upcoming events at the moment
-              </h3>
-              <p className="text-gray-500 mt-2">
-                Please check back later for new events
-              </p>
             </div>
-          )}
-        </Slider>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 pt-0 flex-grow flex flex-col">
+          <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+            {item?.topic}
+          </h3>
+
+          <div className="space-y-3 mb-6 flex-grow">
+            <div className="flex items-center gap-3 text-gray-600">
+              <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+                <FiClock className="text-primary text-sm" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-gray-500">
+                  Event Time
+                </div>
+                <div className="text-sm font-semibold text-gray-700">
+                  {item?.startTime} - {item?.endTime}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 text-gray-600">
+              <div className="w-8 h-8 bg-second/20 rounded-full flex items-center justify-center">
+                <FiMapPin className="text-second text-sm" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-gray-500">
+                  Location
+                </div>
+                <div className="text-sm font-semibold text-gray-700">
+                  {item?.location}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Button */}
+          <div className="mt-auto pt-4 border-t border-gray-100">
+            <button
+              onClick={() => navigate(`/explore/events/${item?.id}`)}
+              className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
+            >
+              View Details
+            </button>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 

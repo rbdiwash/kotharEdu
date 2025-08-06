@@ -40,6 +40,9 @@ import PRCalculator from "./Pages/PRCalculator";
 import TaxCalculator from "./Pages/TaxCalculator";
 import TaxService from "./Pages/TaxService";
 import StarterKit from "./Pages/StarterKit";
+import PartenerInstitutions from "./Pages/PartenerInstitutions";
+import IndividualEvent from "./Pages/IndividualEvent";
+import FAQ from "./Pages/FAQ";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -104,7 +107,13 @@ const PublicRoutes = () => {
         <Route exact path="/contact" element={<Contact />}></Route>
         <Route exact path="/book" element={<Book />}></Route>
         <Route exact path="/tax-service" element={<TaxService />}></Route>
-        <Route exact path="/starter-kit" element={<StarterKit />}></Route>
+        <Route exact path="/starter-kit" element={<StarterKit />}></Route>{" "}
+        <Route exact path="/faq" element={<FAQ />}></Route>{" "}
+        <Route
+          exact
+          path="/partner-institutions"
+          element={<PartenerInstitutions />}
+        ></Route>
         <Route
           exact
           path="/important-links"
@@ -114,6 +123,11 @@ const PublicRoutes = () => {
         <Route exact path="/explore/news" element={<News />}></Route>
         <Route exact path="/news/:id" element={<IndividualNews />}></Route>
         <Route exact path="/explore/events" element={<Events />}></Route>{" "}
+        <Route
+          exact
+          path="/explore/events/:id"
+          element={<IndividualEvent />}
+        ></Route>
         <Route
           exact
           path="/explore/checklists"

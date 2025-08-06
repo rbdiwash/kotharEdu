@@ -177,7 +177,7 @@ const Book = () => {
       </section>
       <div className="map mt-12">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.429220040901!2d151.2051230762815!3d-33.87859797322291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12af062147e355%3A0x996a2c85f8e5b884!2sPrisms%20Education%20%26%20Visa%20Services!5e0!3m2!1sen!2sau!4v1751344664477!5m2!1sen!2sau"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.429889780149!2d151.20512837727566!3d-33.8785807195682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12bb69e2955d53%3A0x6ad24eb26655122c!2sKOTHAR%20Educational%20Services!5e0!3m2!1sen!2sau!4v1754377157095!5m2!1sen!2sau"
           width="100%"
           height="400"
           style={{ border: "0" }}

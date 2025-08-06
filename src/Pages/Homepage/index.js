@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import study from "../../assets/images/study.png";
 import student from "../../assets/images/student.png";
 import uni from "../../assets/images/select.png";
@@ -20,6 +20,12 @@ import Testimonials from "./Testimonials";
 import { Link, NavLink } from "react-router-dom";
 import useKothar from "../../context/useKothar";
 import award from "../../assets/images/award.png";
+import australia from "../../assets/images/australia.jpg";
+import canada from "../../assets/images/canada.jpg";
+import uk from "../../assets/images/uk.jpg";
+import usa from "../../assets/images/usa.jpg";
+import nepal from "../../assets/images/nepal.jpg";
+
 const options = [
   { title: "Study Abroad Decision", img: study },
   { title: "Student Counseling", img: student },
@@ -55,8 +61,45 @@ const options2 = [
 ];
 
 const Homepage = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Background images array
+  const backgroundImages = [
+    {
+      url: australia,
+      alt: "Australia",
+    },
+    {
+      url: canada,
+      alt: "Canada",
+    },
+    {
+      url: uk,
+      alt: "UK",
+    },
+    {
+      url: usa,
+      alt: "USA",
+    },
+    {
+      url: nepal,
+      alt: "Nepal",
+    },
+  ];
+
+  // Auto-rotate background images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % backgroundImages.length
+      );
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
+
   var settings = {
-    dots: true,
+    dots: false,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
@@ -82,7 +125,7 @@ const Homepage = () => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
 
           arrows: false,
@@ -103,54 +146,272 @@ const Homepage = () => {
   const [{ services }, {}] = useKothar();
   return (
     <>
-      <section id="homepage" className="h-1/2 bg-gray-500 relative">
-        <div
-          className="absolute inset-0 bg-black opacity-60"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))",
-          }}
-        />
-        <div className="container mx-auto py-[150px] relative z-10">
-          <div className="row">
-            <div className="py-12 md:pt-20 w-full md:w-4/4">
-              <h1 className="md:text-5xl text-4xl uppercase text-white font-semibold leading-relaxed">
-                Welcome to kothar educational services
-              </h1>
-              <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 pt-8">
-                Empowering Your Educational Journey!
-              </p>
-              <p className="text-white md:text-[24px]  text-xl leading-10	font-normal	 py-8">
-                Kothar Education Services is your premier consultancy partner,
-                we specialize in guiding students towards fulfilling their
-                dreams of studying abroad in prestigious institutions across the
-                globe. Nestled in the heart of Sydney, Australia and Kathmandu,
-                Nepal, we serve as a guiding light for ambitious individuals
-                seeking to embark on transformative educational journeys around
-                the world, with a focus on destinations like Australia, Canada,
-                the UK, the USA.
-              </p>
-              <Link to="/about" className="btn ">
-                Explore More
+      <section
+        id="homepage"
+        className="md:max-h-[80vh] relative overflow-hidden"
+      >
+        {/* Background Image Carousel */}
+        <div className="absolute inset-0">
+          {backgroundImages.map((image, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-cover bg-center bg-fixed transition-opacity duration-1000 ${
+                index === currentImageIndex ? "opacity-100" : "opacity-0"
+              }`}
+              style={{
+                backgroundImage: `url('${image.url}')`,
+                transform: "translateZ(0)",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/100"></div>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-white/10 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white/5 rounded-full blur-lg animate-pulse delay-500"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen py-20">
+            {/* Left Content */}
+            <div className="space-y-10">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/20 to-second/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+                <div className="flex space-x-1">
+                  <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                  <span className="w-2 h-2 bg-second rounded-full animate-pulse delay-300"></span>
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse delay-600"></span>
+                </div>
+                <span className="text-white text-sm font-medium">
+                  Kothar Educational Services
+                </span>
+              </div>
+
+              {/* Main Heading */}
+              <div className="space-y-6">
+                <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
+                  Empowering your
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-primary">
+                    Educational Journey
+                  </span>
+                </h1>
+
+                <p className="text-xl text-white/90 leading-relaxed max-w-lg">
+                  Transform your dreams into reality with expert guidance for
+                  studying abroad in Australia, Canada, UK, and USA.
+                </p>
+              </div>
+
+              {/* Stats Section */}
+              <div className="grid grid-cols-3 gap-8 pt-8">
+                <div className="text-center group">
+                  <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+                    500+
+                  </div>
+                  <div className="text-white/70 text-sm font-medium">
+                    Students Placed
+                  </div>
+                </div>
+                <div className="text-center group">
+                  <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+                    4+
+                  </div>
+                  <div className="text-white/70 text-sm font-medium">
+                    Years Experience
+                  </div>
+                </div>
+                <div className="text-center group">
+                  <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+                    98%
+                  </div>
+                  <div className="text-white/70 text-sm font-medium">
+                    Success Rate
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-6 pt-8">
+                <a
+                  href="#services"
+                  className="group bg-primary text-white px-10 py-5 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-lg relative overflow-hidden"
+                >
+                  <span className="relative z-10">Explore Services</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-second to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </a>
+                <Link
+                  to="/contact"
+                  className="group border-2 border-white text-white px-10 py-5 rounded-2xl font-semibold hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Visual Section - Modern Cards */}
+            <div className="relative">
+              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 overflow-hidden">
+                <div className="text-center mb-8">
+                  <h3 className="text-white font-bold text-2xl mb-3">
+                    Study Destinations
+                  </h3>
+                  <p className="text-white/70 text-base">
+                    Explore our global education opportunities
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Australia */}
+                  <div className="group bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        🇦🇺
+                      </div>
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        Australia
+                      </h4>
+                      <p className="text-white/70 text-sm">
+                        Sydney • Melbourne
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Canada */}
+                  <div className="group bg-gradient-to-br from-red-500/20 to-white/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        🇨🇦
+                      </div>
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        Canada
+                      </h4>
+                      <p className="text-white/70 text-sm">
+                        Toronto • Vancouver
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* UK */}
+                  <div className="group bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                    <div className="text-center">
+                      <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        🇬🇧
+                      </div>
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        United Kingdom
+                      </h4>
+                      <p className="text-white/70 text-sm">
+                        London • Manchester
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* USA */}
+                  <div className="group bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
+                    <div className="text-center">
+                      <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        🇺🇸
+                      </div>
+                      <h4 className="text-white font-bold text-lg mb-2">
+                        United States
+                      </h4>
+                      <p className="text-white/70 text-sm">
+                        New York • California
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-primary to-second rounded-full w-12 h-12 animate-bounce shadow-lg"></div>
+              <div className="absolute -bottom-6 -left-6 bg-white/30 rounded-full w-8 h-8 animate-pulse shadow-lg"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Services Section */}
+      <section className="bg-black py-20 relative overflow-hidden">
+        {/* Background Elements */}
+        {/* <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+        </div> */}
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+              Our Services
+            </h2>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+              Comprehensive support for your study abroad journey from start to
+              finish
+            </p>
+          </div>
+
+          {/* Services Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+            {options.map((arg, index) => (
+              <div
+                key={arg?.title}
+                className="group bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
+              >
+                <div className="text-center space-y-6">
+                  {/* Icon */}
+                  <div className="relative">
+                    <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                      <img
+                        src={arg?.img}
+                        alt={arg?.title}
+                        className="w-12 h-12 object-contain filter brightness-0 invert"
+                      />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">
+                        {index + 1}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-3">
+                    <h3 className="text-white font-bold text-xl group-hover:text-primary transition-colors duration-300">
+                      {arg?.title}
+                    </h3>
+                    <div className="w-12 h-1 bg-primary rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
+                  </div>
+                </div>
+
+                {/* Hover Effect Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="text-center mt-16">
+            <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
+              <span className="text-white font-medium">
+                Ready to start your journey?
+              </span>
+              <Link
+                to="/contact"
+                className="bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
+              >
+                Get Started
               </Link>
             </div>
           </div>
         </div>
       </section>
-      <div className="bg-second z-100">
-        <div className="container mx-auto   grid md:grid-cols-5  gap-8 py-10 px-6 items-center justify-center">
-          {options.map((arg) => (
-            <div className="col-span-1" key={arg?.title}>
-              <div className="card flex flex-col items-center justify-center text-center">
-                <img src={arg?.img} alt="" />
-                <p className="text-2xl text-white font-medium mt-8">
-                  {arg?.title}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
       <section
         id="homepage2"
         className="py-24 bg-gradient-to-b from-white to-lightBlue"
@@ -209,7 +470,7 @@ const Homepage = () => {
       >
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-second mb-4">
+            <h2 className="text-4xl font-bold text-primary mb-4">
               Our Services
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
