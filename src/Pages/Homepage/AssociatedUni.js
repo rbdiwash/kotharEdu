@@ -83,7 +83,7 @@ const AssociatedUni = ({ title, subtitle, destinationId }) => {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              {title || "Associated Colleges/Universities"}
+              {title || "Our Valued Partners"}
             </h2>
 
             {subtitle && (

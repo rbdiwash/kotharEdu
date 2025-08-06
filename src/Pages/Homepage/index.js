@@ -334,84 +334,6 @@ const Homepage = () => {
           </div>
         </div>
       </section>
-      {/* Services Section */}
-      <section className="bg-black py-20 relative overflow-hidden">
-        {/* Background Elements */}
-        {/* <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-        </div> */}
-
-        <div className="container mx-auto px-4 relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-              Our Services
-            </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Comprehensive support for your study abroad journey from start to
-              finish
-            </p>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {options.map((arg, index) => (
-              <div
-                key={arg?.title}
-                className="group bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                <div className="text-center space-y-6">
-                  {/* Icon */}
-                  <div className="relative">
-                    <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                      <img
-                        src={arg?.img}
-                        alt={arg?.title}
-                        className="w-12 h-12 object-contain filter brightness-0 invert"
-                      />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs font-bold">
-                        {index + 1}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="space-y-3">
-                    <h3 className="text-white font-bold text-xl group-hover:text-primary transition-colors duration-300">
-                      {arg?.title}
-                    </h3>
-                    <div className="w-12 h-1 bg-primary rounded-full mx-auto group-hover:w-16 transition-all duration-300"></div>
-                  </div>
-                </div>
-
-                {/* Hover Effect Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Section */}
-          <div className="text-center mt-16">
-            <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
-              <span className="text-white font-medium">
-                Ready to start your journey?
-              </span>
-              <Link
-                to="/contact"
-                className="bg-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
-              >
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
       <section
         id="homepage2"
         className="py-24 bg-gradient-to-b from-white to-lightBlue"
@@ -463,7 +385,6 @@ const Homepage = () => {
         </div>
       </section>
       <Cities />
-
       <section
         id="services"
         className="py-24 bg-gradient-to-b from-lightBlue to-white"
@@ -515,11 +436,10 @@ const Homepage = () => {
           </Slider>
         </div>
       </section>
-
       <Events />
       <Classes />
-      <News />
       <AssociatedUni />
+      <News />
       <Testimonials />
       <section id="contact" className="h-max">
         <div className="container mx-auto">

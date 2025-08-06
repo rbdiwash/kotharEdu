@@ -41,7 +41,7 @@ const Classes = () => {
   return (
     <section
       id="classes"
-      className="relative py-24 bg-gradient-to-b from-white to-lightBlue"
+      className="relative py-24 bg-gradient-to-b from-second to-lightBlue"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
