@@ -94,7 +94,7 @@ const PartenerInstitutions = () => {
               <div className="text-gray-600 font-medium">Cities Covered</div>
             </div>
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
-              <div className="text-3xl font-bold text-green-500 mb-2">100%</div>
+              <div className="text-3xl font-bold text-green-500 mb-2">98%</div>
               <div className="text-gray-600 font-medium">Success Rate</div>
             </div>
           </div>
