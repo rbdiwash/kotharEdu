@@ -24,7 +24,25 @@ import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const options = [
-  { label: "FAQ", url: "faq", id: "1", icon: FaQuestionCircle },
+  // { label: "FAQ", url: "faq", id: "1", icon: FaQuestionCircle },
+  {
+    label: "Checklists",
+    url: "explore/checklists",
+    id: "1",
+    icon: FaCheckCircle,
+  },
+  {
+    label: "Client Details Form",
+    url: "explore/client-details-form",
+    id: "2",
+    icon: FaUserTie,
+  },
+  {
+    label: "Starter Kit",
+    url: "starter-kit",
+    id: "3",
+    icon: FaBookOpen,
+  },
   {
     label: "Tax Calculator",
     url: "tax-calculator",
@@ -179,7 +197,7 @@ const Footer = () => {
                     <FaLink className="text-primary text-xl" />
                     Quick Links
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-1">
                     {options?.map((arg) => {
                       const IconComponent = arg.icon;
                       return (

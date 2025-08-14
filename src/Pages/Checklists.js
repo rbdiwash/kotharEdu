@@ -18,6 +18,7 @@ import Form956 from "../assets/pdfs/Form 956.pdf";
 import Form1022 from "../assets/pdfs/1022 Form_unlocked.pdf";
 import Form80 from "../assets/pdfs/Form 80_unlocked.pdf";
 import AffidavitOfSupport from "../assets/pdfs/AFFIDAVIT OF SUPPORT_Form.pdf";
+import AdmissionChecklist from "../assets/pdfs/Admission Checklist 2025.pdf";
 
 const Checklists = () => {
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -52,6 +53,17 @@ const Checklists = () => {
           pdfUrl: "/pdfs/Client Details Form Kothar.pdf",
           type: "form",
           url: "/explore/client-details-form",
+        },
+      ],
+    },
+    {
+      category: "Admission Checklist",
+      items: [
+        {
+          title: "Onshore Admission Checklist",
+          description:
+            "Please Fill out this form to help us understand your requirements better. This information will help us provide you with the most relevant guidance and support for your study journey in Australia.",
+          pdfUrl: AdmissionChecklist,
         },
       ],
     },

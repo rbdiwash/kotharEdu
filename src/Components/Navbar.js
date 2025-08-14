@@ -150,19 +150,6 @@ const Navbar = () => {
             id="navbar-multi-level"
           >
             <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none  md:flex-row md:space-x-8 md:mt-0 md:text-sm font-semibold md:font-medium  md:bg-white text-md font-bold">
-              <li>
-                <NavLink
-                  to="/"
-                  className="block py-2 pr-4 pl-3 font-semibold
-                  rounded  md:p-0 "
-                  onClick={handleCloseNavbar}
-                  style={
-                    location?.pathname === "/" ? activeClassName : undefined
-                  }
-                >
-                  Home
-                </NavLink>
-              </li>
               <li className="relative">
                 <button
                   type="button"
@@ -353,6 +340,19 @@ const Navbar = () => {
                     </div>
                   </div>
                 )}
+              </li>
+              <li>
+                <NavLink
+                  to="/explore/checklists"
+                  className="block py-2 pr-4 pl-3 font-semibold
+                  rounded  md:p-0 "
+                  onClick={handleCloseNavbar}
+                  style={({ isActive }) =>
+                    isActive ? activeClassName : undefined
+                  }
+                >
+                  Checklists
+                </NavLink>
               </li>
               <li>
                 <NavLink
