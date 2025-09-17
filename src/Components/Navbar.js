@@ -399,7 +399,7 @@ const Navbar = () => {
                   to="/book"
                   onClick={handleCloseNavbar}
                   className={({ isActive }) =>
-                    isActive ? "btn-alt text-white" : "btn"
+                    isActive ? "btn-alt text-white font-bold" : "btn font-bold"
                   }
                 >
                   Book Now

@@ -55,7 +55,11 @@ const Book = () => {
           <div className="row">
             <div className="grid md:grid-cols-6 grid-cols-1 items-center  mt-8">
               <div className="col-span-2">
-                <img src={book} alt="" className="w-[110%]" />
+                <img
+                  src={book}
+                  alt="Book Cover - Study Abroad Guide"
+                  className="w-[110%]"
+                />
               </div>
               <div className="col-span-4 mt-10 md:mt-0">
                 <div className="form-container bg-white md:px-20 px-10 md:py-24 py-12 rounded-lg shadow-2xl">

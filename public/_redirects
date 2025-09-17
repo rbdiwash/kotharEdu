@@ -1,1 +1,31 @@
-/* /index.html 200
+# Cache static assets for 1 year
+/static/js/*.js 200 Cache-Control: public, max-age=31536000, immutable
+/static/css/*.css 200 Cache-Control: public, max-age=31536000, immutable
+/static/media/* 200 Cache-Control: public, max-age=31536000, immutable
+
+# Cache images for 6 months
+*.png 200 Cache-Control: public, max-age=15552000
+*.jpg 200 Cache-Control: public, max-age=15552000
+*.jpeg 200 Cache-Control: public, max-age=15552000
+*.gif 200 Cache-Control: public, max-age=15552000
+*.svg 200 Cache-Control: public, max-age=15552000
+*.webp 200 Cache-Control: public, max-age=15552000
+
+# Cache fonts for 1 year
+*.woff 200 Cache-Control: public, max-age=31536000, immutable
+*.woff2 200 Cache-Control: public, max-age=31536000, immutable
+*.ttf 200 Cache-Control: public, max-age=31536000, immutable
+*.eot 200 Cache-Control: public, max-age=31536000, immutable
+
+# Cache manifest and service worker
+/manifest.json 200 Cache-Control: public, max-age=86400
+/sw.js 200 Cache-Control: public, max-age=0, must-revalidate
+
+# Cache favicon for 1 week
+/favicon.ico 200 Cache-Control: public, max-age=604800
+
+# Cache PDFs for 1 month
+*.pdf 200 Cache-Control: public, max-age=2592000
+
+# SPA fallback
+/* /index.html 200 Cache-Control: public, max-age=0, must-revalidate

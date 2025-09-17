@@ -358,6 +358,7 @@ const AdminServices = () => {
                             {(data?.image || preview) && (
                               <img
                                 src={preview}
+                                alt="Service preview"
                                 className="h-[100px] object-cover"
                               />
                             )}

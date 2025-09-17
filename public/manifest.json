@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Kothar Edu",
+  "name": "Kothar Educational Services",
+  "description": "Global Education Consultancy - Study Abroad Services",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +11,59 @@
     {
       "src": "kothar_logo.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "kothar_logo.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff",
+  "categories": ["education", "business", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "screenshots": [
+    {
+      "src": "kothar_logo.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "View our educational services",
+      "url": "/services",
+      "icons": [
+        {
+          "src": "kothar_logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "kothar_logo.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
 }

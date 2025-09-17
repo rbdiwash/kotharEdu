@@ -329,6 +329,7 @@ const AdminNews = () => {
                         {(data?.image || preview) && (
                           <img
                             src={preview}
+                            alt="News preview"
                             className="h-[200px] object-cover"
                           />
                         )}

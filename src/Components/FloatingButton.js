@@ -70,6 +70,7 @@ const FloatingButton = () => {
           whileTap={{ scale: 0.95 }}
           onClick={toggleDropdown}
           className="bg-second text-white p-4 rounded-full shadow-lg hover:bg-primary transition-all duration-300 flex items-center gap-2 group"
+          aria-label="Tax Calculator"
         >
           <FaCalculator className="text-2xl" />
           {/* <span className="absolute left-16 mr-2 bg-white text-second px-3 py-1 rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
@@ -92,16 +93,24 @@ const FloatingButton = () => {
                   to="/pr-calculator"
                   className="px-4 py-3 text-gray-800 hover:bg-second hover:text-white transition-all duration-300 flex items-center gap-2"
                   onClick={() => setIsOpen(false)}
+                  aria-label="Tax Calculator"
                 >
-                  <FaCalculator className="text-second group-hover:text-white " />
+                  <FaCalculator
+                    className="text-second group-hover:text-white "
+                    aria-label="PR Points Calculator"
+                  />
                   <span>PR Points Calculator</span>
                 </Link>
                 <Link
                   to="/tax-calculator"
                   className="block px-4 py-3 text-gray-800 hover:bg-second hover:text-white transition-all duration-300 flex items-center gap-2"
                   onClick={() => setIsOpen(false)}
+                  aria-label="Tax Calculator"
                 >
-                  <FaCalculator className="text-second group-hover:text-white" />
+                  <FaCalculator
+                    className="text-second group-hover:text-white"
+                    aria-label="Tax Calculator"
+                  />
                   <span>Tax Calculator</span>
                 </Link>
               </div>

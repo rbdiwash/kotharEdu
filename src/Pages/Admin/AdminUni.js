@@ -254,6 +254,7 @@ const AdminUni = () => {
                         {(data?.image || preview) && (
                           <img
                             src={preview}
+                            alt="University preview"
                             className="h-[200px] object-cover"
                           />
                         )}

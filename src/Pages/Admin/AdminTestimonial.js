@@ -229,6 +229,7 @@ const AdminTestimonial = () => {
                         {(data?.image || preview) && (
                           <img
                             src={preview}
+                            alt="Testimonial preview"
                             className="h-[200px] object-cover"
                           />
                         )}

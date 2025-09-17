@@ -54,10 +54,10 @@ code {
 
 @layer base {
   .btn {
-    @apply text-white  bg-primary px-6 py-2 rounded-md duration-300 cursor-pointer;
+    @apply text-white  bg-primary px-6 py-2 rounded-md duration-300 cursor-pointer font-bold;
   }
   .btn:hover {
-    @apply bg-primary2;
+    @apply bg-[#d17128];
   }
   .btn-alt {
     @apply text-white bg-blueAlt  px-6 py-2 rounded-md duration-300 cursor-pointer;

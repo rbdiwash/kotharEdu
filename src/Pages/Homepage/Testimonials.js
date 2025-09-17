@@ -127,7 +127,7 @@ export default Testimonials;
                   <div className="flex items-center flex-col  text-center mt-[-60px]">
                     <img
                       src={arg?.image || australia}
-                      alt=""
+                      alt={arg?.name || "Testimonial Author"}
                       className="rounded-full ring h-32 w-32 object-cover"
                     />
                     <h2 className="uppercase text-xl font-semibold mt-4">

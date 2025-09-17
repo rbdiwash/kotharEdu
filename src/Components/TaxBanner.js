@@ -132,10 +132,7 @@ const TaxBanner = ({
 
             {/* Explore Tax Services button at bottom */}
             <div className="w-full flex justify-center">
-              <button
-                onClick={handleExploreClick}
-                className="bg-primary hover:bg-primary2 text-white font-semibold py-3 md:px-8 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 text-lg"
-              >
+              <button onClick={handleExploreClick} className="btn">
                 Explore Tax Services
               </button>
             </div>

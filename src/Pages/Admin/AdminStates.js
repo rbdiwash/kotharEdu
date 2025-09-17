@@ -287,6 +287,7 @@ const AdminStates = () => {
                           {(data?.image || preview) && (
                             <img
                               src={preview}
+                              alt="State preview"
                               className="h-[200px] object-cover"
                             />
                           )}
