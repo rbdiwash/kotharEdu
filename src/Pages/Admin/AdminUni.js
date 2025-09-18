@@ -253,6 +253,7 @@ const AdminUni = () => {
 
                         {(data?.image || preview) && (
                           <img
+                            loading="lazy"
                             src={preview}
                             alt="University preview"
                             className="h-[200px] object-cover"

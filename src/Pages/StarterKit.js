@@ -881,7 +881,12 @@ const StarterKit = () => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-between items-center mb-6">
-                  <img src={adapter} alt="Adapter" className="w-full h-auto" />
+                  <img
+                    loading="lazy"
+                    src={adapter}
+                    alt="Adapter"
+                    className="w-full h-auto"
+                  />
                 </div>
               </div>
             </div>
@@ -908,6 +913,7 @@ const StarterKit = () => {
                 <div className="mb-6">
                   <div className="bg-gray-100 rounded-2xl mb-4">
                     <img
+                      loading="lazy"
                       src={declaration}
                       alt="Declaration Form"
                       className="w-full h-auto cursor-pointer"

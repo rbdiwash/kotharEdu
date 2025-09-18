@@ -387,7 +387,7 @@ const TaxService = () => {
               <h3 className="text-3xl font-bold text-gray-800 mb-10 text-center ">
                 🤝 Our Registered Tax Agent Partner
               </h3>
-              <img src={partners} alt="Our Partners" />
+              <img loading="lazy" src={partners} alt="Our Partners" />
             </div>
 
             {/* Contact Information */}

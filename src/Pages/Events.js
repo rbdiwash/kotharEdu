@@ -141,6 +141,7 @@ const EventCard = ({ item }) => {
         {/* Image Container */}
         <div className="relative overflow-hidden">
           <img
+            loading="lazy"
             src={exportImg}
             alt={item?.topic || "Event"}
             className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"

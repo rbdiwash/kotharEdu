@@ -68,6 +68,7 @@ const News = () => {
                     {/* Image Container */}
                     <div className="relative overflow-hidden">
                       <img
+                        loading="lazy"
                         src={item?.image || australia}
                         alt={item?.topic || "News Image"}
                         className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"

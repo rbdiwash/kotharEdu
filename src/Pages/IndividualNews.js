@@ -118,6 +118,7 @@ const IndividualNews = () => {
               {/* Featured Image */}
               <div className="relative h-96 overflow-hidden">
                 <img
+                  loading="lazy"
                   src={newsData?.image}
                   alt={newsData?.topic}
                   className="w-full h-full object-cover"

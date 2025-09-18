@@ -228,6 +228,7 @@ const AdminTestimonial = () => {
                         </div>
                         {(data?.image || preview) && (
                           <img
+                            loading="lazy"
                             src={preview}
                             alt="Testimonial preview"
                             className="h-[200px] object-cover"

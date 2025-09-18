@@ -76,7 +76,7 @@ const generateSrcSet = (baseSrc) => {
 <picture>
   <source srcSet={webpSrcSet} type="image/webp" />
   <source srcSet={fallbackSrcSet} type="image/jpeg" />
-  <img src={fallbackSrc} alt={alt} />
+  <img loading="lazy" src={fallbackSrc} alt={alt} />
 </picture>
 ```
 

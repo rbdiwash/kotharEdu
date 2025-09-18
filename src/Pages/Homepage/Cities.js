@@ -93,6 +93,7 @@ const Cities = () => {
                       {/* Image Container */}
                       <div className="relative h-80 overflow-hidden">
                         <img
+                          loading="lazy"
                           src={item?.image || australia}
                           alt={item?.destination || "Study Destination"}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"

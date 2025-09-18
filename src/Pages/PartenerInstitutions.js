@@ -237,6 +237,7 @@ const UniversityCard = ({ item, viewMode }) => {
             {/* Image */}
             <div className="relative overflow-hidden rounded-xl w-24 h-24 flex-shrink-0">
               <img
+                loading="lazy"
                 src={item?.image || australia}
                 alt={item?.name || "University"}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -281,6 +282,7 @@ const UniversityCard = ({ item, viewMode }) => {
         {/* Image Container */}
         <div className="relative overflow-hidden">
           <img
+            loading="lazy"
             src={item?.image || australia}
             alt={item?.name || "University"}
             className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"

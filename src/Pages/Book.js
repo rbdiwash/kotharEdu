@@ -56,6 +56,7 @@ const Book = () => {
             <div className="grid md:grid-cols-6 grid-cols-1 items-center  mt-8">
               <div className="col-span-2">
                 <img
+                  loading="lazy"
                   src={book}
                   alt="Book Cover - Study Abroad Guide"
                   className="w-[110%]"

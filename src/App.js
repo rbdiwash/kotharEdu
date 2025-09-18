@@ -1,7 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
 
@@ -10,13 +9,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import FloatingButton from "./Components/FloatingButton";
+import ScrollToTop from "./Components/ScrollToTop";
 import PublicRoutes from "./PublicRoutes";
 import KotharProvider from "./context/provider";
-import ScrollToTop from "./Components/ScrollToTop";
-import FloatingButton from "./Components/FloatingButton";
-import TaxBanner from "./Components/TaxBanner";
-import PRCalculator from "./Pages/PRCalculator";
-import TaxCalculator from "./Pages/TaxCalculator";
+import Banner from "./Components/TaxBanner";
 
 const App = () => {
   return (
@@ -25,7 +22,7 @@ const App = () => {
         <ToastContainer />
         <ThemeProvider>
           <Router>
-            <TaxBanner />
+            <Banner />
             <ScrollToTop />
             <FloatingButton />
             <PublicRoutes />

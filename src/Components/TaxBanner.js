@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
-import taxBannerImage from "../assets/images/tax-banner.png";
+import bannerImage from "../assets/images/chess.jpg";
 
-const TaxBanner = ({
-  redirectLink = "https://kothar.oneon.au/",
-  title = "Tax Services for FY 2024-25",
+const Banner = ({
+  redirectLink = "https://docs.google.com/forms/d/e/1FAIpQLSdsAVqwFgW6T4hb7BNYX5cAxtTDcQsffgOzIC_QFvYT3md1Eg/viewform/",
+  title = "CAM CHESS MASTER 2025",
   description = "Get expert tax assistance and use our tax calculator for accurate calculations",
   imageEmoji = "💰",
-  imageUrl = taxBannerImage,
+  imageUrl = bannerImage,
   localStorageKey = "taxBannerClosed",
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -90,7 +90,7 @@ const TaxBanner = ({
 
   return (
     <div
-      className={`fixed inset-0 z-[200] transition-all duration-500 ease-in-out ${
+      className={`fixed inset-0 z-[200] transition-all duration-500 ease-in-out md:w-content ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -98,49 +98,42 @@ const TaxBanner = ({
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       {/* Banner content */}
-      <div className="relative h-full flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-4xl lg:max-w-6xl mx-4 overflow-hidden">
-          {/* Header with close button */}
-          <div className="flex justify-between items-center p-6 border-b border-gray-200">
-            <h2 className="md:text-2xl text-lg font-bold text-gray-800">
-              {title}
-            </h2>
-            <button
-              onClick={handleClose}
-              className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-all duration-200"
-              aria-label="Close banner"
+      <div className="flex items-center justify-center p-4 mx-auto">
+        {/* Main content */}
+        <div className="relative p-6 flex flex-col items-center bg-white rounded-2xl shadow-2xl w-max">
+          {/* Large clickable image - half screen size */}
+          <button
+            onClick={handleClose}
+            className="p-2 text-gray-800 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-all duration-200 absolute top-0 right-0"
+            aria-label="Close banner"
+          >
+            <FaTimes className="text-xl" />
+          </button>
+          <div className="flex justify-center mb-6">
+            <div
+              className="w-full  md:h-full rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 overflow-hidden"
+              onClick={handleImageClick}
             >
-              <FaTimes className="text-xl" />
+              <img
+                loading="lazy"
+                src={imageUrl}
+                alt="Tax Services"
+                className="h-full md:h-[70vh] rounded-2xl object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Explore Tax Services button at bottom */}
+          <div className="w-full flex justify-center border-t border-gray-200 pt-4">
+            <button onClick={handleExploreClick} className="btn">
+              Register Now
             </button>
           </div>
-
-          {/* Main content */}
-          <div className="p-6 flex flex-col items-center">
-            {/* Large clickable image - half screen size */}
-            <div className="flex justify-center w-full mb-6">
-              <div
-                className=" md:w-[50vw] md:h-full  rounded-2xl flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 overflow-hidden"
-                onClick={handleImageClick}
-              >
-                <img
-                  src={imageUrl}
-                  alt="Tax Services"
-                  className="md:w-full   rounded-2xl"
-                />
-              </div>
-            </div>
-
-            {/* Explore Tax Services button at bottom */}
-            <div className="w-full flex justify-center">
-              <button onClick={handleExploreClick} className="btn">
-                Explore Tax Services
-              </button>
-            </div>
-          </div>
         </div>
+        {/* </div> */}
       </div>
     </div>
   );
 };
 
-export default TaxBanner;
+export default Banner;

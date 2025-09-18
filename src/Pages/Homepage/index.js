@@ -19,6 +19,8 @@ import ContactForm from "../../Components/ContactForm";
 import Testimonials from "./Testimonials";
 import { Link, NavLink } from "react-router-dom";
 import useKothar from "../../context/useKothar";
+import OptimizedImage from "../../Components/OptimizedImage";
+import useImagePreload from "../../hooks/useImagePreload";
 import award from "../../assets/images/award.png";
 import australia from "../../assets/images/australia.jpg";
 import canada from "../../assets/images/canada.jpg";
@@ -26,13 +28,6 @@ import uk from "../../assets/images/uk.jpg";
 import usa from "../../assets/images/usa.jpg";
 import nepal from "../../assets/images/nepal.jpg";
 
-const options = [
-  { title: "Study Abroad Decision", img: study },
-  { title: "Student Counseling", img: student },
-  { title: "Select University", img: uni },
-  { title: "Apply to Universities", img: apply },
-  { title: "Get Admission", img: admission },
-];
 const options2 = [
   {
     title: "Awards",
@@ -86,6 +81,26 @@ const Homepage = () => {
       alt: "Nepal",
     },
   ];
+
+  // Preload critical images
+  const criticalImages = [
+    australia,
+    canada,
+    uk,
+    usa,
+    nepal,
+    study,
+    student,
+    uni,
+    apply,
+    admission,
+    award,
+    user,
+    vector,
+    visa,
+  ];
+
+  useImagePreload(criticalImages, true);
 
   // Auto-rotate background images
   useEffect(() => {
@@ -148,21 +163,27 @@ const Homepage = () => {
     <>
       <section
         id="homepage"
-        className="md:max-h-[100vh] relative overflow-hidden"
+        className="md:max-h-[85vh] relative overflow-hidden"
       >
         {/* Background Image Carousel */}
         <div className="absolute inset-0">
           {backgroundImages.map((image, index) => (
             <div
               key={index}
-              className={`absolute inset-0 bg-cover bg-center bg-fixed transition-opacity duration-1000 ${
+              className={`absolute inset-0 transition-opacity duration-1000 ${
                 index === currentImageIndex ? "opacity-100" : "opacity-0"
               }`}
-              style={{
-                backgroundImage: `url('${image.url}')`,
-                transform: "translateZ(0)",
-              }}
-            />
+            >
+              <OptimizedImage
+                src={image.url}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                sizes="100vw"
+                fetchPriority={index === 0 ? "high" : "auto"}
+              />
+            </div>
           ))}
         </div>
 
@@ -176,7 +197,7 @@ const Homepage = () => {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-screen py-20">
+          <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[85vh] py-20">
             {/* Left Content */}
             <div className="space-y-10">
               {/* Badge */}
@@ -270,6 +291,7 @@ const Homepage = () => {
                     <div className="text-center">
                       <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <img
+                          loading="lazy"
                           src="https://flagcdn.com/w80/au.png"
                           alt="Australia Flag"
                           className="w-full h-full object-cover rounded-sm shadow-sm"
@@ -299,6 +321,7 @@ const Homepage = () => {
                     <div className="text-center">
                       <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <img
+                          loading="lazy"
                           src="https://flagcdn.com/w80/ca.png"
                           alt="Canada Flag"
                           className="w-full h-full object-cover rounded-sm shadow-sm"
@@ -328,6 +351,7 @@ const Homepage = () => {
                     <div className="text-center">
                       <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <img
+                          loading="lazy"
                           src="https://flagcdn.com/w80/gb.png"
                           alt="UK Flag"
                           className="w-full h-full object-cover rounded-sm shadow-sm"
@@ -357,6 +381,7 @@ const Homepage = () => {
                     <div className="text-center">
                       <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <img
+                          loading="lazy"
                           src="https://flagcdn.com/w80/us.png"
                           alt="USA Flag"
                           className="w-full h-full object-cover rounded-sm shadow-sm"
@@ -418,10 +443,12 @@ const Homepage = () => {
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="bg-second/10 p-4 rounded-full mb-6">
-                    <img
+                    <OptimizedImage
                       src={item.img}
                       alt={item.title}
                       className="w-16 h-16 object-contain"
+                      loading="lazy"
+                      sizes="64px"
                     />
                   </div>
                   <h3 className="text-5xl font-bold text-second mb-2">
@@ -461,10 +488,12 @@ const Homepage = () => {
               <div className="px-4" key={i * 123}>
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-[550px] flex flex-col my-4">
                   <div className="relative overflow-hidden rounded-t-2xl h-[300px]">
-                    <img
+                    <OptimizedImage
                       src={item?.image || noImage}
                       alt={item?.serviceName}
                       className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   </div>

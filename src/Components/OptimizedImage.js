@@ -9,6 +9,8 @@ const OptimizedImage = ({
   priority = false,
   sizes = "100vw",
   quality = 75,
+  fetchPriority = "auto",
+  onLoad,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,7 +20,11 @@ const OptimizedImage = ({
 
   // Intersection Observer for lazy loading
   useEffect(() => {
-    if (priority) return;
+    // For priority images (LCP), load immediately
+    if (priority) {
+      setIsInView(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -100,6 +106,7 @@ const OptimizedImage = ({
 
   const handleLoad = () => {
     setIsLoaded(true);
+    if (onLoad) onLoad();
   };
 
   const handleError = () => {
@@ -111,11 +118,7 @@ const OptimizedImage = ({
   const fallbackSrc = hasError ? placeholder : src;
 
   return (
-    <div
-      ref={imgRef}
-      className={`relative overflow-hidden ${className}`}
-      style={{ aspectRatio: "16/9" }}
-    >
+    <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
       {/* Placeholder/Blur */}
       {!isLoaded && (
         <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
@@ -141,6 +144,7 @@ const OptimizedImage = ({
               isLoaded ? "opacity-100" : "opacity-0"
             }`}
             loading={loading}
+            fetchPriority={fetchPriority}
             onLoad={handleLoad}
             onError={handleError}
             sizes={sizes}
@@ -158,6 +162,7 @@ const OptimizedImage = ({
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
           loading={loading}
+          fetchPriority={fetchPriority}
           onLoad={handleLoad}
           onError={handleError}
           srcSet={generateSrcSet(fallbackSrc)}

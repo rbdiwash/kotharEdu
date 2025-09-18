@@ -158,6 +158,7 @@ const About = () => {
                   <div className="flex items-center gap-6">
                     <div className="bg-white  p-4 ">
                       <img
+                        loading="lazy"
                         src={logo}
                         alt="Kothar Education Logo"
                         className="h-24 w-auto"
@@ -371,6 +372,7 @@ const About = () => {
             <div className="relative">
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
                 <img
+                  loading="lazy"
                   src={award}
                   alt="Awards and Recognition"
                   className="w-full max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300"
@@ -493,6 +495,7 @@ export const TeamCard = ({ name, role, number, gmail, image, contact }) => {
         {/* Image Container */}
         <div className="relative overflow-hidden">
           <img
+            loading="lazy"
             src={image}
             alt={name}
             className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"

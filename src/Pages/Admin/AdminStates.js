@@ -286,6 +286,7 @@ const AdminStates = () => {
                           </div>
                           {(data?.image || preview) && (
                             <img
+                              loading="lazy"
                               src={preview}
                               alt="State preview"
                               className="h-[200px] object-cover"

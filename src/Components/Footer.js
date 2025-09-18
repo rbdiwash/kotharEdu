@@ -88,6 +88,7 @@ const Footer = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-4">
                     <img
+                      loading="lazy"
                       src={logo}
                       className="h-30 filter drop-shadow-lg"
                       alt="Kothar Education Logo"

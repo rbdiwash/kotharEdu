@@ -328,6 +328,7 @@ const AdminNews = () => {
                         </div>
                         {(data?.image || preview) && (
                           <img
+                            loading="lazy"
                             src={preview}
                             alt="News preview"
                             className="h-[200px] object-cover"

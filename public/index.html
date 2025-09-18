@@ -15,7 +15,7 @@
       content="trSbEe8aGA7WT0zbrTZ90Jgl3gyug745z30WRTu4z6s"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/kothar_logo.png" />
-    <link
+    <!-- <link
       rel="stylesheet"
       type="text/css"
       charset="UTF-8"
@@ -25,7 +25,7 @@
       rel="stylesheet"
       type="text/css"
       href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-    />
+    /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -48,6 +48,43 @@
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&display=swap"
       as="style"
+    />
+
+    <!-- Preload critical banner image -->
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/assets/images/chess.jpg"
+      as="image"
+      type="image/jpeg"
+    />
+
+    <!-- LCP Image - Critical for Largest Contentful Paint -->
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/assets/images/australia.jpg"
+      as="image"
+      type="image/jpeg"
+      fetchpriority="high"
+    />
+
+    <!-- Preload other critical images -->
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/assets/images/study.png"
+      as="image"
+      type="image/png"
+    />
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/assets/images/student.png"
+      as="image"
+      type="image/png"
+    />
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/kothar_logo.png"
+      as="image"
+      type="image/png"
     />
 
     <!-- DNS prefetch for external resources -->

@@ -357,6 +357,7 @@ const AdminServices = () => {
                           <div className="mb-5 mt-4">
                             {(data?.image || preview) && (
                               <img
+                                loading="lazy"
                                 src={preview}
                                 alt="Service preview"
                                 className="h-[100px] object-cover"
