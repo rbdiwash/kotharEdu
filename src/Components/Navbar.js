@@ -43,16 +43,13 @@ const Navbar = () => {
       <nav className="px-2 bg-gradient-to-r from-primary to-primary2 py-2 z-[200]">
         <div className="container flex flex-wrap justify-between items-center mx-auto text-white">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-              <span className="text-second text-3xl font-bold">💰</span>
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+              <span className="text-second text-2xl font-bold">💰</span>
             </div>
             <div>
               <h3 className="text-white font-bold text-xl">
                 Tax Services Available
               </h3>
-              <p className="text-white text-xl opacity-90">
-                Click to explore our tax services
-              </p>
             </div>
           </div>
           <button

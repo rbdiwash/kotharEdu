@@ -1,32 +1,27 @@
-import React, { useState, useEffect } from "react";
-import study from "../../assets/images/study.png";
-import student from "../../assets/images/student.png";
-import uni from "../../assets/images/select.png";
-import apply from "../../assets/images/apply.png";
+import React, { useState } from "react";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { Link, NavLink } from "react-router-dom";
+import Slider from "react-slick";
 import admission from "../../assets/images/admission.png";
+import apply from "../../assets/images/apply.png";
+import noImage from "../../assets/images/australia.png";
+import award from "../../assets/images/award.png";
+import uni from "../../assets/images/select.png";
+import student from "../../assets/images/student.png";
+import study from "../../assets/images/study.png";
 import user from "../../assets/images/user.png";
 import vector from "../../assets/images/Vector.png";
 import visa from "../../assets/images/visa.png";
-import noImage from "../../assets/images/australia.png";
-import AssociatedUni from "./AssociatedUni";
-import Slider from "react-slick";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import Classes from "./Classes";
-import News from "./News";
-import Events from "./Events";
-import Cities from "./Cities";
 import ContactForm from "../../Components/ContactForm";
-import Testimonials from "./Testimonials";
-import { Link, NavLink } from "react-router-dom";
-import useKothar from "../../context/useKothar";
 import OptimizedImage from "../../Components/OptimizedImage";
+import useKothar from "../../context/useKothar";
 import useImagePreload from "../../hooks/useImagePreload";
-import award from "../../assets/images/award.png";
-import australia from "../../assets/images/australia.jpg";
-import canada from "../../assets/images/canada.jpg";
-import uk from "../../assets/images/uk.jpg";
-import usa from "../../assets/images/usa.jpg";
-import nepal from "../../assets/images/nepal.jpg";
+import AssociatedUni from "./AssociatedUni";
+import Cities from "./Cities";
+import Classes from "./Classes";
+import Events from "./Events";
+import News from "./News";
+import Testimonials from "./Testimonials";
 
 const options2 = [
   {
@@ -56,39 +51,8 @@ const options2 = [
 ];
 
 const Homepage = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Background images array
-  const backgroundImages = [
-    {
-      url: australia,
-      alt: "Australia",
-    },
-    {
-      url: canada,
-      alt: "Canada",
-    },
-    {
-      url: uk,
-      alt: "UK",
-    },
-    {
-      url: usa,
-      alt: "USA",
-    },
-    {
-      url: nepal,
-      alt: "Nepal",
-    },
-  ];
-
   // Preload critical images
   const criticalImages = [
-    australia,
-    canada,
-    uk,
-    usa,
-    nepal,
     study,
     student,
     uni,
@@ -101,17 +65,6 @@ const Homepage = () => {
   ];
 
   useImagePreload(criticalImages, true);
-
-  // Auto-rotate background images
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex(
-        (prevIndex) => (prevIndex + 1) % backgroundImages.length
-      );
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [backgroundImages.length]);
 
   var settings = {
     dots: false,
@@ -165,28 +118,6 @@ const Homepage = () => {
         id="homepage"
         className="md:max-h-[85vh] relative overflow-hidden"
       >
-        {/* Background Image Carousel */}
-        <div className="absolute inset-0">
-          {backgroundImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentImageIndex ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <OptimizedImage
-                src={image.url}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-                priority={index === 0}
-                loading={index === 0 ? "eager" : "lazy"}
-                sizes="100vw"
-                fetchPriority={index === 0 ? "high" : "auto"}
-              />
-            </div>
-          ))}
-        </div>
-
         {/* Overlay Gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/100"></div>
         {/* Animated Background Elements */}

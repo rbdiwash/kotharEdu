@@ -3,7 +3,7 @@ import { FaTimes } from "react-icons/fa";
 import bannerImage from "../assets/images/chess.jpg";
 
 const Banner = ({
-  redirectLink = "https://docs.google.com/forms/d/e/1FAIpQLSdsAVqwFgW6T4hb7BNYX5cAxtTDcQsffgOzIC_QFvYT3md1Eg/viewform/",
+  redirectLink = "https://forms.gle/w3Tp3PQZ7hVPA5wd7",
   title = "CAM CHESS MASTER 2025",
   description = "Get expert tax assistance and use our tax calculator for accurate calculations",
   imageEmoji = "💰",

@@ -126,6 +126,20 @@ const OptimizedImage = ({
         </div>
       )}
 
+      {/* Error Fallback */}
+      {hasError && (
+        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+          <img
+            src={placeholder}
+            alt=""
+            className="w-16 h-16 object-contain opacity-50"
+            onError={(e) => {
+              e.target.style.display = "none";
+            }}
+          />
+        </div>
+      )}
+
       {/* WebP Sources */}
       {isInView && webpSources && (
         <picture>
@@ -139,7 +153,7 @@ const OptimizedImage = ({
           ))}
           <img
             src={fallbackSrc}
-            alt={alt}
+            alt={alt || ""}
             className={`w-full h-full object-cover transition-opacity duration-300 ${
               isLoaded ? "opacity-100" : "opacity-0"
             }`}
@@ -148,6 +162,7 @@ const OptimizedImage = ({
             onLoad={handleLoad}
             onError={handleError}
             sizes={sizes}
+            style={{ textIndent: "-9999px", fontSize: 0 }}
             {...props}
           />
         </picture>
@@ -157,7 +172,7 @@ const OptimizedImage = ({
       {isInView && !webpSources && (
         <img
           src={fallbackSrc}
-          alt={alt}
+          alt={alt || ""}
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
@@ -167,6 +182,7 @@ const OptimizedImage = ({
           onError={handleError}
           srcSet={generateSrcSet(fallbackSrc)}
           sizes={sizes}
+          style={{ textIndent: "-9999px", fontSize: 0 }}
           {...props}
         />
       )}
