@@ -32,5 +32,5 @@ module.exports = withMT({
       altWhite: "#727272",
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 });

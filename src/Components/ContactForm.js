@@ -3,7 +3,7 @@ import axios from "../Utils/Axios";
 import ErrorMessage from "./ErrorMessage";
 import SuccessMessage from "./SuccessMessage";
 
-const ContactForm = () => {
+const ContactForm = ({ nepal }) => {
   const [data, setData] = useState({});
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,9 +71,9 @@ const ContactForm = () => {
                       Our Office
                     </h3>
                     <p className="text-white/80 leading-relaxed">
-                      Suite 273, Level 2, 398/408 Pitt St,
-                      <br />
-                      Haymarket NSW 2000
+                      {nepal
+                        ? "MaijuBahal, Kathmandu"
+                        : "Suite 273, Level 2, 398/408 Pitt St, Haymarket NSW 2000"}
                     </p>
                   </div>
                 </div>
@@ -86,7 +86,9 @@ const ContactForm = () => {
                     <h3 className="text-lg font-semibold text-white mb-2">
                       Call Us
                     </h3>
-                    <p className="text-white/80">0480322403</p>
+                    <p className="text-white/80">
+                      {nepal ? "01-14500571, 9741688965" : "0480322403"}
+                    </p>
                   </div>
                 </div>
 
@@ -98,7 +100,9 @@ const ContactForm = () => {
                     <h3 className="text-lg font-semibold text-white mb-2">
                       Email Us
                     </h3>
-                    <p className="text-white/80">info@kotharedu.com</p>
+                    <p className="text-white/80">
+                      {nepal ? "info@kotharedunepal.com" : "info@kotharedu.com"}
+                    </p>
                   </div>
                 </div>
               </div>

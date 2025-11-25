@@ -43,6 +43,7 @@ import StarterKit from "./Pages/StarterKit";
 import PartenerInstitutions from "./Pages/PartenerInstitutions";
 import IndividualEvent from "./Pages/IndividualEvent";
 import FAQ from "./Pages/FAQ";
+import Nepal from "./Pages/Nepal";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -59,7 +60,8 @@ const PublicRoutes = () => {
   return (
     <div id="overlay">
       {/* <ScrollToTop /> */}
-      {!location.pathname.includes("admin") && <Navbar />}
+      {!location.pathname.includes("admin") &&
+        !location.pathname.includes("nepal") && <Navbar />}
       <Routes>
         <Route
           exact
@@ -147,9 +149,11 @@ const PublicRoutes = () => {
         ></Route>
         <Route path="/pr-calculator" element={<PRCalculator />} />
         <Route path="/tax-calculator" element={<TaxCalculator />} />
+        <Route exact path="/nepal" element={<Nepal />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-      {!location.pathname.includes("admin") && <Footer />}
+      {!location.pathname.includes("admin") &&
+        !location.pathname.includes("nepal") && <Footer />}
       <ToastContainer />
     </div>
   );

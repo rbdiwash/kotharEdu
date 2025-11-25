@@ -111,7 +111,8 @@ const Homepage = () => {
       },
     ],
   };
-  const [{ services }, {}] = useKothar();
+  const [{ services, destinations }, {}] = useKothar();
+
   return (
     <>
       <section
@@ -217,125 +218,39 @@ const Homepage = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  {/* Australia */}
-                  <div className="group bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
-                    <div className="text-center">
-                      <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <img
-                          loading="lazy"
-                          src="https://flagcdn.com/w80/au.png"
-                          alt="Australia Flag"
-                          className="w-full h-full object-cover rounded-sm shadow-sm"
-                          onError={(e) => {
-                            e.target.style.display = "none";
-                            e.target.nextSibling.style.display = "block";
-                          }}
-                        />
+                  {destinations?.slice(0, 4).map((destination, index) => {
+                    return (
+                      <NavLink
+                        key={destination?.id || index}
+                        to={`/states/${destination?.destination}`}
+                        state={{ data: destination }}
+                        className="block"
+                      >
                         <div
-                          className="w-full h-full bg-blue-600 rounded-sm flex items-center justify-center text-white font-bold text-xs"
-                          style={{ display: "none" }}
+                          className={`group bg-gradient-to-br  rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105`}
                         >
-                          AU
+                          <div className="text-center">
+                            <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                              <img
+                                loading="lazy"
+                                src={destination?.image || noImage}
+                                alt={`${destination?.image || "Country"} Flag`}
+                                className="w-full h-full object-cover rounded-sm shadow-sm"
+                                onError={(e) => {
+                                  e.target.style.display = "none";
+                                  e.target.nextSibling.style.display = "block";
+                                }}
+                              />
+                            </div>
+                            <h4 className="text-white font-bold text-lg mb-2">
+                              {destination?.destination || "Country"}
+                            </h4>
+                            <p className="text-white/70 text-sm">Explore Now</p>
+                          </div>
                         </div>
-                      </div>
-                      <h4 className="text-white font-bold text-lg mb-2">
-                        Australia
-                      </h4>
-                      <p className="text-white/70 text-sm">
-                        Sydney • Melbourne
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Canada */}
-                  <div className="group bg-gradient-to-br from-red-500/20 to-white/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
-                    <div className="text-center">
-                      <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <img
-                          loading="lazy"
-                          src="https://flagcdn.com/w80/ca.png"
-                          alt="Canada Flag"
-                          className="w-full h-full object-cover rounded-sm shadow-sm"
-                          onError={(e) => {
-                            e.target.style.display = "none";
-                            e.target.nextSibling.style.display = "block";
-                          }}
-                        />
-                        <div
-                          className="w-full h-full bg-red-600 rounded-sm flex items-center justify-center text-white font-bold text-xs"
-                          style={{ display: "none" }}
-                        >
-                          CA
-                        </div>
-                      </div>
-                      <h4 className="text-white font-bold text-lg mb-2">
-                        Canada
-                      </h4>
-                      <p className="text-white/70 text-sm">
-                        Toronto • Vancouver
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* UK */}
-                  <div className="group bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
-                    <div className="text-center">
-                      <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <img
-                          loading="lazy"
-                          src="https://flagcdn.com/w80/gb.png"
-                          alt="UK Flag"
-                          className="w-full h-full object-cover rounded-sm shadow-sm"
-                          onError={(e) => {
-                            e.target.style.display = "none";
-                            e.target.nextSibling.style.display = "block";
-                          }}
-                        />
-                        <div
-                          className="w-full h-full bg-blue-600 rounded-sm flex items-center justify-center text-white font-bold text-xs"
-                          style={{ display: "none" }}
-                        >
-                          UK
-                        </div>
-                      </div>
-                      <h4 className="text-white font-bold text-lg mb-2">
-                        United Kingdom
-                      </h4>
-                      <p className="text-white/70 text-sm">
-                        London • Manchester
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* USA */}
-                  <div className="group bg-gradient-to-br from-blue-500/20 to-red-500/20 rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105">
-                    <div className="text-center">
-                      <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <img
-                          loading="lazy"
-                          src="https://flagcdn.com/w80/us.png"
-                          alt="USA Flag"
-                          className="w-full h-full object-cover rounded-sm shadow-sm"
-                          onError={(e) => {
-                            e.target.style.display = "none";
-                            e.target.nextSibling.style.display = "block";
-                          }}
-                        />
-                        <div
-                          className="w-full h-full bg-blue-600 rounded-sm flex items-center justify-center text-white font-bold text-xs"
-                          style={{ display: "none" }}
-                        >
-                          US
-                        </div>
-                      </div>
-                      <h4 className="text-white font-bold text-lg mb-2">
-                        United States
-                      </h4>
-                      <p className="text-white/70 text-sm">
-                        New York • California
-                      </p>
-                    </div>
-                  </div>
+                      </NavLink>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -453,7 +368,7 @@ const Homepage = () => {
         </div>
       </section>
       <Events />
-      <Classes />
+      {/* <Classes /> */}
       <AssociatedUni />
       <News />
       <Testimonials />
