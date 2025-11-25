@@ -22,7 +22,6 @@ const App = () => {
         <ToastContainer />
         <ThemeProvider>
           <Router>
-            <Banner />
             <ScrollToTop />
             <FloatingButton />
             <PublicRoutes />

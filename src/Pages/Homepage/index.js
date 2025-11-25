@@ -22,6 +22,7 @@ import Classes from "./Classes";
 import Events from "./Events";
 import News from "./News";
 import Testimonials from "./Testimonials";
+import Banner from "../../Components/TaxBanner";
 
 const options2 = [
   {
@@ -115,6 +116,7 @@ const Homepage = () => {
 
   return (
     <>
+      <Banner />
       <section
         id="homepage"
         className="md:max-h-[85vh] relative overflow-hidden"

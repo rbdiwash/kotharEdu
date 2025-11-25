@@ -44,6 +44,7 @@ import PartenerInstitutions from "./Pages/PartenerInstitutions";
 import IndividualEvent from "./Pages/IndividualEvent";
 import FAQ from "./Pages/FAQ";
 import Nepal from "./Pages/Nepal";
+import Banner from "./Components/TaxBanner";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -103,7 +104,6 @@ const PublicRoutes = () => {
           path="/admin/states"
           element={checkLoggedIn(<AdminStates />)}
         ></Route>
-        <Route path="*" element={<NotFound />}></Route>
         <Route exact path="/" element={<Homepage />}></Route>
         <Route exact path="/about" element={<About />}></Route>
         <Route exact path="/contact" element={<Contact />}></Route>

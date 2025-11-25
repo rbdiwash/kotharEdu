@@ -15,6 +15,7 @@ import Annu from "../assets/images/team/Annu.jpeg";
 import Sudhan from "../assets/images/team/Sudhan.jpeg";
 import Classes from "./Homepage/Classes";
 import NepalFooter from "../Components/NepalFooter";
+import NepalBanner from "../Components/NepalBanner";
 
 const Nepal = () => {
   const [{ services }] = useKothar();
@@ -22,30 +23,19 @@ const Nepal = () => {
   // Nepal team members
   const nepalTeam = [
     {
-      name: "Muskan Pandey",
-      role: "Director/Senior Educational Consultant",
-      number: "T088",
-      gmail: "admin@kotharedu.com",
-      image: Muskan,
+      name: "Kiran Simkhada",
+      role: "Branch Manager",
+      gmail: "info@kotharedunepal.com",
+      image: Anand,
       contact: "0426250365",
       location: "Kathmandu, Nepal",
     },
     {
-      name: "Anand Simkhada",
-      role: "Director/ Educational Consultant",
-      number: "T290",
-      gmail: "admissions@kotharedu.com",
-      image: Anand,
-      contact: "0405372084",
-      location: "Kathmandu, Nepal",
-    },
-    {
-      name: "Rudra Acharya",
-      role: "Director",
-      number: "11564",
-      gmail: "info@kotharedu.com",
-      image: Rudra,
-      contact: "0424344135",
+      name: "Prashanna Kafle",
+      role: "Business Development Manager",
+      gmail: "info@kotharedunepal.com",
+      image: Muskan,
+      contact: "0426250365",
       location: "Kathmandu, Nepal",
     },
     {
@@ -76,7 +66,7 @@ const Nepal = () => {
   return (
     <>
       <NepalNavbar />
-
+      <NepalBanner />
       {/* Hero Section */}
       <section
         id="homepage"
@@ -311,7 +301,7 @@ const Nepal = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {nepalTeam?.map((member, index) => (
               <TeamCard
                 key={index}
@@ -365,8 +355,8 @@ const TeamCard = ({ name, role, number, gmail, image, contact, location }) => {
         </div>
 
         {/* Content */}
-        <div className="p-8">
-          <div className="space-y-4">
+        <div className="p-4">
+          <div className="space-y-2">
             <div>
               <h3 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors duration-300">
                 {name}
@@ -377,7 +367,7 @@ const TeamCard = ({ name, role, number, gmail, image, contact, location }) => {
             </div>
 
             {location && (
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                   <FiMapPin className="text-primary text-lg" />
                 </div>
@@ -386,7 +376,7 @@ const TeamCard = ({ name, role, number, gmail, image, contact, location }) => {
             )}
 
             <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
+              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                   <BiMailSend className="text-primary text-lg" />
                 </div>
@@ -398,7 +388,7 @@ const TeamCard = ({ name, role, number, gmail, image, contact, location }) => {
                 </a>
               </div>
 
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
+              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                   <BiPhone className="text-primary text-lg" />
                 </div>
