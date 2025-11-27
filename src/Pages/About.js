@@ -28,6 +28,10 @@ import Annu from "../assets/images/team/Annu.jpeg";
 import Sudhan from "../assets/images/team/Sudhan.jpeg";
 import Amish from "../assets/images/team/Amish.jpeg";
 import Sujith from "../assets/images/team/Sujith.jpeg";
+import Kiran from "../assets/images/nepalTeam/kiran.jpeg";
+import Prashanna from "../assets/images/nepalTeam/pras.jpeg";
+import Shreya from "../assets/images/nepalTeam/shreya.JPG";
+import Anjana from "../assets/images/nepalTeam/anjana.jpeg";
 
 const About = () => {
   const members = [
@@ -89,6 +93,33 @@ const About = () => {
       gmail: "sujithhiran@gmail.com",
       image: Sujith,
       contact: "0406176233",
+    },
+  ];
+  const nepalTeam = [
+    {
+      name: "Kiran Simkhada",
+      role: "Branch Manager",
+      gmail: "kiran@kotharedunepal.com",
+      image: Kiran,
+    },
+    {
+      name: "Prashanna Kafle",
+      role: "Business Development Manager",
+      gmail: "p.kafle@kotharedunepal.com",
+      image: Prashanna,
+    },
+
+    {
+      name: "Anjana Sapkota",
+      role: "Marketing Officer",
+      gmail: "info@kotharedunepal.com",
+      image: Anjana,
+    },
+    {
+      name: "Shreya Bhujel",
+      role: "Receptionist",
+      gmail: "info@kotharedunepal.com",
+      image: Shreya,
     },
   ];
 
@@ -422,7 +453,7 @@ const About = () => {
               <span className="text-gray-600 font-medium">Our Team</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
-              Our Management Team
+              Our Sydney Team
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Meet the dedicated professionals who make your educational dreams
@@ -430,13 +461,35 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
             {members?.map((item, index) => (
               <TeamCard
                 key={index}
                 name={item?.name}
                 role={item.role}
                 number={item.number}
+                gmail={item.gmail}
+                image={item.image}
+                contact={item?.contact}
+              />
+            ))}
+          </div>
+          <div className="text-center my-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+              Our Nepal Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Meet the dedicated professionals who make your educational dreams
+              a reality
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {nepalTeam?.map((item, index) => (
+              <TeamCard
+                key={index}
+                name={item?.name}
+                role={item.role}
                 gmail={item.gmail}
                 image={item.image}
                 contact={item?.contact}
@@ -509,10 +562,10 @@ export const TeamCard = ({ name, role, number, gmail, image, contact }) => {
         </div>
 
         {/* Content */}
-        <div className="p-8">
-          <div className="space-y-4">
+        <div className="p-3">
+          <div className="space-y-1">
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-2xl font-bold text-gray-800 mb-0 group-hover:text-primary transition-colors duration-300">
                 {name}
               </h3>
               <p className="text-primary font-semibold text-sm uppercase tracking-wide">
@@ -520,8 +573,8 @@ export const TeamCard = ({ name, role, number, gmail, image, contact }) => {
               </p>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
+            {gmail && (
+              <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                   <BiMailSend className="text-primary text-lg" />
                 </div>
@@ -532,8 +585,10 @@ export const TeamCard = ({ name, role, number, gmail, image, contact }) => {
                   {gmail}
                 </a>
               </div>
+            )}
 
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
+            {contact && (
+              <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
                 <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
                   <BiPhone className="text-primary text-lg" />
                 </div>
@@ -544,7 +599,7 @@ export const TeamCard = ({ name, role, number, gmail, image, contact }) => {
                   {contact}
                 </a>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

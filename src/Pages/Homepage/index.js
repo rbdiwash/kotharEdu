@@ -116,7 +116,7 @@ const Homepage = () => {
 
   return (
     <>
-      <Banner />
+      {/* <Banner /> */}
       <section
         id="homepage"
         className="md:max-h-[85vh] relative overflow-hidden"

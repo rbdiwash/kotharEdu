@@ -27,11 +27,6 @@ const Navbar = () => {
     setIsService(false);
   };
 
-  const handleTaxHeaderClick = () => {
-    // window.open("https://kothar.oneon.au/", "_blank");
-    navigate("/tax-service");
-  };
-
   let activeClassName = { color: "#00A1CF" };
 
   const location = useLocation();
@@ -39,27 +34,6 @@ const Navbar = () => {
   return (
     <React.Fragment>
       {/* Tax Services Header - only show when banner is closed */}
-
-      <nav className="px-2 bg-gradient-to-r from-primary to-primary2 py-2 z-[200]">
-        <div className="container flex flex-wrap justify-between items-center mx-auto text-white">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <span className="text-second text-2xl font-bold">💰</span>
-            </div>
-            <div>
-              <h3 className="text-white font-bold text-xl">
-                Tax Services Available
-              </h3>
-            </div>
-          </div>
-          <button
-            onClick={handleTaxHeaderClick}
-            className="bg-white text-primary font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition-all duration-200 text-xs"
-          >
-            Learn More
-          </button>
-        </div>
-      </nav>
 
       {/* <nav className="px-2 bg-primary py-1">
         <div className="container flex flex-wrap justify-between items-center mx-auto text-white">

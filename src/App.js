@@ -23,7 +23,7 @@ const App = () => {
         <ThemeProvider>
           <Router>
             <ScrollToTop />
-            <FloatingButton />
+            {/* <FloatingButton /> */}
             <PublicRoutes />
           </Router>
         </ThemeProvider>

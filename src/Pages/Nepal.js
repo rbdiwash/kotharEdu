@@ -1,21 +1,19 @@
 import React from "react";
-import { BiChevronRight, BiMail, BiPhone, BiMailSend } from "react-icons/bi";
-import { FiUsers, FiMapPin } from "react-icons/fi";
-import { Link, NavLink } from "react-router-dom";
-import NepalNavbar from "../Components/NepalNavbar";
+import { BiChevronRight, BiMailSend, BiPhone } from "react-icons/bi";
+import { FiMapPin, FiUsers } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import ContactForm from "../Components/ContactForm";
-import useKothar from "../context/useKothar";
+import NepalBanner from "../Components/NepalBanner";
+import NepalFooter from "../Components/NepalFooter";
+import NepalNavbar from "../Components/NepalNavbar";
 import OptimizedImage from "../Components/OptimizedImage";
 import noImage from "../assets/images/australia.png";
-import logo from "../assets/images/new_logo.png";
-import Anand from "../assets/images/team/Anand Simkhada.JPG";
-import Muskan from "../assets/images/team/Muskan Pandey.jpeg";
-import Rudra from "../assets/images/team/Rudra Acharya.JPG";
-import Annu from "../assets/images/team/Annu.jpeg";
-import Sudhan from "../assets/images/team/Sudhan.jpeg";
+import Anjana from "../assets/images/nepalTeam/anjana.jpeg";
+import Kiran from "../assets/images/nepalTeam/kiran.jpeg";
+import Prashanna from "../assets/images/nepalTeam/pras.jpeg";
+import Shreya from "../assets/images/nepalTeam/shreya.JPG";
+import useKothar from "../context/useKothar";
 import Classes from "./Homepage/Classes";
-import NepalFooter from "../Components/NepalFooter";
-import NepalBanner from "../Components/NepalBanner";
 
 const Nepal = () => {
   const [{ services }] = useKothar();
@@ -25,34 +23,27 @@ const Nepal = () => {
     {
       name: "Kiran Simkhada",
       role: "Branch Manager",
-      gmail: "info@kotharedunepal.com",
-      image: Anand,
-      contact: "0426250365",
-      location: "Kathmandu, Nepal",
+      gmail: "kiran@kotharedunepal.com",
+      image: Kiran,
     },
     {
       name: "Prashanna Kafle",
       role: "Business Development Manager",
+      gmail: "p.kafle@kotharedunepal.com",
+      image: Prashanna,
+    },
+
+    {
+      name: "Anjana Sapkota",
+      role: "Marketing Officer",
       gmail: "info@kotharedunepal.com",
-      image: Muskan,
-      contact: "0426250365",
-      location: "Kathmandu, Nepal",
+      image: Anjana,
     },
     {
-      name: "Annu Ghimire",
-      role: "Account Officer",
-      gmail: "accounts@kotharedu.com",
-      image: Annu,
-      contact: "0478101261",
-      location: "Kathmandu, Nepal",
-    },
-    {
-      name: "Sudhan Pandey",
-      role: "Admin Officer",
-      gmail: "info@kotharedu.com",
-      image: Sudhan,
-      contact: "04050466876",
-      location: "Kathmandu, Nepal",
+      name: "Shreya Bhujel",
+      role: "Receptionist",
+      gmail: "info@kotharedunepal.com",
+      image: Shreya,
     },
   ];
 
@@ -376,29 +367,32 @@ const TeamCard = ({ name, role, number, gmail, image, contact, location }) => {
             )}
 
             <div className="space-y-3">
-              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
-                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <BiMailSend className="text-primary text-lg" />
+              {gmail && (
+                <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                    <BiMailSend className="text-primary text-lg" />
+                  </div>
+                  <a
+                    href={`mailto:${gmail}`}
+                    className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium text-sm"
+                  >
+                    {gmail}
+                  </a>
                 </div>
-                <a
-                  href={`mailto:${gmail}`}
-                  className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium text-sm"
-                >
-                  {gmail}
-                </a>
-              </div>
-
-              <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
-                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <BiPhone className="text-primary text-lg" />
+              )}
+              {contact && (
+                <div className="flex items-center gap-3 p-1 bg-gray-50 rounded-xl hover:bg-primary/5 transition-colors duration-300">
+                  <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                    <BiPhone className="text-primary text-lg" />
+                  </div>
+                  <a
+                    href={`tel:${contact}`}
+                    className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
+                  >
+                    {contact}
+                  </a>
                 </div>
-                <a
-                  href={`tel:${contact}`}
-                  className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
-                >
-                  {contact}
-                </a>
-              </div>
+              )}
             </div>
           </div>
         </div>

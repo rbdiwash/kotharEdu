@@ -3,7 +3,7 @@ import { FaTimes } from "react-icons/fa";
 import bannerImage from "../assets/images/nepal_banner.jpeg";
 
 const NepalBanner = ({
-  redirectLink = "https://kotharedu.com/nepal/#contact",
+  redirectLink = "https://docs.google.com/forms/d/e/1FAIpQLSc738QJKTGcXEA7QdKMgRdMPYD4e9j6S8LK-z5TgRMILy1aUQ/viewform?usp=publish-editor",
 
   imageUrl = bannerImage,
   localStorageKey = "nepalBannerClosed",

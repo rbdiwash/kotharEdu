@@ -76,7 +76,7 @@ const NepalFooter = () => {
                       <div className="text-3xl">🇳🇵</div>
                       <div className="flex-1">
                         <h4 className="text-white font-semibold mb-2">
-                          Kothar Education - Nepal
+                          Kothar Educational Services - Nepal
                         </h4>
                         <div className="text-gray-300 text-sm leading-relaxed">
                           MaijuBahal, Kathmandu
