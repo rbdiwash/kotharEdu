@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Nepal from "../assets/images/nepal.png";
 
 const NepalFooter = () => {
   // Minimal links for Nepal footer
@@ -66,14 +67,16 @@ const NepalFooter = () => {
               <div className="space-y-6">
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold text-white flex items-center gap-3">
-                    <FaMapMarkerAlt className="text-primary text-lg" />
-                    Nepal Office
+                    <img src={Nepal} alt="Nepal" className="w-4 h-4" /> Nepal
+                    Office
                   </h3>
 
                   {/* Nepal Office Details */}
                   <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                     <div className="flex items-start gap-4">
-                      <div className="text-3xl">🇳🇵</div>
+                      <div className="text-3xl">
+                        <img src={Nepal} alt="Nepal" className="w-4 h-4" />
+                      </div>
                       <div className="flex-1">
                         <h4 className="text-white font-semibold mb-2">
                           Kothar Educational Services - Nepal

@@ -3,6 +3,15 @@ const path = require("path");
 const config = {
   devServer: {
     historyApiFallback: true,
+    // Disable caching in development
+    headers: {
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      Pragma: "no-cache",
+      Expires: "0",
+    },
+    // Disable hot module replacement caching
+    hot: true,
+    liveReload: true,
   },
   // Production optimizations for better caching
   optimization: {

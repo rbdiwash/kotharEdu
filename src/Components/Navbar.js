@@ -4,6 +4,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/images/new_logo.png";
 import useKothar from "../context/useKothar";
+import Nepal from "../assets/images/nepal.png";
+import Australia from "../assets/images/au.svg";
 
 const Navbar = () => {
   const [explore, setExplore] = useState(false);
@@ -347,7 +349,7 @@ const Navbar = () => {
               <li className="relative mt-4 md:mt-0">
                 <button
                   type="button"
-                  className="px-2 py-0.25 font-semibold  md:hover:text-blue-700 flex items-center gap-1 rounded-md border border-black"
+                  className="px-3 py-2 font-semibold  md:hover:text-blue-700 flex items-center gap-2 rounded-md border border-black"
                   onClick={() => {
                     setIsOffices(!isOffices);
                     setExplore(false);
@@ -360,7 +362,14 @@ const Navbar = () => {
                       : undefined
                   }
                 >
-                  <span className="text-2xl">🇦🇺</span> Australia
+                  <img
+                    src={
+                      location?.pathname?.includes("/nepal") ? Nepal : Australia
+                    }
+                    alt="Nepal"
+                    className="w-4 h-4"
+                  />{" "}
+                  Australia
                   <FiChevronDown
                     className={`transform transition-transform duration-200 ${
                       isOffices ? "rotate-180" : ""
@@ -378,19 +387,25 @@ const Navbar = () => {
                     <div className="flex flex-col" role="none">
                       <NavLink
                         to="/nepal"
-                        className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
+                        className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize flex items-center gap-2"
                         role="menuitem"
                         onClick={() => handleClose()}
                       >
-                        🇳🇵 Nepal
+                        <img src={Nepal} alt="Nepal" className="w-4 h-4" />{" "}
+                        Nepal
                       </NavLink>
                       <NavLink
                         to="/"
-                        className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
+                        className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize flex items-center gap-2"
                         role="menuitem"
                         onClick={() => handleClose()}
                       >
-                        🇦🇺 Australia
+                        <img
+                          src={Australia}
+                          alt="Australia"
+                          className="w-5 h-5"
+                        />{" "}
+                        Australia
                       </NavLink>
                     </div>
                   </div>

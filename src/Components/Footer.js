@@ -1,27 +1,23 @@
 import React from "react";
-import logo from "../assets/images/new_logo.png";
 import {
-  FaFacebook,
-  FaInstagram,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaEnvelope,
-  FaGlobe,
-  FaShieldAlt,
   FaBookOpen,
-  FaGraduationCap,
-  FaCalendarAlt,
-  FaNewspaper,
-  FaLink,
-  FaRss,
-  FaCheckCircle,
   FaCalculator,
+  FaCheckCircle,
+  FaEnvelope,
+  FaFacebook,
+  FaGlobe,
+  FaInstagram,
+  FaLink,
+  FaMapMarkerAlt,
+  FaNewspaper,
+  FaPhone,
   FaUserTie,
-  FaQuestionCircle,
 } from "react-icons/fa";
-import { AiFillTwitterCircle } from "react-icons/ai";
 import { FiMail } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Australia from "../assets/images/au.svg";
+import Nepal from "../assets/images/nepal.png";
+import logo from "../assets/images/new_logo.png";
 
 const options = [
   // { label: "FAQ", url: "faq", id: "1", icon: FaQuestionCircle },
@@ -161,10 +157,10 @@ const Footer = () => {
                           </a>{" "}
                           <br />
                           <a
-                            href="tel:0480322403"
+                            href="tel:+9779741688965"
                             className="text-white hover:text-primary transition-colors duration-300 font-medium"
                           >
-                            +977 9815596571
+                            +977 9741688965
                           </a>
                         </div>
                       </div>
@@ -184,7 +180,13 @@ const Footer = () => {
                   <div className="space-y-6">
                     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                       <div className="flex items-start gap-4">
-                        <div className="text-3xl">🇦🇺</div>
+                        <div className="text-3xl">
+                          <img
+                            src={Australia}
+                            alt="Australia"
+                            className="w-4 h-4"
+                          />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-white font-semibold text-lg mb-2">
                             Australia Office
@@ -204,7 +206,9 @@ const Footer = () => {
 
                     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                       <div className="flex items-start gap-4">
-                        <div className="text-3xl">🇳🇵</div>
+                        <div className="text-3xl">
+                          <img src={Nepal} alt="Nepal" className="w-4 h-4" />
+                        </div>
                         <div className="flex-1">
                           <h4 className="text-white font-semibold text-lg mb-2">
                             Nepal Office

@@ -14,6 +14,7 @@ import Prashanna from "../assets/images/nepalTeam/pras.jpeg";
 import Shreya from "../assets/images/nepalTeam/shreya.JPG";
 import useKothar from "../context/useKothar";
 import Classes from "./Homepage/Classes";
+import bannerImage from "../assets/images/nepal_banner.jpeg";
 
 const Nepal = () => {
   const [{ services }] = useKothar();
@@ -265,6 +266,112 @@ const Nepal = () => {
           </div>
         </div>
       </section>
+      {/* IELTS/PTE Classes Promotional Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Left Side - Text Content */}
+            <div className="space-y-6">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-primary text-white rounded-full px-6 py-2 text-sm font-semibold shadow-lg">
+                <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                <span>Special Offer</span>
+              </div>
+
+              {/* Main Heading */}
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                Join IELTS & PTE Classes
+                <span className="block text-primary mt-2">
+                  For Just Rs 3,999
+                </span>
+              </h2>
+
+              {/* Description */}
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Prepare for your English proficiency tests with our expert
+                instructors. Get comprehensive training, practice materials, and
+                personalized guidance to achieve your target score.
+              </p>
+
+              {/* Key Features */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">✓</span>
+                  </div>
+                  <span className="text-gray-700 font-medium">
+                    Expert Instructors
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">✓</span>
+                  </div>
+                  <span className="text-gray-700 font-medium">
+                    Comprehensive Study Materials
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">✓</span>
+                  </div>
+                  <span className="text-gray-700 font-medium">
+                    Mock Tests & Practice Sessions
+                  </span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-primary font-bold">✓</span>
+                  </div>
+                  <span className="text-gray-700 font-medium">
+                    Flexible Schedule Options
+                  </span>
+                </div>
+              </div>
+
+              {/* Price Highlight */}
+              <div className="bg-primary/10 rounded-xl p-6 border-2 border-primary/20">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-bold text-primary">
+                    Rs 3,999
+                  </span>
+                  <span className="text-gray-500 line-through text-xl">
+                    Rs 8,000
+                  </span>
+                </div>
+                <p className="text-sm text-gray-600 mt-2">
+                  Limited time offer - Save Rs 4,001!
+                </p>
+              </div>
+
+              {/* CTA Button */}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc738QJKTGcXEA7QdKMgRdMPYD4e9j6S8LK-z5TgRMILy1aUQ/viewform?usp=publish-editor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-primary text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl w-full sm:w-auto flex items-center justify-center gap-2"
+              >
+                <span>Enroll Now</span>
+                <BiChevronRight className="text-2xl group-hover:translate-x-1 transition-transform duration-300" />
+              </a>
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src={bannerImage}
+                  alt="IELTS PTE Classes - Study Abroad Preparation"
+                  className="w-full h-[500px] md:h-[600px] object-cover"
+                />
+                {/* Decorative overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Classes />
 
       {/* Team Section */}
