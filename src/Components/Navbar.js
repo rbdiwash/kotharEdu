@@ -9,6 +9,7 @@ const Navbar = () => {
   const [explore, setExplore] = useState(false);
   const [states, setStates] = useState(false);
   const [isService, setIsService] = useState(false);
+  const [isOffices, setIsOffices] = useState(false);
   const [{ destinations, services }, {}] = useKothar();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Navbar = () => {
     setExplore(false);
     setStates(false);
     setIsService(false);
+    setIsOffices(false);
     setNavbarOpen(false);
   };
 
@@ -25,6 +27,7 @@ const Navbar = () => {
     setExplore(false);
     setStates(false);
     setIsService(false);
+    setIsOffices(false);
   };
 
   let activeClassName = { color: "#00A1CF" };
@@ -85,7 +88,7 @@ const Navbar = () => {
             }
             id="navbar-multi-level"
           >
-            <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none  md:flex-row md:space-x-8 md:mt-0 md:text-sm font-semibold md:font-medium  md:bg-white text-md font-bold">
+            <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none  md:flex-row items-center md:space-x-8 md:mt-0 md:text-sm font-semibold md:font-medium  md:bg-white text-md font-bold">
               <li className="relative">
                 <button
                   type="button"
@@ -330,7 +333,7 @@ const Navbar = () => {
                   Contact Us
                 </NavLink>
               </li>
-              <li className="mt-4 md:mt-0">
+              <li className="md:mt-0">
                 <NavLink
                   to="/book"
                   onClick={handleCloseNavbar}
@@ -340,6 +343,58 @@ const Navbar = () => {
                 >
                   Book Now
                 </NavLink>
+              </li>
+              <li className="relative mt-4 md:mt-0">
+                <button
+                  type="button"
+                  className="px-2 py-0.25 font-semibold  md:hover:text-blue-700 flex items-center gap-1 rounded-md border border-black"
+                  onClick={() => {
+                    setIsOffices(!isOffices);
+                    setExplore(false);
+                    setStates(false);
+                    setIsService(false);
+                  }}
+                  style={
+                    location?.pathname?.includes("/nepal")
+                      ? activeClassName
+                      : undefined
+                  }
+                >
+                  <span className="text-2xl">🇦🇺</span> Australia
+                  <FiChevronDown
+                    className={`transform transition-transform duration-200 ${
+                      isOffices ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                {isOffices && (
+                  <div
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="menu-button"
+                    tabIndex="-1"
+                  >
+                    <div className="flex flex-col" role="none">
+                      <NavLink
+                        to="/nepal"
+                        className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
+                        role="menuitem"
+                        onClick={() => handleClose()}
+                      >
+                        🇳🇵 Nepal
+                      </NavLink>
+                      <NavLink
+                        to="/"
+                        className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
+                        role="menuitem"
+                        onClick={() => handleClose()}
+                      >
+                        🇦🇺 Australia
+                      </NavLink>
+                    </div>
+                  </div>
+                )}
               </li>
             </ul>
           </div>

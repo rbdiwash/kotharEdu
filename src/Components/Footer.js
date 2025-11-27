@@ -65,6 +65,34 @@ const options = [
   { label: "Important Links", url: "important-links", id: "6", icon: FaLink },
 ];
 
+const importantLinks = [
+  {
+    label: "CRICOS Course Search",
+    url: "https://cricos.education.gov.au/Course/CourseSearch.aspx",
+    id: "1",
+  },
+  {
+    label: "Visa Processing Time",
+    url: "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-processing-times/global-visa-processing-times",
+    id: "1",
+  },
+  {
+    label: "Visa Fee Calculator",
+    url: "https://immi.homeaffairs.gov.au/visas/visa-pricing-estimator",
+    id: "1",
+  },
+  {
+    label: "Skilled Occupation List",
+    url: "https://immi.homeaffairs.gov.au/visas/working-in-australia/skill-occupation-list",
+    id: "1",
+  },
+  {
+    label: "Code of Conduct",
+    url: "https://www.mara.gov.au/tools-for-registered-agents/code-of-conduct",
+    id: "1",
+  },
+];
+
 const Footer = () => {
   return (
     <>
@@ -82,7 +110,7 @@ const Footer = () => {
             {/* Logo and Description */}
 
             {/* Footer Grid */}
-            <div className="grid lg:grid-cols-3 gap-12 mt-8">
+            <div className="grid lg:grid-cols-4 gap-12 mt-8">
               {/* Company Info */}
               <div className="space-y-8">
                 <div className="space-y-4">
@@ -97,53 +125,7 @@ const Footer = () => {
                   <p className="text-gray-300 leading-relaxed text-lg">
                     Empowering students worldwide to achieve their study abroad
                     dreams with expert guidance and personalized support.
-                  </p>
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-white flex items-center gap-3">
-                    <FaMapMarkerAlt className="text-primary text-xl" />
-                    Our Offices
-                  </h3>
-
-                  {/* Offices */}
-                  <div className="space-y-6">
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                      <div className="flex items-start gap-4">
-                        <div className="text-3xl">🇦🇺</div>
-                        <div className="flex-1">
-                          <h4 className="text-white font-semibold text-lg mb-2">
-                            Australia Office
-                          </h4>
-                          <div className="text-gray-300 text-sm leading-relaxed">
-                            Suite 273, Level 2, 398/408 Pitt St
-                            <br />
-                            Haymarket NSW 2000
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-                      <div className="flex items-start gap-4">
-                        <div className="text-3xl">🇳🇵</div>
-                        <div className="flex-1">
-                          <h4 className="text-white font-semibold text-lg mb-2">
-                            Nepal Office
-                          </h4>
-                          <div className="text-gray-300 text-sm leading-relaxed">
-                            Chunikhel, Budhanilkantha
-                            <br />
-                            Kathmandu, Nepal
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                  </p>{" "}
                   {/* Contact Details */}
                   <div className="space-y-4 pt-6 border-t border-white/10">
                     <h4 className="text-white font-semibold text-lg mb-4">
@@ -190,9 +172,60 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Quick Links */}
+              {/* Contact Info */}
               <div className="space-y-8">
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <FaMapMarkerAlt className="text-primary text-xl" />
+                    Our Offices
+                  </h3>
+
+                  {/* Offices */}
+                  <div className="space-y-6">
+                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                      <div className="flex items-start gap-4">
+                        <div className="text-3xl">🇦🇺</div>
+                        <div className="flex-1">
+                          <h4 className="text-white font-semibold text-lg mb-2">
+                            Australia Office
+                          </h4>
+                          <a
+                            target="_blank"
+                            href="https://maps.app.goo.gl/aN7VpQ5JMT7ZKnjd6"
+                            className="text-gray-300 text-sm leading-relaxed"
+                          >
+                            Suite 273, Level 2, 398/408 Pitt St
+                            <br />
+                            Haymarket NSW 2000
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                      <div className="flex items-start gap-4">
+                        <div className="text-3xl">🇳🇵</div>
+                        <div className="flex-1">
+                          <h4 className="text-white font-semibold text-lg mb-2">
+                            Nepal Office
+                          </h4>
+                          <a
+                            target="_blank"
+                            href="https://maps.app.goo.gl/esawNKGi4zv8ven17"
+                            className="text-gray-300 text-sm leading-relaxed"
+                          >
+                            MaijuBahal, Kathmandu
+                            <br />
+                            Kathmandu, Nepal
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Quick Links */}
+              <div className="space-y-2">
                 <div className="space-y-6">
                   <h3 className="text-2xl font-bold text-white flex items-center gap-3">
                     <FaLink className="text-primary text-xl" />
@@ -205,9 +238,37 @@ const Footer = () => {
                         <Link
                           key={arg?.id}
                           to={`/${arg.url}`}
-                          className="flex items-center gap-4 text-gray-300 hover:text-primary transition-all duration-300 group py-3 px-4 rounded-lg hover:bg-white/5"
+                          className="flex items-center gap-4 text-gray-300 hover:text-primary transition-all duration-300 group py-2 px-4 rounded-lg hover:bg-white/5"
                         >
                           <IconComponent className="text-primary text-lg group-hover:scale-110 transition-transform duration-300" />
+                          <span className="font-medium group-hover:translate-x-1 transition-transform duration-300">
+                            {arg?.label}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>{" "}
+              {/* Quick Links */}
+              <div className="space-y-2">
+                <div className="space-y-6">
+                  <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <FaLink className="text-primary text-xl" />
+                    Important Links
+                  </h3>
+                  <div className="space-y-1">
+                    {importantLinks?.map((arg) => {
+                      const IconComponent = arg?.icon;
+                      return (
+                        <Link
+                          key={arg?.id}
+                          to={`/${arg?.url}`}
+                          className="flex items-center gap-4 text-gray-300 hover:text-primary transition-all duration-300 group py-2 px-4 rounded-lg hover:bg-white/5"
+                        >
+                          {IconComponent && (
+                            <IconComponent className="text-primary text-lg group-hover:scale-110 transition-transform duration-300" />
+                          )}
                           <span className="font-medium group-hover:translate-x-1 transition-transform duration-300">
                             {arg?.label}
                           </span>

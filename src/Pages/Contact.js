@@ -9,12 +9,13 @@ import {
   BiMap,
   BiTime,
 } from "react-icons/bi";
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import contact from "../assets/images/quick_contact.png";
 
 const Contact = () => {
   const [data, setData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [activeTab, setActiveTab] = useState("australia");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -81,73 +82,174 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-5 gap-8 mb-16">
           {/* Contact Information */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
-              <h2 className="text-2xl font-bold text-gray-800 mb-8">
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">
                 Contact Information
               </h2>
 
+              {/* Tabs */}
+              <div className="flex gap-2 mb-8 bg-gray-100 rounded-lg p-1">
+                <button
+                  onClick={() => setActiveTab("australia")}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md font-semibold transition-all duration-300 ${
+                    activeTab === "australia"
+                      ? "bg-white text-primary shadow-md"
+                      : "text-gray-600 hover:text-primary"
+                  }`}
+                >
+                  <span className="text-xl">🇦🇺</span>
+                  <span>Australia</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab("nepal")}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md font-semibold transition-all duration-300 ${
+                    activeTab === "nepal"
+                      ? "bg-white text-primary shadow-md"
+                      : "text-gray-600 hover:text-primary"
+                  }`}
+                >
+                  <span className="text-xl">🇳🇵</span>
+                  <span>Nepal</span>
+                </button>
+              </div>
+
+              {/* Contact Information Content */}
               <div className="space-y-6">
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
-                    <BiMap className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-1">
-                      Address
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Suite 273, Level 2, 398/408 Pitt St, Haymarket NSW 2000
-                    </p>
-                  </div>
-                </div>
+                {activeTab === "australia" ? (
+                  <>
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiMap className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Address
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          Suite 273, Level 2, 398/408 Pitt St, Haymarket NSW
+                          2000
+                        </p>
+                      </div>
+                    </div>
 
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
-                    <BiPhone className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
-                    <a
-                      href="tel:0480322403"
-                      className="text-gray-600 hover:text-primary transition-colors duration-300"
-                    >
-                      +61 480 322 403
-                    </a>
-                  </div>
-                </div>
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiPhone className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Phone
+                        </h3>
+                        <a
+                          href="tel:0480322403"
+                          className="text-gray-600 hover:text-primary transition-colors duration-300"
+                        >
+                          +61 480 322 403
+                        </a>
+                      </div>
+                    </div>
 
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
-                    <BiEnvelope className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-1">Email</h3>
-                    <a
-                      href="mailto:info@kotharedu.com"
-                      className="text-gray-600 hover:text-primary transition-colors duration-300"
-                    >
-                      info@kotharedu.com
-                    </a>
-                  </div>
-                </div>
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiEnvelope className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Email
+                        </h3>
+                        <a
+                          href="mailto:info@kotharedu.com"
+                          className="text-gray-600 hover:text-primary transition-colors duration-300"
+                        >
+                          info@kotharedu.com
+                        </a>
+                      </div>
+                    </div>
 
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
-                    <BiTime className="text-primary text-xl" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-800 mb-1">
-                      Business Hours
-                    </h3>
-                    <p className="text-gray-600">
-                      Mon - Fri: 10:00 AM - 6:00 PM
-                      <br />
-                    </p>
-                  </div>
-                </div>
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiTime className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Business Hours
+                        </h3>
+                        <p className="text-gray-600">
+                          Mon - Fri: 10:00 AM - 6:00 PM
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiMap className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Address
+                        </h3>
+                        <p className="text-gray-600 leading-relaxed">
+                          MaijuBahal, Kathmandu
+                          <br />
+                          Kathmandu, Nepal
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiPhone className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Phone
+                        </h3>
+                        <a
+                          href="tel:+9779741688965"
+                          className="text-gray-600 hover:text-primary transition-colors duration-300"
+                        >
+                          01-14500571, +977 9741688965
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiEnvelope className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Email
+                        </h3>
+                        <a
+                          href="mailto:info@kotharedunepal.com"
+                          className="text-gray-600 hover:text-primary transition-colors duration-300"
+                        >
+                          info@kotharedunepal.com
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4 group">
+                      <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors duration-300">
+                        <BiTime className="text-primary text-xl" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-800 mb-1">
+                          Business Hours
+                        </h3>
+                        <p className="text-gray-600">
+                          Sun - Fri: 10:00 AM - 6:00 PM
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Social Media */}
@@ -161,16 +263,30 @@ const Contact = () => {
                     <FaFacebook className="text-lg" />
                   </a>
                   <a
-                    href="https://www.instagram.com/kothareducation/"
+                    href="https://www.instagram.com//"
                     className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
                   >
                     <FaInstagram className="text-lg" />
                   </a>
                   <a
-                    href="mailto:info@kotharedu.com"
+                    href={`mailto:${
+                      activeTab === "australia"
+                        ? "info@kotharedu.com"
+                        : "info@kotharedunepal.com"
+                    }`}
                     className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
                   >
                     <BiEnvelope className="text-lg" />
+                  </a>{" "}
+                  <a
+                    href={`${
+                      activeTab === "australia"
+                        ? "https://www.tiktok.com/@kothareducational"
+                        : "https://www.tiktok.com/@kothareducationnepal"
+                    }`}
+                    className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+                  >
+                    <FaTiktok className="text-lg" />
                   </a>
                 </div>
               </div>
@@ -178,7 +294,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-3">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
               <h2 className="text-2xl font-bold text-gray-800 mb-8">
                 Send us a Message
@@ -284,26 +400,50 @@ const Contact = () => {
         </div>
 
         {/* Map Section */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden mb-12">
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-2xl font-bold text-gray-800">Find Us</h2>
-            <p className="text-gray-600 mt-2">
-              Visit our office in the heart of Sydney
-            </p>
+        {activeTab === "australia" && (
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden mb-12">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-800">Find Us</h2>
+              <p className="text-gray-600 mt-2">
+                Visit our office in the heart of Sydney
+              </p>
+            </div>
+            <div className="h-96">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.429889780149!2d151.20512837727566!3d-33.8785807195682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12bb69e2955d53%3A0x6ad24eb26655122c!2sKOTHAR%20Educational%20Services!5e0!3m2!1sen!2sau!4v1754377157095!5m2!1sen!2sau"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Kothar Education Office Location - Australia"
+              ></iframe>
+            </div>
           </div>
-          <div className="h-96">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.429889780149!2d151.20512837727566!3d-33.8785807195682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12bb69e2955d53%3A0x6ad24eb26655122c!2sKOTHAR%20Educational%20Services!5e0!3m2!1sen!2sau!4v1754377157095!5m2!1sen!2sau"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Kothar Education Office Location"
-            ></iframe>
+        )}
+        {activeTab === "nepal" && (
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 overflow-hidden mb-12">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-800">Find Us</h2>
+              <p className="text-gray-600 mt-2">
+                Visit our office in Kathmandu, Nepal
+              </p>
+            </div>
+            <div className="h-96">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14130.856159154!2d85.3245!3d27.7172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199a06c2eaf1%3A0xc567c0d16a1b325d!2sMaijuBahal%2C%20Kathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2sau!4v1754377157095!5m2!1sen!2sau"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Kothar Education Office Location - Nepal"
+              ></iframe>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

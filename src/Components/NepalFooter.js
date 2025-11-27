@@ -78,11 +78,15 @@ const NepalFooter = () => {
                         <h4 className="text-white font-semibold mb-2">
                           Kothar Educational Services - Nepal
                         </h4>
-                        <div className="text-gray-300 text-sm leading-relaxed">
+                        <a
+                          target="_blank"
+                          href="https://maps.app.goo.gl/esawNKGi4zv8ven17"
+                          className="text-gray-300 text-sm leading-relaxed"
+                        >
                           MaijuBahal, Kathmandu
                           <br />
                           Kathmandu, Nepal
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>

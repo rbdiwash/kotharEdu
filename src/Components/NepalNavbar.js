@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/images/new_logo.png";
+import { FiChevronDown } from "react-icons/fi";
 
 const NepalNavbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const location = useLocation();
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -22,6 +23,13 @@ const NepalNavbar = () => {
     }
     setNavbarOpen(false);
   };
+  const [isOffices, setIsOffices] = useState(false);
+
+  const handleClose = () => {
+    setIsOffices(false);
+    setNavbarOpen(false);
+  };
+  let activeClassName = { color: "#00A1CF" };
 
   return (
     <nav
@@ -88,6 +96,55 @@ const NepalNavbar = () => {
               >
                 Book Now
               </button>
+            </li>{" "}
+            <li className="relative mt-4 md:mt-0">
+              <button
+                type="button"
+                className="px-2 py-0.25 font-semibold  md:hover:text-blue-700 flex items-center gap-1 rounded-md border border-black"
+                onClick={() => {
+                  setIsOffices(!isOffices);
+                }}
+                style={
+                  location?.pathname?.includes("/nepal")
+                    ? activeClassName
+                    : undefined
+                }
+              >
+                <span className="text-2xl">🇳🇵</span> Nepal
+                <FiChevronDown
+                  className={`transform transition-transform duration-200 ${
+                    isOffices ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {isOffices && (
+                <div
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabIndex="-1"
+                >
+                  <div className="flex flex-col" role="none">
+                    <NavLink
+                      to="/nepal"
+                      className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
+                      role="menuitem"
+                      onClick={() => handleClose()}
+                    >
+                      🇳🇵 Nepal
+                    </NavLink>
+                    <NavLink
+                      to="/"
+                      className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
+                      role="menuitem"
+                      onClick={() => handleClose()}
+                    >
+                      🇦🇺 Australia
+                    </NavLink>
+                  </div>
+                </div>
+              )}
             </li>
           </ul>
         </div>
