@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import Slider from "react-slick";
@@ -18,11 +18,9 @@ import useKothar from "../../context/useKothar";
 import useImagePreload from "../../hooks/useImagePreload";
 import AssociatedUni from "./AssociatedUni";
 import Cities from "./Cities";
-import Classes from "./Classes";
 import Events from "./Events";
 import News from "./News";
 import Testimonials from "./Testimonials";
-import Banner from "../../Components/TaxBanner";
 
 const options2 = [
   {

@@ -265,9 +265,10 @@ const Footer = () => {
                     {importantLinks?.map((arg) => {
                       const IconComponent = arg?.icon;
                       return (
-                        <Link
+                        <a
                           key={arg?.id}
-                          to={`/${arg?.url}`}
+                          target="_blank"
+                          href={arg?.url}
                           className="flex items-center gap-4 text-gray-300 hover:text-primary transition-all duration-300 group py-2 px-4 rounded-lg hover:bg-white/5"
                         >
                           {IconComponent && (
@@ -276,7 +277,7 @@ const Footer = () => {
                           <span className="font-medium group-hover:translate-x-1 transition-transform duration-300">
                             {arg?.label}
                           </span>
-                        </Link>
+                        </a>
                       );
                     })}
                   </div>
