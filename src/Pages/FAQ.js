@@ -10,6 +10,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const FAQ = () => {
+  document.title = "FAQ - Kothar Education";
+  
   const [openIndex, setOpenIndex] = useState(null);
   const navigate = useNavigate();
   const toggleFAQ = (index) => {
@@ -227,7 +229,7 @@ const FAQ = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           {faqData.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="mb-12">
+            <div key={category?.id} className="mb-12">
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-6">
                 {category.icon}
@@ -244,7 +246,7 @@ const FAQ = () => {
 
                   return (
                     <div
-                      key={index}
+                      key={item?.id}
                       className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
                     >
                       {/* Question Header */}

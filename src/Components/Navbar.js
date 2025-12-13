@@ -74,7 +74,7 @@ const Navbar = () => {
               loading="lazy"
               src={logo}
               className="mr-3 h-14 sm:h-15"
-              alt="Flowbite Logo"
+              alt="Kothar Education Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
           </NavLink>
@@ -197,13 +197,13 @@ const Navbar = () => {
                     tabIndex="-1"
                   >
                     <div className="flex flex-col" role="none">
-                      {destinations?.map((arg, i) => (
+                      {destinations?.map((arg) => (
                         <NavLink
                           to={`/states/${arg?.destination}`}
                           className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
                           role="menuitem"
                           onClick={() => handleClose()}
-                          key={i}
+                          key={arg?.id}
                           state={{ data: arg }}
                         >
                           {arg?.destination}
@@ -266,14 +266,32 @@ const Navbar = () => {
                           ⚡ New
                         </span>
                       </NavLink>
-                      {services?.services?.map((arg, i) => (
+                      {services?.services?.map((arg) => (
                         <NavLink
                           to={`/services/${arg?.id}`}
                           className="text-[#102930] block px-4 py-2.5 text-sm hover:bg-primary2 hover:text-white capitalize"
                           role="menuitem"
                           onClick={() => handleClose()}
-                          key={i}
+                          key={arg?.id}
                           state={{ data: arg }}
+                          title={
+                            arg?.descripttion
+                              ? `${
+                                  arg?.serviceName
+                                } - ${arg?.descripttion?.slice(0, 150)}${
+                                  arg?.descripttion?.length > 150 ? "..." : ""
+                                }`
+                              : arg?.serviceName
+                          }
+                          aria-label={
+                            arg?.descripttion
+                              ? `${
+                                  arg?.serviceName
+                                }: ${arg?.descripttion?.slice(0, 150)}${
+                                  arg?.descripttion?.length > 150 ? "..." : ""
+                                }`
+                              : arg?.serviceName
+                          }
                         >
                           {arg?.serviceName}
                         </NavLink>

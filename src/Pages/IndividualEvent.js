@@ -11,6 +11,10 @@ const IndividualEvent = () => {
   const [{ events }] = useKothar();
   const event = events?.find((event) => event?.id === id);
   const navigate = useNavigate();
+  
+  document.title = event?.title
+    ? `${event?.title} - Events - Kothar Education`
+    : "Events - Kothar Education";
   if (!event) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 flex items-center justify-center">

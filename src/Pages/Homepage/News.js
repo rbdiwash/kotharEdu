@@ -116,7 +116,7 @@ const News = () => {
             <div className="relative">
               <Slider {...settings} className="news-slider">
                 {news?.map((item, i) => (
-                  <div key={i} className="px-3">
+                  <div key={item?.id} className="px-3">
                     <NewsCard item={item} handleNewsClick={handleNewsClick} />
                   </div>
                 ))}

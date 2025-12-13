@@ -13,6 +13,8 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import contact from "../assets/images/quick_contact.png";
 
 const Contact = () => {
+  document.title = "Contact Us - Kothar Education";
+  
   const [data, setData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState("australia");

@@ -21,6 +21,8 @@ import AffidavitOfSupport from "../assets/pdfs/AFFIDAVIT OF SUPPORT_Form.pdf";
 import AdmissionChecklist from "../assets/pdfs/Admission Checklist 2025.pdf";
 
 const Checklists = () => {
+  document.title = "Checklists - Kothar Education";
+  
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
@@ -298,7 +300,7 @@ const Checklists = () => {
         <div className="max-w-4xl mx-auto">
           {checklists.map((category, index) => (
             <div
-              key={index}
+              key={category?.id}
               className="bg-white rounded-lg shadow-lg mb-6 overflow-hidden"
             >
               <div className="flex items-center justify-between px-6 py-4 bg-second text-white">
@@ -326,7 +328,7 @@ const Checklists = () => {
                 <div className="p-6 space-y-4">
                   {category.items.map((item, itemIndex) => (
                     <div
-                      key={itemIndex}
+                      key={item?.id}
                       className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                     >
                       <div>

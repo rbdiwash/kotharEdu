@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import TakePartEvent from "../Components/TakePartEvent";
 
 const News = () => {
+  document.title = "News - Kothar Education";
+
   const [{ news }] = useKothar();
 
   const isHTML = (text) => {

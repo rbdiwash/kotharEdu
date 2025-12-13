@@ -145,7 +145,7 @@ const OptimizedImage = ({
         <picture>
           {webpSources.map((source, index) => (
             <source
-              key={index}
+              key={source?.id}
               srcSet={source.srcSet}
               type={source.type}
               sizes={sizes}

@@ -57,7 +57,7 @@ const Classes = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {classes.map((item, index) => (
             <div
-              key={index}
+              key={item?.id}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="p-8">
@@ -72,7 +72,10 @@ const Classes = () => {
 
                 <ul className="space-y-3">
                   {item.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-600">
+                    <li
+                      key={feature?.id}
+                      className="flex items-center text-gray-600"
+                    >
                       <span className="w-2 h-2 bg-second rounded-full mr-3"></span>
                       {feature}
                     </li>

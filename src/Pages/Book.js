@@ -5,6 +5,8 @@ import axios from "../Utils/Axios";
 import ErrorMessage from "../Components/ErrorMessage";
 import SuccessMessage from "../Components/SuccessMessage";
 const Book = () => {
+  document.title = "Book Appointment - Kothar Education";
+  
   const [data, setData] = useState({ enquiryType: "Class" });
   const [message, setMessage] = useState({});
 

@@ -17,6 +17,8 @@ import Classes from "./Homepage/Classes";
 import bannerImage from "../assets/images/nepal_banner.jpeg";
 
 const Nepal = () => {
+  document.title = "Nepal Office - Kothar Education";
+  
   const [{ services }] = useKothar();
 
   // Nepal team members

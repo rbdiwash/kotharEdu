@@ -34,6 +34,8 @@ import Shreya from "../assets/images/nepalTeam/shreya.JPG";
 import Anjana from "../assets/images/nepalTeam/anjana.jpeg";
 
 const About = () => {
+  document.title = "About Us - Kothar Education";
+
   const members = [
     {
       name: "Muskan Pandey",
@@ -464,7 +466,7 @@ const About = () => {
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
             {members?.map((item, index) => (
               <TeamCard
-                key={index}
+                key={item?.id}
                 name={item?.name}
                 role={item.role}
                 number={item.number}
@@ -487,7 +489,7 @@ const About = () => {
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
             {nepalTeam?.map((item, index) => (
               <TeamCard
-                key={index}
+                key={item?.id}
                 name={item?.name}
                 role={item.role}
                 gmail={item.gmail}
@@ -520,7 +522,7 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChooseUs?.map((item, index) => (
-              <div key={index} className="group">
+              <div key={item?.id} className="group">
                 <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 hover:border-primary/20">
                   <div className="w-20 h-20 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     {item.icon}

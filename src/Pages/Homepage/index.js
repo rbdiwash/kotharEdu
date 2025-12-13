@@ -50,6 +50,8 @@ const options2 = [
 ];
 
 const Homepage = () => {
+  document.title = "Home - Kothar Education";
+
   // Preload critical images
   const criticalImages = [
     study,
@@ -221,7 +223,7 @@ const Homepage = () => {
                   {destinations?.slice(0, 4).map((destination, index) => {
                     return (
                       <NavLink
-                        key={destination?.id || index}
+                        key={destination?.id}
                         to={`/states/${destination?.destination}`}
                         state={{ data: destination }}
                         className="block"
@@ -284,7 +286,7 @@ const Homepage = () => {
           <div className="grid md:grid-cols-4 gap-8">
             {options2?.map((item, index) => (
               <div
-                key={index}
+                key={item?.id}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
               >
                 <div className="flex flex-col items-center text-center">
@@ -331,7 +333,7 @@ const Homepage = () => {
 
           <Slider {...settings}>
             {services?.services?.map((item, i) => (
-              <div className="px-4" key={i * 123}>
+              <div className="px-4" key={item?.id}>
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-[550px] flex flex-col my-4">
                   <div className="relative overflow-hidden rounded-t-2xl h-[300px]">
                     <OptimizedImage

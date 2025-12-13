@@ -8,6 +8,8 @@ import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 const Events = () => {
+  document.title = "Events - Kothar Education";
+
   const [{ events }] = useKothar();
   return (
     <>
@@ -54,7 +56,7 @@ const Events = () => {
           {events?.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {events?.map((item, i) => (
-                <EventCard key={i} item={item} />
+                <EventCard key={item?.id} item={item} />
               ))}
             </div>
           ) : (

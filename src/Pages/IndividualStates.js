@@ -17,6 +17,10 @@ const IndividualStates = () => {
   const location = useLocation();
   const { data } = location?.state;
   const navigate = useNavigate();
+  
+  document.title = data?.destination
+    ? `${data?.destination} - Study Destinations - Kothar Education`
+    : "Study Destinations - Kothar Education";
 
   return (
     <>

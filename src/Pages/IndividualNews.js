@@ -11,6 +11,9 @@ const IndividualNews = () => {
   const [{ news }] = useKothar();
 
   const newsData = news?.find((item) => item?.id === id);
+  document.title = newsData?.topic
+    ? `${newsData?.topic} - News - Kothar Education`
+    : "News - Kothar Education";
 
   useEffect(() => {
     window.scrollTo(0, 0);

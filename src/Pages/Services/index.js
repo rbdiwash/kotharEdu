@@ -1,27 +1,24 @@
 import axios from "../../Utils/Axios";
 import React, { useEffect, useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 import ContactForm from "../../Components/ContactForm";
 import TakePartEvent from "../../Components/TakePartEvent";
 import useKothar from "../../context/useKothar";
 import cover from "../../assets/images/kothar.png";
 const Services = () => {
-  const sidebars = [
-    { serviceName: "IELTS", id: "ielts" },
-    { serviceName: "PTE CLASS", id: "pte" },
-    { serviceName: "Scholarship Guidance", id: "scholarship" },
-    { serviceName: "University / Colleges Presentation", id: "uni" },
-    { serviceName: "Pre-departure Session", id: "predaparture" },
-    { serviceName: "Work Placement", id: "placement" },
-    { serviceName: "Skill Assessment ", id: "skill" },
-    { serviceName: "Accomodation / Airport Pickup  ", id: "accomodation" },
-    { serviceName: "College Enrollment", id: "enrollment" },
-  ];
-
   const location = useLocation();
-  const { data } = location?.state;
+  const data = location?.state?.data;
   const [{ services }, {}] = useKothar();
+
+  const { id } = useParams();
+
+  const servicesData = services?.services?.find((arg) => arg?.id === id);
+
+  document.title = servicesData?.serviceName
+    ? `${servicesData?.serviceName} - Services - Kothar Education`
+    : "Services - Kothar Education";
+
   return (
     <>
       <section
@@ -71,7 +68,7 @@ const Services = () => {
               {/* Main Heading */}
               <div className="space-y-6">
                 <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
-                  {data?.serviceName}
+                  {servicesData?.serviceName}
                 </h1>
 
                 <p className="text-xl text-white/90 leading-relaxed max-w-2xl">
@@ -100,11 +97,11 @@ const Services = () => {
             <div className="lg:col-span-2 space-y-8">
               <div className="space-y-6">
                 <h2 className="text-3xl font-bold text-gray-900">
-                  About {data?.serviceName}
+                  About {servicesData?.serviceName}
                 </h2>
                 <div className="w-20 h-1 bg-primary rounded-full"></div>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  {data?.descripttion}
+                  {servicesData?.descripttion}
                 </p>
               </div>
 
@@ -192,7 +189,7 @@ const Services = () => {
 
                   return selectedFeatures.map((feature, index) => (
                     <div
-                      key={index}
+                      key={feature?.description}
                       className={`bg-gradient-to-br ${feature.gradient} rounded-2xl p-6 border ${feature.border}`}
                     >
                       <div className="flex items-center gap-4 mb-4">
@@ -232,7 +229,7 @@ const Services = () => {
                   {services?.services?.map((arg, i) => (
                     <NavLink
                       to={`/services/${arg?.id}`}
-                      key={i}
+                      key={arg?.id}
                       state={{ data: arg }}
                       className="block"
                     >
@@ -257,7 +254,7 @@ const Services = () => {
           </div>
 
           {/* Additional Information */}
-          {data?.more?.title && (
+          {servicesData?.more?.title && (
             <div className="mt-20">
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-3 bg-primary/10 text-primary rounded-full px-6 py-3 text-sm font-medium border border-primary/20 mb-6">
@@ -269,15 +266,15 @@ const Services = () => {
                   <span>Additional Information</span>
                 </div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  {data?.more?.title}
+                  {servicesData?.more?.title}
                 </h2>
                 <div className="w-20 h-1 bg-primary rounded-full mx-auto"></div>
               </div>
 
-              {data?.more?.infos?.length > 0 && (
+              {servicesData?.more?.infos?.length > 0 && (
                 <div className="grid md:grid-cols-3 gap-8">
-                  {data?.more?.infos?.map((item, id) => (
-                    <div key={id} className="group">
+                  {servicesData?.more?.infos?.map((item, id) => (
+                    <div key={item?.id} className="group">
                       <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 relative overflow-hidden">
                         {/* Decorative Background */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16"></div>

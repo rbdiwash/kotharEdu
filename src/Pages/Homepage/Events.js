@@ -82,7 +82,7 @@ const Events = () => {
           <div className="relative py-4">
             <Slider {...settings} className="events-slider">
               {events?.map((item, i) => (
-                <div key={i} className="px-3">
+                <div key={item?.id} className="px-3">
                   <EventCard item={item} />
                 </div>
               ))}
