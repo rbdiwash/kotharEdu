@@ -13,6 +13,8 @@ import australia from "../assets/images/australia.png";
 import useKothar from "../context/useKothar";
 
 const PartenerInstitutions = () => {
+  document.title = "Partner Institutions - Kothar Educational Services";
+
   const [{ uniList }, {}] = useKothar();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");

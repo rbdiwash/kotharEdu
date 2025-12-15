@@ -7,6 +7,8 @@ const FINANCIAL_YEARS = [
   { value: "2022/23", label: "2022/23" },
 ];
 
+document.title = "Tax Calculator - Kothar Educational Services";
+
 const TAX_RATES_2024 = [
   { range: "$0 - $18,200", rate: "0%" },
   { range: "$18,201 - $45,000", rate: "16% of excess over $18,200" },

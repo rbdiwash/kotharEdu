@@ -7,8 +7,7 @@ import "./App.css";
 import { ThemeProvider } from "@material-tailwind/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
+
 import FloatingButton from "./Components/FloatingButton";
 import ScrollToTop from "./Components/ScrollToTop";
 import PublicRoutes from "./PublicRoutes";

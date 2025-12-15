@@ -14,6 +14,8 @@ import {
 } from "react-icons/fi";
 
 const ImportantLinks = () => {
+  document.title = "Important Links - Kothar Educational Services";
+
   const [searchTerm, setSearchTerm] = useState("");
   const [hoveredCard, setHoveredCard] = useState(null);
 

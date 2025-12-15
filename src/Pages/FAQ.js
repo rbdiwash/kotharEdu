@@ -10,8 +10,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const FAQ = () => {
-  document.title = "FAQ - Kothar Education";
-  
+  document.title = "FAQ - Kothar Educational Services";
+
   const [openIndex, setOpenIndex] = useState(null);
   const navigate = useNavigate();
   const toggleFAQ = (index) => {

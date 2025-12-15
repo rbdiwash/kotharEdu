@@ -221,6 +221,8 @@ const Homepage = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   {destinations?.slice(0, 4).map((destination, index) => {
+                    // First 2 images are above the fold - load eagerly with high priority
+                    const isAboveFold = index < 2;
                     return (
                       <NavLink
                         key={destination?.id}
@@ -234,9 +236,12 @@ const Homepage = () => {
                           <div className="text-center">
                             <div className="w-16 h-12 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                               <img
-                                loading="lazy"
+                                loading={isAboveFold ? "eager" : "lazy"}
+                                fetchPriority={isAboveFold ? "high" : "auto"}
                                 src={destination?.image || noImage}
-                                alt={`${destination?.image || "Country"} Flag`}
+                                alt={`${
+                                  destination?.destination || "Country"
+                                } Flag`}
                                 className="w-full h-full object-cover rounded-sm shadow-sm"
                                 onError={(e) => {
                                   e.target.style.display = "none";

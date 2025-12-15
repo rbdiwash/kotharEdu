@@ -1,50 +1,39 @@
-import "./App.css";
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-  Navigate,
-  HashRouter,
-} from "react-router-dom";
-import Navbar from "./Components/Navbar";
-import Homepage from "./Pages/Homepage";
-import About from "./Pages/About";
-import Contact from "./Pages/Contact";
-import Footer from "./Components/Footer";
-import ScrollToTop from "./Utils/ScrollToTop";
-import Login from "./Pages/Admin/Login";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "./App.css";
+import Footer from "./Components/Footer";
+import Navbar from "./Components/Navbar";
+import About from "./Pages/About";
+import Login from "./Pages/Admin/Login";
+import Contact from "./Pages/Contact";
+import Homepage from "./Pages/Homepage";
 import NotFound from "./Pages/NotFound";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Book from "./Pages/Book";
-import Events from "./Pages/Events";
-import News from "./Pages/News";
-import IndividualNews from "./Pages/IndividualNews";
-import IndividualStates from "./Pages/IndividualStates";
-import Services from "./Pages/Services";
-import Admin from "./Pages/Admin/Admin";
-import AdminNews from "./Pages/Admin/AdminNews";
-import AdminTestimonial from "./Pages/Admin/AdminTestimonial";
-import AdminUni from "./Pages/Admin/AdminUni";
-import AdminStates from "./Pages/Admin/AdminStates";
-import AdminServices from "./Pages/Admin/AdminServices";
+
 import AdminBookings from "./Pages/Admin/AdminBookings";
 import AdminEvents from "./Pages/Admin/AdminEvents";
-import ImportantLinks from "./Pages/ImportantLinks";
+import AdminNews from "./Pages/Admin/AdminNews";
+import AdminServices from "./Pages/Admin/AdminServices";
+import AdminStates from "./Pages/Admin/AdminStates";
+import AdminTestimonial from "./Pages/Admin/AdminTestimonial";
+import AdminUni from "./Pages/Admin/AdminUni";
+import Book from "./Pages/Book";
 import Checklists from "./Pages/Checklists";
 import ClientDetailsForm from "./Pages/ClientDetailsForm";
+import Events from "./Pages/Events";
+import FAQ from "./Pages/FAQ";
+import ImportantLinks from "./Pages/ImportantLinks";
+import IndividualEvent from "./Pages/IndividualEvent";
+import IndividualNews from "./Pages/IndividualNews";
+import IndividualStates from "./Pages/IndividualStates";
+import Nepal from "./Pages/Nepal";
+import News from "./Pages/News";
+import PartenerInstitutions from "./Pages/PartenerInstitutions";
 import PRCalculator from "./Pages/PRCalculator";
+import Services from "./Pages/Services";
+import StarterKit from "./Pages/StarterKit";
 import TaxCalculator from "./Pages/TaxCalculator";
 import TaxService from "./Pages/TaxService";
-import StarterKit from "./Pages/StarterKit";
-import PartenerInstitutions from "./Pages/PartenerInstitutions";
-import IndividualEvent from "./Pages/IndividualEvent";
-import FAQ from "./Pages/FAQ";
-import Nepal from "./Pages/Nepal";
-import Banner from "./Components/TaxBanner";
 
 const PublicRoutes = () => {
   const location = useLocation();

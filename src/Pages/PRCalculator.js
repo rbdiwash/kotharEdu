@@ -8,6 +8,8 @@ import {
 } from "react-icons/io5";
 
 const PRCalculator = () => {
+  document.title = "PR Calculator - Kothar Educational Services";
+
   const [formData, setFormData] = useState({
     visaSubclass: "",
     age: "",

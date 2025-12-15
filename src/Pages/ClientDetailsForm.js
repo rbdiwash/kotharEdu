@@ -2,6 +2,8 @@ import React from "react";
 import { BiChevronRight } from "react-icons/bi";
 
 const ClientDetailsForm = () => {
+  document.title = "Client Details Form - Kothar Educational Services";
+  
   return (
     <section className="py-12 bg-gradient-to-b from-white to-lightBlue">
       <div className="container mx-auto px-4">

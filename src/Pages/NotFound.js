@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {
+  document.title = "404 - Page Not Found - Kothar Educational Services";
+
   return (
     <div>
       <div className="row flex flex-col justify-center items-center h-[70vh]">

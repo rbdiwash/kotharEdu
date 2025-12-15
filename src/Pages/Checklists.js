@@ -21,8 +21,8 @@ import AffidavitOfSupport from "../assets/pdfs/AFFIDAVIT OF SUPPORT_Form.pdf";
 import AdmissionChecklist from "../assets/pdfs/Admission Checklist 2025.pdf";
 
 const Checklists = () => {
-  document.title = "Checklists - Kothar Education";
-  
+  document.title = "Checklists - Kothar Educational Services";
+
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
