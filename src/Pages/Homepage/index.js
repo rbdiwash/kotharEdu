@@ -133,7 +133,7 @@ const Homepage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[85vh] py-20">
             {/* Left Content */}
-            <div className="space-y-10">
+            <div className="space-y-6">
               {/* Badge */}
               <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/20 to-second/20 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                 <div className="flex space-x-1">
@@ -147,7 +147,7 @@ const Homepage = () => {
               </div>
 
               {/* Main Heading */}
-              <div className="space-y-6">
+              <div className="space-y-2">
                 <h1 className="text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Empowering your
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-primary">
@@ -162,7 +162,7 @@ const Homepage = () => {
               </div>
 
               {/* Stats Section */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
+              <div className="grid grid-cols-3 gap-2 pt-3 justifu-start">
                 <div className="text-center group">
                   <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
                     500+
@@ -190,7 +190,7 @@ const Homepage = () => {
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6 pt-8">
+              <div className="flex flex-col sm:flex-row gap-6">
                 <a
                   href="#services"
                   className="group bg-primary text-white px-10 py-5 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-lg relative overflow-hidden"

@@ -72,6 +72,7 @@ const Navbar = () => {
           <NavLink to="/" className="flex items-center">
             <img
               loading="lazy"
+              fetchPriority="high"
               src={logo}
               className="mr-3 h-14 sm:h-15"
               alt="Kothar Education Logo"
@@ -207,6 +208,9 @@ const Navbar = () => {
                           state={{ data: arg }}
                         >
                           {arg?.destination}
+                          <p className="text-muted text-xs text-gray-500">
+                            {arg?.descripttion?.slice(0, 30)}
+                          </p>
                         </NavLink>
                       ))}
                     </div>
@@ -274,26 +278,11 @@ const Navbar = () => {
                           onClick={() => handleClose()}
                           key={arg?.id}
                           state={{ data: arg }}
-                          title={
-                            arg?.descripttion
-                              ? `${
-                                  arg?.serviceName
-                                } - ${arg?.descripttion?.slice(0, 150)}${
-                                  arg?.descripttion?.length > 150 ? "..." : ""
-                                }`
-                              : arg?.serviceName
-                          }
-                          aria-label={
-                            arg?.descripttion
-                              ? `${
-                                  arg?.serviceName
-                                }: ${arg?.descripttion?.slice(0, 150)}${
-                                  arg?.descripttion?.length > 150 ? "..." : ""
-                                }`
-                              : arg?.serviceName
-                          }
                         >
                           {arg?.serviceName}
+                          <p className="text-muted text-xs text-gray-500">
+                            {arg?.descripttion?.slice(0, 30)}
+                          </p>
                         </NavLink>
                       ))}
                     </div>
@@ -381,6 +370,8 @@ const Navbar = () => {
                   }
                 >
                   <img
+                    loading="lazy"
+                    fetchPriority="high"
                     src={
                       location?.pathname?.includes("/nepal") ? Nepal : Australia
                     }
@@ -409,7 +400,13 @@ const Navbar = () => {
                         role="menuitem"
                         onClick={() => handleClose()}
                       >
-                        <img src={Nepal} alt="Nepal" className="w-4 h-4" />{" "}
+                        <img
+                          loading="lazy"
+                          fetchPriority="high"
+                          src={Nepal}
+                          alt="Nepal"
+                          className="w-4 h-4"
+                        />{" "}
                         Nepal
                       </NavLink>
                       <NavLink
@@ -419,6 +416,8 @@ const Navbar = () => {
                         onClick={() => handleClose()}
                       >
                         <img
+                          loading="lazy"
+                          fetchPriority="high"
                           src={Australia}
                           alt="Australia"
                           className="w-5 h-5"

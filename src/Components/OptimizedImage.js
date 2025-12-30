@@ -131,7 +131,7 @@ const OptimizedImage = ({
         <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
           <img
             src={placeholder}
-            alt=""
+            alt="Placeholder"
             className="w-16 h-16 object-contain opacity-50"
             onError={(e) => {
               e.target.style.display = "none";
@@ -153,7 +153,7 @@ const OptimizedImage = ({
           ))}
           <img
             src={fallbackSrc}
-            alt={alt || ""}
+            alt={alt || "Image"}
             className={`w-full h-full object-cover transition-opacity duration-300 ${
               isLoaded ? "opacity-100" : "opacity-0"
             }`}
@@ -172,7 +172,7 @@ const OptimizedImage = ({
       {isInView && !webpSources && (
         <img
           src={fallbackSrc}
-          alt={alt || ""}
+          alt={alt || "Image"}
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}

@@ -20,7 +20,12 @@ export default function ScrollToTop() {
         title="Go To Top"
         className="fixed z-[100] bottom-8 right-8 border-0 w-16 h-16 rounded-full drop-shadow-md text-white text-3xl font-bold"
       >
-        <img loading="lazy" src={upArrow} alt="Scroll to top" />
+        <img
+          loading="lazy"
+          fetchPriority="high"
+          src={upArrow}
+          alt="Scroll to top"
+        />
       </button>
     </>
   );

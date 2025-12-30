@@ -182,6 +182,7 @@ const Footer = () => {
                       <div className="flex items-start gap-4">
                         <div className="text-3xl">
                           <img
+                            loading="lazy"
                             src={Australia}
                             alt="Australia"
                             className="w-4 h-4"
@@ -207,7 +208,12 @@ const Footer = () => {
                     <div className="bg-white/5 rounded-xl p-4 border border-white/10">
                       <div className="flex items-start gap-4">
                         <div className="text-3xl">
-                          <img src={Nepal} alt="Nepal" className="w-4 h-4" />
+                          <img
+                            loading="lazy"
+                            src={Nepal}
+                            alt="Nepal"
+                            className="w-4 h-4"
+                          />
                         </div>
                         <div className="flex-1">
                           <h4 className="text-white font-semibold text-lg mb-2">

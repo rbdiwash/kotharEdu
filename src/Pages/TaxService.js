@@ -277,8 +277,9 @@ const TaxService = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-second font-bold text-xl hover:underline flex items-center gap-3 bg-white px-6 py-3 rounded-full inline-block transform hover:scale-105 transition-all duration-300"
+                aria-label="Learn more about tax services on the ATO website"
               >
-                Click here to learn more on the ATO website →
+                Learn more about tax services on the ATO website →
               </a>
             </div>
 

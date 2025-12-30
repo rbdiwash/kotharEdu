@@ -123,7 +123,7 @@ const IndividualNews = () => {
                 <img
                   loading="lazy"
                   src={newsData?.image}
-                  alt={newsData?.topic}
+                  alt={newsData?.topic || "News Image"}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
