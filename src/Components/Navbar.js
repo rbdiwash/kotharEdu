@@ -76,6 +76,7 @@ const Navbar = () => {
               src={logo}
               className="mr-3 h-14 sm:h-15"
               alt="Kothar Education Logo"
+              style={{ height: "3.5rem" }}
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
           </NavLink>

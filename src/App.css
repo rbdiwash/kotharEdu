@@ -171,3 +171,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+
+.slick-list {
+  padding: 8px 0px !important;
+}

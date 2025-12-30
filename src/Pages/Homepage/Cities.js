@@ -96,7 +96,8 @@ const Cities = () => {
                           loading="lazy"
                           src={item?.image || australia}
                           alt={item?.destination || "Study Destination"}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="h-80 w-80 object-cover group-hover:scale-110 transition-transform duration-700 "
+                          lazyLoad={true}
                         />
 
                         {/* Gradient Overlay */}

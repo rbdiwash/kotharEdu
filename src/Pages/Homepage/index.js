@@ -296,11 +296,12 @@ const Homepage = () => {
               >
                 <div className="flex flex-col items-center text-center">
                   <div className="bg-second/10 p-4 rounded-full mb-6">
-                    <OptimizedImage
+                    <img
+                      loading="lazy"
+                      fetchPriority="high"
                       src={item.img}
                       alt={item.title}
                       className="w-16 h-16 object-contain"
-                      loading="lazy"
                       sizes="64px"
                     />
                   </div>
