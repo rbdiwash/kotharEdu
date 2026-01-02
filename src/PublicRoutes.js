@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 import Footer from "./Components/Footer";
 import Navbar from "./Components/Navbar";
+import AIFloatingButton from "./Components/AIFloatingButton";
 import About from "./Pages/About";
 import Login from "./Pages/Admin/Login";
 import Contact from "./Pages/Contact";
@@ -34,6 +35,7 @@ import Services from "./Pages/Services";
 import StarterKit from "./Pages/StarterKit";
 import TaxCalculator from "./Pages/TaxCalculator";
 import TaxService from "./Pages/TaxService";
+import AIChat from "./Pages/AIChat";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -139,10 +141,14 @@ const PublicRoutes = () => {
         <Route path="/pr-calculator" element={<PRCalculator />} />
         <Route path="/tax-calculator" element={<TaxCalculator />} />
         <Route exact path="/nepal" element={<Nepal />} />
+        <Route exact path="/ai" element={<AIChat />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       {!location.pathname.includes("admin") &&
         !location.pathname.includes("nepal") && <Footer />}
+      {/* AI Floating Button - Show on all public pages except admin and /ai */}
+      {!location.pathname.includes("admin") &&
+        !location.pathname.includes("/ai") && <AIFloatingButton />}
       <ToastContainer />
     </div>
   );

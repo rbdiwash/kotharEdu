@@ -193,14 +193,14 @@ const Homepage = () => {
               <div className="flex flex-col sm:flex-row gap-6">
                 <a
                   href="#services"
-                  className="group bg-primary text-white px-10 py-5 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-lg relative overflow-hidden"
+                  className="group bg-primary text-white px-4 py-2 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105 shadow-lg relative overflow-hidden"
                 >
                   <span className="relative z-10">Explore Services</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-second to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>
                 <Link
                   to="/contact"
-                  className="group border-2 border-white text-white px-10 py-5 rounded-2xl font-semibold hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                  className="group border-2 border-white text-white px-4 py-2 rounded-xl font-semibold hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
                 >
                   Get Started
                 </Link>

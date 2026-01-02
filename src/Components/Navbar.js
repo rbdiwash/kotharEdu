@@ -92,7 +92,7 @@ const Navbar = () => {
             }
             id="navbar-multi-level"
           >
-            <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none  md:flex-row items-center md:space-x-8 md:mt-0 md:text-sm font-semibold md:font-medium  md:bg-white text-md font-bold">
+            <ul className="flex flex-col p-4 pr-0 mt-4  shadow-lg md:shadow-none  md:flex-row items-center md:space-x-5 md:mt-0 md:text-sm font-semibold md:font-medium  md:bg-white text-md ">
               <li className="relative">
                 <button
                   type="button"
