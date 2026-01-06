@@ -15,9 +15,23 @@ const AIChat = () => {
   const messagesEndRef = useRef(null);
   const chatContainerRef = useRef(null);
 
+  // Frequently asked questions
+  const frequentlyAskedQuestions = [
+    "What are the requirements for student visa in Australia?",
+    "How much does it cost to study in Australia?",
+    "What is the IELTS score required for Australian universities?",
+    "How long does it take to process a student visa?",
+    "What are the best universities in Australia for international students?",
+    "Can I work while studying in Australia?",
+    "What is the difference between PR and citizenship in Australia?",
+    "How do I apply for permanent residency in Australia?",
+    "What courses are available for international students?",
+    "What documents do I need for visa application?",
+  ];
+
   useEffect(() => {
     document.title = "AI Chat - Kothar Education";
-    
+
     // Load messages from localStorage if coming from floating button
     const savedMessages = localStorage.getItem("aiChatMessages");
     if (savedMessages) {
@@ -38,17 +52,22 @@ const AIChat = () => {
   }, []);
 
   // Auto-scroll to bottom when new messages arrive
-//   useEffect(() => {
-//     scrollToBottom();
-//   }, [messages]);
+  //   useEffect(() => {
+  //     scrollToBottom();
+  //   }, [messages]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const query = searchQuery.trim();
+  const handleQuestionClick = (question) => {
+    setSearchQuery(question);
+    // Auto-submit the question
+    handleSearchSubmit(question);
+  };
+
+  const handleSearchSubmit = async (queryText = null) => {
+    const query = queryText || searchQuery.trim();
     if (!query) return;
 
     // Add user message to history
@@ -62,19 +81,24 @@ const AIChat = () => {
     setMessages((prev) => [...prev, userMessage]);
     setSearchQuery("");
     setIsLoading(true);
+    console.log(process.env.REACT_APP_AI_BACKEND_URL);
+    // Get AI backend URL from environment variable with fallback
+    const aiBackendUrl =
+      process.env.REACT_APP_AI_BACKEND_URL || "http://localhost:8000";
 
     try {
       // Call AI API
-      const response = await axios.post(
-        `http://localhost:8000/ai/generate-insight`,
-        { query: query }
-      );
+      const response = await axios.post(`${aiBackendUrl}/ai/generate-insight`, {
+        query: query,
+      });
 
       // Add AI response to history
       const aiMessage = {
         id: Date.now() + 1,
         type: "ai",
-        content: response?.data?.insight || "I'm sorry, I couldn't generate a response.",
+        content:
+          response?.data?.insight ||
+          "I'm sorry, I couldn't generate a response.",
         timestamp: new Date(),
       };
 
@@ -95,13 +119,17 @@ const AIChat = () => {
     }
   };
 
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    handleSearchSubmit();
+  };
+
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 pt-2 pb-12">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-3">
-        
             <div className="bg-gradient-to-r from-primary to-second text-white rounded-2xl p-6 shadow-lg">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
@@ -109,14 +137,19 @@ const AIChat = () => {
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold mb-1">Ask Our AI</h1>
-                  <p className="text-white/80">Get instant answers about study abroad, visas, and more</p>
+                  <p className="text-white/80">
+                    Get instant answers about study abroad, visas, and more
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Chat Container */}
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col" style={{ height: "calc(100vh - 280px)", minHeight: "600px" }}>
+          <div
+            className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden flex flex-col"
+            style={{ height: "calc(100vh - 280px)", minHeight: "600px" }}
+          >
             {/* Messages Area */}
             <div
               ref={chatContainerRef}
@@ -131,7 +164,7 @@ const AIChat = () => {
                     </div>
                     <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
                       <p className="text-base text-gray-700 mb-3">
-                        👋 Hi! I'm your AI assistant. Ask me anything about:
+                        👋 Hi! I'm your Kothar AI. Ask me anything about:
                       </p>
                       <ul className="space-y-2 text-sm text-gray-600">
                         <li className="flex items-start gap-2">
@@ -140,7 +173,9 @@ const AIChat = () => {
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-primary">•</span>
-                          <span>Visa requirements and application processes</span>
+                          <span>
+                            Visa requirements and application processes
+                          </span>
                         </li>
                         <li className="flex items-start gap-2">
                           <span className="text-primary">•</span>
@@ -159,10 +194,31 @@ const AIChat = () => {
                   </div>
                 )}
 
+                {/* Frequently Asked Questions - Only show when no messages */}
+                {messages.length === 0 && (
+                  <div className="mt-4">
+                    <p className="text-sm font-semibold text-gray-700 mb-3 px-2">
+                      💡 Frequently Asked Questions:
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {frequentlyAskedQuestions.map((question, index) => (
+                        <button
+                          key={question}
+                          onClick={() => handleQuestionClick(question)}
+                          disabled={isLoading}
+                          className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed text-left"
+                        >
+                          {question}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Conversation History */}
                 {messages.map((message) => (
                   <div
-                    key={message.id}
+                    key={message?.timestamp}
                     className={`flex items-start gap-4 ${
                       message.type === "user" ? "flex-row-reverse" : ""
                     }`}
@@ -199,13 +255,9 @@ const AIChat = () => {
                       ) : (
                         <div
                           className={`text-base prose prose-base max-w-none ${
-                            message.isError
-                              ? "prose-red"
-                              : "prose-gray"
+                            message.isError ? "prose-red" : "prose-gray"
                           } ${
-                            message.isError
-                              ? "text-red-700"
-                              : "text-gray-700"
+                            message.isError ? "text-red-700" : "text-gray-700"
                           }`}
                         >
                           <ReactMarkdown
@@ -216,7 +268,9 @@ const AIChat = () => {
                                 <p className="mb-3 last:mb-0">{children}</p>
                               ),
                               strong: ({ children }) => (
-                                <strong className="font-bold">{children}</strong>
+                                <strong className="font-bold">
+                                  {children}
+                                </strong>
                               ),
                               em: ({ children }) => (
                                 <em className="italic">{children}</em>
@@ -245,13 +299,19 @@ const AIChat = () => {
                                 </blockquote>
                               ),
                               h1: ({ children }) => (
-                                <h1 className="text-2xl font-bold mb-3">{children}</h1>
+                                <h1 className="text-2xl font-bold mb-3">
+                                  {children}
+                                </h1>
                               ),
                               h2: ({ children }) => (
-                                <h2 className="text-xl font-bold mb-2">{children}</h2>
+                                <h2 className="text-xl font-bold mb-2">
+                                  {children}
+                                </h2>
                               ),
                               h3: ({ children }) => (
-                                <h3 className="text-lg font-bold mb-2">{children}</h3>
+                                <h3 className="text-lg font-bold mb-2">
+                                  {children}
+                                </h3>
                               ),
                             }}
                           >
@@ -294,7 +354,9 @@ const AIChat = () => {
                             style={{ animationDelay: "0.2s" }}
                           ></div>
                         </div>
-                        <span className="text-sm text-gray-500">AI is thinking...</span>
+                        <span className="text-sm text-gray-500">
+                          AI is thinking...
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -307,6 +369,30 @@ const AIChat = () => {
 
             {/* Search Input */}
             <div className="p-6 bg-white border-t border-gray-200">
+              {/* Quick Questions - Show when there are messages */}
+              {messages.length > 0 && (
+                <div className="mb-4">
+                  <p className="text-xs font-semibold text-gray-600 mb-2">
+                    Quick Questions:
+                  </p>
+                  <div className="flex flex-wrap gap-2 max-h-20 overflow-y-auto">
+                    {frequentlyAskedQuestions
+                      .slice(0, 5)
+                      .map((question, index) => (
+                        <button
+                          key={question}
+                          onClick={() => handleQuestionClick(question)}
+                          disabled={isLoading}
+                          className="px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-md text-xs text-gray-600 hover:bg-primary hover:text-white hover:border-primary transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {question.length > 40
+                            ? `${question.substring(0, 40)}...`
+                            : question}
+                        </button>
+                      ))}
+                  </div>
+                </div>
+              )}
               <form onSubmit={handleSearch} className="flex gap-3 mx-auto">
                 <div className="flex-1 relative">
                   <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" />
@@ -329,7 +415,8 @@ const AIChat = () => {
                 </button>
               </form>
               <p className="text-xs text-gray-500 mt-3 text-center max-w-3xl mx-auto">
-                Powered by AI • Search across all our content • Your conversation is private
+                Powered by AI • Search across all our content • Your
+                conversation is private
               </p>
             </div>
           </div>

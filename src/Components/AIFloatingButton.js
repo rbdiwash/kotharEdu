@@ -63,18 +63,23 @@ const AIFloatingButton = () => {
     setSearchQuery("");
     setIsLoading(true);
 
+    // Get AI backend URL from environment variable with fallback
+    const aiBackendUrl =
+      process.env.REACT_APP_AI_BACKEND_URL || "http://localhost:8000";
+
     try {
       // Call AI API
-      const response = await axios.post(
-        `http://localhost:8000/ai/generate-insight`,
-        { query: query }
-      );
+      const response = await axios.post(`${aiBackendUrl}/ai/generate-insight`, {
+        query: query,
+      });
 
       // Add AI response to history
       const aiMessage = {
         id: Date.now() + 1,
         type: "ai",
-        content: response?.data?.insight || "I'm sorry, I couldn't generate a response.",
+        content:
+          response?.data?.insight ||
+          "I'm sorry, I couldn't generate a response.",
         timestamp: new Date(),
       };
 
