@@ -29,6 +29,7 @@ const AdminStates = () => {
   const [reasonDesc, setReasonsDesc] = useState("");
   const [preview, setPreview] = useState();
   const [{ destinations }, { setDestinations, getDestinations }] = useKothar();
+  document.title = "Admin Dashboard - Kothar Educational Services";
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -128,10 +129,10 @@ const AdminStates = () => {
       destinationDesc: itemData?.destinationDesc,
     });
     setWhyHeading(
-      itemData?.whyDestination[0]?.title || itemData?.whyDestination?.title
+      itemData?.whyDestination[0]?.title || itemData?.whyDestination?.title,
     );
     setAddedDetails(
-      itemData?.whyDestination[0]?.ans || itemData?.whyDestination?.ans
+      itemData?.whyDestination[0]?.ans || itemData?.whyDestination?.ans,
     );
     setPreview(itemData?.image);
   };
@@ -139,7 +140,7 @@ const AdminStates = () => {
   const editRow = (i) => {
     setAddedDetails((prevState) => [
       ...prevState.filter(
-        (arg) => prevState.indexOf(arg) !== prevState.indexOf(i)
+        (arg) => prevState.indexOf(arg) !== prevState.indexOf(i),
       ),
     ]);
     setReasonsDesc(i.desc);

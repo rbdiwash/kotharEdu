@@ -82,11 +82,14 @@ const AdminNews = () => {
     setData({
       topic: "",
       description: "",
-      date: "",
+      date: new Date()?.toISOString().split("T")[0],
     });
     setPreview();
   };
   const deleteData = (id) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) {
+      return;
+    }
     axios
       .delete(`/admin/news/${id}`)
       .then((res) => {
@@ -210,7 +213,6 @@ const AdminNews = () => {
                       <tbody>
                         {news?.length > 0 ? (
                           news?.map((item) => {
-                            console.log(item?.description);
                             return (
                               <tr
                                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
@@ -235,7 +237,7 @@ const AdminNews = () => {
                                     <div>
                                       {extractPartOfParagraph(
                                         item?.description,
-                                        300
+                                        300,
                                       )}
                                     </div>
                                   ) : (
@@ -282,7 +284,19 @@ const AdminNews = () => {
                 </div>
               </div>
             </div>
-            <Dialog open={open} handler={handleOpen}>
+            <Dialog
+              open={open}
+              handler={handleOpen}
+              animate={{
+                mount: { scale: 1, y: 0 },
+                unmount: { scale: 0.9, y: -100 },
+              }}
+              dismiss={{
+                enabled: false,
+                outsidePress: false,
+                escapeKey: false,
+              }}
+            >
               <DialogHeader> {data?.id ? "Edit" : "Add"} News</DialogHeader>
               <form onSubmit={data?.id ? handleUpdate : handleSubmit}>
                 <DialogBody divider>
@@ -341,7 +355,7 @@ const AdminNews = () => {
                                 ([selector, styles]) =>
                                   `${selector} { ${Object.entries(styles)
                                     .map(([prop, value]) => `${prop}: ${value}`)
-                                    .join("; ")} }`
+                                    .join("; ")} }`,
                               )
                               .join("\n")}
                           </style>
