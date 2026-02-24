@@ -18,7 +18,7 @@ import bannerImage from "../assets/images/nepal_banner.jpeg";
 
 const Nepal = () => {
   document.title = "Nepal Office - Kothar Education";
-  
+
   const [{ services }] = useKothar();
 
   // Nepal team members
@@ -116,7 +116,7 @@ const Nepal = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 py-4">
                 <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 hover:border-primary transition-all duration-300 transform hover:-translate-y-1">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    500+
+                    10k+
                   </div>
                   <div className="text-sm text-gray-600 font-medium">
                     Students Placed

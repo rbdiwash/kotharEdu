@@ -74,7 +74,7 @@ const Testimonials = () => {
           <div className="text-center group">
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
               <div className="text-3xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
-                500+
+                10k+
               </div>
               <div className="text-gray-600 text-sm font-medium">
                 Happy Students

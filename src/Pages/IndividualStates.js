@@ -17,7 +17,7 @@ const IndividualStates = () => {
   const location = useLocation();
   const { data } = location?.state;
   const navigate = useNavigate();
-  
+
   document.title = data?.destination
     ? `${data?.destination} - Study Destinations - Kothar Education`
     : "Study Destinations - Kothar Education";
@@ -88,7 +88,7 @@ const IndividualStates = () => {
               <div className="grid grid-cols-3 gap-8 pt-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary mb-2">
-                    500+
+                    10k+
                   </div>
                   <div className="text-white/70 text-sm">Students Placed</div>
                 </div>

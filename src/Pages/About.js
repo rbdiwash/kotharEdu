@@ -230,7 +230,7 @@ const About = () => {
                 <div className="grid grid-cols-3 gap-8 pt-8">
                   <div className="text-center group">
                     <div className="text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
-                      500+
+                      10k+
                     </div>
                     <div className="text-gray-600 text-sm font-medium">
                       Students Placed

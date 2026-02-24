@@ -57,6 +57,10 @@ const IndividualNews = () => {
     return () => clearTimeout(timer);
   }, [newsData, news?.length, id]);
 
+  document.title = newsData?.topic
+    ? `${newsData.topic} - News - Kothar Education`
+    : "News & Updates - Kothar Education";
+
   const pageTitle = newsData?.topic
     ? `${newsData.topic} - News - Kothar Education`
     : "News - Kothar Education";
@@ -132,7 +136,7 @@ const IndividualNews = () => {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={shareUrl} />
+        <link rel="canonical" href={`${origin}/news/${id}`} />
         {/* Open Graph */}
         <meta property="og:type" content="article" />
         <meta property="og:url" content={shareUrl} />
