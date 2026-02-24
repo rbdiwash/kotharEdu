@@ -110,6 +110,9 @@ const AdminServices = () => {
     setAddedDetails([]);
   };
   const deleteData = (id) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) {
+      return;
+    }
     axios
       .delete(`/admin/services/${id}`)
       .then((res) => {
@@ -132,9 +135,7 @@ const AdminServices = () => {
     setMoretitle("");
   };
 
-  console.log(addedDetails);
   const deleteRow = (id) => {
-    console.log(id);
     setAddedDetails((prevState) => [
       ...prevState.filter((a) => prevState.indexOf(a) !== id),
     ]);

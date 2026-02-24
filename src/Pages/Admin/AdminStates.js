@@ -98,14 +98,16 @@ const AdminStates = () => {
     setReasonsDesc("");
   };
   const deleteData = (id) => {
-    axios
-      .delete(`/admin/destinations/${id}`)
-      .then((res) => {
-        toast.success("Data Deleted successfully");
+    if (window.confirm("Are you sure you want to delete this state?")) {
+      axios
+        .delete(`/admin/destinations/${id}`)
+        .then((res) => {
+          toast.success("Data Deleted successfully");
 
-        getDestinations();
-      })
-      .catch((err) => console.log(err));
+          getDestinations();
+        })
+        .catch((err) => console.log(err));
+    }
   };
   const handleAddDetails = () => {
     setAddedDetails((prevState) => [

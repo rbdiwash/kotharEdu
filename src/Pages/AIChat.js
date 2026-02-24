@@ -81,7 +81,6 @@ const AIChat = () => {
     setMessages((prev) => [...prev, userMessage]);
     setSearchQuery("");
     setIsLoading(true);
-    console.log(process.env.REACT_APP_AI_BACKEND_URL);
     // Get AI backend URL from environment variable with fallback
     const aiBackendUrl =
       process.env.REACT_APP_AI_BACKEND_URL || "http://localhost:8000";
@@ -244,8 +243,8 @@ const AIChat = () => {
                         message.type === "user"
                           ? "bg-primary text-white"
                           : message.isError
-                          ? "bg-red-50 border border-red-200"
-                          : "bg-white border border-gray-200"
+                            ? "bg-red-50 border border-red-200"
+                            : "bg-white border border-gray-200"
                       }`}
                     >
                       {message.type === "user" ? (
@@ -428,4 +427,3 @@ const AIChat = () => {
 };
 
 export default AIChat;
-

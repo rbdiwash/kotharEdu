@@ -36,6 +36,7 @@ import StarterKit from "./Pages/StarterKit";
 import TaxCalculator from "./Pages/TaxCalculator";
 import TaxService from "./Pages/TaxService";
 import AIChat from "./Pages/AIChat";
+import SuccessStories from "./Pages/SuccessStories";
 
 const PublicRoutes = () => {
   const location = useLocation();
@@ -125,6 +126,11 @@ const PublicRoutes = () => {
           exact
           path="/explore/checklists"
           element={<Checklists />}
+        ></Route>
+        <Route
+          exact
+          path="/explore/success-stories"
+          element={<SuccessStories />}
         ></Route>{" "}
         <Route
           exact

@@ -37,6 +37,9 @@ const AdminBookings = () => {
 
   const handleOpen = () => setOpen(!open);
   const deleteData = (id) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) {
+      return;
+    }
     axios
       .delete(`/admin/book-appointment/${id}`)
       .then((res) => {

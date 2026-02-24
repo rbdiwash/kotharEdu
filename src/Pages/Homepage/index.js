@@ -21,6 +21,7 @@ import Cities from "./Cities";
 import Events from "./Events";
 import News from "./News";
 import Testimonials from "./Testimonials";
+import OurSuccessStories from "./OurSuccessStories";
 
 const options2 = [
   {
@@ -165,7 +166,7 @@ const Homepage = () => {
               <div className="grid grid-cols-3 gap-2 pt-3 justifu-start">
                 <div className="text-center group">
                   <div className="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">
-                    500+
+                    10k+
                   </div>
                   <div className="text-white/70 text-sm font-medium">
                     Students Placed
@@ -219,7 +220,7 @@ const Homepage = () => {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {destinations?.slice(0, 4).map((destination, index) => {
                     // First 2 images are above the fold - load eagerly with high priority
                     const isAboveFold = index < 2;
@@ -288,40 +289,45 @@ const Homepage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-4 gap-8">
-            {options2?.map((item, index) => (
-              <div
-                key={item?.id}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="bg-second/10 p-4 rounded-full mb-6">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-primary/5 via-second/10 to-primary/5 border border-primary/10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-primary/10">
+              {options2?.map((item, index) => (
+                <div
+                  key={item?.id ?? index}
+                  className="flex items-center gap-6 p-8 lg:p-10 hover:bg-white/50 transition-colors duration-300"
+                >
+                  <div className="shrink-0 w-14 h-14 flex items-center justify-center rounded-xl bg-white/80 shadow-sm">
                     <img
                       loading="lazy"
                       fetchPriority="high"
                       src={item.img}
                       alt={item.title}
-                      className="w-16 h-16 object-contain"
-                      sizes="64px"
+                      className="w-8 h-8 object-contain"
+                      sizes="56px"
                     />
                   </div>
-                  <h3 className="text-5xl font-bold text-second mb-2">
-                    {item.count}
-                    {item.title !== "Awards" && (
-                      <span className="text-3xl">+</span>
-                    )}
-                  </h3>
-                  <h4 className="text-xl font-semibold text-gray-800 mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
+                  <div className="min-w-0">
+                    <p className="text-4xl lg:text-5xl font-bold text-second leading-none mb-1">
+                      {item.count}
+                      {item.title !== "Awards" && (
+                        <span className="text-2xl lg:text-3xl">+</span>
+                      )}
+                    </p>
+                    <p className="text-base font-semibold text-gray-800">
+                      {item.title}
+                    </p>
+                    <p className="text-sm text-gray-600 mt-0.5">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
       <Cities />
+      <News />
       <section
         id="services"
         className="py-24 bg-gradient-to-b from-lightBlue to-white"
@@ -339,7 +345,7 @@ const Homepage = () => {
 
           <Slider {...settings}>
             {services?.services?.map((item, i) => (
-              <div className="px-4" key={item?.id}>
+              <div key={item?.id}>
                 <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 h-[550px] flex flex-col my-4">
                   <div className="relative overflow-hidden rounded-t-2xl h-[300px]">
                     <OptimizedImage
@@ -378,7 +384,7 @@ const Homepage = () => {
       <Events />
       {/* <Classes /> */}
       <AssociatedUni />
-      <News />
+      <OurSuccessStories />
       <Testimonials />
       <section id="contact" className="h-max">
         <div className="container mx-auto">

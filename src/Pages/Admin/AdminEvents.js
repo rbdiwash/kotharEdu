@@ -59,13 +59,15 @@ const AdminEvents = () => {
   };
 
   const deleteData = (id) => {
-    axios
-      .delete(`/admin/events/${id}`)
-      .then((res) => {
-        toast.success("Data Deleted successfully");
-        getEvents();
-      })
-      .catch((err) => toast.error("Error Deleting Data"));
+    if (window.confirm("Are you sure you want to delete this event?")) {
+      axios
+        .delete(`/admin/events/${id}`)
+        .then((res) => {
+          toast.success("Data Deleted successfully");
+          getEvents();
+        })
+        .catch((err) => toast.error("Error Deleting Data"));
+    }
   };
 
   const handleOpen = () => {

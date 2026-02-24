@@ -84,6 +84,9 @@ const AdminUni = () => {
     setPreview();
   };
   const deleteData = (id) => {
+    if (!window.confirm("Are you sure you want to delete this item?")) {
+      return;
+    }
     axios
       .delete(`/admin/universities/${id}`)
       .then((res) => {
@@ -154,7 +157,7 @@ const AdminUni = () => {
                               <td className="py-4 px-6">
                                 {
                                   destinations?.find(
-                                    (arg) => arg?.id === item?.destId
+                                    (arg) => arg?.id === item?.destId,
                                   )?.destination
                                 }
                               </td>
@@ -227,7 +230,7 @@ const AdminUni = () => {
                             }
                             value={
                               destinations?.find(
-                                (arg) => arg?.id === data?.destId
+                                (arg) => arg?.id === data?.destId,
                               )?.id
                             }
                           >
